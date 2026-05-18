@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>サンプル工務店（テスト用）</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Poppins:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<!-- Splide for fade slideshow -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" defer></script>
+<!-- Swiper for parallax / loop slider -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font-family:"Noto Sans JP",sans-serif;color:#2c2c2c;background:#fff;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+
+/* ============ 共通 header（全サイト同構造） ============ */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:20px 32px;background:transparent;color:#fff;transition:background .3s ease, color .3s ease, box-shadow .3s ease, padding .3s ease}
+.site-header.is-scrolled{background:#fff;color:#1a1a1a;box-shadow:0 2px 14px rgba(0,0,0,.08);padding:14px 32px}
+.site-header__logo{font-family:"Shippori Mincho",serif;font-weight:500;font-size:17px;letter-spacing:.18em;color:inherit;text-decoration:none}
+.site-header__burger{display:inline-flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:transparent;border:0;cursor:pointer;padding:0;color:inherit}
+.site-header__burger span{display:block;width:22px;height:1.5px;background:currentColor;margin:0 auto;transition:transform .3s ease, opacity .3s ease}
+
+/* nav オーバーレイ（全画面） */
+.site-nav{position:fixed;inset:0;z-index:200;background:rgba(26,26,26,.96);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;opacity:0;pointer-events:none;transition:opacity .35s ease}
+.site-nav.is-open{opacity:1;pointer-events:auto}
+.site-nav__close{position:absolute;top:24px;right:32px;background:transparent;border:0;color:#fff;font-size:20px;cursor:pointer;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;font-family:inherit}
+.site-nav__list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:24px;text-align:center}
+.site-nav__list a{font-family:"Shippori Mincho",serif;font-size:22px;letter-spacing:.18em;color:#fff;text-decoration:none;display:inline-block;padding:6px 12px;transition:opacity .2s}
+.site-nav__list a:hover{opacity:.6}
+
+@media (max-width:768px){
+  .site-header{padding:16px 20px}
+  .site-header.is-scrolled{padding:12px 20px}
+  .site-header__logo{font-size:15px;letter-spacing:.14em}
+  .site-nav__list a{font-size:18px}
+  .site-nav__close{top:16px;right:20px}
+}
+</style>
+</head>
+<body>
+<header class="site-header" data-site-header>
+  <a class="site-header__logo" href="#top">サンプル工務店（テスト用）</a>
+  <button class="site-header__burger" type="button" aria-label="メニューを開く" aria-expanded="false" data-burger>
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<nav class="site-nav" data-site-nav aria-hidden="true">
+  <button class="site-nav__close" type="button" aria-label="メニューを閉じる" data-burger>✕</button>
+  <ul class="site-nav__list">
+    <li><a href="#trust">私たちの想い</a></li>
+    <li><a href="#services">サービス</a></li>
+    <li><a href="#gallery">施工事例</a></li>
+    <li><a href="#area">対応エリア</a></li>
+    <li><a href="#cta">お問い合わせ</a></li>
+  </ul>
+</nav>
+
+<div id="top"></div>
+<div id="hero" class="site-section site-section--hero">
+<!-- hero: teto -->
+<!--
+  Archetype: hero / teto-replica
+  Source:    teto paint （https://tetopaint.jp/）の Hero を忠実再現
+  Target:    A1 帯（白ベース・余白ミニマル・派手な動きなし）
+  Animation: Splide fade スライドショー（3 枚、4.5s/枚、ホバーで停止しない）
+             + ドット indicator が active に追従
+
+  Dependencies:
+    - Splide v4 CSS/JS（外部 CDN 読み込みは layout.html or preview wrapper 側）
+
+  Placeholders:
+    サンプル工務店（テスト用）          会社名
+    {{hero.slide_1}}          スライド 1 画像 URL
+    {{hero.slide_2}}          スライド 2 画像 URL
+    {{hero.slide_3}}          スライド 3 画像 URL
+    {{hero.copy_jp}}          メインコピー（短文、HTML 可）
+    {{hero.news_date}}        右下お知らせ日付
+    {{hero.news_body}}        右下お知らせ本文
+-->
+<section class="hero-teto-replica">
+<style>
+.hero-teto-replica{position:relative;height:100vh;min-height:640px;max-height:900px;background:#1B1E29;color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;overflow:hidden}
+.hero-teto-replica__slider{position:absolute;inset:0;z-index:1}
+.hero-teto-replica__slider .splide,
+.hero-teto-replica__slider .splide__track,
+.hero-teto-replica__slider .splide__list,
+.hero-teto-replica__slider .splide__slide{height:100%}
+.hero-teto-replica__slider .splide__slide{background-position:center;background-size:cover}
+.hero-teto-replica::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 0%,transparent 55%,rgba(0,0,0,.42) 100%);pointer-events:none;z-index:2}
+
+/* main copy bottom-left */
+.hero-teto-replica__copy{position:absolute;left:56px;bottom:60px;z-index:3;max-width:760px}
+.hero-teto-replica__copy h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:500;font-size:42px;letter-spacing:.3em;line-height:1.6;color:#fff;margin:0;text-shadow:0 2px 14px rgba(0,0,0,.35)}
+
+/* news bottom-right */
+.hero-teto-replica__news{position:absolute;right:56px;bottom:60px;z-index:3;text-align:right;color:#fff;max-width:300px}
+.hero-teto-replica__news .lbl{font-family:"Roboto",sans-serif;font-size:11px;letter-spacing:.32em;color:rgba(255,255,255,.7);margin:0 0 6px;text-transform:uppercase}
+.hero-teto-replica__news .date{font-family:"Roboto",sans-serif;font-size:13px;letter-spacing:.16em;margin:0 0 4px}
+.hero-teto-replica__news .body{font-family:"Zen Kaku Gothic New",sans-serif;font-size:13px;line-height:1.7;margin:0;letter-spacing:.04em}
+
+/* vertical dots indicator (Splide pagination と連動) */
+.hero-teto-replica__dots{position:absolute;right:28px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:4}
+.hero-teto-replica__dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.45);display:block;transition:all .3s}
+.hero-teto-replica__dots i.on{background:#fff;width:6px;height:28px;border-radius:3px}
+
+/* scroll cue */
+.hero-teto-replica__scroll{position:absolute;left:56px;top:50%;transform:translateY(-50%) rotate(-90deg);transform-origin:left center;z-index:3;font-family:"Roboto",sans-serif;font-style:italic;font-size:11px;letter-spacing:.4em;color:rgba(255,255,255,.7);text-transform:uppercase}
+
+/* Splide native pagination は非表示（自前 dots 使うため） */
+.hero-teto-replica__slider .splide__pagination,
+.hero-teto-replica__slider .splide__arrows{display:none}
+
+@media (max-width:768px){
+  .hero-teto-replica{min-height:560px}
+  .hero-teto-replica__copy{left:24px;bottom:80px;right:24px}
+  .hero-teto-replica__copy h1{font-size:26px;letter-spacing:.18em;line-height:1.55}
+  .hero-teto-replica__news{display:none}
+  .hero-teto-replica__dots{display:none}
+  .hero-teto-replica__scroll{display:none}
+}
+</style>
+
+<!-- Splide スライダー（背面） -->
+<div class="hero-teto-replica__slider">
+  <div class="splide" data-splide='{"type":"fade","rewind":true,"autoplay":true,"interval":4500,"speed":1800,"arrows":false,"pagination":false,"pauseOnHover":false}'>
+    <div class="splide__track">
+      <ul class="splide__list">
+        <li class="splide__slide" style="background-image:url('https://picsum.photos/seed/gm-ypesample001-サンプル工務店テスト用-hero-1/1600/900')"></li>
+        <li class="splide__slide" style="background-image:url('https://picsum.photos/seed/gm-ypesample001-サンプル工務店テスト用-hero-2/1600/900')"></li>
+        <li class="splide__slide" style="background-image:url('https://picsum.photos/seed/gm-ypesample001-サンプル工務店テスト用-hero-3/1600/900')"></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="hero-teto-replica__scroll">scroll</div>
+
+<div class="hero-teto-replica__copy">
+  <h1>大阪市chuouの暮らしに、<br>丁寧な施工を。</h1>
+</div>
+
+<aside class="hero-teto-replica__news">
+  <p class="lbl">News</p>
+  <p class="date"></p>
+  <p class="body">現在お知らせはございません</p>
+</aside>
+
+<div class="hero-teto-replica__dots" aria-hidden="true">
+  <i class="on"></i>
+  <i></i>
+  <i></i>
+</div>
+
+<script>
+(function(){
+  function init(){
+    var root = document.currentScript && document.currentScript.closest('.hero-teto-replica');
+    if(!root) root = document.querySelector('.hero-teto-replica');
+    if(!root || !window.Splide) return;
+    var dots = root.querySelectorAll('.hero-teto-replica__dots i');
+    var splide = new Splide(root.querySelector('.splide'));
+    splide.on('move', function(newIndex){
+      dots.forEach(function(d,i){ d.classList.toggle('on', i===newIndex); });
+    });
+    splide.mount();
+  }
+  if(window.Splide) init();
+  else window.addEventListener('load', init);
+})();
+</script>
+</section>
+
+</div>
+<div id="trust" class="site-section site-section--trust">
+<!-- trust: kotake -->
+<!--
+  Archetype: trust / kotake
+  Source:    小竹建設 (https://www.kotake.jp/) の #company セクション（"小竹建設とは"）を忠実模写
+
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: WordPress（独自テーマ）/ Typekit + Google Fonts
+  - 構造: 2 カラム横並び（左: 代表者写真 / 右: company 見出し + 経営理念テキスト 4 段落 + 代表者名 + View More ボタン）+ 下に "スタッフ紹介" バナー（背景写真 + 見出し + リンク）
+  - 配色: 背景 #fff / 写真ブロック / 本文 #2c2c2c / 副見出し（"company" 英字）#a4a5a9
+  - フォント: 大見出し Shippori Mincho（明朝、weight 500、letter-spacing .14em）/ 英字 Cormorant Garamond italic / 本文 Noto Sans JP
+  - 動き: 静的（参考にスクロール fade はあるが控えめ。ここでは scroll-trigger fade を弱く .8s で軽く再現）
+  - 信頼要素: CEO 顔写真 + 経営理念 4 段落 + 「代表取締役 ○○ ○○」サイン + 関連ページバナー(スタッフ)
+
+  ## Placeholders
+    {{trust.heading}}              大見出し（例: "サンプル建設とは"）
+    {{trust.heading_en}}           英字小見出し（例: "company"）
+    {{trust.lead}}                 リード文（バックグラウンド説明、1-2 文）
+    {{trust.ceo_photo}}            代表者写真 URL（縦長 670×665 想定）
+    {{trust.philosophy_title}}     理念見出し（明朝大、2 行想定）
+    {{trust.philosophy_p1}} ～ {{trust.philosophy_p4}}  経営理念本文 4 段落
+    {{trust.company_legal_name}}   法人名（例: "サンプル建設有限会社"）
+    {{trust.ceo_title}}            役職（例: "代表取締役"）
+    {{trust.ceo_name}}             代表者名
+    {{trust.more_label}}           View more ラベル
+    {{trust.staff_banner_image}}   スタッフ紹介バナー背景画像
+    {{trust.staff_banner_title}}   スタッフ紹介見出し
+    {{trust.staff_banner_en}}      英字（例: "staff"）
+    {{trust.staff_banner_desc}}    バナー説明
+    {{trust.staff_banner_label}}   バナー CTA ラベル
+-->
+<section class="trust-kotake">
+<style>
+.trust-kotake{background:#fff;color:#2c2c2c;font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;padding:120px 40px 100px;overflow:hidden}
+.trust-kotake__inner{max-width:1180px;margin:0 auto}
+.trust-kotake__head{text-align:center;margin:0 0 64px}
+.trust-kotake__h2{font-family:"Shippori Mincho",serif;font-weight:500;font-size:34px;letter-spacing:.14em;margin:0;color:#1a1a1a}
+.trust-kotake__en{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.32em;color:#a4a5a9;text-transform:lowercase;margin:14px 0 0;display:block}
+.trust-kotake__lead{max-width:640px;margin:24px auto 0;font-size:14px;line-height:1.95;color:#5b574f}
+
+.trust-kotake__row{display:grid;grid-template-columns:minmax(0,540px) 1fr;gap:64px;align-items:flex-start}
+.trust-kotake__photo{position:relative;aspect-ratio:670/665;overflow:hidden;background:#eae6df}
+.trust-kotake__photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.4s ease}
+.trust-kotake__photo:hover img{transform:scale(1.03)}
+.trust-kotake__content{padding-top:14px}
+.trust-kotake__philosophy_title{font-family:"Shippori Mincho",serif;font-weight:500;font-size:28px;letter-spacing:.1em;line-height:1.7;margin:0 0 32px;color:#1a1a1a}
+.trust-kotake__desc p{font-size:14.5px;line-height:2;color:#403c36;margin:0 0 18px}
+.trust-kotake__sig{margin:32px 0 0;font-family:"Shippori Mincho",serif;font-weight:500;font-size:15px;line-height:2;letter-spacing:.06em;color:#1a1a1a}
+.trust-kotake__more{display:inline-flex;align-items:center;gap:14px;margin-top:36px;padding:16px 30px;border:1px solid #1a1a1a;background:#fff;color:#1a1a1a;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.28em;text-decoration:none;text-transform:lowercase;transition:background .2s,color .2s}
+.trust-kotake__more::after{content:"→";font-style:normal}
+.trust-kotake__more:hover{background:#1a1a1a;color:#fff}
+
+.trust-kotake__banner{display:block;position:relative;margin:96px 0 0;height:240px;overflow:hidden;text-decoration:none;color:#fff}
+.trust-kotake__banner__bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .9s ease}
+.trust-kotake__banner:hover .trust-kotake__banner__bg{transform:scale(1.04)}
+.trust-kotake__banner::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.18) 100%)}
+.trust-kotake__banner__inner{position:relative;z-index:2;height:100%;display:flex;justify-content:space-between;align-items:center;padding:0 56px}
+.trust-kotake__banner__ttl{font-family:"Shippori Mincho",serif;font-weight:500;font-size:24px;letter-spacing:.18em;margin:0;color:#fff}
+.trust-kotake__banner__en{display:block;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.3em;color:rgba(255,255,255,.85);margin-top:8px}
+.trust-kotake__banner__desc{font-size:13px;line-height:1.9;color:rgba(255,255,255,.85);max-width:280px;margin:0 32px 0 0}
+.trust-kotake__banner__cta{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:12px;letter-spacing:.3em;color:#fff;padding:14px 24px;border:1px solid rgba(255,255,255,.55);text-transform:lowercase}
+
+@media (max-width:880px){
+  .trust-kotake{padding:80px 22px 64px}
+  .trust-kotake__row{grid-template-columns:1fr;gap:36px}
+  .trust-kotake__h2{font-size:24px}
+  .trust-kotake__philosophy_title{font-size:21px}
+  .trust-kotake__banner__inner{flex-direction:column;justify-content:center;text-align:center;padding:32px 22px;gap:18px}
+  .trust-kotake__banner__desc{margin:0}
+  .trust-kotake__banner{height:auto;min-height:240px}
+}
+</style>
+
+<div class="trust-kotake__inner">
+  <header class="trust-kotake__head">
+    <h2 class="trust-kotake__h2">私たちの想い</h2>
+    <span class="trust-kotake__en">company</span>
+    <p class="trust-kotake__lead">サンプル工務店（テスト用）は大阪市chuouを拠点に、リフォームを中心とした住まいづくりに取り組んでいます。地域のお客様に長くご愛顧いただけるサービスを目指し、丁寧な対応を心がけています。</p>
+  </header>
+
+  <div class="trust-kotake__row">
+    <figure class="trust-kotake__photo">
+      <img src="https://picsum.photos/seed/gm-ypesample001-サンプル工務店テスト用-ceo/670/665" alt="">
+    </figure>
+    <div class="trust-kotake__content">
+      <h3 class="trust-kotake__philosophy_title">暮らしを、<br>もっと心地よく。</h3>
+      <div class="trust-kotake__desc">
+        <p>「住まいを直す」だけでなく、「暮らしを整える」こと。私たちはお客様の日々の心地よさを大切にしています。</p>
+        <p>ご相談から施工、お引き渡し後のアフターまで、一貫してお付き合いさせていただきます。</p>
+        <p>地域に根ざした業者として、長く頼っていただける関係づくりを心がけています。</p>
+        <p>大阪市chuouでリフォームのことならお気軽にご相談ください。</p>
+      </div>
+      <p class="trust-kotake__sig">サンプル工務店（テスト用）<br>代表　ご紹介</p>
+      <a class="trust-kotake__more" href="#company">View more</a>
+    </div>
+  </div>
+
+  <a class="trust-kotake__banner" href="#staff">
+    <span class="trust-kotake__banner__bg" style="background-image:url('https://picsum.photos/seed/gm-ypesample001-サンプル工務店テスト用-staff/1200/400')"></span>
+    <div class="trust-kotake__banner__inner">
+      <div>
+        <h3 class="trust-kotake__banner__ttl">スタッフ紹介<span class="trust-kotake__banner__en">staff</span></h3>
+      </div>
+      <p class="trust-kotake__banner__desc">お客様の住まいづくりに<br>誠実に向き合うスタッフがご対応します</p>
+      <span class="trust-kotake__banner__cta">スタッフ紹介一覧</span>
+    </div>
+  </a>
+</div>
+</section>
+
+</div>
+<div id="services" class="site-section site-section--services">
+<!-- services: kotake -->
+<!--
+  Archetype: services / kotake
+  Source:    小竹建設 (https://www.kotake.jp/) を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: WordPress / 自社テーマ / Noto Serif JP + Cormorant Garamond
+  - 構造:
+      <section id="concept"> > .concept-menu
+        .menu menu-concept menu-concept--3 内に 3 タイル
+          a.menu--design / menu--performance / menu--quality
+            .menu-label "注文住宅"（小ラベル）
+            .menu-content > h2 .menu-ttl "デザイン" + p .menu-en "design"
+            .menu-bg（背景画像オーバーレイ）
+            .menu-more "more →"
+        .menu menu-diagonal menu-diagonal--2 内に 2 タイル
+          menu--standard-house / menu--reform-renov
+            （subtitle なし、h2 + en + bg + more）
+  - 配色: 黒背景 + 白文字、写真背景にダーク overlay
+  - フォント: "Shippori Mincho"（和文）, "Cormorant Garamond"（英字 italic）
+  - 動き: on--opa class → ホバーで写真 opacity 変化
+  - 注意: 模写の主役は「タイル 3 + タイル 2」の 2 段組。"more →" は丸ボタンの代わりにライン
+  ## Placeholders
+    {{services.menu_1_label}} ~ menu_3_label   小ラベル（注文住宅 等）
+    {{services.menu_1_ttl}}   ~ menu_3_ttl     大見出し（デザイン/性能/品質）
+    {{services.menu_1_en}}    ~ menu_3_en      英字（design/performance/quality）
+    {{services.menu_1_image}} ~ menu_3_image   背景画像
+    {{services.sub_1_ttl}}    ~ sub_2_ttl      下段 2 タイルの和文 ttl
+    {{services.sub_1_en}}     ~ sub_2_en       下段 2 タイルの英字
+    {{services.sub_1_image}}  ~ sub_2_image    下段 2 タイル背景
+    {{services.more_label}}                    "more" 文言
+-->
+<section class="services-kotake">
+<style>
+.services-kotake{padding:120px 0;background:#1a1a1a;color:#fff;font-family:"Shippori Mincho",serif}
+.services-kotake__container{max-width:1280px;margin:0 auto;padding:0 40px}
+.services-kotake__row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:24px}
+.services-kotake__row--two{grid-template-columns:repeat(2,1fr)}
+.services-kotake__tile{position:relative;display:block;height:360px;overflow:hidden;text-decoration:none;color:#fff;background:#000;isolation:isolate}
+.services-kotake__tile-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s ease,opacity .3s ease;z-index:0}
+.services-kotake__tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18) 0%,rgba(0,0,0,.55) 100%);z-index:1;pointer-events:none;transition:background .3s ease}
+.services-kotake__tile:hover .services-kotake__tile-bg{transform:scale(1.05);opacity:.78}
+.services-kotake__tile:hover::after{background:linear-gradient(180deg,rgba(0,0,0,.32) 0%,rgba(0,0,0,.7) 100%)}
+.services-kotake__tile-inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:32px;text-align:center}
+.services-kotake__tile-label{font-family:"Shippori Mincho",serif;font-size:13px;letter-spacing:.32em;color:rgba(255,255,255,.85);margin:0 0 18px}
+.services-kotake__tile-ttl{font-family:"Shippori Mincho",serif;font-weight:500;font-size:34px;letter-spacing:.18em;line-height:1.4;margin:0 0 10px;color:#fff}
+.services-kotake__tile-en{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.32em;color:rgba(255,255,255,.7);margin:0 0 26px;text-transform:lowercase}
+.services-kotake__tile-more{display:inline-flex;align-items:center;gap:10px;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.24em;color:#fff;padding-bottom:4px;border-bottom:1px solid rgba(255,255,255,.6);transition:border-color .2s ease}
+.services-kotake__tile-more::after{content:"→"}
+.services-kotake__tile:hover .services-kotake__tile-more{border-bottom-color:#fff}
+
+.services-kotake__row--two .services-kotake__tile{height:240px}
+.services-kotake__row--two .services-kotake__tile-ttl{font-size:24px;letter-spacing:.14em}
+
+@media (max-width:880px){
+  .services-kotake{padding:72px 0}
+  .services-kotake__container{padding:0 20px}
+  .services-kotake__row{grid-template-columns:1fr;gap:16px;margin-bottom:16px}
+  .services-kotake__row--two{grid-template-columns:1fr}
+  .services-kotake__tile{height:280px}
+  .services-kotake__tile-ttl{font-size:26px}
+  .services-kotake__row--two .services-kotake__tile{height:200px}
+}
+</style>
+
+<div class="services-kotake__container">
+  <div class="services-kotake__row">
+    <a href="#" class="services-kotake__tile">
+      <div class="services-kotake__tile-bg" style="background-image:url('https://picsum.photos/seed/gm-ypesample001-サンプル工務店テスト用-svc-1/900/600')"></div>
+      <div class="services-kotake__tile-inner">
+        <p class="services-kotake__tile-label">リフォーム</p>
+        <h3 class="services-kotake__tile-ttl">デザイン提案</h3>
+        <p class="services-kotake__tile-en">design</p>
+        <span class="services-kotake__tile-more">more</span>
+      </div>
+    </a>
+    <a href="#" class="services-kotake__tile">
+      <div class="services-kotake__tile-bg" style="background-image:url('https://picsum.photos/seed/gm-ypesample001-サンプル工務店テスト用-svc-2/900/600')"></div>
+      <div class="services-kotake__tile-inner">
+        <p class="services-kotake__tile-label">リフォーム</p>
+        <h3 class="services-kotake__tile-ttl">確かな施工</h3>
+        <p class="services-kotake__tile-en">performance</p>
+        <span class="services-kotake__tile-more">more</span>
+      </div>
+    </a>
+    <a href="#" class="services-kotake__tile">
+      <div class="services-kotake__tile-bg" style="background-image:url('https://picsum.photos/seed/gm-ypesample001-サンプル工務店テスト用-svc-3/900/600')"></div>
+      <div class="services-kotake__tile-inner">
+        <p class="services-kotake__tile-label">リフォーム</p>
+        <h3 class="services-kotake__tile-ttl">アフター対応</h3>
+        <p class="services-kotake__tile-en">quality</p>
+        <span class="services-kotake__tile-more">more</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="services-kotake__row services-kotake__row--two">
+    <a href="#" class="services-kotake__tile">
+      <div class="services-kotake__tile-bg" style="background-image:url('https://picsum.photos/seed/gm-ypesample001-サンプル工務店テスト用-svc-4/900/500')"></div>
+      <div class="services-kotake__tile-inner">
+        <h3 class="services-kotake__tile-ttl">部分リフォーム</h3>
+        <p class="services-kotake__tile-en">standard</p>
+        <span class="services-kotake__tile-more">more</span>
+      </div>
+    </a>
+    <a href="#" class="services-kotake__tile">
+      <div class="services-kotake__tile-bg" style="background-image:url('https://picsum.photos/seed/gm-ypesample001-サンプル工務店テスト用-svc-5/900/500')"></div>
+      <div class="services-kotake__tile-inner">
+        <h3 class="services-kotake__tile-ttl">全面リノベーション</h3>
+        <p class="services-kotake__tile-en">renovation</p>
+        <span class="services-kotake__tile-more">more</span>
+      </div>
+    </a>
+  </div>
+</div>
+</section>
+
+</div>
+<div id="gallery" class="site-section site-section--gallery">
+<!-- gallery: kotake -->
+<!--
+  Archetype: gallery / kotake
+  Source:    小竹建設 (https://www.kotake.jp/) を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: WordPress + Swiper.js (loop, autoplay 3000, speed 2000, centeredSlides @ PC)
+  - section: section#works.sec.sec--works
+  - 構造:
+    - sec-head: h2 "施工事例" + sec-en "works" + sec-desc 段落
+      実例: 「地元飯田市50年以上、注文住宅の家を建ててきました。お客様が実際に建てたお家の事例を公開しています。」
+    - works-frt > works-slide > swiper-wrapper > works-post.swiper-slide × N
+      各 post:
+        - works-image > img--scale > img
+        - works-content > p.works-cat（"二階建て" / "平屋" / "リノベーション"）
+                    + p.works-name > span（"飯田市" / "下伊那郡喬木村" 等の地域）
+                    + h3.works-ttl 家のタイトル
+    - slide-prev / slide-next / slide-pagination
+    - sec-btn > a.btn-main--bk View All
+  - 配色: ベージュ系背景 + 黒文字 + 控えめモノトーン（kotake 全体トーン）
+  - 動き: Swiper loop auto-rotation, slidesPerView 'auto', speed 2000
+
+  ## Placeholders
+    {{gallery.section_title_jp}}     "施工事例"
+    {{gallery.section_label_en}}     "works"
+    {{gallery.section_desc}}         説明 1 段落（HTML 可）
+    {{gallery.card_N_image}}         画像 URL（N=1..6）
+    {{gallery.card_N_cat}}           カテゴリ（"二階建て" 等）
+    {{gallery.card_N_area}}          地域名（"飯田市" 等）
+    {{gallery.card_N_title}}         家のタイトル（"やすらぎの和モダン住宅" 等）
+    {{gallery.cta_label}}            View All ボタン文言
+-->
+<section class="gallery-kotake">
+<style>
+.gallery-kotake{position:relative;background:#f5f1ea;color:#2a261f;padding:100px 0 120px;font-family:"Shippori Mincho","Noto Serif JP",serif;overflow:hidden}
+.gallery-kotake__container{max-width:1400px;margin:0 auto;padding:0 24px}
+.gallery-kotake__head{text-align:center;margin-bottom:60px}
+.gallery-kotake__title{font-family:"Shippori Mincho",serif;font-size:clamp(28px,3.4vw,38px);font-weight:500;letter-spacing:.16em;color:#2a261f;margin:0 0 8px}
+.gallery-kotake__sub-en{font-family:"Cormorant Garamond","Roboto",serif;font-style:italic;font-size:13px;letter-spacing:.32em;color:#8a7c5e;margin:0 0 26px;text-transform:lowercase}
+.gallery-kotake__desc{max-width:680px;margin:0 auto;font-family:"Shippori Mincho",serif;font-size:14px;line-height:2;color:#5a554b}
+
+.gallery-kotake__slider{position:relative;padding:0 0 50px}
+.gallery-kotake__slider .swiper-slide{width:auto;display:flex;justify-content:center}
+.gallery-kotake__post{width:420px;max-width:88vw;background:transparent;color:#2a261f;text-decoration:none;display:block}
+.gallery-kotake__image{overflow:hidden;aspect-ratio:1024/683;background:#d8d2c7}
+.gallery-kotake__image img{display:block;width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
+.gallery-kotake__post:hover .gallery-kotake__image img{transform:scale(1.06)}
+.gallery-kotake__content{padding:18px 4px 0}
+.gallery-kotake__cat{font-family:"Cormorant Garamond","Roboto",serif;font-style:italic;font-size:12px;letter-spacing:.18em;color:#8a7c5e;margin:0 0 4px}
+.gallery-kotake__area{font-family:"Shippori Mincho",serif;font-size:12px;color:#a09681;margin:0 0 10px;letter-spacing:.18em}
+.gallery-kotake__area span{display:inline-block;padding-right:4px}
+.gallery-kotake__post-title{font-family:"Shippori Mincho",serif;font-size:18px;font-weight:500;letter-spacing:.04em;line-height:1.55;color:#2a261f;margin:0}
+
+.gallery-kotake__nav{display:flex;justify-content:center;align-items:center;gap:18px;margin-top:30px}
+.gallery-kotake__nav button{width:44px;height:44px;border:1px solid #8a7c5e;background:transparent;color:#5a554b;cursor:pointer;font-size:18px;transition:all .25s;border-radius:50%}
+.gallery-kotake__nav button:hover{background:#8a7c5e;color:#fff}
+.gallery-kotake__slider .swiper-pagination{position:static;display:flex;justify-content:center;gap:8px;margin:0}
+.gallery-kotake__slider .swiper-pagination-bullet{width:8px;height:8px;background:#c8bda6;opacity:1}
+.gallery-kotake__slider .swiper-pagination-bullet-active{background:#5a554b;width:24px;border-radius:4px}
+
+.gallery-kotake__btn-wrap{display:flex;justify-content:center;margin-top:54px}
+.gallery-kotake__btn{display:inline-flex;align-items:center;gap:14px;padding:16px 38px;background:#2a261f;color:#fff;font-family:"Cormorant Garamond","Roboto",serif;font-style:italic;font-size:14px;letter-spacing:.32em;text-decoration:none;transition:all .25s}
+.gallery-kotake__btn:hover{background:#5a554b}
+
+@media (max-width:768px){
+  .gallery-kotake{padding:60px 0 80px}
+  .gallery-kotake__post{width:300px}
+  .gallery-kotake__title{font-size:24px}
+}
+</style>
+
+<div class="gallery-kotake__container">
+  <div class="gallery-kotake__head">
+    <h2 class="gallery-kotake__title">施工事例</h2>
+    <p class="gallery-kotake__sub-en">Works</p>
+    <p class="gallery-kotake__desc">これまでご対応させていただいた住まいの一例をご紹介いたします。詳しい施工内容はお気軽にお問い合わせください。</p>
+  </div>
+
+  <div class="gallery-kotake__slider">
+    <div class="swiper" data-swiper='{"loop":true,"loopAdditionalSlides":2,"slidesPerView":"auto","spaceBetween":24,"speed":2000,"autoplay":{"delay":3000,"disableOnInteraction":false},"centeredSlides":true,"breakpoints":{"751":{"centeredSlides":true}}}'>
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide">
+          <a href="#" class="gallery-kotake__post">
+            <div class="gallery-kotake__image"><img src="https://picsum.photos/seed/gm-ypesample001-サンプル工務店テスト用-g1/1024/683" alt=""></div>
+            <div class="gallery-kotake__content">
+              <p class="gallery-kotake__cat">リフォーム</p>
+              <p class="gallery-kotake__area"><span>大阪市chuou</span></p>
+              <h3 class="gallery-kotake__post-title">戸建て住宅のリフォーム例</h3>
+            </div>
+          </a>
+        </div>
+
+        <div class="swiper-slide">
+          <a href="#" class="gallery-kotake__post">
+            <div class="gallery-kotake__image"><img src="https://picsum.photos/seed/gm-ypesample001-サンプル工務店テスト用-g2/1024/683" alt=""></div>
+            <div class="gallery-kotake__content">
+              <p class="gallery-kotake__cat">リフォーム</p>
+              <p class="gallery-kotake__area"><span>大阪市chuou</span></p>
+              <h3 class="gallery-kotake__post-title">外壁・屋根の塗装例</h3>
+            </div>
+          </a>
+        </div>
+
+        <div class="swiper-slide">
+          <a href="#" class="gallery-kotake__post">
+            <div class="gallery-kotake__image"><img src="https://picsum.photos/seed/gm-ypesample001-サンプル工務店テスト用-g3/1024/683" alt=""></div>
+            <div class="gallery-kotake__content">
+              <p class="gallery-kotake__cat">リフォーム</p>
+              <p class="gallery-kotake__area"><span>大阪市chuou</span></p>
+              <h3 class="gallery-kotake__post-title">水回りのリフォーム例</h3>
+            </div>
+          </a>
+        </div>
+
+        <div class="swiper-slide">
+          <a href="#" class="gallery-kotake__post">
+            <div class="gallery-kotake__image"><img src="https://picsum.photos/seed/gm-ypesample001-サンプル工務店テスト用-g4/1024/683" alt=""></div>
+            <div class="gallery-kotake__content">
+              <p class="gallery-kotake__cat">リフォーム</p>
+              <p class="gallery-kotake__area"><span>大阪市chuou</span></p>
+              <h3 class="gallery-kotake__post-title">和室の改修例</h3>
+            </div>
+          </a>
+        </div>
+
+        <div class="swiper-slide">
+          <a href="#" class="gallery-kotake__post">
+            <div class="gallery-kotake__image"><img src="https://picsum.photos/seed/gm-ypesample001-サンプル工務店テスト用-g5/1024/683" alt=""></div>
+            <div class="gallery-kotake__content">
+              <p class="gallery-kotake__cat">リフォーム</p>
+              <p class="gallery-kotake__area"><span>大阪市chuou</span></p>
+              <h3 class="gallery-kotake__post-title">外構工事の対応例</h3>
+            </div>
+          </a>
+        </div>
+
+        <div class="swiper-slide">
+          <a href="#" class="gallery-kotake__post">
+            <div class="gallery-kotake__image"><img src="https://picsum.photos/seed/gm-ypesample001-サンプル工務店テスト用-g6/1024/683" alt=""></div>
+            <div class="gallery-kotake__content">
+              <p class="gallery-kotake__cat">リフォーム</p>
+              <p class="gallery-kotake__area"><span>大阪市chuou</span></p>
+              <h3 class="gallery-kotake__post-title">断熱性向上の事例</h3>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="gallery-kotake__nav">
+      <button class="prev" aria-label="prev">‹</button>
+      <div class="swiper-pagination"></div>
+      <button class="next" aria-label="next">›</button>
+    </div>
+  </div>
+
+  <div class="gallery-kotake__btn-wrap">
+    <a href="#" class="gallery-kotake__btn">詳しくはお問い合わせ</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  function init(){
+    var root=document.currentScript&&document.currentScript.closest('.gallery-kotake');
+    if(!root)root=document.querySelector('.gallery-kotake');
+    if(!root||!window.Swiper)return;
+    var el=root.querySelector('.swiper');
+    var opts=JSON.parse(el.getAttribute('data-swiper'));
+    opts.navigation={prevEl:root.querySelector('.gallery-kotake__nav .prev'),nextEl:root.querySelector('.gallery-kotake__nav .next')};
+    opts.pagination={el:root.querySelector('.swiper-pagination'),type:'bullets',clickable:true};
+    new Swiper(el,opts);
+  }
+  if(window.Swiper)init();else window.addEventListener('load',init);
+})();
+</script>
+</section>
+
+</div>
+<div id="area" class="site-section site-section--area">
+<!-- area: kotake -->
+<!--
+  Archetype: area / kotake
+  Source:    小竹建設 (https://www.kotake.jp/) を忠実模写
+  ## 模写スペック（raw HTML + front.css/common.css 実測値）
+  - 制作技術: WordPress（kotake-shinchiku theme）, fonts: NotoSerifJP + Adobe Typekit "maecenas" (serif)
+  - 構造: footer .info 内に .area（sec-head pin アイコン + sec-ttl + sec-en + area-desc + notes）
+          直下に .shop（複数店舗を横並び。各店舗: shop-image + shop-content[ttl + add] + shop-map[Google Maps iframe]）
+  - 文言（参考）:
+      対応エリア / area
+      「長野県飯田市、下伊那を中心に1時間圏内で対応しております。」
+      ※「そのほか地域の方もまずはお問い合わせください。」
+  - 配色: 白背景 #fff / 本文 #2c2c2c / 区切り #d2d2d2 / 注釈うす色
+  - sec-head ::before に pin.svg（位置マーカー）を中央配置
+  - shop-map .ggmap は padding-bottom:45% で aspect-ratio 制御
+  - 動き: 静止（footer 内の info ブロックなのでアニメなし）
+  ## Placeholders
+    {{area.section_label_jp}}             "対応エリア"
+    {{area.section_label_en}}             "area"
+    {{area.desc_main}}                    「◯◯ を中心に◯時間圏内で対応しております。」
+    {{area.desc_notes}}                   「そのほか地域の方も…」
+    {{area.shop_1_image}}                 店舗 1 外観写真
+    {{area.shop_1_name}}                  "本社" / "本店" 等
+    {{area.shop_1_address}}               郵便番号 + 住所 + TEL（<br> 込み HTML）
+    {{area.shop_1_map_embed}}             Google Maps 埋め込み URL（iframe src）
+    {{area.shop_2_image}}                 店舗 2 外観写真
+    {{area.shop_2_name}}
+    {{area.shop_2_address}}
+    {{area.shop_2_map_embed}}
+-->
+<section class="area-kotake">
+<style>
+.area-kotake{background:#fff;color:#2c2c2c;font-family:"Noto Serif JP","NotoSerifJP",serif;padding:80px 0;position:relative}
+.area-kotake__info{max-width:1140px;margin:0 auto;padding:24px 40px 36px;display:flex;justify-content:space-between;align-items:center;gap:48px;border-top:1px solid #d2d2d2;border-bottom:1px solid #d2d2d2}
+
+.area-kotake__head{position:relative;flex:0 0 auto;width:130px;padding-top:42px;text-align:center}
+.area-kotake__head::before{content:"";position:absolute;top:0;left:50%;width:18px;height:27px;transform:translateX(-50%);background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 27'><path d='M9 0C4 0 0 4 0 9c0 6 9 18 9 18s9-12 9-18c0-5-4-9-9-9z' fill='%232c2c2c'/><circle cx='9' cy='9' r='3.5' fill='%23fff'/></svg>") center/contain no-repeat}
+.area-kotake__ttl{font-family:"Noto Serif JP",serif;font-weight:500;font-size:20px;line-height:1.21;margin:0;letter-spacing:.06em}
+.area-kotake__en{font-family:"Cormorant Garamond",maecenas,serif;font-weight:400;font-size:14px;letter-spacing:.08em;margin:.3em 0 0;color:#8a8073;text-transform:lowercase}
+
+.area-kotake__desc{flex:1 1 auto;max-width:450px}
+.area-kotake__desc p{margin:0;line-height:1.75em;letter-spacing:.04em;font-size:15px;color:#2c2c2c}
+.area-kotake__desc p.notes{margin-top:.2em;padding-left:1em;font-size:13px;text-indent:-1em;color:#8a8073}
+.area-kotake__desc p.notes::before{content:"※"}
+
+.area-kotake__shop{max-width:1140px;margin:0 auto;padding:40px;display:flex;justify-content:space-between;gap:40px}
+.area-kotake__shop-card{width:50%;display:flex;flex-direction:column}
+.area-kotake__shop-image{margin-bottom:14px;overflow:hidden}
+.area-kotake__shop-image img{display:block;width:100%;height:180px;object-fit:cover}
+.area-kotake__shop-contents{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:14px}
+.area-kotake__shop-content{flex:1 1 auto}
+.area-kotake__shop-ttl{margin:0 0 .5em;font-size:20px;font-weight:500;line-height:1.25em;letter-spacing:.12em;font-family:"Noto Serif JP",serif}
+.area-kotake__shop-add p{margin:0;line-height:1.75em;font-size:13px;color:#3a3a3a}
+.area-kotake__shop-map{position:relative;width:100%;padding-bottom:45%;overflow:hidden}
+.area-kotake__shop-map iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+
+@media (max-width:880px){
+  .area-kotake{padding:48px 0}
+  .area-kotake__info{flex-direction:column;align-items:center;gap:14px;padding:24px;text-align:center}
+  .area-kotake__head{width:auto;padding-top:42px}
+  .area-kotake__desc{max-width:none}
+  .area-kotake__shop{flex-direction:column;padding:24px;gap:32px}
+  .area-kotake__shop-card{width:100%}
+  .area-kotake__shop-map{padding-bottom:55%}
+}
+</style>
+
+<div class="area-kotake__info">
+  <div class="area-kotake__head">
+    <h2 class="area-kotake__ttl">対応エリア</h2>
+    <p class="area-kotake__en">area</p>
+  </div>
+  <div class="area-kotake__desc">
+    <p>大阪市chuouを中心に、近隣エリアまで対応いたします。</p>
+    <p class="notes">そのほかの地域もまずはご相談ください。</p>
+  </div>
+</div>
+
+<div class="area-kotake__shop">
+  <div class="area-kotake__shop-card">
+    <div class="area-kotake__shop-image">
+      <img src="https://picsum.photos/seed/gm-ypesample001-サンプル工務店テスト用-shop-1/700/300" alt="サンプル工務店（テスト用）">
+    </div>
+    <div class="area-kotake__shop-contents">
+      <div class="area-kotake__shop-content">
+        <p class="area-kotake__shop-ttl">サンプル工務店（テスト用）</p>
+        <div class="area-kotake__shop-add"><p>大阪府大阪市中央区サンプル町1-2-3<br>TEL：012-000-0000</p></div>
+      </div>
+    </div>
+    <div class="area-kotake__shop-map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3192.0!2d137.8!3d35.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0:0x0!2zSAMPLE!5e0!3m2!1sja!2sjp!4v1700000000000" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div class="area-kotake__shop-card">
+    <div class="area-kotake__shop-image">
+      <img src="https://picsum.photos/seed/demo-komuten-shop-2/700/300" alt="◯◯店（サンプル）">
+    </div>
+    <div class="area-kotake__shop-contents">
+      <div class="area-kotake__shop-content">
+        <p class="area-kotake__shop-ttl">◯◯店（サンプル）</p>
+        <div class="area-kotake__shop-add"><p>〒XXX-XXXX <br>サンプル県◯◯市◯◯◯丁目◯◯-◯<br>TEL：0265-00-0001</p></div>
+      </div>
+    </div>
+    <div class="area-kotake__shop-map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3247.0!2d137.8!3d35.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0:0x1!2zSAMPLE2!5e0!3m2!1sja!2sjp!4v1700000000001" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+</section>
+
+</div>
+<div id="cta" class="site-section site-section--cta">
+<!-- cta: teto -->
+<!--
+  Archetype: cta / teto
+  Source:    teto paint (https://tetopaint.jp/) を忠実模写
+  ## 模写スペック（raw HTML + 抽出 CSS）
+  - 構造: <section> > .aside-contact (bg image 帯) > .aside-contact__card (白カード center, 49.75% / 80% sp)
+  - 中身: c-title__top (en "Contact us" + ja "お問い合わせ") + figure (img) + lead 文 + c-button__black (黒テキストボタン)
+  - 配色: 白カード on 茶系 bg-contact.jpg 帯, body #1B1E29 / 文字 #434343
+  - サイズ: card padding 70px 7vw、本文 mt 40 letter-spacing .06rem、ボタン mt 30
+  - 動き: ホバー反応のみ (data-hover-animation)、scroll-in なし
+  - レスポンシブ: 750px 以下で card width 80% / padding 60px 28px / radius 6px、bg padding 78px / 63px
+  ## Placeholders
+    {{cta.en_label}}            "Contact us" 相当（カード上 en 大見出し）
+    {{cta.ja_label}}            "お問い合わせ" 相当（en 直下、ja 小見出し）
+    {{cta.image}}               中央の画像 URL（contact.jpg 相当、横長）
+    {{cta.lead}}                リード文（複数行・<br> 許容）
+    {{cta.button_label}}        ボタンラベル（"Contact us" 相当）
+    {{cta.button_href}}         ボタン遷移先（/contact/ 相当）
+    {{cta.bg_image}}            外周帯の bg-contact.jpg 相当
+-->
+<section class="cta-teto">
+<style>
+.cta-teto{margin:0;padding:78px 0 63px;background-image:url("https://picsum.photos/seed/gm-ypesample001-サンプル工務店テスト用-cta-bg/1920/800");background-size:cover;background-position:center;border-radius:0;overflow:hidden}
+.cta-teto__card{display:block;width:calc(100% - 20px);max-width:700px;margin:0 auto;padding:60px 28px;background:#fff;border-radius:6px;box-sizing:border-box}
+.cta-teto__title{text-align:center;margin-bottom:40px}
+.cta-teto__title-en{font-family:"Cormorant Garamond","Times New Roman",serif;font-style:italic;font-weight:500;font-size:32px;letter-spacing:.04em;color:#1B1E29;margin:0 0 8px;line-height:1.2}
+.cta-teto__title-ja{font-family:"Shippori Mincho","Noto Serif JP",serif;font-weight:500;font-size:13px;letter-spacing:.18em;color:#1B1E29;margin:0}
+.cta-teto__img{overflow:hidden;border-radius:5px;margin:0 0 0}
+.cta-teto__img img{display:block;width:100%;height:auto}
+.cta-teto__text{margin-top:40px;font-size:.875rem;line-height:1.95;letter-spacing:.06em;color:#434343;font-family:"Noto Sans JP",sans-serif}
+.cta-teto__btn{display:flex;align-items:center;justify-content:center;width:100%;max-width:280px;margin:30px auto 0;padding:18px 32px;background:#1B1E29;color:#fff;text-decoration:none;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.18em;border-radius:2px;transition:all .2s}
+.cta-teto__btn:hover{background:#9FA0A2;color:#fff}
+
+@media (min-width:768px){
+  .cta-teto{margin:0 17px 35px;padding:50px;border-radius:5px}
+  .cta-teto__card{width:49.75%;padding:70px 7vw}
+  .cta-teto__title-en{font-size:40px}
+}
+</style>
+
+<div class="cta-teto__card">
+  <div class="cta-teto__title">
+    <h2 class="cta-teto__title-en">Contact</h2>
+    <p class="cta-teto__title-ja">お問い合わせ</p>
+  </div>
+  <figure class="cta-teto__img">
+    <img src="https://picsum.photos/seed/gm-ypesample001-サンプル工務店テスト用-cta-img/800/600" alt="" loading="lazy">
+  </figure>
+  <p class="cta-teto__text">お見積り・ご相談を承ります</p>
+  <a class="cta-teto__btn" href="#contact">お問い合わせはこちら</a>
+</div>
+</section>
+
+</div>
+<div id="footer" class="site-section site-section--footer">
+<!-- footer: kotake -->
+<!--
+  Archetype: footer / kotake
+  Source:    小竹建設 (https://www.kotake.jp/) を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: WordPress 自前テーマ
+  - 構造:
+    1. footer-text 大見出し "飯田市で注文住宅を建てるなら工務店の小竹建設へ"
+    2. footer-logo (SVG)
+    3. .info: .tel (0265-48-6695 + 受付時間) + .area (見出し "対応エリア / area" + 説明文)
+    4. .shop × 2: 本社 + 江戸町店 → それぞれ [shop-image, shop-content (住所/TEL), shop-map (iframe)]
+    5. .footer-navi: 上 → 縦並びリンク (無料相談会/土地探し/資料請求/お問い合わせ/イベント/不動産) + bnr (宅建)
+                   右ブロック → "小竹建設の家づくり" / "施工事例" / "ギャラリー" / "会社案内" の 4 親 + 子 ul
+    6. .footer-bottom: .subnavi (サイトマップ/プライバシーポリシー) + .sns (Instagram/Facebook/LINE) + .footer-copy
+  - 配色: ベース白 + 木色 (#8a6b3a 系) アクセント, 黒文字
+  - フォント: 主 sans (Noto Sans JP), 英字 "Cormorant Garamond"
+  - 動き: on--opa (hover opacity)
+  ## Placeholders
+    footer.header_text                  "サンプル地域で注文住宅を建てるなら..."
+    company.name                        ロゴ
+    company.tel_display                 "0265-XX-XXXX"
+    company.tel                         href tel:
+    footer.tel_hours                    "【受付時間】 8:00 - 18:00"
+    footer.area_title/footer.area_subtitle    "対応エリア" / "area"
+    footer.area_desc                    対応エリア説明
+    footer.area_notes                   注釈
+    footer.shop_1_image~footer.shop_2_image   店舗写真
+    footer.shop_1_name~footer.shop_2_name     本社 / 江戸町店
+    footer.shop_1_addr~footer.shop_2_addr     住所
+    footer.shop_1_map~footer.shop_2_map       Google Maps iframe URL
+    footer.menu_1~6                     6 nav リンク
+    footer.bnr_url/footer.bnr_img   外部バナー
+    footer.block_1_title~footer.block_4_title    4 ブロック親
+    footer.block_1_child_1~footer.block_4_child_3    子リンク
+    footer.subnav_1/footer.subnav_2              サイトマップ/プライバシー
+    footer.social_label_1~footer.social_label_3/footer.social_url_*    SNS 3 個
+    footer.copyright                                 "© 小竹建設." 相当
+-->
+<section class="footer-kotake">
+<style>
+.footer-kotake{background:#fff;color:#1f1c18;font-family:"Noto Sans JP",sans-serif;padding:80px 32px 40px;box-sizing:border-box}
+.footer-kotake__inner{max-width:1200px;margin:0 auto}
+
+.footer-kotake__header{text-align:center;font-family:"Shippori Mincho",serif;font-weight:500;font-size:clamp(18px,2.4vw,24px);letter-spacing:.16em;margin:0 0 32px;color:#1f1c18}
+.footer-kotake__logo{text-align:center;margin:0 0 56px;font-family:"Shippori Mincho",serif;font-weight:500;font-size:32px;letter-spacing:.18em;color:#1f1c18}
+
+.footer-kotake__info{display:grid;grid-template-columns:1fr 1fr;gap:48px;padding:32px;background:#f5f0e6;border-radius:6px;margin-bottom:48px}
+.footer-kotake__tel{text-align:center;align-self:center}
+.footer-kotake__tel-num{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:38px;letter-spacing:.06em;color:#8a6b3a;margin:0;text-decoration:none;display:block}
+.footer-kotake__tel-time{font-family:"Noto Sans JP",sans-serif;font-size:12px;color:#5c5650;margin:6px 0 0}
+.footer-kotake__area{}
+.footer-kotake__area-head{display:flex;align-items:baseline;gap:14px;margin-bottom:14px}
+.footer-kotake__area-head h2{font-family:"Shippori Mincho",serif;font-weight:500;font-size:20px;letter-spacing:.16em;margin:0;color:#1f1c18}
+.footer-kotake__area-head .en{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.24em;color:#8a6b3a;text-transform:uppercase}
+.footer-kotake__area p{font-family:"Noto Sans JP",sans-serif;font-size:13px;line-height:1.8;color:#3a3530;margin:0 0 6px}
+.footer-kotake__area .notes{font-size:11px;color:#7c7670}
+
+.footer-kotake__shops{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:56px}
+.footer-kotake__shop{background:#fff;border:1px solid #e6e0d4;border-radius:6px;overflow:hidden}
+.footer-kotake__shop-image{aspect-ratio:470/150;overflow:hidden}
+.footer-kotake__shop-image img{width:100%;height:100%;object-fit:cover;display:block}
+.footer-kotake__shop-content{padding:20px 24px}
+.footer-kotake__shop-ttl{font-family:"Shippori Mincho",serif;font-weight:500;font-size:16px;letter-spacing:.12em;margin:0 0 8px;color:#1f1c18}
+.footer-kotake__shop-add{font-family:"Noto Sans JP",sans-serif;font-size:13px;line-height:1.7;color:#3a3530;margin:0}
+.footer-kotake__shop-map{aspect-ratio:600/300;background:#e6e0d4}
+.footer-kotake__shop-map iframe{width:100%;height:100%;border:0;display:block}
+
+.footer-kotake__navi{display:grid;grid-template-columns:1fr 2fr;gap:32px;padding-bottom:32px;border-bottom:1px solid #e6e0d4;margin-bottom:32px}
+.footer-kotake__menu{list-style:none;padding:0;margin:0 0 24px;display:flex;flex-direction:column;gap:8px}
+.footer-kotake__menu li a{display:flex;align-items:center;gap:10px;font-family:"Noto Sans JP",sans-serif;font-size:14px;letter-spacing:.06em;color:#1f1c18;text-decoration:none;padding:10px 16px;border:1px solid #1f1c18;border-radius:30px;transition:background .2s}
+.footer-kotake__menu li a:hover{background:#1f1c18;color:#fff}
+.footer-kotake__bnr{display:block;max-width:200px}
+.footer-kotake__bnr img{width:100%;height:auto;display:block}
+
+.footer-kotake__blocks{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.footer-kotake__block-head{font-family:"Shippori Mincho",serif;font-weight:500;font-size:14px;letter-spacing:.14em;color:#8a6b3a;margin:0 0 12px;padding-bottom:8px;border-bottom:1px dotted #c9c0ad}
+.footer-kotake__block-child{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+.footer-kotake__block-child li a{font-family:"Noto Sans JP",sans-serif;font-size:12px;color:#3a3530;text-decoration:none;transition:color .2s}
+.footer-kotake__block-child li a:hover{color:#8a6b3a}
+
+.footer-kotake__bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.footer-kotake__subnavi{display:flex;gap:18px}
+.footer-kotake__subnavi a{font-family:"Noto Sans JP",sans-serif;font-size:12px;color:#5c5650;text-decoration:none;transition:color .2s}
+.footer-kotake__subnavi a:hover{color:#8a6b3a}
+.footer-kotake__sns{display:flex;gap:12px}
+.footer-kotake__sns a{display:inline-flex;width:36px;height:36px;align-items:center;justify-content:center;background:#1f1c18;color:#fff;border-radius:50%;font-family:"Cormorant Garamond",serif;font-size:13px;font-weight:600;text-decoration:none;transition:opacity .2s}
+.footer-kotake__sns a:hover{opacity:.7}
+.footer-kotake__copy{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:12px;color:#5c5650;margin:0;letter-spacing:.18em}
+
+@media (max-width:880px){
+  .footer-kotake{padding:56px 20px 32px}
+  .footer-kotake__info{grid-template-columns:1fr;gap:24px;padding:24px}
+  .footer-kotake__shops{grid-template-columns:1fr;gap:18px}
+  .footer-kotake__navi{grid-template-columns:1fr;gap:24px}
+  .footer-kotake__blocks{grid-template-columns:1fr 1fr}
+  .footer-kotake__bottom{flex-direction:column;align-items:flex-start}
+}
+</style>
+
+<div class="footer-kotake__inner">
+  <p class="footer-kotake__header">大阪市chuouのリフォームはサンプル工務店（テスト用）までお気軽にご相談ください。</p>
+  <p class="footer-kotake__logo">サンプル工務店（テスト用）</p>
+
+  <div class="footer-kotake__info">
+    <div class="footer-kotake__tel">
+      <a class="footer-kotake__tel-num" href="tel:0120000000">012-000-0000</a>
+      <p class="footer-kotake__tel-time">受付時間はお問い合わせください</p>
+    </div>
+    <div class="footer-kotake__area">
+      <div class="footer-kotake__area-head">
+        <h2>対応エリア</h2>
+        <span class="en">area</span>
+      </div>
+      <p>大阪市chuouを中心に対応いたします。</p>
+      <p class="notes">そのほか地域の方もまずはお問い合わせください。（サンプル）</p>
+    </div>
+  </div>
+
+  <div class="footer-kotake__shops">
+    <div class="footer-kotake__shop">
+      <div class="footer-kotake__shop-image"><img src="https://picsum.photos/seed/gm-ypesample001-サンプル工務店テスト用-shop-1/470/150" alt="サンプル工務店（テスト用）"></div>
+      <div class="footer-kotake__shop-content">
+        <p class="footer-kotake__shop-ttl">サンプル工務店（テスト用）</p>
+        <p class="footer-kotake__shop-add">大阪府大阪市中央区サンプル町1-2-3 TEL：012-000-0000</p>
+      </div>
+      <div class="footer-kotake__shop-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3192.0!2d137.8!3d35.5" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+    <div class="footer-kotake__shop">
+      <div class="footer-kotake__shop-image"><img src="https://picsum.photos/seed/demo-komuten-shop-2/470/150" alt="◯◯店（サンプル）"></div>
+      <div class="footer-kotake__shop-content">
+        <p class="footer-kotake__shop-ttl">◯◯店（サンプル）</p>
+        <p class="footer-kotake__shop-add">〒XXX-XXXX サンプル県◯◯市◯◯◯丁目◯◯-◯<br>TEL：0265-00-0001</p>
+      </div>
+      <div class="footer-kotake__shop-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3247.0!2d137.8!3d35.5" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-kotake__navi">
+    <div>
+      <ul class="footer-kotake__menu">
+        <li><a href="#">無料相談会を申し込む</a></li>
+        <li><a href="#">土地探しサポート</a></li>
+        <li><a href="#">資料請求</a></li>
+        <li><a href="#">お問い合わせ</a></li>
+        <li><a href="#">イベント情報</a></li>
+        <li><a href="#">施工事例</a></li>
+      </ul>
+      <a class="footer-kotake__bnr" href="#sample-bnr" target="_blank" rel="noopener"><img src="https://picsum.photos/seed/gm-ypesample001-サンプル工務店テスト用-bnr/150/47" alt=""></a>
+    </div>
+    <div class="footer-kotake__blocks">
+      <div>
+        <p class="footer-kotake__block-head">デモ建設工房の家づくり</p>
+        <ul class="footer-kotake__block-child">
+          <li><a href="#">コンセプト</a></li>
+          <li><a href="#">デザイン</a></li>
+          <li><a href="#">性能</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-kotake__block-head">施工事例</p>
+        <ul class="footer-kotake__block-child">
+          <li><a href="#">施工事例一覧</a></li>
+          <li><a href="#">平屋</a></li>
+          <li><a href="#">二階建て</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-kotake__block-head">ギャラリー</p>
+        <ul class="footer-kotake__block-child">
+          <li><a href="#">ギャラリー一覧</a></li>
+          <li><a href="#">外観</a></li>
+          <li><a href="#">リビング</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-kotake__block-head">会社案内</p>
+        <ul class="footer-kotake__block-child">
+          <li><a href="#">会社案内</a></li>
+          <li><a href="#">新着情報</a></li>
+          <li><a href="#">スタッフ紹介</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-kotake__bottom">
+    <div class="footer-kotake__subnavi">
+      <a href="#">サイトマップ</a>
+      <a href="#">プライバシーポリシー</a>
+    </div>
+    <div class="footer-kotake__sns">
+      <a href="#sample-ig" target="_blank" rel="noopener" aria-label="IG">IG</a>
+      <a href="#sample-fb" target="_blank" rel="noopener" aria-label="FB">FB</a>
+      <a href="#sample-line" target="_blank" rel="noopener" aria-label="LN">LN</a>
+    </div>
+    <p class="footer-kotake__copy">© サンプル工務店（テスト用）</p>
+  </div>
+</div>
+</section>
+
+</div>
+
+<script>
+(function(){
+  var header = document.querySelector('[data-site-header]');
+  var nav = document.querySelector('[data-site-nav]');
+  var burgers = document.querySelectorAll('[data-burger]');
+  var navLinks = nav ? nav.querySelectorAll('a[href^="#"]') : [];
+
+  function onScroll(){
+    if(!header) return;
+    if(window.scrollY > 80) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  function toggleNav(force){
+    if(!nav) return;
+    var open = (typeof force === 'boolean') ? force : !nav.classList.contains('is-open');
+    nav.classList.toggle('is-open', open);
+    nav.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+    var btn = document.querySelector('.site-header__burger');
+    if(btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  burgers.forEach(function(b){ b.addEventListener('click', function(){ toggleNav(); }); });
+  navLinks.forEach(function(a){ a.addEventListener('click', function(){ toggleNav(false); }); });
+})();
+</script>
+</body>
+</html>
