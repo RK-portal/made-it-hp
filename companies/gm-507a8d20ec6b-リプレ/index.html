@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>リプレ</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Poppins:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<!-- Splide for fade slideshow -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" defer></script>
+<!-- Swiper for parallax / loop slider -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font-family:"Noto Sans JP",sans-serif;color:#2c2c2c;background:#fff;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+
+/* ============ 共通 header（全サイト同構造） ============ */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:20px 32px;background:transparent;color:#fff;transition:background .3s ease, color .3s ease, box-shadow .3s ease, padding .3s ease}
+.site-header.is-scrolled{background:#fff;color:#1a1a1a;box-shadow:0 2px 14px rgba(0,0,0,.08);padding:14px 32px}
+.site-header__logo{font-family:"Shippori Mincho",serif;font-weight:500;font-size:17px;letter-spacing:.18em;color:inherit;text-decoration:none}
+.site-header__burger{display:inline-flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:transparent;border:0;cursor:pointer;padding:0;color:inherit}
+.site-header__burger span{display:block;width:22px;height:1.5px;background:currentColor;margin:0 auto;transition:transform .3s ease, opacity .3s ease}
+
+/* nav オーバーレイ（全画面） */
+.site-nav{position:fixed;inset:0;z-index:200;background:rgba(26,26,26,.96);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;opacity:0;pointer-events:none;transition:opacity .35s ease}
+.site-nav.is-open{opacity:1;pointer-events:auto}
+.site-nav__close{position:absolute;top:24px;right:32px;background:transparent;border:0;color:#fff;font-size:20px;cursor:pointer;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;font-family:inherit}
+.site-nav__list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:24px;text-align:center}
+.site-nav__list a{font-family:"Shippori Mincho",serif;font-size:22px;letter-spacing:.18em;color:#fff;text-decoration:none;display:inline-block;padding:6px 12px;transition:opacity .2s}
+.site-nav__list a:hover{opacity:.6}
+
+@media (max-width:768px){
+  .site-header{padding:16px 20px}
+  .site-header.is-scrolled{padding:12px 20px}
+  .site-header__logo{font-size:15px;letter-spacing:.14em}
+  .site-nav__list a{font-size:18px}
+  .site-nav__close{top:16px;right:20px}
+}
+</style>
+</head>
+<body>
+<header class="site-header" data-site-header>
+  <a class="site-header__logo" href="#top">リプレ</a>
+  <button class="site-header__burger" type="button" aria-label="メニューを開く" aria-expanded="false" data-burger>
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<nav class="site-nav" data-site-nav aria-hidden="true">
+  <button class="site-nav__close" type="button" aria-label="メニューを閉じる" data-burger>✕</button>
+  <ul class="site-nav__list">
+    <li><a href="#trust">私たちの想い</a></li>
+    <li><a href="#services">サービス</a></li>
+    <li><a href="#gallery">施工事例</a></li>
+    <li><a href="#area">対応エリア</a></li>
+    <li><a href="#cta">お問い合わせ</a></li>
+  </ul>
+</nav>
+
+<div id="top"></div>
+<div id="hero" class="site-section site-section--hero">
+<!-- hero: fls -->
+<!--
+  Archetype: hero / fls
+  Source:    FL Specialty Roofing (https://www.flsroof.com/) を忠実模写
+  Reference: docs/research/design-references/2026-05-11-three-site-deep-analysis.md サイト 02
+
+  ## 模写スペック（実測値）
+  - 高さ: 895px ≒ 100vh （class: .hero--main, bg-navy c-lt）
+  - 制作技術: WordPress + contractor-starter theme + Gravity Forms + tiny-slider.js + magnific-popup + jQuery
+  - フォント: Poppins (body, weight 275 / 700) + Cormorant Garamond (大見出し, weight 500-700)
+  - 配色: navy #000000 寄り / 文字 #434343 / 金 #BD8B2A / 白 #FFFFFF
+  - 背景: <video> ループ動画 (autoplay + muted)
+  - ヘッダー: position:fixed, 64px, 透明背景, 電話番号ピル常時右上
+  - 左 H1: "FLORIDA ROOFING EXPERTS" 14px Poppins weight 700 uppercase color #BD8B2A
+  - 左 H2: "Multifamily, Commercial And High-End Residential Roofing Specialists" 70.4px Cormorant Garamond weight 500 line-height 74px 白文字
+  - 右: inline Gravity Form 6 fields (Full Name / Email / Phone / Zip / Service select / message)
+  - 大ボタン: "GET IN TOUCH" 透明 bg + 白枠 + 白文字 uppercase
+  - 電話ピル: 「📞 352.415.4596」 rgba(0,0,0,0.75) 半透明黒 白文字 border-radius 50px padding 12px 24px 12px 50px
+  - 動き: 動画ループのみ、CSS animation 0 個、CSS transition は ホバー反応用 all 0.2s のみ
+
+  ## Placeholders
+    リプレ                      ヘッダーロゴテキスト
+    {{company.tel}}                       電話番号（href, 数字のみ）
+    {{company.tel_display}}               電話番号（表示用）
+    {{hero.bg_image}}                     背景画像 URL（動画の poster or fallback）
+    {{hero.bg_video_url}}                 背景動画 URL（任意、空欄なら静止画）
+    {{hero.label}}                        金色小ラベル（"FLORIDA ROOFING EXPERTS" 相当）
+    {{hero.h2}}                           大見出し（白、Cormorant Garamond、複数行 HTML 可）
+    {{hero.form_title}}                   フォーム見出し（任意。FLS には無いが日本版では推奨）
+    {{hero.form_name_placeholder}}        名前 placeholder
+    {{hero.form_email_placeholder}}       メール placeholder
+    {{hero.form_phone_placeholder}}       電話 placeholder
+    {{hero.form_zip_placeholder}}         郵便番号 placeholder
+    {{hero.form_service_label}}           サービス select ラベル
+    {{hero.form_message_placeholder}}     相談内容 placeholder
+    {{hero.form_submit}}                  送信ボタン（"GET IN TOUCH" 相当）
+-->
+<section class="hero-fls">
+<style>
+.hero-fls{position:relative;height:100vh;min-height:680px;max-height:895px;background:#0a1330;color:#fff;font-family:"Poppins","Noto Sans JP",sans-serif;overflow:hidden}
+.hero-fls__bg{position:absolute;inset:0;z-index:0}
+.hero-fls__bg video,
+.hero-fls__bg img{width:100%;height:100%;object-fit:cover}
+.hero-fls__bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,19,48,.78) 0%,rgba(10,19,48,.55) 60%,rgba(10,19,48,.45) 100%)}
+
+.hero-fls__inner{position:relative;display:grid;grid-template-columns:1.15fr 1fr;gap:60px;padding:60px 56px;max-width:1340px;margin:0 auto;height:100%;align-items:center;z-index:2}
+
+.hero-fls__copy{}
+.hero-fls__label{font-family:"Poppins",sans-serif;font-weight:700;font-size:14px;letter-spacing:.28em;color:#BD8B2A;text-transform:uppercase;margin:0 0 20px}
+.hero-fls__h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(40px,5.5vw,70.4px);line-height:1.05;letter-spacing:.005em;color:#fff;margin:0}
+
+.hero-fls__form{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.2);padding:36px 32px;backdrop-filter:blur(6px)}
+.hero-fls__form-title{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:22px;letter-spacing:.06em;color:#fff;margin:0 0 22px}
+.hero-fls__form input,
+.hero-fls__form textarea,
+.hero-fls__form select{width:100%;padding:13px 16px;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.4);color:#fff;font-family:"Poppins",sans-serif;font-size:14px;margin-bottom:14px;outline:0;box-sizing:border-box}
+.hero-fls__form input::placeholder,
+.hero-fls__form textarea::placeholder{color:rgba(255,255,255,.55)}
+.hero-fls__form select{color:rgba(255,255,255,.55);appearance:none;-webkit-appearance:none}
+.hero-fls__form select option{color:#0a1330}
+.hero-fls__form textarea{min-height:72px;resize:vertical;font-family:inherit}
+.hero-fls__form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hero-fls__form button{width:100%;padding:14px;background:transparent;border:1px solid #fff;color:#fff;font-family:"Poppins",sans-serif;font-size:13px;letter-spacing:.24em;font-weight:500;text-transform:uppercase;cursor:pointer;margin-top:10px;transition:all .2s}
+.hero-fls__form button:hover{background:#BD8B2A;border-color:#BD8B2A}
+
+@media (max-width:1024px){
+  .hero-fls__inner{grid-template-columns:1fr;padding:40px 24px;gap:30px;align-items:start}
+  .hero-fls__h2{font-size:36px}
+}
+</style>
+
+<div class="hero-fls__bg">
+  <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAHfnEAQyVDcBcjgsWf-6j66Ud0FpuQI97Tz-cHOit_6Oo4krWv5g2V_bCyzp8y1EgZZuzTDI1QOlWSUOdYvnxlq9iI6qp2QAqUDCTnuMa5ImwwIGa4nrmUYph1yD8g9jNvyMJ_bFQVsI14=w408-h544-k-no" alt="">
+  <!-- 動画モードに切替時: <video autoplay muted loop playsinline src="{{hero.bg_video_url}}"></video> -->
+</div>
+
+<div class="hero-fls__inner">
+  <div class="hero-fls__copy">
+    <p class="hero-fls__label">大阪市中央区のリフォーム</p>
+    <h2 class="hero-fls__h2">大阪市中央区の住まいに、<br>確かな施工を。</h2>
+  </div>
+
+  <form class="hero-fls__form" onsubmit="return false">
+    <h3 class="hero-fls__form-title">お問い合わせ</h3>
+    <input type="text" name="name" placeholder="お名前">
+    <div class="hero-fls__form-row">
+      <input type="email" name="email" placeholder="メールアドレス">
+      <input type="tel" name="tel" placeholder="お電話番号">
+    </div>
+    <div class="hero-fls__form-row">
+      <input type="text" name="zip" placeholder="郵便番号">
+      <select name="service">
+        <option value="">ご相談内容</option>
+        <option>葺き替え</option>
+        <option>カバー工法</option>
+        <option>雨漏り修理</option>
+        <option>屋根塗装</option>
+      </select>
+    </div>
+    <textarea name="message" placeholder="お問い合わせ内容"></textarea>
+    <button type="submit">送信する</button>
+  </form>
+</div>
+</section>
+
+</div>
+<div id="trust" class="site-section site-section--trust">
+<!-- trust: kotake -->
+<!--
+  Archetype: trust / kotake
+  Source:    小竹建設 (https://www.kotake.jp/) の #company セクション（"小竹建設とは"）を忠実模写
+
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: WordPress（独自テーマ）/ Typekit + Google Fonts
+  - 構造: 2 カラム横並び（左: 代表者写真 / 右: company 見出し + 経営理念テキスト 4 段落 + 代表者名 + View More ボタン）+ 下に "スタッフ紹介" バナー（背景写真 + 見出し + リンク）
+  - 配色: 背景 #fff / 写真ブロック / 本文 #2c2c2c / 副見出し（"company" 英字）#a4a5a9
+  - フォント: 大見出し Shippori Mincho（明朝、weight 500、letter-spacing .14em）/ 英字 Cormorant Garamond italic / 本文 Noto Sans JP
+  - 動き: 静的（参考にスクロール fade はあるが控えめ。ここでは scroll-trigger fade を弱く .8s で軽く再現）
+  - 信頼要素: CEO 顔写真 + 経営理念 4 段落 + 「代表取締役 ○○ ○○」サイン + 関連ページバナー(スタッフ)
+
+  ## Placeholders
+    {{trust.heading}}              大見出し（例: "サンプル建設とは"）
+    {{trust.heading_en}}           英字小見出し（例: "company"）
+    {{trust.lead}}                 リード文（バックグラウンド説明、1-2 文）
+    {{trust.ceo_photo}}            代表者写真 URL（縦長 670×665 想定）
+    {{trust.philosophy_title}}     理念見出し（明朝大、2 行想定）
+    {{trust.philosophy_p1}} ～ {{trust.philosophy_p4}}  経営理念本文 4 段落
+    {{trust.company_legal_name}}   法人名（例: "サンプル建設有限会社"）
+    {{trust.ceo_title}}            役職（例: "代表取締役"）
+    {{trust.ceo_name}}             代表者名
+    {{trust.more_label}}           View more ラベル
+    {{trust.staff_banner_image}}   スタッフ紹介バナー背景画像
+    {{trust.staff_banner_title}}   スタッフ紹介見出し
+    {{trust.staff_banner_en}}      英字（例: "staff"）
+    {{trust.staff_banner_desc}}    バナー説明
+    {{trust.staff_banner_label}}   バナー CTA ラベル
+-->
+<section class="trust-kotake">
+<style>
+.trust-kotake{background:#fff;color:#2c2c2c;font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;padding:120px 40px 100px;overflow:hidden}
+.trust-kotake__inner{max-width:1180px;margin:0 auto}
+.trust-kotake__head{text-align:center;margin:0 0 64px}
+.trust-kotake__h2{font-family:"Shippori Mincho",serif;font-weight:500;font-size:34px;letter-spacing:.14em;margin:0;color:#1a1a1a}
+.trust-kotake__en{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.32em;color:#a4a5a9;text-transform:lowercase;margin:14px 0 0;display:block}
+.trust-kotake__lead{max-width:640px;margin:24px auto 0;font-size:14px;line-height:1.95;color:#5b574f}
+
+.trust-kotake__row{display:grid;grid-template-columns:minmax(0,540px) 1fr;gap:64px;align-items:flex-start}
+.trust-kotake__photo{position:relative;aspect-ratio:670/665;overflow:hidden;background:#eae6df}
+.trust-kotake__photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.4s ease}
+.trust-kotake__photo:hover img{transform:scale(1.03)}
+.trust-kotake__content{padding-top:14px}
+.trust-kotake__philosophy_title{font-family:"Shippori Mincho",serif;font-weight:500;font-size:28px;letter-spacing:.1em;line-height:1.7;margin:0 0 32px;color:#1a1a1a}
+.trust-kotake__desc p{font-size:14.5px;line-height:2;color:#403c36;margin:0 0 18px}
+.trust-kotake__sig{margin:32px 0 0;font-family:"Shippori Mincho",serif;font-weight:500;font-size:15px;line-height:2;letter-spacing:.06em;color:#1a1a1a}
+.trust-kotake__more{display:inline-flex;align-items:center;gap:14px;margin-top:36px;padding:16px 30px;border:1px solid #1a1a1a;background:#fff;color:#1a1a1a;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.28em;text-decoration:none;text-transform:lowercase;transition:background .2s,color .2s}
+.trust-kotake__more::after{content:"→";font-style:normal}
+.trust-kotake__more:hover{background:#1a1a1a;color:#fff}
+
+.trust-kotake__banner{display:block;position:relative;margin:96px 0 0;height:240px;overflow:hidden;text-decoration:none;color:#fff}
+.trust-kotake__banner__bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .9s ease}
+.trust-kotake__banner:hover .trust-kotake__banner__bg{transform:scale(1.04)}
+.trust-kotake__banner::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.18) 100%)}
+.trust-kotake__banner__inner{position:relative;z-index:2;height:100%;display:flex;justify-content:space-between;align-items:center;padding:0 56px}
+.trust-kotake__banner__ttl{font-family:"Shippori Mincho",serif;font-weight:500;font-size:24px;letter-spacing:.18em;margin:0;color:#fff}
+.trust-kotake__banner__en{display:block;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.3em;color:rgba(255,255,255,.85);margin-top:8px}
+.trust-kotake__banner__desc{font-size:13px;line-height:1.9;color:rgba(255,255,255,.85);max-width:280px;margin:0 32px 0 0}
+.trust-kotake__banner__cta{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:12px;letter-spacing:.3em;color:#fff;padding:14px 24px;border:1px solid rgba(255,255,255,.55);text-transform:lowercase}
+
+@media (max-width:880px){
+  .trust-kotake{padding:80px 22px 64px}
+  .trust-kotake__row{grid-template-columns:1fr;gap:36px}
+  .trust-kotake__h2{font-size:24px}
+  .trust-kotake__philosophy_title{font-size:21px}
+  .trust-kotake__banner__inner{flex-direction:column;justify-content:center;text-align:center;padding:32px 22px;gap:18px}
+  .trust-kotake__banner__desc{margin:0}
+  .trust-kotake__banner{height:auto;min-height:240px}
+}
+</style>
+
+<div class="trust-kotake__inner">
+  <header class="trust-kotake__head">
+    <h2 class="trust-kotake__h2">私たちの想い</h2>
+    <span class="trust-kotake__en">company</span>
+    <p class="trust-kotake__lead">リプレは大阪市中央区を拠点に、リフォームを中心とした住まいづくりに取り組んでいます。一棟ごとに納得のいく仕上がりを追求し、お引き渡し後も長くご愛顧いただくことを目指しています。</p>
+  </header>
+
+  <div class="trust-kotake__row">
+    <figure class="trust-kotake__photo">
+      <img src="https://picsum.photos/seed/gm-507a8d20ec6b-リプレ-ceo/670/665" alt="">
+    </figure>
+    <div class="trust-kotake__content">
+      <h3 class="trust-kotake__philosophy_title">暮らしを、<br>もっと心地よく。</h3>
+      <div class="trust-kotake__desc">
+        <p>「住まいを直す」だけでなく、「暮らしを整える」こと。私たちはお客様の日々の心地よさを大切にしています。</p>
+        <p>ご相談から施工、お引き渡し後のアフターまで、一貫してお付き合いさせていただきます。</p>
+        <p>地域に根ざした業者として、長く頼っていただける関係づくりを心がけています。</p>
+        <p>大阪市中央区でリフォームのことならお気軽にご相談ください。</p>
+      </div>
+      <p class="trust-kotake__sig">リプレ<br>代表　ご紹介</p>
+      <a class="trust-kotake__more" href="#company">詳しく見る</a>
+    </div>
+  </div>
+
+  <a class="trust-kotake__banner" href="#staff">
+    <span class="trust-kotake__banner__bg" style="background-image:url('https://picsum.photos/seed/gm-507a8d20ec6b-リプレ-staff/1200/400')"></span>
+    <div class="trust-kotake__banner__inner">
+      <div>
+        <h3 class="trust-kotake__banner__ttl">スタッフ紹介<span class="trust-kotake__banner__en">staff</span></h3>
+      </div>
+      <p class="trust-kotake__banner__desc">お客様の住まいづくりに<br>誠実に向き合うスタッフがご対応します</p>
+      <span class="trust-kotake__banner__cta">スタッフ紹介一覧</span>
+    </div>
+  </a>
+</div>
+</section>
+
+</div>
+<div id="services" class="site-section site-section--services">
+<!-- services: kotake -->
+<!--
+  Archetype: services / kotake
+  Source:    小竹建設 (https://www.kotake.jp/) を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: WordPress / 自社テーマ / Noto Serif JP + Cormorant Garamond
+  - 構造:
+      <section id="concept"> > .concept-menu
+        .menu menu-concept menu-concept--3 内に 3 タイル
+          a.menu--design / menu--performance / menu--quality
+            .menu-label "注文住宅"（小ラベル）
+            .menu-content > h2 .menu-ttl "デザイン" + p .menu-en "design"
+            .menu-bg（背景画像オーバーレイ）
+            .menu-more "more →"
+        .menu menu-diagonal menu-diagonal--2 内に 2 タイル
+          menu--standard-house / menu--reform-renov
+            （subtitle なし、h2 + en + bg + more）
+  - 配色: 黒背景 + 白文字、写真背景にダーク overlay
+  - フォント: "Shippori Mincho"（和文）, "Cormorant Garamond"（英字 italic）
+  - 動き: on--opa class → ホバーで写真 opacity 変化
+  - 注意: 模写の主役は「タイル 3 + タイル 2」の 2 段組。"more →" は丸ボタンの代わりにライン
+  ## Placeholders
+    {{services.menu_1_label}} ~ menu_3_label   小ラベル（注文住宅 等）
+    {{services.menu_1_ttl}}   ~ menu_3_ttl     大見出し（デザイン/性能/品質）
+    {{services.menu_1_en}}    ~ menu_3_en      英字（design/performance/quality）
+    {{services.menu_1_image}} ~ menu_3_image   背景画像
+    {{services.sub_1_ttl}}    ~ sub_2_ttl      下段 2 タイルの和文 ttl
+    {{services.sub_1_en}}     ~ sub_2_en       下段 2 タイルの英字
+    {{services.sub_1_image}}  ~ sub_2_image    下段 2 タイル背景
+    {{services.more_label}}                    "more" 文言
+-->
+<section class="services-kotake">
+<style>
+.services-kotake{padding:120px 0;background:#1a1a1a;color:#fff;font-family:"Shippori Mincho",serif}
+.services-kotake__container{max-width:1280px;margin:0 auto;padding:0 40px}
+.services-kotake__row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:24px}
+.services-kotake__row--two{grid-template-columns:repeat(2,1fr)}
+.services-kotake__tile{position:relative;display:block;height:360px;overflow:hidden;text-decoration:none;color:#fff;background:#000;isolation:isolate}
+.services-kotake__tile-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s ease,opacity .3s ease;z-index:0}
+.services-kotake__tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18) 0%,rgba(0,0,0,.55) 100%);z-index:1;pointer-events:none;transition:background .3s ease}
+.services-kotake__tile:hover .services-kotake__tile-bg{transform:scale(1.05);opacity:.78}
+.services-kotake__tile:hover::after{background:linear-gradient(180deg,rgba(0,0,0,.32) 0%,rgba(0,0,0,.7) 100%)}
+.services-kotake__tile-inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:32px;text-align:center}
+.services-kotake__tile-label{font-family:"Shippori Mincho",serif;font-size:13px;letter-spacing:.32em;color:rgba(255,255,255,.85);margin:0 0 18px}
+.services-kotake__tile-ttl{font-family:"Shippori Mincho",serif;font-weight:500;font-size:34px;letter-spacing:.18em;line-height:1.4;margin:0 0 10px;color:#fff}
+.services-kotake__tile-en{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.32em;color:rgba(255,255,255,.7);margin:0 0 26px;text-transform:lowercase}
+.services-kotake__tile-more{display:inline-flex;align-items:center;gap:10px;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.24em;color:#fff;padding-bottom:4px;border-bottom:1px solid rgba(255,255,255,.6);transition:border-color .2s ease}
+.services-kotake__tile-more::after{content:"→"}
+.services-kotake__tile:hover .services-kotake__tile-more{border-bottom-color:#fff}
+
+.services-kotake__row--two .services-kotake__tile{height:240px}
+.services-kotake__row--two .services-kotake__tile-ttl{font-size:24px;letter-spacing:.14em}
+
+@media (max-width:880px){
+  .services-kotake{padding:72px 0}
+  .services-kotake__container{padding:0 20px}
+  .services-kotake__row{grid-template-columns:1fr;gap:16px;margin-bottom:16px}
+  .services-kotake__row--two{grid-template-columns:1fr}
+  .services-kotake__tile{height:280px}
+  .services-kotake__tile-ttl{font-size:26px}
+  .services-kotake__row--two .services-kotake__tile{height:200px}
+}
+</style>
+
+<div class="services-kotake__container">
+  <div class="services-kotake__row">
+    <a href="#" class="services-kotake__tile">
+      <div class="services-kotake__tile-bg" style="background-image:url('https://picsum.photos/seed/gm-507a8d20ec6b-リプレ-svc-1/900/600')"></div>
+      <div class="services-kotake__tile-inner">
+        <p class="services-kotake__tile-label">リフォーム</p>
+        <h3 class="services-kotake__tile-ttl">デザイン提案</h3>
+        <p class="services-kotake__tile-en">service 01</p>
+        <span class="services-kotake__tile-more">詳しく見る</span>
+      </div>
+    </a>
+    <a href="#" class="services-kotake__tile">
+      <div class="services-kotake__tile-bg" style="background-image:url('https://picsum.photos/seed/gm-507a8d20ec6b-リプレ-svc-2/900/600')"></div>
+      <div class="services-kotake__tile-inner">
+        <p class="services-kotake__tile-label">リフォーム</p>
+        <h3 class="services-kotake__tile-ttl">確かな施工</h3>
+        <p class="services-kotake__tile-en">service 02</p>
+        <span class="services-kotake__tile-more">詳しく見る</span>
+      </div>
+    </a>
+    <a href="#" class="services-kotake__tile">
+      <div class="services-kotake__tile-bg" style="background-image:url('https://picsum.photos/seed/gm-507a8d20ec6b-リプレ-svc-3/900/600')"></div>
+      <div class="services-kotake__tile-inner">
+        <p class="services-kotake__tile-label">リフォーム</p>
+        <h3 class="services-kotake__tile-ttl">アフター対応</h3>
+        <p class="services-kotake__tile-en">service 03</p>
+        <span class="services-kotake__tile-more">詳しく見る</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="services-kotake__row services-kotake__row--two">
+    <a href="#" class="services-kotake__tile">
+      <div class="services-kotake__tile-bg" style="background-image:url('https://picsum.photos/seed/gm-507a8d20ec6b-リプレ-svc-4/900/500')"></div>
+      <div class="services-kotake__tile-inner">
+        <h3 class="services-kotake__tile-ttl">部分リフォーム</h3>
+        <p class="services-kotake__tile-en">partial</p>
+        <span class="services-kotake__tile-more">詳しく見る</span>
+      </div>
+    </a>
+    <a href="#" class="services-kotake__tile">
+      <div class="services-kotake__tile-bg" style="background-image:url('https://picsum.photos/seed/gm-507a8d20ec6b-リプレ-svc-5/900/500')"></div>
+      <div class="services-kotake__tile-inner">
+        <h3 class="services-kotake__tile-ttl">全面リノベーション</h3>
+        <p class="services-kotake__tile-en">full</p>
+        <span class="services-kotake__tile-more">詳しく見る</span>
+      </div>
+    </a>
+  </div>
+</div>
+</section>
+
+</div>
+<div id="gallery" class="site-section site-section--gallery">
+<!-- gallery: gm -->
+<!--
+  Archetype: gallery / gm
+  Source:    GM Contractors / Gordon Mitchell Contractors (https://gmcontractors.co.uk/) を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: 自前 + Awwwards Honorable Mention 取得サイト
+  - section: content.bg-gray-ltr > grid-container > home-projects-header + card-list
+  - 構造:
+    - home-projects-header:
+      - h2.text-sm.text-uppercase.text-bold.tracking-wide.line-heading "Selected projects"
+        （uppercase 英 small heading + 横ライン装飾）
+      - a "View all" 右端配置
+    - ul.card-list.related-projects.fade-up: 13 個 li.card
+      各 card:
+        - a > .image > .inner（background-image cover で 4:3 程度）
+        - .text:
+          - .top > h2.text-lg.text-bold.text-black.text-uppercase （プロジェクト名 "Lynwood" / "Drumnagesk" 等 1 語の地名）
+          - .category-list > button + button （"Residential" + "New Build" 等の 2 つ chip）
+          - .bottom > btn.btn-stroke.btn-black > span "View project"
+  - 配色: 黒/赤/グレー 3 色のミニマル配色（bg-gray-ltr 薄グレー背景 + black 文字 + 黒ストロークボタン）
+  - 動き: SVG アニメ主体の控えめ、fade-up scroll trigger
+
+  ## Placeholders
+    {{gallery.section_label}}        "Selected projects"
+    {{gallery.view_all_label}}       "View all"
+    {{gallery.card_N_image}}         N=1..6 (今回は6枚に縮小、実際は13)
+    {{gallery.card_N_title}}         プロジェクト名 (uppercase)
+    {{gallery.card_N_cat_1}}         カテゴリ chip 1（"Residential"）
+    {{gallery.card_N_cat_2}}         カテゴリ chip 2（"New Build"）
+    {{gallery.view_project_label}}   "View project"
+-->
+<section class="gallery-gm">
+<style>
+.gallery-gm{position:relative;background:#f1f1f1;color:#1a1a1a;padding:100px 0 110px;font-family:"Poppins","Noto Sans JP",sans-serif}
+.gallery-gm__container{max-width:1380px;margin:0 auto;padding:0 28px}
+
+.gallery-gm__header{display:flex;justify-content:space-between;align-items:center;margin-bottom:48px;gap:32px;flex-wrap:wrap}
+.gallery-gm__section-label{font-family:"Poppins",sans-serif;font-size:12px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:#1a1a1a;margin:0;position:relative;padding-left:36px}
+.gallery-gm__section-label::before{content:"";position:absolute;left:0;top:50%;width:24px;height:1px;background:#1a1a1a}
+.gallery-gm__view-all{font-family:"Poppins",sans-serif;font-size:12px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:#888;text-decoration:none;transition:color .25s}
+.gallery-gm__view-all:hover{color:#c0211f}
+
+.gallery-gm__list{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;list-style:none;padding:0;margin:0}
+.gallery-gm__card{position:relative;background:#fff;overflow:hidden;display:flex;flex-direction:column}
+.gallery-gm__card a{display:flex;flex-direction:column;text-decoration:none;color:inherit;flex:1}
+.gallery-gm__card-image{aspect-ratio:4/3;background-position:center;background-size:cover;background-color:#999;transition:transform .8s ease}
+.gallery-gm__card:hover .gallery-gm__card-image{transform:scale(1.04)}
+.gallery-gm__card-text{padding:24px 24px 26px;display:flex;flex-direction:column;justify-content:space-between;flex:1;gap:18px}
+.gallery-gm__card-title{font-family:"Poppins",sans-serif;font-size:22px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#1a1a1a;margin:0 0 12px;line-height:1.2}
+.gallery-gm__cat-list{display:flex;flex-wrap:wrap;gap:6px;margin:0}
+.gallery-gm__cat-list button{background:transparent;border:1px solid #999;padding:5px 12px;font-family:"Poppins",sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#555;cursor:pointer}
+.gallery-gm__btn{align-self:flex-start;background:transparent;border:1px solid #1a1a1a;padding:11px 22px;font-family:"Poppins",sans-serif;font-size:11px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:#1a1a1a;cursor:pointer;transition:all .25s}
+.gallery-gm__btn:hover{background:#1a1a1a;color:#fff}
+
+@media (max-width:880px){
+  .gallery-gm{padding:60px 0 80px}
+  .gallery-gm__container{padding:0 18px}
+  .gallery-gm__list{grid-template-columns:1fr;gap:18px}
+  .gallery-gm__card-title{font-size:20px}
+}
+</style>
+
+<div class="gallery-gm__container">
+  <div class="gallery-gm__header">
+    <h2 class="gallery-gm__section-label">Projects</h2>
+    <a href="#" class="gallery-gm__view-all">view all</a>
+  </div>
+
+  <ul class="gallery-gm__list">
+
+    <li class="gallery-gm__card">
+      <a href="#">
+        <div class="gallery-gm__card-image" style="background-image:url('https://picsum.photos/seed/gm-507a8d20ec6b-リプレ-0231a112/1024/683')"></div>
+        <div class="gallery-gm__card-text">
+          <div>
+            <h3 class="gallery-gm__card-title">戸建てリフォーム例</h3>
+            <div class="gallery-gm__cat-list">
+              <button>リフォーム</button>
+              <button>大阪市中央区</button>
+            </div>
+          </div>
+          <button class="gallery-gm__btn">view project</button>
+        </div>
+      </a>
+    </li>
+
+    <li class="gallery-gm__card">
+      <a href="#">
+        <div class="gallery-gm__card-image" style="background-image:url('https://picsum.photos/seed/gm-507a8d20ec6b-リプレ-0c322101/1024/683')"></div>
+        <div class="gallery-gm__card-text">
+          <div>
+            <h3 class="gallery-gm__card-title">外壁塗装例</h3>
+            <div class="gallery-gm__cat-list">
+              <button>リフォーム</button>
+              <button>大阪市中央区</button>
+            </div>
+          </div>
+          <button class="gallery-gm__btn">view project</button>
+        </div>
+      </a>
+    </li>
+
+    <li class="gallery-gm__card">
+      <a href="#">
+        <div class="gallery-gm__card-image" style="background-image:url('https://picsum.photos/seed/gm-507a8d20ec6b-リプレ-0eb75e8c/1024/683')"></div>
+        <div class="gallery-gm__card-text">
+          <div>
+            <h3 class="gallery-gm__card-title">屋根改修例</h3>
+            <div class="gallery-gm__cat-list">
+              <button>リフォーム</button>
+              <button>大阪市中央区</button>
+            </div>
+          </div>
+          <button class="gallery-gm__btn">view project</button>
+        </div>
+      </a>
+    </li>
+
+    <li class="gallery-gm__card">
+      <a href="#">
+        <div class="gallery-gm__card-image" style="background-image:url('https://picsum.photos/seed/gm-507a8d20ec6b-リプレ-3d018be3/1024/683')"></div>
+        <div class="gallery-gm__card-text">
+          <div>
+            <h3 class="gallery-gm__card-title">水回りリフォーム例</h3>
+            <div class="gallery-gm__cat-list">
+              <button>リフォーム</button>
+              <button>大阪市中央区</button>
+            </div>
+          </div>
+          <button class="gallery-gm__btn">view project</button>
+        </div>
+      </a>
+    </li>
+
+    <li class="gallery-gm__card">
+      <a href="#">
+        <div class="gallery-gm__card-image" style="background-image:url('https://picsum.photos/seed/gm-507a8d20ec6b-リプレ-21a34960/1024/683')"></div>
+        <div class="gallery-gm__card-text">
+          <div>
+            <h3 class="gallery-gm__card-title">和室改修例</h3>
+            <div class="gallery-gm__cat-list">
+              <button>リフォーム</button>
+              <button>大阪市中央区</button>
+            </div>
+          </div>
+          <button class="gallery-gm__btn">view project</button>
+        </div>
+      </a>
+    </li>
+
+    <li class="gallery-gm__card">
+      <a href="#">
+        <div class="gallery-gm__card-image" style="background-image:url('https://picsum.photos/seed/gm-507a8d20ec6b-リプレ-9011bd91/1024/683')"></div>
+        <div class="gallery-gm__card-text">
+          <div>
+            <h3 class="gallery-gm__card-title">外構工事例</h3>
+            <div class="gallery-gm__cat-list">
+              <button>リフォーム</button>
+              <button>大阪市中央区</button>
+            </div>
+          </div>
+          <button class="gallery-gm__btn">view project</button>
+        </div>
+      </a>
+    </li>
+
+  </ul>
+</div>
+</section>
+
+</div>
+<div id="area" class="site-section site-section--area">
+<!-- area: kotake -->
+<!--
+  Archetype: area / kotake
+  Source:    小竹建設 (https://www.kotake.jp/) を忠実模写
+  ## 模写スペック（raw HTML + front.css/common.css 実測値）
+  - 制作技術: WordPress（kotake-shinchiku theme）, fonts: NotoSerifJP + Adobe Typekit "maecenas" (serif)
+  - 構造: footer .info 内に .area（sec-head pin アイコン + sec-ttl + sec-en + area-desc + notes）
+          直下に .shop（複数店舗を横並び。各店舗: shop-image + shop-content[ttl + add] + shop-map[Google Maps iframe]）
+  - 文言（参考）:
+      対応エリア / area
+      「長野県飯田市、下伊那を中心に1時間圏内で対応しております。」
+      ※「そのほか地域の方もまずはお問い合わせください。」
+  - 配色: 白背景 #fff / 本文 #2c2c2c / 区切り #d2d2d2 / 注釈うす色
+  - sec-head ::before に pin.svg（位置マーカー）を中央配置
+  - shop-map .ggmap は padding-bottom:45% で aspect-ratio 制御
+  - 動き: 静止（footer 内の info ブロックなのでアニメなし）
+  ## Placeholders
+    {{area.section_label_jp}}             "対応エリア"
+    {{area.section_label_en}}             "area"
+    {{area.desc_main}}                    「◯◯ を中心に◯時間圏内で対応しております。」
+    {{area.desc_notes}}                   「そのほか地域の方も…」
+    {{area.shop_1_image}}                 店舗 1 外観写真
+    {{area.shop_1_name}}                  "本社" / "本店" 等
+    {{area.shop_1_address}}               郵便番号 + 住所 + TEL（<br> 込み HTML）
+    {{area.shop_1_map_embed}}             Google Maps 埋め込み URL（iframe src）
+    {{area.shop_2_image}}                 店舗 2 外観写真
+    {{area.shop_2_name}}
+    {{area.shop_2_address}}
+    {{area.shop_2_map_embed}}
+-->
+<section class="area-kotake">
+<style>
+.area-kotake{background:#fff;color:#2c2c2c;font-family:"Noto Serif JP","NotoSerifJP",serif;padding:80px 0;position:relative}
+.area-kotake__info{max-width:1140px;margin:0 auto;padding:24px 40px 36px;display:flex;justify-content:space-between;align-items:center;gap:48px;border-top:1px solid #d2d2d2;border-bottom:1px solid #d2d2d2}
+
+.area-kotake__head{position:relative;flex:0 0 auto;width:130px;padding-top:42px;text-align:center}
+.area-kotake__head::before{content:"";position:absolute;top:0;left:50%;width:18px;height:27px;transform:translateX(-50%);background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 27'><path d='M9 0C4 0 0 4 0 9c0 6 9 18 9 18s9-12 9-18c0-5-4-9-9-9z' fill='%232c2c2c'/><circle cx='9' cy='9' r='3.5' fill='%23fff'/></svg>") center/contain no-repeat}
+.area-kotake__ttl{font-family:"Noto Serif JP",serif;font-weight:500;font-size:20px;line-height:1.21;margin:0;letter-spacing:.06em}
+.area-kotake__en{font-family:"Cormorant Garamond",maecenas,serif;font-weight:400;font-size:14px;letter-spacing:.08em;margin:.3em 0 0;color:#8a8073;text-transform:lowercase}
+
+.area-kotake__desc{flex:1 1 auto;max-width:450px}
+.area-kotake__desc p{margin:0;line-height:1.75em;letter-spacing:.04em;font-size:15px;color:#2c2c2c}
+.area-kotake__desc p.notes{margin-top:.2em;padding-left:1em;font-size:13px;text-indent:-1em;color:#8a8073}
+.area-kotake__desc p.notes::before{content:"※"}
+
+.area-kotake__shop{max-width:1140px;margin:0 auto;padding:40px;display:flex;justify-content:space-between;gap:40px}
+.area-kotake__shop-card{width:50%;display:flex;flex-direction:column}
+.area-kotake__shop-image{margin-bottom:14px;overflow:hidden}
+.area-kotake__shop-image img{display:block;width:100%;height:180px;object-fit:cover}
+.area-kotake__shop-contents{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:14px}
+.area-kotake__shop-content{flex:1 1 auto}
+.area-kotake__shop-ttl{margin:0 0 .5em;font-size:20px;font-weight:500;line-height:1.25em;letter-spacing:.12em;font-family:"Noto Serif JP",serif}
+.area-kotake__shop-add p{margin:0;line-height:1.75em;font-size:13px;color:#3a3a3a}
+.area-kotake__shop-map{position:relative;width:100%;padding-bottom:45%;overflow:hidden}
+.area-kotake__shop-map iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+
+@media (max-width:880px){
+  .area-kotake{padding:48px 0}
+  .area-kotake__info{flex-direction:column;align-items:center;gap:14px;padding:24px;text-align:center}
+  .area-kotake__head{width:auto;padding-top:42px}
+  .area-kotake__desc{max-width:none}
+  .area-kotake__shop{flex-direction:column;padding:24px;gap:32px}
+  .area-kotake__shop-card{width:100%}
+  .area-kotake__shop-map{padding-bottom:55%}
+}
+</style>
+
+<div class="area-kotake__info">
+  <div class="area-kotake__head">
+    <h2 class="area-kotake__ttl">対応エリア</h2>
+    <p class="area-kotake__en">area</p>
+  </div>
+  <div class="area-kotake__desc">
+    <p>大阪市中央区を中心に、近隣エリアまで対応いたします。</p>
+    <p class="notes">そのほかの地域もまずはご相談ください。</p>
+  </div>
+</div>
+
+<div class="area-kotake__shop">
+  <div class="area-kotake__shop-card">
+    <div class="area-kotake__shop-image">
+      <img src="https://picsum.photos/seed/gm-507a8d20ec6b-リプレ-a066d76c/700/300" alt="リプレ">
+    </div>
+    <div class="area-kotake__shop-contents">
+      <div class="area-kotake__shop-content">
+        <p class="area-kotake__shop-ttl">リプレ</p>
+        <div class="area-kotake__shop-add"><p>〒540-0026 大阪府大阪市中央区内本町２丁目４−１６ 3F<br>TEL：012-064-6620</p></div>
+      </div>
+    </div>
+    <div class="area-kotake__shop-map">
+      <iframe src="https://maps.google.com/maps?q=%E3%80%92540-0026+%E5%A4%A7%E9%98%AA%E5%BA%9C%E5%A4%A7%E9%98%AA%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%86%85%E6%9C%AC%E7%94%BA%EF%BC%92%E4%B8%81%E7%9B%AE%EF%BC%94%E2%88%92%EF%BC%91%EF%BC%96+3F&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div class="area-kotake__shop-card">
+    <div class="area-kotake__shop-image">
+      <img src="https://picsum.photos/seed/gm-507a8d20ec6b-リプレ-42dd23c8/700/300" alt="">
+    </div>
+    <div class="area-kotake__shop-contents">
+      <div class="area-kotake__shop-content">
+        <p class="area-kotake__shop-ttl"></p>
+        <div class="area-kotake__shop-add"><p></p></div>
+      </div>
+    </div>
+    <div class="area-kotake__shop-map">
+      <iframe src="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+</section>
+
+</div>
+<div id="cta" class="site-section site-section--cta">
+<!-- cta: fls -->
+<!--
+  Archetype: cta / fls
+  Source:    FL Specialty Roofing (https://www.flsroof.com/) を忠実模写
+  ## 模写スペック（raw HTML + 抽出 CSS）
+  - 構造: <section.cta-banner-35.cta-banner> with .overlay-cta + bg <picture> + .container > h2 + btn
+  - サイズ: min-height 520px、padding 292px 0 50px、上下に 10px ゴールドグラデ ::before/::after
+  - 配色: bg fullbleed image + overlay linear-gradient(79.1deg, rgba(0,0,0,0.95) 14.4%, rgba(0,0,0,0.2) 59.2%)
+  - h2: Cormorant Garamond 700 / 4rem / max-width 20ch / 白 / "Dedicated to the Art of Roofing"
+  - btn--golden: gradient #BD8B2A → #D1A858 / padding 10px 42px / Poppins uppercase / 白文字
+  - 動き: ホバーで gradient 角度反転 .3s、scroll-in なし
+  - レスポンシブ: < 768 で h2 3.5rem→2rem center
+  ## Placeholders
+    {{cta.section_label}}        セクションの aria-label（任意、SEO 用）
+    {{cta.bg_image}}             背景 image URL（cta.webp 相当 / 2160x895）
+    {{cta.h2_line_1}}            大見出し 1 行目（"Dedicated to the Art"）
+    {{cta.h2_line_2}}            大見出し 2 行目（"of Roofing"）
+    {{cta.button_label}}         CTA ボタン（"let's connect" 相当）
+    {{cta.button_href}}          遷移先（/contact/）
+-->
+<section class="cta-fls" aria-label="Contact">
+<style>
+.cta-fls{position:relative;width:100%;min-height:520px;padding:292px 0 50px;overflow:hidden;background:#000}
+.cta-fls::before,
+.cta-fls::after{content:"";position:absolute;left:0;width:100%;height:10px;background:linear-gradient(180deg,#d0a757 30%,#f0c879 70%);z-index:9}
+.cta-fls::before{top:0}
+.cta-fls::after{bottom:0}
+.cta-fls__bg{position:absolute;inset:0;z-index:0}
+.cta-fls__bg img{width:100%;height:100%;object-fit:cover}
+.cta-fls__overlay{position:absolute;inset:0;background:linear-gradient(79.1deg,rgba(0,0,0,.95) 14.4%,rgba(0,0,0,.2) 59.2%);z-index:5}
+.cta-fls__container{position:relative;z-index:10;max-width:1340px;margin:0 auto;padding:0 36px;box-sizing:border-box}
+.cta-fls__row{display:grid;grid-template-columns:8fr 4fr;gap:30px;align-items:center}
+.cta-fls__h2{color:#fff;font-family:"Cormorant Garamond",serif;font-size:4rem;font-style:normal;font-weight:700;line-height:1.05;letter-spacing:.005em;text-transform:none;max-width:20ch;margin:0 0 30px}
+.cta-fls__btn{display:inline-block;padding:10px 42px;background:linear-gradient(180deg,#BD8B2A 0%,#D1A858 100%);color:#fff;border:none;font-size:1rem;font-family:"Poppins","Noto Sans JP",sans-serif;font-style:normal;line-height:normal;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;transition:all .3s ease-in-out}
+.cta-fls__btn:hover{background:linear-gradient(90deg,#BD8B2A 0%,#D1A858 100%)}
+
+@media (max-width:1024px){
+  .cta-fls{padding:180px 0 60px;min-height:420px}
+  .cta-fls__row{grid-template-columns:1fr;text-align:center}
+  .cta-fls__h2{font-size:3.5rem;text-align:center;margin:0 auto 30px}
+  .cta-fls__btn{margin:0 auto;width:auto;text-align:center}
+}
+@media (max-width:768px){
+  .cta-fls__h2{font-size:2rem}
+}
+</style>
+
+<div class="cta-fls__overlay"></div>
+<picture class="cta-fls__bg">
+  <img src="https://picsum.photos/seed/gm-507a8d20ec6b-リプレ-5071abb0/1920/800" alt="" loading="lazy">
+</picture>
+<div class="cta-fls__container">
+  <div class="cta-fls__row">
+    <header>
+      <h2 class="cta-fls__h2">大阪市中央区で住まいのお悩みは<br>リプレ まで</h2>
+      <a class="cta-fls__btn" href="#contact">お問い合わせはこちら</a>
+    </header>
+  </div>
+</div>
+</section>
+
+</div>
+<div id="footer" class="site-section site-section--footer">
+<!-- footer: hidamari -->
+<!--
+  Archetype: footer / hidamari
+  Source:    ひだまりほーむ (https://hidamari-home.jp/) を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: WordPress + 自前 (themes/hidamarihome-shinchiku/css/)
+  - 構造:
+    1. dl.sns: dt "Follow Us" + dd > .sns-menu (IG/FB/YT/Pinterest 4 SNS)
+    2. .inquiry: .inquiry-head (catch + logo) + p.inquiry-tel "0120-79-5517"
+                .add_footer_btn_wrap [.inquiry-modelhouse "モデルハウス見学予約" / .add_footer_book_btn "資料請求"]
+                .inquiry-btn (SP only tel)
+    3. .inquiry-owner: "ひだまりオーナー様 専用ページはこちら"
+    4. .footer-associate: ttl "関連グループ" + 3 列
+                          ・リノベーション (バナー)
+                          ・土地探し (バナー)
+                          ・ひだまり食堂 (3 バナー)
+    5. .footer-bottom: subnavi (サイトマップ / プライバシーポリシー) + .footer-copy
+  - 配色: 木造系 cream/beige + 緑 (#3c6e3a 系) アクセント
+  - フォント: 主 sans (Noto Sans JP), ロゴは "Shippori Mincho"
+  - 動き: on--opa (hover opacity 0.6)
+  ## Placeholders
+    footer.sns_heading                "Follow Us"
+    footer.social_label_1~4/footer.social_url_1~4    4 SNS
+    footer.inquiry_catch              "心豊かな人生をつくる。"
+    company.name                      ロゴ表示
+    company.tel_display               "0120-XX-XXXX"
+    company.tel                       href tel:
+    footer.cta_1_label                "モデルハウス見学予約"
+    footer.cta_2_label                "資料請求"
+    footer.tel_label                  "お電話でのお問い合わせはこちら"
+    footer.owner_label                "オーナー様専用ページ"
+    footer.associate_title            "関連グループ"
+    footer.associate_sub_1~3          サブタイトル × 3
+    footer.associate_img_1~3          バナー画像 × 3
+    footer.subnav_1~2                 サイトマップ / プライバシーポリシー
+    footer.copyright                  "© デモカンパニー Co.,Ltd."
+-->
+<section class="footer-hidamari">
+<style>
+.footer-hidamari{background:#f1ece2;color:#2d2a26;font-family:"Noto Sans JP",sans-serif;padding:80px 32px 32px;box-sizing:border-box;position:relative}
+.footer-hidamari__inner{max-width:1100px;margin:0 auto}
+
+.footer-hidamari__sns{display:flex;align-items:center;gap:24px;justify-content:center;margin:0 0 56px;padding:0}
+.footer-hidamari__sns dt{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:18px;letter-spacing:.18em;color:#3c6e3a}
+.footer-hidamari__sns dd{margin:0}
+.footer-hidamari__sns-menu{display:flex;gap:18px}
+.footer-hidamari__sns-menu a{display:inline-flex;width:36px;height:36px;align-items:center;justify-content:center;background:#3c6e3a;color:#fff;border-radius:50%;text-decoration:none;font-family:"Cormorant Garamond",serif;font-size:13px;font-weight:600;letter-spacing:.04em;transition:opacity .2s}
+.footer-hidamari__sns-menu a:hover{opacity:.7}
+
+.footer-hidamari__inquiry{text-align:center;padding:48px 24px;background:#fff;border-radius:8px;margin-bottom:48px}
+.footer-hidamari__inquiry-catch{font-family:"Shippori Mincho",serif;font-weight:500;font-size:clamp(20px,2.6vw,28px);letter-spacing:.12em;margin:0 0 16px;color:#3c6e3a}
+.footer-hidamari__inquiry-logo{font-family:"Shippori Mincho",serif;font-weight:500;font-size:22px;letter-spacing:.16em;color:#2d2a26;margin:0 0 24px}
+.footer-hidamari__inquiry-tel{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:36px;letter-spacing:.06em;color:#2d2a26;margin:0 0 24px;text-decoration:none;display:inline-block}
+.footer-hidamari__inquiry-tel:hover{color:#3c6e3a}
+.footer-hidamari__btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.footer-hidamari__btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 28px;background:#3c6e3a;color:#fff;font-family:"Noto Sans JP",sans-serif;font-size:14px;letter-spacing:.12em;text-decoration:none;border-radius:30px;transition:opacity .2s}
+.footer-hidamari__btn:hover{opacity:.85}
+.footer-hidamari__btn--alt{background:#fff;color:#3c6e3a;border:1px solid #3c6e3a}
+.footer-hidamari__tel-label{font-family:"Noto Sans JP",sans-serif;font-size:12px;color:#6a6259;margin:8px 0 0}
+
+.footer-hidamari__owner{display:block;text-align:center;padding:16px 24px;border:1px solid #3c6e3a;color:#3c6e3a;text-decoration:none;font-family:"Noto Sans JP",sans-serif;font-size:13px;letter-spacing:.12em;margin-bottom:56px;transition:background .2s}
+.footer-hidamari__owner:hover{background:#3c6e3a;color:#fff}
+
+.footer-hidamari__associate{margin-bottom:48px}
+.footer-hidamari__associate-ttl{font-family:"Shippori Mincho",serif;font-weight:500;font-size:18px;letter-spacing:.16em;color:#2d2a26;margin:0 0 24px;text-align:center}
+.footer-hidamari__associate-menu{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.footer-hidamari__associate-sub{font-family:"Noto Sans JP",sans-serif;font-size:12px;color:#6a6259;margin:0 0 8px;line-height:1.6}
+.footer-hidamari__associate-bnr{display:block;background:#fff;border:1px solid #e3ddd2;border-radius:4px;overflow:hidden;text-decoration:none;color:#2d2a26;transition:opacity .2s}
+.footer-hidamari__associate-bnr:hover{opacity:.7}
+.footer-hidamari__associate-bnr img{width:100%;height:auto;display:block}
+.footer-hidamari__associate-bnrs{display:flex;gap:8px}
+.footer-hidamari__associate-bnrs .footer-hidamari__associate-bnr{flex:1}
+
+.footer-hidamari__bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid #d8d2c7;flex-wrap:wrap;gap:16px}
+.footer-hidamari__subnavi{display:flex;gap:18px}
+.footer-hidamari__subnavi a{font-family:"Noto Sans JP",sans-serif;font-size:12px;color:#6a6259;text-decoration:none;transition:color .2s}
+.footer-hidamari__subnavi a:hover{color:#3c6e3a}
+.footer-hidamari__copy{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:12px;color:#6a6259;margin:0;letter-spacing:.16em}
+
+@media (max-width:880px){
+  .footer-hidamari{padding:56px 20px 28px}
+  .footer-hidamari__associate-menu{grid-template-columns:1fr;gap:18px}
+  .footer-hidamari__inquiry-tel{font-size:28px}
+}
+</style>
+
+<div class="footer-hidamari__inner">
+  <dl class="footer-hidamari__sns">
+    <dt>Follow Us</dt>
+    <dd>
+      <div class="footer-hidamari__sns-menu">
+        <a href="#" target="_blank" rel="noopener">Instagram</a>
+        <a href="#" target="_blank" rel="noopener">Facebook</a>
+        <a href="#" target="_blank" rel="noopener">YouTube</a>
+        <a href="#" target="_blank" rel="noopener">X</a>
+      </div>
+    </dd>
+  </dl>
+
+  <div class="footer-hidamari__inquiry">
+    <p class="footer-hidamari__inquiry-catch">大阪市中央区で住まいのお悩みはお気軽にご相談ください。</p>
+    <p class="footer-hidamari__inquiry-logo">リプレ</p>
+    <a class="footer-hidamari__inquiry-tel" href="tel:0120646620">012-064-6620</a>
+    <div class="footer-hidamari__btns">
+      <a class="footer-hidamari__btn" href="#">お問い合わせフォーム</a>
+      <a class="footer-hidamari__btn footer-hidamari__btn--alt" href="#">資料請求</a>
+    </div>
+    <p class="footer-hidamari__tel-label">お電話でのご相談</p>
+  </div>
+
+  <a class="footer-hidamari__owner" href="#">代表ごあいさつ</a>
+
+  <div class="footer-hidamari__associate">
+    <p class="footer-hidamari__associate-ttl">関連グループ</p>
+    <div class="footer-hidamari__associate-menu">
+      <div>
+        <p class="footer-hidamari__associate-sub"></p>
+        <a class="footer-hidamari__associate-bnr" href="#"><img src="https://picsum.photos/seed/gm-507a8d20ec6b-リプレ-9d24e00f/200/80" alt=""></a>
+      </div>
+      <div>
+        <p class="footer-hidamari__associate-sub"></p>
+        <a class="footer-hidamari__associate-bnr" href="#"><img src="https://picsum.photos/seed/gm-507a8d20ec6b-リプレ-2c86f4bf/200/80" alt=""></a>
+      </div>
+      <div>
+        <p class="footer-hidamari__associate-sub"></p>
+        <a class="footer-hidamari__associate-bnr" href="#"><img src="https://picsum.photos/seed/gm-507a8d20ec6b-リプレ-9886358b/200/80" alt=""></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-hidamari__bottom">
+    <div class="footer-hidamari__subnavi">
+      <a href="#">プライバシーポリシー</a>
+      <a href="#">サイトマップ</a>
+    </div>
+    <p class="footer-hidamari__copy">© リプレ</p>
+  </div>
+</div>
+</section>
+
+</div>
+
+<script>
+(function(){
+  var header = document.querySelector('[data-site-header]');
+  var nav = document.querySelector('[data-site-nav]');
+  var burgers = document.querySelectorAll('[data-burger]');
+  var navLinks = nav ? nav.querySelectorAll('a[href^="#"]') : [];
+
+  function onScroll(){
+    if(!header) return;
+    if(window.scrollY > 80) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  function toggleNav(force){
+    if(!nav) return;
+    var open = (typeof force === 'boolean') ? force : !nav.classList.contains('is-open');
+    nav.classList.toggle('is-open', open);
+    nav.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+    var btn = document.querySelector('.site-header__burger');
+    if(btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  burgers.forEach(function(b){ b.addEventListener('click', function(){ toggleNav(); }); });
+  navLinks.forEach(function(a){ a.addEventListener('click', function(){ toggleNav(false); }); });
+})();
+</script>
+</body>
+</html>
