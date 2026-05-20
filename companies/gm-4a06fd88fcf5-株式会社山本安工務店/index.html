@@ -64,535 +64,496 @@ img{max-width:100%;height:auto;display:block}
 
 <div id="top"></div>
 <div id="hero" class="site-section site-section--hero">
-<!-- hero: hidamari -->
+<!-- hero: matsuo -->
 <!--
-  Archetype: hero / hidamari
-  Source:    ひだまりほーむ (https://hidamari-home.jp/) を忠実模写
-  ## 模写スペック（raw HTML 抽出）
-  - 制作技術: WordPress + Swiper.js + jQuery
-  - 構造: .hero > .hero-content > .hero-catch (small label) + .hero-ttl (big title)
-          + .hero-slide (Swiper background) + 長文 philosophy paragraph
-  - 配色: 国産無垢材＆温もりトーン（暖色系オフホワイト + 茶系）
-  - Hero テキスト要素: 「LONG LIFE DESIGN」(label) + 「美しい時を刻む、ロングライフデザインの家」(h1)
-    + 長文 philosophy: 「流行りに左右されることのない、シンプルで普遍的なデザイン...」
+  Archetype: hero / matsuo
+  Source:    松尾工務店 (https://www.matsuo-komuten.co.jp/) を忠実模写
+  ## 模写スペック（raw HTML 抽出 / 実測値）
+  - 制作技術: 自前 Alpine.js + Lenis + Splide + Vimeo iframe + clip-path opening-anime
+  - 構造:
+      <div.hero-matsuo>
+        > .hero-matsuo__mv (背景 Vimeo 動画 or fallback 写真、aspect-[315/420] → 全画面)
+        > .hero-matsuo__year-stamp (左中央、創業年 1915 を巨大 Cormorant Garamond で全画面ぶち抜き)
+        > .hero-matsuo__anniv (左下、110th SVG ロゴ 3 段重ね = "matsuo" + "110th" + "anniversary")
+        > .hero-matsuo__copy-zone (右下、Eternal Quality for Your Dream 英字 subtitle + 大コピー 2 行 "可能性を実現する、xxx" Shippori Mincho)
+        > .hero-matsuo__copy-block (画面下、ロングコピー 2 段 "創業年の創業以来〜" "技術を受け継ぎ〜永遠の品質保証〜")
+  - 配色: 黒バックグラウンド #0d0d0d / 白テキスト / 薄グレー #888 / 創業年数字は白半透明 opacity .14
+  - フォント: 和文 Shippori Mincho B1 (heading), 小塚明朝 (本文) / 欧文 Cormorant Garamond
+  - 動き: 創業年数字 count-up（CSS scroll IntersectionObserver で 1→1915 に弾く）、
+          大コピー fade-in upward、kenburns slow zoom (12s) を背景に
+  - 余白: padding 60px 56px, height 100vh / SP 100svh
   ## Placeholders
-    株式会社 山本安工務店 / {{hero.menu_label}}
-    {{hero.slide_1}} ~ {{hero.slide_3}}     Swiper 背景画像
-    {{hero.label_en}}                        小ラベル（"LONG LIFE DESIGN" 相当）
-    {{hero.h1}}                              大見出し（HTML可、句読点改行）
-    {{hero.philosophy}}                      長文 philosophy（HTML可、複数行）
-    {{hero.link_to_concept}}                 "ロングライフデザインとは" リンクテキスト
+    company.name                ブランド名
+    hero.year_founded           創業年（数値、巨大表示用）
+    hero.anniversary_label      "◯◯◯th Anniversary" 相当
+    hero.anniversary_brand      anniversary 上段の英字屋号
+    hero.subtitle_en            英字サブタイトル ("Eternal Quality for Your Dream" 相当)
+    hero.headline_line_1        大コピー 1 行目
+    hero.headline_line_2        大コピー 2 行目
+    hero.long_copy_block_1      ロングコピー 1 段目 (HTML 改行 <br> 可)
+    hero.long_copy_block_2      ロングコピー 2 段目 (HTML 改行 <br> 可)
+    hero.mv_image               メインビジュアル写真 URL（Vimeo poster 代替）
+    hero.scroll_label           SCROLL 縦キューのラベル
 -->
-<section class="hero-hidamari">
+<section class="hero-matsuo">
 <style>
-.hero-hidamari{position:relative;min-height:100vh;background:#f7f3ec;color:#3a2a1a;font-family:"Shippori Mincho",serif;overflow:hidden}
-.hero-hidamari__bg{position:absolute;inset:0;z-index:0;opacity:.62}
-.hero-hidamari__bg .splide,
-.hero-hidamari__bg .splide__track,
-.hero-hidamari__bg .splide__list,
-.hero-hidamari__bg .splide__slide{height:100%}
-.hero-hidamari__bg .splide__slide{background-position:center;background-size:cover}
-.hero-hidamari::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(247,243,236,.6) 0%,rgba(247,243,236,.85) 100%);z-index:1;pointer-events:none}
+.hero-matsuo{position:relative;min-height:100svh;height:100vh;background:#0d0d0d;color:#fff;font-family:"Noto Serif JP","Shippori Mincho B1",serif;overflow:hidden}
+.hero-matsuo__mv{position:absolute;inset:0;z-index:0}
+.hero-matsuo__mv-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:hero-matsuo-kb 12s ease-out 1 forwards}
+@keyframes hero-matsuo-kb{from{transform:scale(1.06)}to{transform:scale(1.0)}}
+.hero-matsuo__mv::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,13,.35) 0%,rgba(13,13,13,.15) 30%,rgba(13,13,13,.55) 100%)}
 
-.hero-hidamari__inner{position:relative;z-index:3;display:grid;grid-template-columns:5fr 7fr;gap:60px;align-items:center;padding:60px 48px 80px;max-width:1280px;margin:0 auto;min-height:100vh}
-.hero-hidamari__copy .label{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.36em;color:#8a6a3a;margin:0 0 24px;text-transform:uppercase}
-.hero-hidamari__h1{font-family:"Shippori Mincho",serif;font-weight:500;font-size:clamp(28px,4vw,46px);line-height:1.85;letter-spacing:.06em;color:#3a2a1a;margin:0 0 30px}
-.hero-hidamari__philosophy{font-family:"Noto Serif JP",serif;font-size:14px;line-height:2.4;letter-spacing:.06em;color:#5a4a3a;margin:0 0 26px;font-weight:400}
-.hero-hidamari__more{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.16em;color:#8a6a3a;text-decoration:none;border-bottom:1px solid #8a6a3a;padding-bottom:3px}
-.hero-hidamari__photo-area{position:relative;height:520px;overflow:hidden}
+.hero-matsuo__year-stamp{position:absolute;left:-2vw;top:50%;transform:translateY(-58%);z-index:2;font-family:"Cormorant Garamond","Noto Serif JP",serif;font-style:italic;font-weight:400;font-size:clamp(220px,30vw,520px);line-height:.85;letter-spacing:-.04em;color:#fff;opacity:.13;mix-blend-mode:screen;pointer-events:none;font-variant-numeric:tabular-nums;user-select:none}
 
-@media (max-width:880px){
-  .hero-hidamari__inner{grid-template-columns:1fr;padding:40px 24px;gap:24px;min-height:auto}
-  .hero-hidamari__h1{font-size:24px;line-height:1.85}
-  .hero-hidamari__photo-area{height:280px;order:-1}
+.hero-matsuo__anniv{position:absolute;left:56px;bottom:88px;z-index:3;display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:128px}
+.hero-matsuo__anniv-brand{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.16em;color:#e7c896;text-transform:uppercase;opacity:.95}
+.hero-matsuo__anniv-num{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:62px;line-height:1;letter-spacing:.02em;color:#e7c896;margin:2px 0}
+.hero-matsuo__anniv-label{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.34em;color:#e7c896;text-transform:uppercase;opacity:.9}
+
+.hero-matsuo__copy-zone{position:absolute;right:56px;top:36%;z-index:3;text-align:right;max-width:46%}
+.hero-matsuo__subtitle{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:clamp(14px,1.2vw,21px);letter-spacing:.06em;color:#fff;margin:0 0 28px;opacity:.92}
+.hero-matsuo__headline{font-family:"Shippori Mincho B1","Noto Serif JP",serif;font-weight:500;font-size:clamp(34px,5.4vw,80px);line-height:1.4;letter-spacing:.08em;color:#fff;margin:0}
+.hero-matsuo__headline span{display:inline-block;animation:hero-matsuo-up .9s ease-out .15s both}
+.hero-matsuo__headline span+span{animation-delay:.4s}
+@keyframes hero-matsuo-up{from{transform:translateY(28px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+.hero-matsuo__copy-block{position:absolute;left:56px;right:auto;bottom:60px;z-index:3;max-width:38%;color:#fff;display:none}
+.hero-matsuo__copy-block p{font-family:"Noto Sans JP","Kozuka Gothic",sans-serif;font-size:15px;line-height:2;letter-spacing:.04em;margin:0}
+.hero-matsuo__copy-block p+p{margin-top:24px}
+.hero-matsuo__copy-block span.num{display:inline-block;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:21px;letter-spacing:-.04em;margin:0 .12em;color:#e7c896}
+
+.hero-matsuo__scroll{position:absolute;right:30px;bottom:32px;z-index:3;writing-mode:vertical-rl;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:#fff;opacity:.7}
+.hero-matsuo__scroll::after{content:"";display:block;margin:14px auto 0;width:1px;height:60px;background:linear-gradient(180deg,#fff 0%,transparent 100%);animation:hero-matsuo-scroll 1.8s ease-in-out infinite}
+@keyframes hero-matsuo-scroll{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+@media (max-width:768px){
+  .hero-matsuo{height:auto;min-height:100svh;padding:0}
+  .hero-matsuo__year-stamp{font-size:38vw;left:-4vw;top:auto;bottom:30vh;transform:none}
+  .hero-matsuo__anniv{left:24px;bottom:auto;top:88px;width:96px}
+  .hero-matsuo__anniv-num{font-size:42px}
+  .hero-matsuo__copy-zone{right:24px;left:24px;top:auto;bottom:30vh;max-width:100%;text-align:left}
+  .hero-matsuo__headline{font-size:30px;letter-spacing:.06em}
+  .hero-matsuo__subtitle{font-size:13px;margin-bottom:18px}
+  .hero-matsuo__copy-block{position:relative;left:auto;right:auto;bottom:auto;max-width:100%;padding:32px 24px 56px;background:#0d0d0d;display:block}
+  .hero-matsuo__scroll{display:none}
 }
 </style>
 
-<div class="hero-hidamari__bg">
-  <div class="splide" data-splide='{"type":"fade","rewind":true,"autoplay":true,"interval":6000,"speed":2000,"arrows":false,"pagination":false,"pauseOnHover":false}'>
-    <div class="splide__track">
-      <ul class="splide__list">
-        <li class="splide__slide" style="background-image:url('https://lh3.googleusercontent.com/gps-cs-s/APNQkAEzJqpG5td9kx97qrCXkHzdjhDwzhVlLtsBr4x2vIRgBS8xmf_vqMnUvuEhyerMSIreg4Drs7XL2OW1rwhKboGT9t7j-XMiGrobzKwCKuv8lHn2bPf7U8tySeTQWehb8gsN6y4flEpbddE=w408-h272-k-no')"></li>
-        <li class="splide__slide" style="background-image:url('https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-hero-2/1600/900')"></li>
-        <li class="splide__slide" style="background-image:url('https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-hero-3/1600/900')"></li>
-      </ul>
-    </div>
-  </div>
+<div class="hero-matsuo__mv">
+  <img class="hero-matsuo__mv-img" src="" alt=""/>
 </div>
 
-<div class="hero-hidamari__inner">
-  <div class="hero-hidamari__copy">
-    <p class="label">company</p>
-    <h1 class="hero-hidamari__h1">地域に根ざした<br>リフォーム</h1>
-    <p class="hero-hidamari__philosophy">丁寧な施工とアフターで、長く頼られる業者を目指します。</p>
-    <a class="hero-hidamari__more" href="#concept">#trust →</a>
-  </div>
-  <div class="hero-hidamari__photo-area"></div>
+<div class="hero-matsuo__year-stamp" data-year-target></div>
+
+<div class="hero-matsuo__anniv">
+  <span class="hero-matsuo__anniv-brand"></span>
+  <span class="hero-matsuo__anniv-num"></span>
+  <span class="hero-matsuo__anniv-label">Anniversary</span>
 </div>
+
+<div class="hero-matsuo__copy-zone">
+  <p class="hero-matsuo__subtitle">詳しくはお気軽にお問い合わせください。</p>
+  <h1 class="hero-matsuo__headline"><span></span><br><span></span></h1>
+</div>
+
+<div class="hero-matsuo__copy-block">
+  <p></p>
+  <p></p>
+</div>
+
+<div class="hero-matsuo__scroll"></div>
 
 <script>
 (function(){
-  function init(){
-    var root=document.currentScript&&document.currentScript.closest('.hero-hidamari');
-    if(!root)root=document.querySelector('.hero-hidamari');
-    if(!root||!window.Splide)return;
-    new Splide(root.querySelector('.splide')).mount();
-  }
-  if(window.Splide)init();else window.addEventListener('load',init);
+  var root=document.currentScript&&document.currentScript.closest('.hero-matsuo');
+  if(!root)root=document.querySelector('.hero-matsuo');
+  if(!root)return;
+  var target=root.querySelector('[data-year-target]');
+  if(!target)return;
+  var finalText=(target.textContent||'').trim();
+  var finalNum=parseInt(finalText,10);
+  if(isNaN(finalNum)||finalNum<1000)return;
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting)return;
+      io.disconnect();
+      var start=Math.max(0,finalNum-110);
+      var dur=1400;var t0=null;
+      function tick(t){
+        if(t0===null)t0=t;
+        var p=Math.min(1,(t-t0)/dur);
+        var val=Math.floor(start+(finalNum-start)*p);
+        target.textContent=val;
+        if(p<1)requestAnimationFrame(tick);else target.textContent=finalText;
+      }
+      requestAnimationFrame(tick);
+    });
+  },{threshold:.2});
+  io.observe(target);
 })();
 </script>
 </section>
 
 </div>
 <div id="trust" class="site-section site-section--trust">
-<!-- trust: ito -->
+<!-- trust: vitruvius -->
 <!--
-  Archetype: trust / ito
-  Source:    伊藤はり・きゅう院 (https://itouharikyu.com/) の .home_voice + .home_message セクションを忠実模写
-
+  Archetype: trust / vitruvius
+  Source:    Vitruvius Built (https://vitruviusbuilt.com/) の "AS SEEN IN" 掲載媒体ロゴ帯を忠実模写
   ## 模写スペック（raw HTML 抽出）
-  - 制作技術: WordPress 独自テーマ standard_sass、Swiper（ここでは静的 grid で再現）
-  - 構造（2 ブロック合成）:
-      1. お客様の声（home_voice）: 大見出し "お客様の声 customer's voice" + 縦長カード 3 列。
-         各カード: 患者顔/施術写真(縦長) + 患者属性アイコン + タイトル + 本文 + 患者署名 + 院長 COMMENT ブロック
-      2. 院長メッセージ（home_message）: 大見出し "○○について MESSAGE" + 2 カラム（左: 院長メッセージ本文 / 右: 院長作業写真 + 吹き出し） + 院長プロフィール（生年・経歴・国家資格番号）
-  - 配色: 背景 #fffaf3（オフホワイト）/ 見出し #1f1a16（茶黒）/ ボーダー #e2d8c9 / 吹き出し #fff
-  - フォント: 大見出しは明朝（"Shippori Mincho"、太め）/ 英字キャプションは serif italic / 本文は Noto Sans JP
-  - 動き: スクロール fade-up を控えめに（参考: scroll-trigger fade）/ COMMENT ブロックはスクロール内表示
-
+  - 制作技術: Framer の論理セクション。1 ラベル + 横並びロゴ列の上品な信頼バッジ帯
+  - 構造: <section data-framer-name="AS SEEN IN">
+      > .label "AS SEEN IN" 小キャプス英字
+      > .seperator (細 1px 線、ラベル左右の罫線)
+      > .logo_row (横並び 4-6 媒体ロゴ、grayscale 表示、SP では 2 列 grid に折返)
+  - 配色: クリーム背景 #faf5ea、テキスト #0a0a0a、ロゴはモノクロ grayscale(1) で控えめ。hover で grayscale(0) + opacity 1
+  - フォント: ラベル Onest 12px / letter-spacing:.34em / uppercase
+  - 動き: scroll で fade-in 全体、ロゴ個別の hover で色復活 (transition .3s)
+  - 重要: "publication logos" 系の trust 帯。FLS の partner ロゴ infinite scroll とは違い、こちらは「掲載実績」を静的に並べる「品格」型
   ## Placeholders
-    [voice 3 件]
-    {{trust.voice_heading_jp}} / {{trust.voice_heading_en}}
-    {{trust.voice_1_image}} / {{trust.voice_1_icon}} / {{trust.voice_1_title}} / {{trust.voice_1_body}} / {{trust.voice_1_name}} / {{trust.voice_1_comment}}
-    {{trust.voice_2_image}} / {{trust.voice_2_icon}} / {{trust.voice_2_title}} / {{trust.voice_2_body}} / {{trust.voice_2_name}} / {{trust.voice_2_comment}}
-    {{trust.voice_3_image}} / {{trust.voice_3_icon}} / {{trust.voice_3_title}} / {{trust.voice_3_body}} / {{trust.voice_3_name}} / {{trust.voice_3_comment}}
-    [message]
-    {{trust.message_heading_jp}} / {{trust.message_heading_en}}
-    {{trust.message_lead_title}}      院長メッセージ大見出し（1-2 行、明朝）
-    {{trust.message_lead}}            院長メッセージ（HTML 可 / bold 含む）
-    {{trust.message_photo}}           院長作業中の写真 URL
-    {{trust.message_fukidashi}}       吹き出しテキスト
-    {{trust.owner_role}}              "院長" 等
-    {{trust.owner_name_jp}}           院長名
-    {{trust.owner_profile_body}}      経歴本文（生年・出身・進学・開業）
-    {{trust.owner_license_line}}      "○○師：第○○号／○○師：第○○号"
+    trust.label                "AS SEEN IN" 相当 (例「メディア掲載」)
+    trust.logo_1_image         媒体 1 ロゴ画像 (240x80 想定、PNG 透過)
+    trust.logo_1_alt           媒体 1 名 (例「サンプル住宅雑誌」)
+    trust.logo_2_image         媒体 2 ロゴ画像
+    trust.logo_2_alt           媒体 2 名
+    trust.logo_3_image         媒体 3 ロゴ画像
+    trust.logo_3_alt           媒体 3 名
+    trust.logo_4_image         媒体 4 ロゴ画像
+    trust.logo_4_alt           媒体 4 名
+    trust.logo_5_image         媒体 5 ロゴ画像
+    trust.logo_5_alt           媒体 5 名
 -->
-<section class="trust-ito">
+<section class="trust-vitruvius">
 <style>
-.trust-ito{background:#fffaf3;color:#1f1a16;font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;padding:0}
+.trust-vitruvius{padding:96px 6vw 96px;background:#faf5ea;color:#0a0a0a;font-family:"Onest","Inter",sans-serif;text-align:center}
+.trust-vitruvius__inner{max-width:1280px;margin:0 auto}
 
-.trust-ito__voice{padding:96px 24px 96px;border-top:1px solid #e2d8c9}
-.trust-ito__voice__inner{max-width:1180px;margin:0 auto}
-.trust-ito__voice__h2{font-family:"Shippori Mincho",serif;font-weight:600;font-size:30px;letter-spacing:.16em;text-align:center;margin:0 0 8px}
-.trust-ito__voice__h2 .en{display:block;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.32em;color:#a18c6e;margin-top:14px;text-transform:lowercase}
-.trust-ito__voice__list{list-style:none;margin:64px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
-.trust-ito__voice__card{background:#fff;box-shadow:0 18px 36px -22px rgba(31,26,22,.18);border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
-.trust-ito__voice__img{width:100%;aspect-ratio:320/420;overflow:hidden;background:#eee}
-.trust-ito__voice__img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s}
-.trust-ito__voice__card:hover .trust-ito__voice__img img{transform:scale(1.04)}
-.trust-ito__voice__txtarea{position:relative;padding:48px 24px 28px}
-.trust-ito__voice__iconWrap{position:absolute;top:-44px;right:18px;width:88px;height:74px;background:#fffaf3;border:1px solid #e2d8c9;border-radius:6px;display:flex;align-items:center;justify-content:center;padding:8px}
-.trust-ito__voice__iconWrap img{width:100%;height:100%;object-fit:contain;display:block}
-.trust-ito__voice__ttl{font-family:"Shippori Mincho",serif;font-weight:500;font-size:18px;line-height:1.7;letter-spacing:.04em;margin:0 0 14px;color:#1f1a16}
-.trust-ito__voice__txt{font-size:13.5px;line-height:1.95;color:#3a3128;margin:0 0 18px}
-.trust-ito__voice__name{font-size:13px;text-align:right;color:#7a6a55;margin:0 0 18px}
-.trust-ito__voice__comment{background:#f5ede0;border-radius:4px;padding:16px 18px;max-height:120px;overflow-y:auto}
-.trust-ito__voice__comment h4{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:12px;letter-spacing:.24em;color:#a18c6e;margin:0 0 8px;text-transform:uppercase}
-.trust-ito__voice__comment p{font-size:12.5px;line-height:1.9;margin:0;color:#3a3128}
+.trust-vitruvius__label_wrap{display:flex;align-items:center;justify-content:center;gap:24px;margin:0 0 56px}
+.trust-vitruvius__label_wrap::before,
+.trust-vitruvius__label_wrap::after{content:"";display:block;height:1px;background:#d1d1d1;flex:0 0 96px}
+.trust-vitruvius__label{font-family:"Onest","Inter",sans-serif;font-weight:500;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#63615e;margin:0;line-height:1}
 
-.trust-ito__message{padding:96px 24px 110px;background:#fff;border-top:1px solid #e2d8c9}
-.trust-ito__message__inner{max-width:1080px;margin:0 auto}
-.trust-ito__message__h2{font-family:"Shippori Mincho",serif;font-weight:600;font-size:28px;letter-spacing:.16em;text-align:center;margin:0 0 56px}
-.trust-ito__message__h2 .en{display:block;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.32em;color:#a18c6e;margin-top:14px;text-transform:uppercase}
+.trust-vitruvius__logos{display:grid;grid-template-columns:repeat(5,1fr);gap:48px 56px;align-items:center;justify-items:center;padding:0;margin:0;list-style:none}
+.trust-vitruvius__logos li{width:100%;display:flex;align-items:center;justify-content:center}
+.trust-vitruvius__logos img{display:block;max-width:160px;max-height:60px;width:auto;height:auto;object-fit:contain;filter:grayscale(1) contrast(.9);opacity:.65;transition:filter .35s ease,opacity .35s ease}
+.trust-vitruvius__logos img:hover{filter:grayscale(0) contrast(1);opacity:1}
 
-.trust-ito__message__row{display:grid;grid-template-columns:1fr 0.85fr;gap:60px;align-items:flex-start}
-.trust-ito__message__ttl{font-family:"Shippori Mincho",serif;font-weight:500;font-size:22px;line-height:1.85;letter-spacing:.04em;margin:0 0 24px}
-.trust-ito__message__lead{font-size:14.5px;line-height:2.05;color:#3a3128;margin:0}
-.trust-ito__message__lead .bold{font-weight:600;color:#1f1a16}
-.trust-ito__message__imgarea{position:relative;aspect-ratio:1/1;overflow:hidden;background:#eee;border-radius:6px}
-.trust-ito__message__imgarea img{width:100%;height:100%;object-fit:cover;display:block}
-.trust-ito__message__fukidashi{position:absolute;right:-10px;bottom:18px;background:#fff;border:1px solid #d8c8aa;border-radius:8px;padding:14px 18px;font-family:"Shippori Mincho",serif;font-size:13px;line-height:1.7;color:#1f1a16;box-shadow:0 8px 18px -10px rgba(0,0,0,.18);max-width:200px;text-align:center}
-.trust-ito__message__fukidashi::after{content:"";position:absolute;left:-9px;bottom:18px;width:0;height:0;border:8px solid transparent;border-right-color:#fff}
-
-.trust-ito__profile{margin:64px 0 0;padding:36px 38px;background:#fdf6e9;border-radius:6px;border:1px solid #e2d8c9;display:flex;flex-direction:column;gap:14px}
-.trust-ito__profile__role{font-family:"Shippori Mincho",serif;font-weight:600;font-size:21px;letter-spacing:.08em;line-height:1.5;margin:0;color:#1f1a16}
-.trust-ito__profile__body{font-size:13.5px;line-height:1.95;color:#3a3128;margin:0}
-.trust-ito__profile__license{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.12em;color:#7a6a55;margin:6px 0 0;padding:10px 0 0;border-top:1px solid #e2d8c9}
-
-@media (max-width:880px){
-  .trust-ito__voice{padding:64px 18px 72px}
-  .trust-ito__voice__list{grid-template-columns:1fr;gap:48px}
-  .trust-ito__message{padding:64px 18px 72px}
-  .trust-ito__message__row{grid-template-columns:1fr;gap:36px}
-  .trust-ito__voice__h2,.trust-ito__message__h2{font-size:22px}
+@media (max-width:1024px){
+  .trust-vitruvius__logos{grid-template-columns:repeat(3,1fr);gap:48px 40px}
+}
+@media (max-width:640px){
+  .trust-vitruvius{padding:72px 6vw 72px}
+  .trust-vitruvius__logos{grid-template-columns:repeat(2,1fr);gap:40px 24px}
+  .trust-vitruvius__label_wrap::before,
+  .trust-vitruvius__label_wrap::after{flex:0 0 32px}
+  .trust-vitruvius__label{font-size:11px;letter-spacing:.28em}
 }
 </style>
 
-<!-- 1) お客様の声 -->
-<div class="trust-ito__voice">
-  <div class="trust-ito__voice__inner">
-    <h2 class="trust-ito__voice__h2">お客様の声<span class="en">voice</span></h2>
-    <ul class="trust-ito__voice__list">
-      <li class="trust-ito__voice__card">
-        <div class="trust-ito__voice__img"><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-4ff5e1f9/800/600" alt=""></div>
-        <div class="trust-ito__voice__txtarea">
-          <div class="trust-ito__voice__iconWrap"><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-0af20443/200/200" alt=""></div>
-          <h3 class="trust-ito__voice__ttl">お客様の声 No.1</h3>
-          <p class="trust-ito__voice__txt">ご対応がとても丁寧で、安心してお任せできました。仕上がりにも満足しています。</p>
-          <p class="trust-ito__voice__name">S・M 様</p>
-          <div class="trust-ito__voice__comment">
-            <h4>COMMENT</h4>
-            <p>この度はご依頼ありがとうございました。お役に立てて何よりです。</p>
-          </div>
-        </div>
-      </li>
-      <li class="trust-ito__voice__card">
-        <div class="trust-ito__voice__img"><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-030107f7/800/600" alt=""></div>
-        <div class="trust-ito__voice__txtarea">
-          <div class="trust-ito__voice__iconWrap"><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-06ec3e23/200/200" alt=""></div>
-          <h3 class="trust-ito__voice__ttl">お客様の声 No.2</h3>
-          <p class="trust-ito__voice__txt">わかりやすくご説明いただき、納得した上で進められました。本当にありがとうございました。</p>
-          <p class="trust-ito__voice__name">Y・T 様</p>
-          <div class="trust-ito__voice__comment">
-            <h4>COMMENT</h4>
-            <p>ご相談いただきありがとうございました。お気軽にお声がけください。</p>
-          </div>
-        </div>
-      </li>
-      <li class="trust-ito__voice__card">
-        <div class="trust-ito__voice__img"><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-c4c3bdf2/800/600" alt=""></div>
-        <div class="trust-ito__voice__txtarea">
-          <div class="trust-ito__voice__iconWrap"><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-206854e8/200/200" alt=""></div>
-          <h3 class="trust-ito__voice__ttl">お客様の声 No.3</h3>
-          <p class="trust-ito__voice__txt">工事中もこまめにご連絡をいただき、信頼できる業者さんだと感じました。</p>
-          <p class="trust-ito__voice__name">K・A 様</p>
-          <div class="trust-ito__voice__comment">
-            <h4>COMMENT</h4>
-            <p>ご満足いただけたとのこと、嬉しく思います。これからもよろしくお願いします。</p>
-          </div>
-        </div>
-      </li>
-    </ul>
+<div class="trust-vitruvius__inner">
+  <div class="trust-vitruvius__label_wrap">
+    <p class="trust-vitruvius__label"></p>
   </div>
-</div>
-
-<!-- 2) 院長メッセージ + プロフィール -->
-<div class="trust-ito__message">
-  <div class="trust-ito__message__inner">
-    <h2 class="trust-ito__message__h2">ごあいさつ<span class="en">message</span></h2>
-    <div class="trust-ito__message__row">
-      <div class="trust-ito__message__textarea">
-        <h3 class="trust-ito__message__ttl">暮らしを、<br>もっと心地よく。</h3>
-        <p class="trust-ito__message__lead">ご相談から施工、お引き渡し後のアフターまで、一貫してお付き合いさせていただきます。</p>
-      </div>
-      <div class="trust-ito__message__imgarea">
-        <img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-a136dabc/800/800" alt="">
-        <span class="trust-ito__message__fukidashi">代表よりごあいさつ</span>
-      </div>
-    </div>
-    <div class="trust-ito__profile">
-      <h3 class="trust-ito__profile__role">代表<br>代表</h3>
-      <p class="trust-ito__profile__body">大阪市中央区でリフォームに取り組んでおります。お住まいに関するお悩みは、お気軽にご相談ください。</p>
-      <p class="trust-ito__profile__license"></p>
-    </div>
-  </div>
+  <ul class="trust-vitruvius__logos">
+    <li><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-8cdb7d8e/1200/800" alt="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-8e011711/1200/800"></li>
+    <li><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-7141787d/1200/800" alt="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-de380530/1200/800"></li>
+    <li><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-fe09795d/1200/800" alt="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-cb49194d/1200/800"></li>
+    <li><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-488d604d/1200/800" alt="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-6179aaab/1200/800"></li>
+    <li><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-6853266a/1200/800" alt="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-2f99a6e1/1200/800"></li>
+  </ul>
 </div>
 </section>
 
 </div>
 <div id="services" class="site-section site-section--services">
-<!-- services: kotake -->
+<!-- services: shinka -->
 <!--
-  Archetype: services / kotake
-  Source:    小竹建設 (https://www.kotake.jp/) を忠実模写
+  Archetype: services / shinka
+  Source:    SHIN KA（益三建設）(https://shinka-masumi.jp/) の .about_container を忠実模写
+  Group:     1 (ELEGANT) - 落ち着き・上品
+  業種:      注文住宅 / 提供サービス 3 メニュー
+
   ## 模写スペック（raw HTML 抽出）
-  - 制作技術: WordPress / 自社テーマ / Noto Serif JP + Cormorant Garamond
-  - 構造:
-      <section id="concept"> > .concept-menu
-        .menu menu-concept menu-concept--3 内に 3 タイル
-          a.menu--design / menu--performance / menu--quality
-            .menu-label "注文住宅"（小ラベル）
-            .menu-content > h2 .menu-ttl "デザイン" + p .menu-en "design"
-            .menu-bg（背景画像オーバーレイ）
-            .menu-more "more →"
-        .menu menu-diagonal menu-diagonal--2 内に 2 タイル
-          menu--standard-house / menu--reform-renov
-            （subtitle なし、h2 + en + bg + more）
-  - 配色: 黒背景 + 白文字、写真背景にダーク overlay
-  - フォント: "Shippori Mincho"（和文）, "Cormorant Garamond"（英字 italic）
-  - 動き: on--opa class → ホバーで写真 opacity 変化
-  - 注意: 模写の主役は「タイル 3 + タイル 2」の 2 段組。"more →" は丸ボタンの代わりにライン
+  - 制作技術: WordPress / CSS のみ
+  - 構造: <div.about_container>
+      > .about_block > ul > li.about_item x 3（横並び 3 カード）
+        > a (各カードがクリック可能)
+          > .about_up_side
+            > p.about_number.e_font "(01) / (02) / (03)"（Cormorant italic ナンバリング）
+            > .about_title_box > h2.about_title
+                "パッシブデザイン" + span.e_font "Passive Design"（縦並び：日本語大 / 英字小）
+          > .about_img > .about_img_inner._about_img_innerNN > img
+          > .about_down_side
+            > p.about_txt 説明 2-3 行
+            > .section_btn_box > span.section_btn.section_btn_white "詳しく見る" + arrow（白枠ボタン）
+  - 配色: 背景 #1a1a1a（黒）/ テキスト白 / 画像はカラー / 番号と英字 #c8c2b6 グレー
+  - フォント:
+      - .about_number = Cormorant Garamond italic 18px letter-spacing .12em
+      - h2.about_title 日本語 = Noto Serif JP 22-26px 太字
+      - .e_font (英字 sub) = Cormorant italic 14px letter-spacing .16em
+      - p.about_txt = Noto Sans JP 13px line-height 1.9 白透過 .8
+  - 動き: hover で画像 1.05 scale + btn arrow が右に 8px 移動 + カード全体に微 lift（translateY -4px）
+  - レイアウト: 3 カラム grid（PC）、SP 縦積み
+
   ## Placeholders
-    {{services.menu_1_label}} ~ menu_3_label   小ラベル（注文住宅 等）
-    {{services.menu_1_ttl}}   ~ menu_3_ttl     大見出し（デザイン/性能/品質）
-    {{services.menu_1_en}}    ~ menu_3_en      英字（design/performance/quality）
-    {{services.menu_1_image}} ~ menu_3_image   背景画像
-    {{services.sub_1_ttl}}    ~ sub_2_ttl      下段 2 タイルの和文 ttl
-    {{services.sub_1_en}}     ~ sub_2_en       下段 2 タイルの英字
-    {{services.sub_1_image}}  ~ sub_2_image    下段 2 タイル背景
-    {{services.more_label}}                    "more" 文言
+    services.card1_number    "(01)"
+    services.card1_title_ja  日本語 (例「サンプル設計」)
+    services.card1_title_en  英字 (例「Passive Design」)
+    services.card1_image     画像
+    services.card1_body      本文
+    services.card1_href      リンク先
+    services.card2_number ~ card2_body ~ card2_href
+    services.card3_number ~ card3_body ~ card3_href
+    services.button_label    各カード共通ボタンラベル (例「詳しく見る」)
 -->
-<section class="services-kotake">
-<style>
-.services-kotake{padding:120px 0;background:#1a1a1a;color:#fff;font-family:"Shippori Mincho",serif}
-.services-kotake__container{max-width:1280px;margin:0 auto;padding:0 40px}
-.services-kotake__row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:24px}
-.services-kotake__row--two{grid-template-columns:repeat(2,1fr)}
-.services-kotake__tile{position:relative;display:block;height:360px;overflow:hidden;text-decoration:none;color:#fff;background:#000;isolation:isolate}
-.services-kotake__tile-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s ease,opacity .3s ease;z-index:0}
-.services-kotake__tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18) 0%,rgba(0,0,0,.55) 100%);z-index:1;pointer-events:none;transition:background .3s ease}
-.services-kotake__tile:hover .services-kotake__tile-bg{transform:scale(1.05);opacity:.78}
-.services-kotake__tile:hover::after{background:linear-gradient(180deg,rgba(0,0,0,.32) 0%,rgba(0,0,0,.7) 100%)}
-.services-kotake__tile-inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:32px;text-align:center}
-.services-kotake__tile-label{font-family:"Shippori Mincho",serif;font-size:13px;letter-spacing:.32em;color:rgba(255,255,255,.85);margin:0 0 18px}
-.services-kotake__tile-ttl{font-family:"Shippori Mincho",serif;font-weight:500;font-size:34px;letter-spacing:.18em;line-height:1.4;margin:0 0 10px;color:#fff}
-.services-kotake__tile-en{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.32em;color:rgba(255,255,255,.7);margin:0 0 26px;text-transform:lowercase}
-.services-kotake__tile-more{display:inline-flex;align-items:center;gap:10px;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.24em;color:#fff;padding-bottom:4px;border-bottom:1px solid rgba(255,255,255,.6);transition:border-color .2s ease}
-.services-kotake__tile-more::after{content:"→"}
-.services-kotake__tile:hover .services-kotake__tile-more{border-bottom-color:#fff}
-
-.services-kotake__row--two .services-kotake__tile{height:240px}
-.services-kotake__row--two .services-kotake__tile-ttl{font-size:24px;letter-spacing:.14em}
-
-@media (max-width:880px){
-  .services-kotake{padding:72px 0}
-  .services-kotake__container{padding:0 20px}
-  .services-kotake__row{grid-template-columns:1fr;gap:16px;margin-bottom:16px}
-  .services-kotake__row--two{grid-template-columns:1fr}
-  .services-kotake__tile{height:280px}
-  .services-kotake__tile-ttl{font-size:26px}
-  .services-kotake__row--two .services-kotake__tile{height:200px}
-}
-</style>
-
-<div class="services-kotake__container">
-  <div class="services-kotake__row">
-    <a href="#" class="services-kotake__tile">
-      <div class="services-kotake__tile-bg" style="background-image:url('https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-svc-1/900/600')"></div>
-      <div class="services-kotake__tile-inner">
-        <p class="services-kotake__tile-label">リフォーム</p>
-        <h3 class="services-kotake__tile-ttl">デザイン提案</h3>
-        <p class="services-kotake__tile-en">service 01</p>
-        <span class="services-kotake__tile-more">詳しく見る</span>
-      </div>
-    </a>
-    <a href="#" class="services-kotake__tile">
-      <div class="services-kotake__tile-bg" style="background-image:url('https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-svc-2/900/600')"></div>
-      <div class="services-kotake__tile-inner">
-        <p class="services-kotake__tile-label">リフォーム</p>
-        <h3 class="services-kotake__tile-ttl">確かな施工</h3>
-        <p class="services-kotake__tile-en">service 02</p>
-        <span class="services-kotake__tile-more">詳しく見る</span>
-      </div>
-    </a>
-    <a href="#" class="services-kotake__tile">
-      <div class="services-kotake__tile-bg" style="background-image:url('https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-svc-3/900/600')"></div>
-      <div class="services-kotake__tile-inner">
-        <p class="services-kotake__tile-label">リフォーム</p>
-        <h3 class="services-kotake__tile-ttl">アフター対応</h3>
-        <p class="services-kotake__tile-en">service 03</p>
-        <span class="services-kotake__tile-more">詳しく見る</span>
-      </div>
-    </a>
+<section class="services-shinka">
+  <style>
+    .services-shinka { background:#1a1a1a; padding:120px 0 140px; font-family:"Noto Sans JP",sans-serif; color:#fff; }
+    .services-shinka__inner { max-width:1280px; margin:0 auto; padding:0 40px; }
+    .services-shinka__list { list-style:none; padding:0; margin:0; display:grid; grid-template-columns:repeat(3, 1fr); gap:32px; }
+    .services-shinka__item { display:block; text-decoration:none; color:inherit; transition:transform .35s ease; }
+    .services-shinka__item:hover { transform:translateY(-4px); }
+    .services-shinka__up { margin-bottom:24px; }
+    .services-shinka__num { display:block; font-family:"Cormorant Garamond","Cormorant",serif; font-style:italic; font-weight:400; font-size:18px; letter-spacing:.12em; color:#c8c2b6; margin:0 0 12px; }
+    .services-shinka__title { margin:0; font-family:"Noto Serif JP",serif; font-weight:500; font-size:24px; line-height:1.5; letter-spacing:.04em; }
+    .services-shinka__title-en { display:block; font-family:"Cormorant Garamond","Cormorant",serif; font-style:italic; font-weight:400; font-size:14px; letter-spacing:.16em; color:#a8a094; margin-top:8px; }
+    .services-shinka__img { position:relative; overflow:hidden; aspect-ratio:4/3; background:#2a2a2a; margin-bottom:24px; }
+    .services-shinka__img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s ease; }
+    .services-shinka__item:hover .services-shinka__img img { transform:scale(1.05); }
+    .services-shinka__body { font-size:13px; line-height:1.9; color:rgba(255,255,255,.78); margin:0 0 24px; min-height:80px; }
+    .services-shinka__btn { display:inline-flex; align-items:center; gap:14px; padding:10px 0; font-family:"Cormorant Garamond","Cormorant",serif; font-style:italic; font-size:13px; letter-spacing:.18em; color:#fff; border-bottom:1px solid rgba(255,255,255,.6); transition:gap .25s ease; }
+    .services-shinka__btn::after { content:""; width:28px; height:1px; background:#fff; display:inline-block; transition:width .25s ease; }
+    .services-shinka__item:hover .services-shinka__btn { gap:22px; }
+    .services-shinka__item:hover .services-shinka__btn::after { width:44px; }
+    @media (max-width:880px) {
+      .services-shinka { padding:72px 0 88px; }
+      .services-shinka__inner { padding:0 24px; }
+      .services-shinka__list { grid-template-columns:1fr; gap:48px; }
+      .services-shinka__body { min-height:auto; }
+    }
+  </style>
+  <div class="services-shinka__inner">
+    <ul class="services-shinka__list">
+      <li>
+        <a class="services-shinka__item" href="">
+          <div class="services-shinka__up">
+            <span class="services-shinka__num"></span>
+            <h3 class="services-shinka__title">
+              
+              <span class="services-shinka__title-en"></span>
+            </h3>
+          </div>
+          <div class="services-shinka__img"><img src="" alt=""></div>
+          <p class="services-shinka__body">詳しくはお気軽にお問い合わせください。</p>
+          <span class="services-shinka__btn">詳しく見る</span>
+        </a>
+      </li>
+      <li>
+        <a class="services-shinka__item" href="">
+          <div class="services-shinka__up">
+            <span class="services-shinka__num"></span>
+            <h3 class="services-shinka__title">
+              
+              <span class="services-shinka__title-en"></span>
+            </h3>
+          </div>
+          <div class="services-shinka__img"><img src="" alt=""></div>
+          <p class="services-shinka__body">詳しくはお気軽にお問い合わせください。</p>
+          <span class="services-shinka__btn">詳しく見る</span>
+        </a>
+      </li>
+      <li>
+        <a class="services-shinka__item" href="">
+          <div class="services-shinka__up">
+            <span class="services-shinka__num"></span>
+            <h3 class="services-shinka__title">
+              
+              <span class="services-shinka__title-en"></span>
+            </h3>
+          </div>
+          <div class="services-shinka__img"><img src="" alt=""></div>
+          <p class="services-shinka__body">詳しくはお気軽にお問い合わせください。</p>
+          <span class="services-shinka__btn">詳しく見る</span>
+        </a>
+      </li>
+    </ul>
   </div>
-
-  <div class="services-kotake__row services-kotake__row--two">
-    <a href="#" class="services-kotake__tile">
-      <div class="services-kotake__tile-bg" style="background-image:url('https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-svc-4/900/500')"></div>
-      <div class="services-kotake__tile-inner">
-        <h3 class="services-kotake__tile-ttl">部分リフォーム</h3>
-        <p class="services-kotake__tile-en">partial</p>
-        <span class="services-kotake__tile-more">詳しく見る</span>
-      </div>
-    </a>
-    <a href="#" class="services-kotake__tile">
-      <div class="services-kotake__tile-bg" style="background-image:url('https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-svc-5/900/500')"></div>
-      <div class="services-kotake__tile-inner">
-        <h3 class="services-kotake__tile-ttl">全面リノベーション</h3>
-        <p class="services-kotake__tile-en">full</p>
-        <span class="services-kotake__tile-more">詳しく見る</span>
-      </div>
-    </a>
-  </div>
-</div>
 </section>
 
 </div>
 <div id="gallery" class="site-section site-section--gallery">
-<!-- gallery: kon -->
+<!-- gallery: aichler -->
 <!--
-  Archetype: gallery / kon
-  Source:    コン工務店 (https://kon-sumai.com/) を忠実模写
+  Archetype: gallery / aichler
+  Source:    AICHLER (https://aichler.jp/) の pWorks ブロックを忠実模写
   ## 模写スペック（raw HTML 抽出）
-  - 制作技術: WordPress + 自前 + 独自 hover swap-photo gimmick + Adobe Typekit ryo-gothic-plusn
-    （代替: Shippori Mincho + Cormorant Garamond）
-  - section root: section.flex.project-list-wrap
-  - 配色: 文字 #162F67 / 背景 #FFFFFF / アクセント yellow #FFDE1E / blue #0249AD
-  - 各 project-list.column1 カード:
-    - span.type （注文住宅 / リノベーション / 注文住宅 ＋ 土地探し 等のタイプ chip）
-    - swap-photo（hover で a→b 切替する 2 枚同じサイズ画像 620x784 = 縦長 5:4）
-        - swap.a + swap.b + arrow （ホバー時 arrow が SVG で表示される）
-    - h2.lh130 家の名前（「石積みがのこる家」「家族の心も温かくなる家」等）
-    - p.report > a > span.tag.en.yellow "New" or span.tag.en.blue "Report" + span.ttl.text-ul 工事報告タイトル
-  - 動き: 写真ホバーで a/b 切替フェード（独自 jQuery）、arrow 表示
-  - レイアウト: グリッド 3 列、隙間広め
-
+  - 制作技術: WordPress + Lenis + 独自 js-scroll-target / cGradientImage / cTextSkew (1 文字傾き表示)
+  - 構造: <section.pWorks>
+      > .pWorks__background (背景フル画像、淡色クリーム重ね)
+      > .pWorks__inner
+        > .pWorks__square (PC: 4 sub-square の装飾 + Hover で色変化)
+        > .pWorks__box > h2.pWorks__headline "Works"
+        > .pWorksItem * N (最大 4 件、1 件目は大きく Story 本文と表紙画像 + sideE 等のタイトル + 地域 + 分譲 category badge、2-3 件目は小カード)
+        > .pWorksItem__line (装飾の細い line 罫イラスト 4 辺、SVG)
+        > .pWorks__more "All Works" cLineLink
+  - 配色: 背景クリーム #faf8f4、画像は色×モノクロ交互（cGradientImage で重ねる）、ヘッダー Works は大判 Cormorant Garamond italic、category badge は緑のテキスト、location は薄グレー
+  - フォント: 見出し Cormorant Garamond italic 80px+、タイトル Noto Serif JP 700、本文 Noto Sans JP 400
+  - 動き: スクロール深度で各 item が下から fade-in、装飾 line svg が四辺から伸縮（4 線の長さアニメ）
   ## Placeholders
-    {{gallery.brand_intro_h2}}       上部ヘッダー（"コン工務店は、デザインと..."）2-3 行物理改行
-    {{gallery.brand_intro_en}}       英文サブ
-    {{gallery.card_1_type}}          type chip（"注文住宅"）
-    {{gallery.card_1_image_a}}       通常時画像
-    {{gallery.card_1_image_b}}       ホバー時画像
-    {{gallery.card_1_title}}         家の名前
-    {{gallery.card_1_tag}}           "New" or "Report"
-    {{gallery.card_1_tag_style}}     "yellow" or "blue"
-    {{gallery.card_1_report}}        工事報告タイトル
-    {{gallery.card_2_*}} ~ {{gallery.card_6_*}}  同じ（6 枚）
+    gallery.headline_en          大見出し (例「Works」)
+    gallery.background_image     背景画像 (1600x900 想定、淡い建物外観)
+    gallery.item_1_image         主役 1 (1024x768)
+    gallery.item_1_title         主役タイトル (例「"Argha" Akasaka II sideE」相当)
+    gallery.item_1_location      主役地域 (例「サンプル区」)
+    gallery.item_1_category      主役分類 (例「分譲」)
+    gallery.item_1_story_label   主役の本文ラベル (例「Story」)
+    gallery.item_1_story_html    主役の本文 HTML (br 含む、長文可)
+    gallery.item_2_image         サブ画像 2
+    gallery.item_2_title         サブタイトル 2
+    gallery.item_2_location      サブ地域 2
+    gallery.item_2_category      サブ分類 2
+    gallery.item_3_image         サブ画像 3
+    gallery.item_3_title         サブタイトル 3
+    gallery.item_3_location      サブ地域 3
+    gallery.item_3_category      サブ分類 3
+    gallery.more_label           「All Works」相当
+    gallery.more_href            一覧遷移先
 -->
-<section class="gallery-kon">
+<section class="gallery-aichler">
 <style>
-.gallery-kon{position:relative;background:#fff;color:#162F67;font-family:"Shippori Mincho",serif;padding:96px 0 120px}
-.gallery-kon__container{max-width:1100px;margin:0 auto;padding:0 32px}
+.gallery-aichler{position:relative;padding:140px 6vw 180px;background:#faf8f4;color:#101010;font-family:"Noto Sans JP",sans-serif;overflow:hidden}
+.gallery-aichler__background{position:absolute;inset:0;z-index:0;opacity:.5;background-size:cover;background-position:center}
+.gallery-aichler__background::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(250,248,244,.85) 0%,rgba(250,248,244,.7) 50%,#faf8f4 100%)}
+.gallery-aichler__inner{position:relative;z-index:1;max-width:1280px;margin:0 auto}
 
-.gallery-kon__hello{text-align:center;margin-bottom:90px}
-.gallery-kon__hello-h2{font-family:"Shippori Mincho",serif;font-weight:700;font-size:clamp(22px,2.6vw,30px);letter-spacing:.06em;line-height:1.7;color:#162F67;margin:0 0 18px}
-.gallery-kon__hello-en{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.18em;color:#0249AD;line-height:1.8;margin:0}
+.gallery-aichler__box{display:flex;align-items:center;gap:24px;margin-bottom:64px}
+.gallery-aichler__square{display:flex;width:80px;aspect-ratio:1/1;background:#7d9b6a;opacity:.85}
+.gallery-aichler__headline{margin:0;font-family:"Cormorant Garamond","Albert Sans",serif;font-style:italic;font-weight:400;font-size:clamp(64px,9vw,116px);letter-spacing:.02em;line-height:1;color:#101010}
 
-.gallery-kon__list{display:grid;grid-template-columns:repeat(3,1fr);gap:48px 28px;margin:0;padding:0;list-style:none}
-.gallery-kon__card{display:block}
-.gallery-kon__link{display:block;color:#162F67;text-decoration:none}
-.gallery-kon__type{display:inline-block;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:12px;letter-spacing:.18em;color:#0249AD;margin-bottom:10px}
+.gallery-aichler__list{display:grid;grid-template-columns:1fr 1fr;gap:80px 64px;margin:0;padding:0;list-style:none}
+.gallery-aichler__item{position:relative;opacity:0;transform:translateY(28px);transition:opacity 1.2s ease,transform 1.2s ease}
+.gallery-aichler__item.is-visible{opacity:1;transform:translateY(0)}
+.gallery-aichler__item--main{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;padding:32px 32px 32px 0;position:relative}
+.gallery-aichler__item--main::before{content:"";position:absolute;inset:0;border:1px solid #d9d2c4;pointer-events:none}
+.gallery-aichler__link{display:block;text-decoration:none;color:inherit;transition:opacity .25s}
+.gallery-aichler__link:hover{opacity:.85}
 
-.gallery-kon__swap{position:relative;aspect-ratio:620/784;background:#d8d2c7;overflow:hidden}
-.gallery-kon__swap-a,.gallery-kon__swap-b{position:absolute;inset:0}
-.gallery-kon__swap-a img,.gallery-kon__swap-b img{width:100%;height:100%;object-fit:cover;display:block}
-.gallery-kon__swap-b{opacity:0;transition:opacity .6s ease}
-.gallery-kon__link:hover .gallery-kon__swap-b{opacity:1}
-.gallery-kon__arrow{position:absolute;right:14px;bottom:14px;width:36px;height:36px;border-radius:50%;background:#162F67;color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;opacity:0;transform:translateX(-6px);transition:all .35s ease}
-.gallery-kon__link:hover .gallery-kon__arrow{opacity:1;transform:translateX(0)}
+.gallery-aichler__image{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;background:#eae3d3}
+.gallery-aichler__image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ease,filter .8s ease}
+.gallery-aichler__link:hover .gallery-aichler__image img{transform:scale(1.03);filter:grayscale(.3)}
 
-.gallery-kon__title{font-family:"Shippori Mincho",serif;font-weight:700;font-size:18px;letter-spacing:.06em;line-height:1.3;color:#162F67;margin:18px 0 12px}
+.gallery-aichler__upper{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:24px;padding-bottom:12px;border-bottom:1px solid #d9d2c4}
+.gallery-aichler__title{margin:0;font-family:"Noto Serif JP","Cormorant Garamond",serif;font-weight:700;font-size:24px;letter-spacing:.06em;line-height:1.4;color:#101010}
+.gallery-aichler__location{font-family:"Noto Sans JP",sans-serif;font-weight:400;font-size:13px;letter-spacing:.16em;color:#7d8a72;flex:0 0 auto}
 
-.gallery-kon__report{display:flex;align-items:flex-start;gap:8px;text-decoration:none;color:#162F67;padding:8px 0;border-top:1px solid rgba(22,47,103,.15)}
-.gallery-kon__report .tag{display:inline-block;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:10px;letter-spacing:.18em;padding:3px 8px;color:#162F67;flex-shrink:0}
-.gallery-kon__report .tag.yellow{background:#FFDE1E}
-.gallery-kon__report .tag.blue{background:rgba(22,47,103,.1);color:#0249AD}
-.gallery-kon__report .ttl{font-family:"Shippori Mincho",serif;font-size:13px;line-height:1.55;letter-spacing:.04em;text-decoration:underline;text-underline-offset:3px}
+.gallery-aichler__story{margin-top:20px;padding:16px 24px;background:rgba(255,255,255,.55)}
+.gallery-aichler__story_label{display:block;font-family:"Cormorant Garamond","Albert Sans",serif;font-style:italic;font-size:18px;color:#7d9b6a;margin-bottom:8px;letter-spacing:.04em}
+.gallery-aichler__story_text{font-family:"Noto Sans JP",sans-serif;font-size:13px;line-height:2.0;letter-spacing:.06em;color:#3a3a36;max-height:240px;overflow-y:auto;margin:0;white-space:pre-line}
 
+.gallery-aichler__category{display:inline-block;margin-top:16px;padding:4px 14px;background:transparent;color:#7d9b6a;border:1px solid #7d9b6a;font-family:"Noto Sans JP",sans-serif;font-size:11px;letter-spacing:.18em}
+
+.gallery-aichler__main_content{display:flex;flex-direction:column;padding-top:8px}
+
+.gallery-aichler__more{display:flex;justify-content:flex-end;margin-top:80px}
+.gallery-aichler__more_link{display:inline-flex;align-items:center;gap:18px;text-decoration:none;color:#101010;font-family:"Cormorant Garamond","Albert Sans",serif;font-style:italic;font-size:18px;letter-spacing:.06em;padding-bottom:6px;border-bottom:1px solid #101010;transition:gap .25s,color .25s}
+.gallery-aichler__more_link::after{content:"→";font-style:normal;color:#7d9b6a}
+.gallery-aichler__more_link:hover{gap:28px;color:#7d9b6a}
+
+@media (max-width:1024px){
+  .gallery-aichler{padding:96px 6vw 120px}
+  .gallery-aichler__list{grid-template-columns:1fr 1fr;gap:48px 32px}
+  .gallery-aichler__item--main{grid-template-columns:1fr;gap:24px}
+  .gallery-aichler__headline{font-size:64px}
+  .gallery-aichler__title{font-size:20px}
+}
 @media (max-width:880px){
-  .gallery-kon{padding:60px 0 80px}
-  .gallery-kon__container{padding:0 22px}
-  .gallery-kon__hello{margin-bottom:50px}
-  .gallery-kon__list{grid-template-columns:1fr;gap:42px}
+  .gallery-aichler{padding:64px 6vw 80px}
+  .gallery-aichler__box{margin-bottom:40px;gap:16px}
+  .gallery-aichler__square{width:48px}
+  .gallery-aichler__headline{font-size:48px}
+  .gallery-aichler__list{grid-template-columns:1fr;gap:48px}
+  .gallery-aichler__item--main{padding:16px}
+  .gallery-aichler__story{padding:12px 16px}
+  .gallery-aichler__story_text{max-height:200px;font-size:12px}
+  .gallery-aichler__upper{flex-direction:column;align-items:flex-start;gap:4px}
 }
 </style>
 
-<div class="gallery-kon__container">
-  <div class="gallery-kon__hello">
-    <h2 class="gallery-kon__hello-h2">施工事例</h2>
-    <p class="gallery-kon__hello-en">works</p>
+<div class="gallery-aichler__background" style="background-image:url('')" aria-hidden="true"></div>
+
+<div class="gallery-aichler__inner">
+
+  <div class="gallery-aichler__box">
+    <span class="gallery-aichler__square" aria-hidden="true"></span>
+    <h2 class="gallery-aichler__headline"></h2>
   </div>
 
-  <div class="gallery-kon__list">
+  <ul class="gallery-aichler__list">
 
-    <div class="gallery-kon__card">
-      <a href="#" class="gallery-kon__link">
-        <span class="gallery-kon__type">戸建て</span>
-        <div class="gallery-kon__swap">
-          <div class="gallery-kon__swap-a"><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-de59d557/620/784" alt=""></div>
-          <div class="gallery-kon__swap-b"><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-82d5082d/620/784" alt=""></div>
-          <span class="gallery-kon__arrow">→</span>
+    <li class="gallery-aichler__item gallery-aichler__item--main">
+      <a href="#" class="gallery-aichler__link">
+        <div class="gallery-aichler__image"><img src="" alt=""></div>
+      </a>
+      <div class="gallery-aichler__main_content">
+        <div class="gallery-aichler__upper">
+          <h3 class="gallery-aichler__title"></h3>
+          <span class="gallery-aichler__location"></span>
         </div>
-        <h3 class="gallery-kon__title">戸建て改修例</h3>
-      </a>
-      <a class="gallery-kon__report" href="#">
-        <span class="tag ">新築</span>
-        <span class="ttl">施工事例レポート</span>
-      </a>
-    </div>
-
-    <div class="gallery-kon__card">
-      <a href="#" class="gallery-kon__link">
-        <span class="gallery-kon__type">二世帯</span>
-        <div class="gallery-kon__swap">
-          <div class="gallery-kon__swap-a"><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-b277ca72/620/784" alt=""></div>
-          <div class="gallery-kon__swap-b"><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-63325f26/620/784" alt=""></div>
-          <span class="gallery-kon__arrow">→</span>
+        <div class="gallery-aichler__story">
+          <span class="gallery-aichler__story_label"></span>
+          <p class="gallery-aichler__story_text"></p>
         </div>
-        <h3 class="gallery-kon__title">和の住まい例</h3>
-      </a>
-      <a class="gallery-kon__report" href="#">
-        <span class="tag ">リノベ</span>
-        <span class="ttl">施工事例レポート</span>
-      </a>
-    </div>
+        <span class="gallery-aichler__category"></span>
+      </div>
+    </li>
 
-    <div class="gallery-kon__card">
-      <a href="#" class="gallery-kon__link">
-        <span class="gallery-kon__type">リノベ</span>
-        <div class="gallery-kon__swap">
-          <div class="gallery-kon__swap-a"><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-6c931d46/620/784" alt=""></div>
-          <div class="gallery-kon__swap-b"><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-d913488b/620/784" alt=""></div>
-          <span class="gallery-kon__arrow">→</span>
+    <li class="gallery-aichler__item">
+      <a href="#" class="gallery-aichler__link">
+        <div class="gallery-aichler__image"><img src="" alt=""></div>
+        <div class="gallery-aichler__upper">
+          <h3 class="gallery-aichler__title"></h3>
+          <span class="gallery-aichler__location"></span>
         </div>
-        <h3 class="gallery-kon__title">光の家</h3>
+        <span class="gallery-aichler__category"></span>
       </a>
-      <a class="gallery-kon__report" href="#">
-        <span class="tag ">リフォーム</span>
-        <span class="ttl">施工事例レポート</span>
-      </a>
-    </div>
+    </li>
 
-    <div class="gallery-kon__card">
-      <a href="#" class="gallery-kon__link">
-        <span class="gallery-kon__type">戸建て</span>
-        <div class="gallery-kon__swap">
-          <div class="gallery-kon__swap-a"><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-7f9c1afd/620/784" alt=""></div>
-          <div class="gallery-kon__swap-b"><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-91887aa1/620/784" alt=""></div>
-          <span class="gallery-kon__arrow">→</span>
+    <li class="gallery-aichler__item">
+      <a href="#" class="gallery-aichler__link">
+        <div class="gallery-aichler__image"><img src="" alt=""></div>
+        <div class="gallery-aichler__upper">
+          <h3 class="gallery-aichler__title"></h3>
+          <span class="gallery-aichler__location"></span>
         </div>
-        <h3 class="gallery-kon__title">土間のある家</h3>
+        <span class="gallery-aichler__category"></span>
       </a>
-      <a class="gallery-kon__report" href="#">
-        <span class="tag ">新築</span>
-        <span class="ttl">施工事例レポート</span>
-      </a>
-    </div>
+    </li>
 
-    <div class="gallery-kon__card">
-      <a href="#" class="gallery-kon__link">
-        <span class="gallery-kon__type">戸建て</span>
-        <div class="gallery-kon__swap">
-          <div class="gallery-kon__swap-a"><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-5d2ca48f/620/784" alt=""></div>
-          <div class="gallery-kon__swap-b"><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-7c3b2f84/620/784" alt=""></div>
-          <span class="gallery-kon__arrow">→</span>
-        </div>
-        <h3 class="gallery-kon__title">中庭のある家</h3>
-      </a>
-      <a class="gallery-kon__report" href="#">
-        <span class="tag ">リノベ</span>
-        <span class="ttl">施工事例レポート</span>
-      </a>
-    </div>
+  </ul>
 
-    <div class="gallery-kon__card">
-      <a href="#" class="gallery-kon__link">
-        <span class="gallery-kon__type">二世帯</span>
-        <div class="gallery-kon__swap">
-          <div class="gallery-kon__swap-a"><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-0bd7a2c1/620/784" alt=""></div>
-          <div class="gallery-kon__swap-b"><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-44c3c0a6/620/784" alt=""></div>
-          <span class="gallery-kon__arrow">→</span>
-        </div>
-        <h3 class="gallery-kon__title">二世帯の家</h3>
-      </a>
-      <a class="gallery-kon__report" href="#">
-        <span class="tag ">新築</span>
-        <span class="ttl">施工事例レポート</span>
-      </a>
-    </div>
-
+  <div class="gallery-aichler__more">
+    <a class="gallery-aichler__more_link" href="">詳しく見る</a>
   </div>
 </div>
+
+<script>
+(function(){
+  var root=document.currentScript&&document.currentScript.closest('.gallery-aichler');
+  if(!root)root=document.querySelector('.gallery-aichler');
+  if(!root)return;
+  var items=root.querySelectorAll('.gallery-aichler__item');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){en.target.classList.add('is-visible');io.unobserve(en.target);}
+      });
+    },{threshold:.15});
+    items.forEach(function(el){io.observe(el);});
+  }else{
+    items.forEach(function(el){el.classList.add('is-visible');});
+  }
+})();
+</script>
 </section>
 
 </div>
@@ -775,113 +736,141 @@ img{max-width:100%;height:auto;display:block}
 
 </div>
 <div id="area" class="site-section site-section--area">
-<!-- area: kotake -->
+<!-- area: ito -->
 <!--
-  Archetype: area / kotake
-  Source:    小竹建設 (https://www.kotake.jp/) を忠実模写
-  ## 模写スペック（raw HTML + front.css/common.css 実測値）
-  - 制作技術: WordPress（kotake-shinchiku theme）, fonts: NotoSerifJP + Adobe Typekit "maecenas" (serif)
-  - 構造: footer .info 内に .area（sec-head pin アイコン + sec-ttl + sec-en + area-desc + notes）
-          直下に .shop（複数店舗を横並び。各店舗: shop-image + shop-content[ttl + add] + shop-map[Google Maps iframe]）
+  Archetype: area / ito
+  Source:    伊藤はり・きゅう院 (https://itouharikyu.com/) を忠実模写
+  ## 模写スペック（raw HTML 抽出 / standard_sass theme）
+  - 制作技術: WordPress 自前 standard_sass theme（jQuery）
+  - 構造: footer_md ブロック内に「診療時間 + 住所 + 駐車場図」が独立カードとして配置されている
+            > .schedule
+                > .schedule--ttl  「要予約・当日◯時まで受付OK！」（CTA 風サブ見出し）
+                > .schedule--table  曜日 × ●/- マトリクス（受付時間）
+                > .schedule--info
+                    - .schedule--address（pin SVG + 住所 + 駅徒歩◯分）
+                    - .schedule--map（マップを見るリンク）
+            > .footer--pa（駐車場ブロック）
+                > img（駐車場図解 ①②）
+                > p（[P] 当院駐車場の説明）
   - 文言（参考）:
-      対応エリア / area
-      「長野県飯田市、下伊那を中心に1時間圏内で対応しております。」
-      ※「そのほか地域の方もまずはお問い合わせください。」
-  - 配色: 白背景 #fff / 本文 #2c2c2c / 区切り #d2d2d2 / 注釈うす色
-  - sec-head ::before に pin.svg（位置マーカー）を中央配置
-  - shop-map .ggmap は padding-bottom:45% で aspect-ratio 制御
-  - 動き: 静止（footer 内の info ブロックなのでアニメなし）
+      「要予約・当日21時まで受付OK！」
+      受付時間 9:00〜21:00 / 火曜定休
+      岐阜市加納愛宕町7 [JR岐阜駅徒歩5分]
+      「マップを見る」
+      「当院建物の南隣、屋根付きの駐車場内①、②番が当院駐車場です。」
+  - 配色: 白背景 + アクセント blue-gray #2a3a4a + メイン #b8836b（cta オレンジ茶）
+  - フォント: 本文 sans-serif（NotoSansJP）+ 数字/英字 font-en（serif）
+  - 駐車場図: スタイル化されたシンプルなマップ図解（picsum で代替）
   ## Placeholders
-    {{area.section_label_jp}}             "対応エリア"
-    {{area.section_label_en}}             "area"
-    {{area.desc_main}}                    「◯◯ を中心に◯時間圏内で対応しております。」
-    {{area.desc_notes}}                   「そのほか地域の方も…」
-    {{area.shop_1_image}}                 店舗 1 外観写真
-    {{area.shop_1_name}}                  "本社" / "本店" 等
-    {{area.shop_1_address}}               郵便番号 + 住所 + TEL（<br> 込み HTML）
-    {{area.shop_1_map_embed}}             Google Maps 埋め込み URL（iframe src）
-    {{area.shop_2_image}}                 店舗 2 外観写真
-    {{area.shop_2_name}}
-    {{area.shop_2_address}}
-    {{area.shop_2_map_embed}}
+    {{area.section_label_en}}             "Access" 等
+    {{area.cta_subhead}}                  「要予約・当日◯◯時まで受付OK！」
+    {{area.hours_header_label}}           "受付時間"
+    {{area.hours_time}}                   "◯◯：◯◯-◯◯：◯◯"
+    {{area.hours_day_mon}} ~ {{area.hours_day_sun}}  各曜日の "●" or "-"
+    {{area.address}}                      "サンプル市◯◯町◯-◯"
+    {{area.station_walk}}                 "[◯◯駅徒歩◯分]"
+    {{area.map_url}}                      Google Maps 詳細ページ URL
+    {{area.map_link_label}}               "マップを見る" 等
+    {{area.tel}}                          "0◯-◯◯◯◯-◯◯◯◯"
+    {{area.tel_display}}                  表示用電話
+    {{area.parking_image}}                駐車場図解画像
+    {{area.parking_note}}                 駐車場説明文
 -->
-<section class="area-kotake">
+<section class="area-ito">
 <style>
-.area-kotake{background:#fff;color:#2c2c2c;font-family:"Noto Serif JP","NotoSerifJP",serif;padding:80px 0;position:relative}
-.area-kotake__info{max-width:1140px;margin:0 auto;padding:24px 40px 36px;display:flex;justify-content:space-between;align-items:center;gap:48px;border-top:1px solid #d2d2d2;border-bottom:1px solid #d2d2d2}
+.area-ito{background:#fff;color:#2a3a4a;font-family:"Noto Sans JP",sans-serif;padding:80px 24px;position:relative}
+.area-ito__in{max-width:980px;margin:0 auto}
+.area-ito__head{text-align:center;margin-bottom:36px}
+.area-ito__en{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:400;font-size:14px;letter-spacing:.32em;color:#7a8aa0;margin:0 0 12px;text-transform:uppercase}
+.area-ito__sub{font-family:"Noto Serif JP",serif;font-weight:500;font-size:clamp(17px,1.8vw,22px);color:#b8836b;margin:0;letter-spacing:.06em}
 
-.area-kotake__head{position:relative;flex:0 0 auto;width:130px;padding-top:42px;text-align:center}
-.area-kotake__head::before{content:"";position:absolute;top:0;left:50%;width:18px;height:27px;transform:translateX(-50%);background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 27'><path d='M9 0C4 0 0 4 0 9c0 6 9 18 9 18s9-12 9-18c0-5-4-9-9-9z' fill='%232c2c2c'/><circle cx='9' cy='9' r='3.5' fill='%23fff'/></svg>") center/contain no-repeat}
-.area-kotake__ttl{font-family:"Noto Serif JP",serif;font-weight:500;font-size:20px;line-height:1.21;margin:0;letter-spacing:.06em}
-.area-kotake__en{font-family:"Cormorant Garamond",maecenas,serif;font-weight:400;font-size:14px;letter-spacing:.08em;margin:.3em 0 0;color:#8a8073;text-transform:lowercase}
+.area-ito__card{background:#fff;box-shadow:0 6px 30px rgba(42,58,74,.08);padding:36px;border-radius:4px}
 
-.area-kotake__desc{flex:1 1 auto;max-width:450px}
-.area-kotake__desc p{margin:0;line-height:1.75em;letter-spacing:.04em;font-size:15px;color:#2c2c2c}
-.area-kotake__desc p.notes{margin-top:.2em;padding-left:1em;font-size:13px;text-indent:-1em;color:#8a8073}
-.area-kotake__desc p.notes::before{content:"※"}
+.area-ito__table{width:100%;border-collapse:collapse;margin-bottom:24px}
+.area-ito__table th,.area-ito__table td{padding:10px 6px;text-align:center;border-bottom:1px solid #e6e2dc;font-size:14px}
+.area-ito__table th{background:#f5f0e8;color:#7a6b53;font-weight:500;letter-spacing:.04em}
+.area-ito__table .lbl{font-size:13px;letter-spacing:.06em;color:#7a6b53;text-align:left;padding-left:12px}
+.area-ito__table .tm{font-family:"Cormorant Garamond",serif;font-size:18px;color:#2a3a4a;text-align:left;padding-left:12px;font-weight:500}
+.area-ito__table .open{color:#b8836b;font-size:16px}
 
-.area-kotake__shop{max-width:1140px;margin:0 auto;padding:40px;display:flex;justify-content:space-between;gap:40px}
-.area-kotake__shop-card{width:50%;display:flex;flex-direction:column}
-.area-kotake__shop-image{margin-bottom:14px;overflow:hidden}
-.area-kotake__shop-image img{display:block;width:100%;height:180px;object-fit:cover}
-.area-kotake__shop-contents{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:14px}
-.area-kotake__shop-content{flex:1 1 auto}
-.area-kotake__shop-ttl{margin:0 0 .5em;font-size:20px;font-weight:500;line-height:1.25em;letter-spacing:.12em;font-family:"Noto Serif JP",serif}
-.area-kotake__shop-add p{margin:0;line-height:1.75em;font-size:13px;color:#3a3a3a}
-.area-kotake__shop-map{position:relative;width:100%;padding-bottom:45%;overflow:hidden}
-.area-kotake__shop-map iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.area-ito__info{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding-top:14px;border-top:1px solid #e6e2dc}
+.area-ito__addr{display:flex;align-items:center;gap:8px;font-size:15px;color:#2a3a4a;margin:0}
+.area-ito__addr svg{flex:0 0 auto;color:#7a8aa0}
+.area-ito__addr .walk{font-size:12px;color:#7a8aa0;margin-left:6px}
+.area-ito__map-link{font-family:"Cormorant Garamond",serif;font-size:13px;letter-spacing:.16em;color:#b8836b;text-decoration:none;border-bottom:1px solid #b8836b;padding-bottom:2px;transition:opacity .2s}
+.area-ito__map-link:hover{opacity:.7}
 
-@media (max-width:880px){
-  .area-kotake{padding:48px 0}
-  .area-kotake__info{flex-direction:column;align-items:center;gap:14px;padding:24px;text-align:center}
-  .area-kotake__head{width:auto;padding-top:42px}
-  .area-kotake__desc{max-width:none}
-  .area-kotake__shop{flex-direction:column;padding:24px;gap:32px}
-  .area-kotake__shop-card{width:100%}
-  .area-kotake__shop-map{padding-bottom:55%}
+.area-ito__cta{display:flex;justify-content:center;align-items:center;gap:18px;margin-top:24px;flex-wrap:wrap}
+.area-ito__tel{display:inline-flex;align-items:center;gap:10px;font-family:"Cormorant Garamond",serif;font-size:28px;color:#2a3a4a;text-decoration:none;font-weight:500;letter-spacing:.04em}
+.area-ito__tel svg{color:#7a8aa0}
+
+.area-ito__parking{margin-top:30px;display:flex;align-items:center;gap:24px;padding:24px;background:#f5f0e8;border-radius:4px}
+.area-ito__parking-img{flex:0 0 auto;width:240px}
+.area-ito__parking-img img{width:100%;height:auto;display:block;border:1px solid #d8d2c7}
+.area-ito__parking-note{flex:1 1 auto;display:flex;align-items:flex-start;gap:14px;font-size:13px;line-height:1.85;color:#3a2e1f}
+.area-ito__parking-note .icon-p{flex:0 0 auto;font-family:"Cormorant Garamond",serif;font-size:28px;color:#b8836b;font-weight:500;line-height:1;border:2px solid #b8836b;border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center}
+
+@media (max-width:768px){
+  .area-ito{padding:52px 16px}
+  .area-ito__card{padding:24px}
+  .area-ito__table th,.area-ito__table td{padding:8px 4px;font-size:12px}
+  .area-ito__table .tm{font-size:15px}
+  .area-ito__info{flex-direction:column;align-items:flex-start;gap:12px}
+  .area-ito__parking{flex-direction:column;align-items:stretch}
+  .area-ito__parking-img{width:100%}
 }
 </style>
 
-<div class="area-kotake__info">
-  <div class="area-kotake__head">
-    <h2 class="area-kotake__ttl">対応エリア</h2>
-    <p class="area-kotake__en">area</p>
-  </div>
-  <div class="area-kotake__desc">
-    <p>大阪市中央区を中心に、近隣エリアまで対応いたします。</p>
-    <p class="notes">そのほかの地域もまずはご相談ください。</p>
-  </div>
-</div>
-
-<div class="area-kotake__shop">
-  <div class="area-kotake__shop-card">
-    <div class="area-kotake__shop-image">
-      <img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-2f809b37/700/300" alt="株式会社 山本安工務店">
-    </div>
-    <div class="area-kotake__shop-contents">
-      <div class="area-kotake__shop-content">
-        <p class="area-kotake__shop-ttl">株式会社 山本安工務店</p>
-        <div class="area-kotake__shop-add"><p>〒546-0024 大阪府大阪市東住吉区公園南矢田２丁目１７−１５<br>TEL：06-6692-4975</p></div>
-      </div>
-    </div>
-    <div class="area-kotake__shop-map">
-      <iframe src="https://maps.google.com/maps?q=%E3%80%92546-0024+%E5%A4%A7%E9%98%AA%E5%BA%9C%E5%A4%A7%E9%98%AA%E5%B8%82%E6%9D%B1%E4%BD%8F%E5%90%89%E5%8C%BA%E5%85%AC%E5%9C%92%E5%8D%97%E7%9F%A2%E7%94%B0%EF%BC%92%E4%B8%81%E7%9B%AE%EF%BC%91%EF%BC%97%E2%88%92%EF%BC%91%EF%BC%95&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-    </div>
+<div class="area-ito__in">
+  <div class="area-ito__head">
+    <p class="area-ito__en">access</p>
+    <h2 class="area-ito__sub">大阪市中央区を中心に対応いたします</h2>
   </div>
 
-  <div class="area-kotake__shop-card">
-    <div class="area-kotake__shop-image">
-      <img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-30cde3ea/700/300" alt="">
+  <div class="area-ito__card">
+    <table class="area-ito__table">
+      <tbody>
+        <tr>
+          <th class="lbl">受付時間</th>
+          <th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日</th>
+        </tr>
+        <tr>
+          <td class="tm">9:00 - 18:00</td>
+          <td class="open">月</td>
+          <td class="open">火</td>
+          <td class="open">水</td>
+          <td class="open">木</td>
+          <td class="open">金</td>
+          <td class="open">土</td>
+          <td class="open">日</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="area-ito__info">
+      <p class="area-ito__addr">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="17" viewBox="0 0 13 17"><path d="M6.5 0C2.91 0 0 2.91 0 6.5 0 11.5 6.5 17 6.5 17S13 11.5 13 6.5C13 2.91 10.09 0 6.5 0zm0 9a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" fill="currentColor"/></svg>
+        〒546-0024 大阪府大阪市東住吉区公園南矢田２丁目１７−１５<span class="walk"></span>
+      </p>
+      <a href="https://www.google.com/maps?q=%E3%80%92546-0024+%E5%A4%A7%E9%98%AA%E5%BA%9C%E5%A4%A7%E9%98%AA%E5%B8%82%E6%9D%B1%E4%BD%8F%E5%90%89%E5%8C%BA%E5%85%AC%E5%9C%92%E5%8D%97%E7%9F%A2%E7%94%B0%EF%BC%92%E4%B8%81%E7%9B%AE%EF%BC%91%EF%BC%97%E2%88%92%EF%BC%91%EF%BC%95" class="area-ito__map-link" target="_blank" rel="noopener">地図を見る →</a>
     </div>
-    <div class="area-kotake__shop-contents">
-      <div class="area-kotake__shop-content">
-        <p class="area-kotake__shop-ttl"></p>
-        <div class="area-kotake__shop-add"><p></p></div>
-      </div>
+
+    <div class="area-ito__cta">
+      <a href="tel:0666924975" class="area-ito__tel">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 0 0-1.02.24l-2.2 2.2a15.06 15.06 0 0 1-6.59-6.58l2.2-2.21a1 1 0 0 0 .25-1.02A11.36 11.36 0 0 1 8.5 4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1c0 9.39 7.61 17 17 17a1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1z" fill="currentColor"/></svg>
+        06-6692-4975
+      </a>
     </div>
-    <div class="area-kotake__shop-map">
-      <iframe src="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+  </div>
+
+  <div class="area-ito__parking">
+    <div class="area-ito__parking-img">
+      <img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-b918e0c5/800/600" alt="駐車場図解（サンプル）">
     </div>
+    <p class="area-ito__parking-note">
+      <span class="icon-p">P</span>
+      <span>駐車スペースについてはお問い合わせください。</span>
+    </p>
   </div>
 </div>
 </section>
@@ -1043,274 +1032,207 @@ img{max-width:100%;height:auto;display:block}
 
 </div>
 <div id="cta" class="site-section site-section--cta">
-<!-- cta: kotake -->
+<!-- cta: teto -->
 <!--
-  Archetype: cta / kotake
-  Source:    小竹建設 (https://www.kotake.jp/) を忠実模写
+  Archetype: cta / teto
+  Source:    teto paint (https://tetopaint.jp/) を忠実模写
   ## 模写スペック（raw HTML + 抽出 CSS）
-  - 構造: <a.bnr.bnr--consultation> 全体クリッカブル横長バナー
-    > .bnr-content (左の文字組: bnr-ttl "土地から探す/家づくり" + bnr-en "Free Consultation")
-    > .bnr-btn (右下: btn-main--bg "土地の無料相談会を申し込む")
-    > .bnr-in > .bnr-bg (背景写真 consultation.jpg)
-  - サイズ (PC ≧ 1441): width 990px / height 375px / btn 340x60 (right -10 bottom 40)
-  - サイズ (PC 751-1440): 68.75vw / 26vw height
-  - サイズ (SP ≦ 750): 94.6vw / 72.4vw height、ttl 8.8vw、btn bottom 4vw / width 69.3vw
-  - bnr-ttl: NotoSerifJP weight 500 / letter-spacing .12em / 白
-  - bnr-en: maecenas serif（Typekit） / 白 / 1.6vw or 24px
-  - 動き: ホバーで bg scale(1.05) transform .4s
+  - 構造: <section> > .aside-contact (bg image 帯) > .aside-contact__card (白カード center, 49.75% / 80% sp)
+  - 中身: c-title__top (en "Contact us" + ja "お問い合わせ") + figure (img) + lead 文 + c-button__black (黒テキストボタン)
+  - 配色: 白カード on 茶系 bg-contact.jpg 帯, body #1B1E29 / 文字 #434343
+  - サイズ: card padding 70px 7vw、本文 mt 40 letter-spacing .06rem、ボタン mt 30
+  - 動き: ホバー反応のみ (data-hover-animation)、scroll-in なし
+  - レスポンシブ: 750px 以下で card width 80% / padding 60px 28px / radius 6px、bg padding 78px / 63px
   ## Placeholders
-    {{cta.banner_image}}        背景写真（consultation.jpg 相当）
-    {{cta.banner_url}}          バナー全体リンク先（/support/ 相当）
-    {{cta.title_line_1}}        bnr-ttl 1 行目（"土地から探す"）
-    {{cta.title_line_2}}        bnr-ttl 2 行目（"家づくり"）
-    {{cta.en_label}}            bnr-en（"Free Consultation"）
-    {{cta.button_label}}        btn 内テキスト（"土地の無料相談会を申し込む"）
+    {{cta.en_label}}            "Contact us" 相当（カード上 en 大見出し）
+    {{cta.ja_label}}            "お問い合わせ" 相当（en 直下、ja 小見出し）
+    {{cta.image}}               中央の画像 URL（contact.jpg 相当、横長）
+    {{cta.lead}}                リード文（複数行・<br> 許容）
+    {{cta.button_label}}        ボタンラベル（"Contact us" 相当）
+    {{cta.button_href}}         ボタン遷移先（/contact/ 相当）
+    {{cta.bg_image}}            外周帯の bg-contact.jpg 相当
 -->
-<section class="cta-kotake">
+<section class="cta-teto">
 <style>
-.cta-kotake{padding:40px 0;background:#fff;font-family:"Noto Serif JP",serif}
-.cta-kotake__bnr{position:relative;display:block;margin:0 auto;width:94.6666666667vw;height:72.4vw;color:#fff;text-decoration:none;overflow:hidden;border-radius:0}
-.cta-kotake__content{position:absolute;top:8vw;left:8.6666666667vw;z-index:2}
-.cta-kotake__ttl{margin:0;color:#fff;font-family:"Shippori Mincho","Noto Serif JP",serif;font-size:8.8vw;font-weight:500;line-height:1.5em;letter-spacing:.12em}
-.cta-kotake__ttl span{display:block}
-.cta-kotake__en{margin-top:.3em;color:#fff;font-family:"Cormorant Garamond","Maecenas",serif;font-style:italic;font-size:5.3333333333vw;font-weight:500;letter-spacing:.12em}
-.cta-kotake__btn{position:absolute;right:0;bottom:4vw;width:69.3333333333vw;z-index:2;height:60px;display:flex;align-items:center;justify-content:center;background:#1a1a1a;color:#fff;font-family:"Shippori Mincho","Noto Serif JP",serif;font-size:14px;letter-spacing:.18em;font-weight:500}
-.cta-kotake__in{position:relative;width:100%;height:100%;overflow:hidden}
-.cta-kotake__bg{position:absolute;top:0;left:0;width:100%;height:100%;background-image:url("https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-cta/1600/600");background-position:center;background-repeat:no-repeat;background-size:cover;transition:transform .4s}
-.cta-kotake__bnr:hover .cta-kotake__bg{transform:scale(1.05,1.05)}
+.cta-teto{margin:0;padding:78px 0 63px;background-image:url("https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-8b643c03/1600/800");background-size:cover;background-position:center;border-radius:0;overflow:hidden}
+.cta-teto__card{display:block;width:calc(100% - 20px);max-width:700px;margin:0 auto;padding:60px 28px;background:#fff;border-radius:6px;box-sizing:border-box}
+.cta-teto__title{text-align:center;margin-bottom:40px}
+.cta-teto__title-en{font-family:"Cormorant Garamond","Times New Roman",serif;font-style:italic;font-weight:500;font-size:32px;letter-spacing:.04em;color:#1B1E29;margin:0 0 8px;line-height:1.2}
+.cta-teto__title-ja{font-family:"Shippori Mincho","Noto Serif JP",serif;font-weight:500;font-size:13px;letter-spacing:.18em;color:#1B1E29;margin:0}
+.cta-teto__img{overflow:hidden;border-radius:5px;margin:0 0 0}
+.cta-teto__img img{display:block;width:100%;height:auto}
+.cta-teto__text{margin-top:40px;font-size:.875rem;line-height:1.95;letter-spacing:.06em;color:#434343;font-family:"Noto Sans JP",sans-serif}
+.cta-teto__btn{display:flex;align-items:center;justify-content:center;width:100%;max-width:280px;margin:30px auto 0;padding:18px 32px;background:#1B1E29;color:#fff;text-decoration:none;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.18em;border-radius:2px;transition:all .2s}
+.cta-teto__btn:hover{background:#9FA0A2;color:#fff}
 
-@media (min-width:751px){
-  .cta-kotake__bnr{width:68.75vw;height:26.0416666667vw}
-  .cta-kotake__content{top:50%;left:3.125vw;transform:translateY(-50%)}
-  .cta-kotake__ttl{font-size:2.5vw;line-height:1.75em}
-  .cta-kotake__en{font-size:1.6666666667vw}
-  .cta-kotake__btn{right:-.6944444444vw;bottom:2.7777777778vw;width:23.6111111111vw;height:60px}
-}
-@media (min-width:1441px){
-  .cta-kotake__bnr{width:990px;height:375px}
-  .cta-kotake__content{left:45px}
-  .cta-kotake__ttl{font-size:3.6rem}
-  .cta-kotake__en{font-size:2.4rem}
-  .cta-kotake__btn{right:-10px;bottom:40px;width:340px}
+@media (min-width:768px){
+  .cta-teto{margin:0 17px 35px;padding:50px;border-radius:5px}
+  .cta-teto__card{width:49.75%;padding:70px 7vw}
+  .cta-teto__title-en{font-size:40px}
 }
 </style>
 
-<a class="cta-kotake__bnr" href="#contact">
-  <div class="cta-kotake__content">
-    <h2 class="cta-kotake__ttl"><span>お見積り・ご相談は</span><span>お気軽にどうぞ</span></h2>
-    <p class="cta-kotake__en">Contact</p>
+<div class="cta-teto__card">
+  <div class="cta-teto__title">
+    <h2 class="cta-teto__title-en">Contact</h2>
+    <p class="cta-teto__title-ja">お問い合わせ</p>
   </div>
-  <div class="cta-kotake__btn"><span>お問い合わせはこちら</span></div>
-  <div class="cta-kotake__in">
-    <div class="cta-kotake__bg"></div>
-  </div>
-</a>
+  <figure class="cta-teto__img">
+    <img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-d2d18500/800/600" alt="" loading="lazy">
+  </figure>
+  <p class="cta-teto__text">ご相談・お見積りはお気軽にどうぞ。</p>
+  <a class="cta-teto__btn" href="#contact">お問い合わせはこちら</a>
+</div>
 </section>
 
 </div>
 <div id="footer" class="site-section site-section--footer">
-<!-- footer: kotake -->
+<!-- footer: kon -->
 <!--
-  Archetype: footer / kotake
-  Source:    小竹建設 (https://www.kotake.jp/) を忠実模写
+  Archetype: footer / kon
+  Source:    コン工務店 (https://www.konkoumuten.jp/) を忠実模写
   ## 模写スペック（raw HTML 抽出）
-  - 制作技術: WordPress 自前テーマ
+  - 制作技術: 自前 (common/css/style.css) + Adobe Typekit ryo-gothic-plusn
   - 構造:
-    1. footer-text 大見出し "飯田市で注文住宅を建てるなら工務店の小竹建設へ"
-    2. footer-logo (SVG)
-    3. .info: .tel (0265-48-6695 + 受付時間) + .area (見出し "対応エリア / area" + 説明文)
-    4. .shop × 2: 本社 + 江戸町店 → それぞれ [shop-image, shop-content (住所/TEL), shop-map (iframe)]
-    5. .footer-navi: 上 → 縦並びリンク (無料相談会/土地探し/資料請求/お問い合わせ/イベント/不動産) + bnr (宅建)
-                   右ブロック → "小竹建設の家づくり" / "施工事例" / "ギャラリー" / "会社案内" の 4 親 + 子 ul
-    6. .footer-bottom: .subnavi (サイトマップ/プライバシーポリシー) + .sns (Instagram/Facebook/LINE) + .footer-copy
-  - 配色: ベース白 + 木色 (#8a6b3a 系) アクセント, 黒文字
-  - フォント: 主 sans (Noto Sans JP), 英字 "Cormorant Garamond"
-  - 動き: on--opa (hover opacity)
+    - <footer> 内 2 section
+      [section.contact-con]
+        .desc h2 "お問い合わせ" + p 案内文 + Instagram a (ig + "Follow me !")
+        .link-wrap [
+          a.link-bg.mail (mail.svg + "お問い合わせ / モデルハウス見学も")
+          a.link-bg.telephone (tel.svg + "090-3354-8752 / 9:00-18:00 ／ 水・日曜定休日")
+        ]
+      [section.f-nav]
+        nav.flex > 複数 ul.nav-list [親 a + 子 ul.nav-detail-list]
+        .f-bottom flex > .f-logo (SVG logo + 屋号 + キャッチ) + .copyright
+  - 配色: ベース白系 (Hero と同様 cream tone)、見出し dark
+  - フォント: 主 ryo-gothic-plusn (Typekit), 英字 "Cormorant Garamond" italic
+  - 動き: 控えめ hover (transition 0.2s)
   ## Placeholders
-    footer.header_text                  "サンプル地域で注文住宅を建てるなら..."
-    company.name                        ロゴ
-    company.tel_display                 "0265-XX-XXXX"
-    company.tel                         href tel:
-    footer.tel_hours                    "【受付時間】 8:00 - 18:00"
-    footer.area_title/footer.area_subtitle    "対応エリア" / "area"
-    footer.area_desc                    対応エリア説明
-    footer.area_notes                   注釈
-    footer.shop_1_image~footer.shop_2_image   店舗写真
-    footer.shop_1_name~footer.shop_2_name     本社 / 江戸町店
-    footer.shop_1_addr~footer.shop_2_addr     住所
-    footer.shop_1_map~footer.shop_2_map       Google Maps iframe URL
-    footer.menu_1~6                     6 nav リンク
-    footer.bnr_url/footer.bnr_img   外部バナー
-    footer.block_1_title~footer.block_4_title    4 ブロック親
-    footer.block_1_child_1~footer.block_4_child_3    子リンク
-    footer.subnav_1/footer.subnav_2              サイトマップ/プライバシー
-    footer.social_label_1~footer.social_label_3/footer.social_url_*    SNS 3 個
-    footer.copyright                                 "© 小竹建設." 相当
+    footer.cta_title                "お問い合わせ"
+    footer.cta_text                 "まずはお気軽に お問い合わせください。" 相当 (HTML可)
+    footer.social_url/footer.social_label    Instagram URL / "Follow me !"
+    footer.mail_title/footer.mail_sub        "お問い合わせ" / "モデルハウス見学も"
+    footer.tel_title/footer.tel_sub          "090-3354-8752" / 受付時間
+    company.tel                     tel: 用 href
+    footer.nav_block_1_title~footer.nav_block_5_title    親ナビ × 5
+    footer.nav_block_1_child_1~footer.nav_block_5_child_2    子ナビ
+    footer.brand_name/footer.brand_sub     "コン工務店" / 地域注文住宅 サブ
+    footer.copyright                "Copyright © Kon Co.,Ltd." 相当
 -->
-<section class="footer-kotake">
+<section class="footer-kon">
 <style>
-.footer-kotake{background:#fff;color:#1f1c18;font-family:"Noto Sans JP",sans-serif;padding:80px 32px 40px;box-sizing:border-box}
-.footer-kotake__inner{max-width:1200px;margin:0 auto}
+.footer-kon{background:#f5f1ea;color:#2b2b2b;font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;box-sizing:border-box}
 
-.footer-kotake__header{text-align:center;font-family:"Shippori Mincho",serif;font-weight:500;font-size:clamp(18px,2.4vw,24px);letter-spacing:.16em;margin:0 0 32px;color:#1f1c18}
-.footer-kotake__logo{text-align:center;margin:0 0 56px;font-family:"Shippori Mincho",serif;font-weight:500;font-size:32px;letter-spacing:.18em;color:#1f1c18}
+.footer-kon__cta{background:#2b2b2b;color:#fff;padding:64px 32px}
+.footer-kon__cta-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:center}
+.footer-kon__cta-desc h2{font-family:"Shippori Mincho",serif;font-weight:500;font-size:clamp(28px,3.6vw,40px);letter-spacing:.12em;margin:0 0 18px;color:#fff}
+.footer-kon__cta-desc p{font-family:"Noto Sans JP",sans-serif;font-size:14px;line-height:1.9;margin:0 0 24px;color:#dcd6cc}
+.footer-kon__ig{display:inline-flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.18em;transition:opacity .2s}
+.footer-kon__ig:hover{opacity:.7}
+.footer-kon__ig::before{content:"";display:inline-block;width:22px;height:22px;border:1.5px solid #fff;border-radius:6px;position:relative}
 
-.footer-kotake__info{display:grid;grid-template-columns:1fr 1fr;gap:48px;padding:32px;background:#f5f0e6;border-radius:6px;margin-bottom:48px}
-.footer-kotake__tel{text-align:center;align-self:center}
-.footer-kotake__tel-num{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:38px;letter-spacing:.06em;color:#8a6b3a;margin:0;text-decoration:none;display:block}
-.footer-kotake__tel-time{font-family:"Noto Sans JP",sans-serif;font-size:12px;color:#5c5650;margin:6px 0 0}
-.footer-kotake__area{}
-.footer-kotake__area-head{display:flex;align-items:baseline;gap:14px;margin-bottom:14px}
-.footer-kotake__area-head h2{font-family:"Shippori Mincho",serif;font-weight:500;font-size:20px;letter-spacing:.16em;margin:0;color:#1f1c18}
-.footer-kotake__area-head .en{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.24em;color:#8a6b3a;text-transform:uppercase}
-.footer-kotake__area p{font-family:"Noto Sans JP",sans-serif;font-size:13px;line-height:1.8;color:#3a3530;margin:0 0 6px}
-.footer-kotake__area .notes{font-size:11px;color:#7c7670}
+.footer-kon__links{display:flex;flex-direction:column;gap:14px}
+.footer-kon__link-bg{display:flex;align-items:center;gap:18px;padding:20px 28px;background:#fff;color:#2b2b2b;text-decoration:none;border-radius:4px;transition:background .2s}
+.footer-kon__link-bg:hover{background:#fff8e8}
+.footer-kon__link-bg::before{content:"";display:inline-block;width:32px;height:32px;border:2px solid #2b2b2b;border-radius:50%;flex:0 0 32px}
+.footer-kon__link-bg .sub-ttl{font-family:"Shippori Mincho",serif;font-weight:500;font-size:20px;letter-spacing:.06em;margin:0}
+.footer-kon__link-bg p{font-family:"Noto Sans JP",sans-serif;font-size:12px;color:#6a6259;margin:4px 0 0}
 
-.footer-kotake__shops{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:56px}
-.footer-kotake__shop{background:#fff;border:1px solid #e6e0d4;border-radius:6px;overflow:hidden}
-.footer-kotake__shop-image{aspect-ratio:470/150;overflow:hidden}
-.footer-kotake__shop-image img{width:100%;height:100%;object-fit:cover;display:block}
-.footer-kotake__shop-content{padding:20px 24px}
-.footer-kotake__shop-ttl{font-family:"Shippori Mincho",serif;font-weight:500;font-size:16px;letter-spacing:.12em;margin:0 0 8px;color:#1f1c18}
-.footer-kotake__shop-add{font-family:"Noto Sans JP",sans-serif;font-size:13px;line-height:1.7;color:#3a3530;margin:0}
-.footer-kotake__shop-map{aspect-ratio:600/300;background:#e6e0d4}
-.footer-kotake__shop-map iframe{width:100%;height:100%;border:0;display:block}
+.footer-kon__nav-wrap{padding:64px 32px 24px;max-width:1100px;margin:0 auto}
+.footer-kon__nav{display:grid;grid-template-columns:repeat(5,1fr);gap:32px}
+.footer-kon__nav-list{margin:0;padding:0;list-style:none}
+.footer-kon__nav-list > li > a{display:block;font-family:"Shippori Mincho",serif;font-weight:500;font-size:15px;letter-spacing:.08em;color:#2b2b2b;text-decoration:none;margin-bottom:10px;transition:color .2s}
+.footer-kon__nav-list > li > a:hover{color:#8a6b3a}
+.footer-kon__nav-list ul.nav-detail-list{margin:0;padding:0;list-style:none}
+.footer-kon__nav-list ul.nav-detail-list li a{display:block;font-family:"Noto Sans JP",sans-serif;font-size:12px;color:#6a6259;text-decoration:none;padding:4px 0;transition:color .2s}
+.footer-kon__nav-list ul.nav-detail-list li a:hover{color:#8a6b3a}
 
-.footer-kotake__navi{display:grid;grid-template-columns:1fr 2fr;gap:32px;padding-bottom:32px;border-bottom:1px solid #e6e0d4;margin-bottom:32px}
-.footer-kotake__menu{list-style:none;padding:0;margin:0 0 24px;display:flex;flex-direction:column;gap:8px}
-.footer-kotake__menu li a{display:flex;align-items:center;gap:10px;font-family:"Noto Sans JP",sans-serif;font-size:14px;letter-spacing:.06em;color:#1f1c18;text-decoration:none;padding:10px 16px;border:1px solid #1f1c18;border-radius:30px;transition:background .2s}
-.footer-kotake__menu li a:hover{background:#1f1c18;color:#fff}
-.footer-kotake__bnr{display:block;max-width:200px}
-.footer-kotake__bnr img{width:100%;height:auto;display:block}
-
-.footer-kotake__blocks{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-.footer-kotake__block-head{font-family:"Shippori Mincho",serif;font-weight:500;font-size:14px;letter-spacing:.14em;color:#8a6b3a;margin:0 0 12px;padding-bottom:8px;border-bottom:1px dotted #c9c0ad}
-.footer-kotake__block-child{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
-.footer-kotake__block-child li a{font-family:"Noto Sans JP",sans-serif;font-size:12px;color:#3a3530;text-decoration:none;transition:color .2s}
-.footer-kotake__block-child li a:hover{color:#8a6b3a}
-
-.footer-kotake__bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.footer-kotake__subnavi{display:flex;gap:18px}
-.footer-kotake__subnavi a{font-family:"Noto Sans JP",sans-serif;font-size:12px;color:#5c5650;text-decoration:none;transition:color .2s}
-.footer-kotake__subnavi a:hover{color:#8a6b3a}
-.footer-kotake__sns{display:flex;gap:12px}
-.footer-kotake__sns a{display:inline-flex;width:36px;height:36px;align-items:center;justify-content:center;background:#1f1c18;color:#fff;border-radius:50%;font-family:"Cormorant Garamond",serif;font-size:13px;font-weight:600;text-decoration:none;transition:opacity .2s}
-.footer-kotake__sns a:hover{opacity:.7}
-.footer-kotake__copy{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:12px;color:#5c5650;margin:0;letter-spacing:.18em}
+.footer-kon__bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding-top:32px;border-top:1px solid #d8d2c7;flex-wrap:wrap}
+.footer-kon__logo{display:flex;align-items:center;gap:20px}
+.footer-kon__logo-mark{width:64px;height:40px;background:#2b2b2b;color:#fff;display:flex;align-items:center;justify-content:center;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:26px;letter-spacing:.04em;flex:0 0 64px}
+.footer-kon__brand-name{font-family:"Shippori Mincho",serif;font-size:16px;font-weight:500;letter-spacing:.1em;margin:0;color:#2b2b2b}
+.footer-kon__brand-sub{font-family:"Noto Sans JP",sans-serif;font-size:11px;color:#6a6259;margin:4px 0 0}
+.footer-kon__copyright{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:12px;letter-spacing:.18em;color:#6a6259;margin:0}
 
 @media (max-width:880px){
-  .footer-kotake{padding:56px 20px 32px}
-  .footer-kotake__info{grid-template-columns:1fr;gap:24px;padding:24px}
-  .footer-kotake__shops{grid-template-columns:1fr;gap:18px}
-  .footer-kotake__navi{grid-template-columns:1fr;gap:24px}
-  .footer-kotake__blocks{grid-template-columns:1fr 1fr}
-  .footer-kotake__bottom{flex-direction:column;align-items:flex-start}
+  .footer-kon__cta-inner{grid-template-columns:1fr;gap:32px}
+  .footer-kon__nav{grid-template-columns:1fr 1fr;gap:24px}
+  .footer-kon__bottom{flex-direction:column;align-items:flex-start}
 }
 </style>
 
-<div class="footer-kotake__inner">
-  <p class="footer-kotake__header">大阪市中央区のリフォームは株式会社 山本安工務店までお気軽にご相談ください。</p>
-  <p class="footer-kotake__logo">株式会社 山本安工務店</p>
-
-  <div class="footer-kotake__info">
-    <div class="footer-kotake__tel">
-      <a class="footer-kotake__tel-num" href="tel:0666924975">06-6692-4975</a>
-      <p class="footer-kotake__tel-time">受付時間はお問い合わせください</p>
+<section class="footer-kon__cta">
+  <div class="footer-kon__cta-inner">
+    <div class="footer-kon__cta-desc">
+      <h2>Contact</h2>
+      <p>お問い合わせはお気軽にどうぞ。</p>
+      <a class="footer-kon__ig" href="#" target="_blank" rel="noopener">Instagram</a>
     </div>
-    <div class="footer-kotake__area">
-      <div class="footer-kotake__area-head">
-        <h2>対応エリア</h2>
-        <span class="en">service area</span>
-      </div>
-      <p>大阪市中央区を中心に対応いたします。</p>
-      <p class="notes">そのほかの地域もまずはご相談ください。</p>
-    </div>
-  </div>
-
-  <div class="footer-kotake__shops">
-    <div class="footer-kotake__shop">
-      <div class="footer-kotake__shop-image"><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-faf445eb/470/150" alt="株式会社 山本安工務店"></div>
-      <div class="footer-kotake__shop-content">
-        <p class="footer-kotake__shop-ttl">株式会社 山本安工務店</p>
-        <p class="footer-kotake__shop-add">〒546-0024 大阪府大阪市東住吉区公園南矢田２丁目１７−１５<br>TEL：06-6692-4975</p>
-      </div>
-      <div class="footer-kotake__shop-map">
-        <iframe src="https://maps.google.com/maps?q=%E3%80%92546-0024+%E5%A4%A7%E9%98%AA%E5%BA%9C%E5%A4%A7%E9%98%AA%E5%B8%82%E6%9D%B1%E4%BD%8F%E5%90%89%E5%8C%BA%E5%85%AC%E5%9C%92%E5%8D%97%E7%9F%A2%E7%94%B0%EF%BC%92%E4%B8%81%E7%9B%AE%EF%BC%91%EF%BC%97%E2%88%92%EF%BC%91%EF%BC%95&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-    </div>
-    <div class="footer-kotake__shop">
-      <div class="footer-kotake__shop-image"><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-507124fd/470/150" alt=""></div>
-      <div class="footer-kotake__shop-content">
-        <p class="footer-kotake__shop-ttl"></p>
-        <p class="footer-kotake__shop-add"></p>
-      </div>
-      <div class="footer-kotake__shop-map">
-        <iframe src="" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
+    <div class="footer-kon__links">
+      <a class="footer-kon__link-bg" href="#">
+        <div>
+          <p class="sub-ttl">メールでのお問い合わせ</p>
+          <p>24 時間受付</p>
+        </div>
+      </a>
+      <a class="footer-kon__link-bg" href="tel:0666924975">
+        <div>
+          <p class="sub-ttl">お電話でのお問い合わせ</p>
+          <p>受付時間 9:00-18:00</p>
+        </div>
+      </a>
     </div>
   </div>
+</section>
 
-  <div class="footer-kotake__navi">
-    <div>
-      <ul class="footer-kotake__menu">
-        <li><a href="#">ホーム</a></li>
-        <li><a href="#">サービス</a></li>
-        <li><a href="#">施工事例</a></li>
-        <li><a href="#">会社概要</a></li>
-        <li><a href="#">お問い合わせ</a></li>
-        <li><a href="#">FAQ</a></li>
-      </ul>
-      <a class="footer-kotake__bnr" href="#" target="_blank" rel="noopener"><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-bnr/150/47" alt=""></a>
-    </div>
-    <div class="footer-kotake__blocks">
-      <div>
-        <p class="footer-kotake__block-head">サービス</p>
-        <ul class="footer-kotake__block-child">
-          <li><a href="#">リフォーム</a></li>
-          <li><a href="#">メンテナンス</a></li>
-          <li><a href="#">アフター</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="footer-kotake__block-head">会社</p>
-        <ul class="footer-kotake__block-child">
-          <li><a href="#">会社概要</a></li>
-          <li><a href="#">スタッフ紹介</a></li>
-          <li><a href="#">ブログ</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="footer-kotake__block-head">事例</p>
-        <ul class="footer-kotake__block-child">
+<section class="footer-kon__nav-wrap">
+  <nav class="footer-kon__nav">
+    <ul class="footer-kon__nav-list">
+      <li><a href="#">Service</a>
+        <ul class="nav-detail-list">
+          <li><a href="#">サービス内容</a></li>
           <li><a href="#">施工事例</a></li>
-          <li><a href="#">お客様の声</a></li>
-          <li><a href="#">受賞歴</a></li>
         </ul>
-      </div>
-      <div>
-        <p class="footer-kotake__block-head">サポート</p>
-        <ul class="footer-kotake__block-child">
-          <li><a href="#">お問い合わせ</a></li>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">資料請求</a></li>
+      </li>
+    </ul>
+    <ul class="footer-kon__nav-list">
+      <li><a href="#">About</a>
+        <ul class="nav-detail-list">
+          <li><a href="#">会社概要</a></li>
         </ul>
-      </div>
-    </div>
-  </div>
+      </li>
+    </ul>
+    <ul class="footer-kon__nav-list">
+      <li><a href="#">News</a>
+        <ul class="nav-detail-list">
+          <li><a href="#">お知らせ</a></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="footer-kon__nav-list">
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <ul class="footer-kon__nav-list">
+      <li><a href="#">Other</a>
+        <ul class="nav-detail-list">
+          <li><a href="#">プライバシーポリシー</a></li>
+          <li><a href="#">サイトマップ</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
 
-  <div class="footer-kotake__bottom">
-    <div class="footer-kotake__subnavi">
-      <a href="#">プライバシーポリシー</a>
-      <a href="#">サイトマップ</a>
+  <div class="footer-kon__bottom">
+    <div class="footer-kon__logo">
+      <span class="footer-kon__logo-mark">K</span>
+      <div>
+        <p class="footer-kon__brand-name">株式会社 山本安工務店</p>
+        <p class="footer-kon__brand-sub">大阪市中央区のリフォーム</p>
+      </div>
     </div>
-    <div class="footer-kotake__sns">
-      <a href="#" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
-      <a href="#" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
-      <a href="#" target="_blank" rel="noopener" aria-label="YouTube">YouTube</a>
-    </div>
-    <p class="footer-kotake__copy">© 株式会社 山本安工務店</p>
+    <p class="footer-kon__copyright">© 株式会社 山本安工務店</p>
   </div>
-</div>
+</section>
 </section>
 
 </div>
