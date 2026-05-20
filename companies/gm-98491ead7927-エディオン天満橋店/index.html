@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>エディオン 天満橋店</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Poppins:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<!-- Splide for fade slideshow -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" defer></script>
+<!-- Swiper for parallax / loop slider -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font-family:"Noto Sans JP",sans-serif;color:#2c2c2c;background:#fff;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+
+/* ============ 共通 header（全サイト同構造） ============ */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:20px 32px;background:transparent;color:#fff;transition:background .3s ease, color .3s ease, box-shadow .3s ease, padding .3s ease}
+.site-header.is-scrolled{background:#fff;color:#1a1a1a;box-shadow:0 2px 14px rgba(0,0,0,.08);padding:14px 32px}
+.site-header__logo{font-family:"Shippori Mincho",serif;font-weight:500;font-size:17px;letter-spacing:.18em;color:inherit;text-decoration:none}
+.site-header__burger{display:inline-flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:transparent;border:0;cursor:pointer;padding:0;color:inherit}
+.site-header__burger span{display:block;width:22px;height:1.5px;background:currentColor;margin:0 auto;transition:transform .3s ease, opacity .3s ease}
+
+/* nav オーバーレイ（全画面） */
+.site-nav{position:fixed;inset:0;z-index:200;background:rgba(26,26,26,.96);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;opacity:0;pointer-events:none;transition:opacity .35s ease}
+.site-nav.is-open{opacity:1;pointer-events:auto}
+.site-nav__close{position:absolute;top:24px;right:32px;background:transparent;border:0;color:#fff;font-size:20px;cursor:pointer;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;font-family:inherit}
+.site-nav__list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:24px;text-align:center}
+.site-nav__list a{font-family:"Shippori Mincho",serif;font-size:22px;letter-spacing:.18em;color:#fff;text-decoration:none;display:inline-block;padding:6px 12px;transition:opacity .2s}
+.site-nav__list a:hover{opacity:.6}
+
+@media (max-width:768px){
+  .site-header{padding:16px 20px}
+  .site-header.is-scrolled{padding:12px 20px}
+  .site-header__logo{font-size:15px;letter-spacing:.14em}
+  .site-nav__list a{font-size:18px}
+  .site-nav__close{top:16px;right:20px}
+}
+</style>
+</head>
+<body>
+<header class="site-header" data-site-header>
+  <a class="site-header__logo" href="#top">エディオン 天満橋店</a>
+  <button class="site-header__burger" type="button" aria-label="メニューを開く" aria-expanded="false" data-burger>
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<nav class="site-nav" data-site-nav aria-hidden="true">
+  <button class="site-nav__close" type="button" aria-label="メニューを閉じる" data-burger>✕</button>
+  <ul class="site-nav__list">
+    <li><a href="#trust">私たちの想い</a></li>
+    <li><a href="#services">サービス</a></li>
+    <li><a href="#gallery">施工事例</a></li>
+    <li><a href="#area">対応エリア</a></li>
+    <li><a href="#cta">お問い合わせ</a></li>
+  </ul>
+</nav>
+
+<div id="top"></div>
+<div id="hero" class="site-section site-section--hero">
+<!-- hero: gm -->
+<!--
+  Archetype: hero / gm
+  Source:    GM Contractors (https://gmcontractors.co.uk/) を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: WordPress + jQuery + Typekit (use.typekit.net/voq2uvn.css)
+  - 構造: .home-hero > .home-hero-slides + .home-hero-inner > .home-hero-content + .home-hero-play (venobox)
+  - 配色: 黒 #000 / 赤 #c00 / 白 / グレー（Awwwards Honorable Mention 受賞、ミニマル）
+  - Hero テキスト: 「Gordon Mitchell Contractors」(brand) + 「Building contractor & timber systems specialists」(tagline)
+  - 中央に video play ボタン (venobox = lightbox 動画) "Who we are"
+  - Slider 背景 + 控えめな SVG アニメーション
+  ## Placeholders
+    エディオン 天満橋店                    ヘッダー / Hero brand
+    {{hero.menu_label}}                 ナビ右
+    {{hero.slide_1}} ~ {{hero.slide_3}}    背景スライド画像 URL
+    {{hero.brand_line}}                 大見出し (brand 大表示)
+    {{hero.tagline}}                    タグライン
+    {{hero.video_label}}                "Who we are" 等 ビデオボタン文言
+    {{hero.est_year}}                   "Est. 1989" 等
+-->
+<section class="hero-gm">
+<style>
+.hero-gm{position:relative;height:100vh;min-height:680px;max-height:900px;background:#000;color:#fff;font-family:"Cormorant Garamond","Noto Serif JP",serif;overflow:hidden}
+.hero-gm__bg{position:absolute;inset:0;z-index:0}
+.hero-gm__bg .splide,
+.hero-gm__bg .splide__track,
+.hero-gm__bg .splide__list,
+.hero-gm__bg .splide__slide{height:100%}
+.hero-gm__bg .splide__slide{background-position:center;background-size:cover}
+.hero-gm::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,.35) 50%,rgba(0,0,0,.7) 100%);z-index:1;pointer-events:none}
+
+.hero-gm__inner{position:relative;z-index:3;display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;padding:0 32px;text-align:center}
+
+.hero-gm__est{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.4em;color:#c00;margin:0 0 14px;text-transform:uppercase}
+.hero-gm__brand{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(40px,6vw,76px);letter-spacing:.04em;line-height:1.1;color:#fff;margin:0 0 18px;text-transform:uppercase}
+.hero-gm__tagline{font-family:"Poppins",sans-serif;font-size:14px;letter-spacing:.32em;color:#fff;opacity:.9;margin:0 0 50px;text-transform:uppercase}
+
+.hero-gm__play{display:inline-flex;align-items:center;gap:14px;padding:0;background:transparent;border:0;color:#fff;cursor:pointer;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:18px;letter-spacing:.18em;text-decoration:none;transition:opacity .2s}
+.hero-gm__play:hover{opacity:.75}
+.hero-gm__play-icon{width:64px;height:64px;border-radius:50%;border:1px solid #fff;display:inline-flex;align-items:center;justify-content:center;font-size:18px;color:#fff;transition:all .25s}
+.hero-gm__play:hover .hero-gm__play-icon{background:#c00;border-color:#c00}
+
+@media (max-width:768px){
+  .hero-gm__brand{font-size:32px}
+  .hero-gm__tagline{font-size:11px;letter-spacing:.2em}
+}
+</style>
+
+<div class="hero-gm__bg">
+  <div class="splide" data-splide='{"type":"fade","rewind":true,"autoplay":true,"interval":6500,"speed":1800,"arrows":false,"pagination":false,"pauseOnHover":false}'>
+    <div class="splide__track">
+      <ul class="splide__list">
+        <li class="splide__slide" style="background-image:url('https://lh3.googleusercontent.com/gps-cs-s/APNQkAEYRErr7HXB-c9kFvCqGr8VqTmJGTusK0OwJXmQOpCDqYyPJQYIBn1STm_0vVvzII3lqdbBWfcl69jpUa7Y9soLtQdX699pdsjCOBCTJeyG2MBNQjGRJXdcfArVedz5xVlyVIqUZ6pVtGs=w426-h240-k-no')"></li>
+        <li class="splide__slide" style="background-image:url('https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-hero-2/1600/900')"></li>
+        <li class="splide__slide" style="background-image:url('https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-hero-3/1600/900')"></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="hero-gm__inner">
+  <p class="hero-gm__est">—  —</p>
+  <h1 class="hero-gm__brand">エディオン 天満橋店</h1>
+  <p class="hero-gm__tagline">大阪市中央区のリフォーム</p>
+  <a class="hero-gm__play" href="#video">
+    <span class="hero-gm__play-icon">▶</span>
+    
+  </a>
+</div>
+
+<script>
+(function(){
+  function init(){
+    var root=document.currentScript&&document.currentScript.closest('.hero-gm');
+    if(!root)root=document.querySelector('.hero-gm');
+    if(!root||!window.Splide)return;
+    new Splide(root.querySelector('.splide')).mount();
+  }
+  if(window.Splide)init();else window.addEventListener('load',init);
+})();
+</script>
+</section>
+
+</div>
+<div id="trust" class="site-section site-section--trust">
+<!-- trust: kotake -->
+<!--
+  Archetype: trust / kotake
+  Source:    小竹建設 (https://www.kotake.jp/) の #company セクション（"小竹建設とは"）を忠実模写
+
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: WordPress（独自テーマ）/ Typekit + Google Fonts
+  - 構造: 2 カラム横並び（左: 代表者写真 / 右: company 見出し + 経営理念テキスト 4 段落 + 代表者名 + View More ボタン）+ 下に "スタッフ紹介" バナー（背景写真 + 見出し + リンク）
+  - 配色: 背景 #fff / 写真ブロック / 本文 #2c2c2c / 副見出し（"company" 英字）#a4a5a9
+  - フォント: 大見出し Shippori Mincho（明朝、weight 500、letter-spacing .14em）/ 英字 Cormorant Garamond italic / 本文 Noto Sans JP
+  - 動き: 静的（参考にスクロール fade はあるが控えめ。ここでは scroll-trigger fade を弱く .8s で軽く再現）
+  - 信頼要素: CEO 顔写真 + 経営理念 4 段落 + 「代表取締役 ○○ ○○」サイン + 関連ページバナー(スタッフ)
+
+  ## Placeholders
+    {{trust.heading}}              大見出し（例: "サンプル建設とは"）
+    {{trust.heading_en}}           英字小見出し（例: "company"）
+    {{trust.lead}}                 リード文（バックグラウンド説明、1-2 文）
+    {{trust.ceo_photo}}            代表者写真 URL（縦長 670×665 想定）
+    {{trust.philosophy_title}}     理念見出し（明朝大、2 行想定）
+    {{trust.philosophy_p1}} ～ {{trust.philosophy_p4}}  経営理念本文 4 段落
+    {{trust.company_legal_name}}   法人名（例: "サンプル建設有限会社"）
+    {{trust.ceo_title}}            役職（例: "代表取締役"）
+    {{trust.ceo_name}}             代表者名
+    {{trust.more_label}}           View more ラベル
+    {{trust.staff_banner_image}}   スタッフ紹介バナー背景画像
+    {{trust.staff_banner_title}}   スタッフ紹介見出し
+    {{trust.staff_banner_en}}      英字（例: "staff"）
+    {{trust.staff_banner_desc}}    バナー説明
+    {{trust.staff_banner_label}}   バナー CTA ラベル
+-->
+<section class="trust-kotake">
+<style>
+.trust-kotake{background:#fff;color:#2c2c2c;font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;padding:120px 40px 100px;overflow:hidden}
+.trust-kotake__inner{max-width:1180px;margin:0 auto}
+.trust-kotake__head{text-align:center;margin:0 0 64px}
+.trust-kotake__h2{font-family:"Shippori Mincho",serif;font-weight:500;font-size:34px;letter-spacing:.14em;margin:0;color:#1a1a1a}
+.trust-kotake__en{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.32em;color:#a4a5a9;text-transform:lowercase;margin:14px 0 0;display:block}
+.trust-kotake__lead{max-width:640px;margin:24px auto 0;font-size:14px;line-height:1.95;color:#5b574f}
+
+.trust-kotake__row{display:grid;grid-template-columns:minmax(0,540px) 1fr;gap:64px;align-items:flex-start}
+.trust-kotake__photo{position:relative;aspect-ratio:670/665;overflow:hidden;background:#eae6df}
+.trust-kotake__photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.4s ease}
+.trust-kotake__photo:hover img{transform:scale(1.03)}
+.trust-kotake__content{padding-top:14px}
+.trust-kotake__philosophy_title{font-family:"Shippori Mincho",serif;font-weight:500;font-size:28px;letter-spacing:.1em;line-height:1.7;margin:0 0 32px;color:#1a1a1a}
+.trust-kotake__desc p{font-size:14.5px;line-height:2;color:#403c36;margin:0 0 18px}
+.trust-kotake__sig{margin:32px 0 0;font-family:"Shippori Mincho",serif;font-weight:500;font-size:15px;line-height:2;letter-spacing:.06em;color:#1a1a1a}
+.trust-kotake__more{display:inline-flex;align-items:center;gap:14px;margin-top:36px;padding:16px 30px;border:1px solid #1a1a1a;background:#fff;color:#1a1a1a;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.28em;text-decoration:none;text-transform:lowercase;transition:background .2s,color .2s}
+.trust-kotake__more::after{content:"→";font-style:normal}
+.trust-kotake__more:hover{background:#1a1a1a;color:#fff}
+
+.trust-kotake__banner{display:block;position:relative;margin:96px 0 0;height:240px;overflow:hidden;text-decoration:none;color:#fff}
+.trust-kotake__banner__bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .9s ease}
+.trust-kotake__banner:hover .trust-kotake__banner__bg{transform:scale(1.04)}
+.trust-kotake__banner::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.18) 100%)}
+.trust-kotake__banner__inner{position:relative;z-index:2;height:100%;display:flex;justify-content:space-between;align-items:center;padding:0 56px}
+.trust-kotake__banner__ttl{font-family:"Shippori Mincho",serif;font-weight:500;font-size:24px;letter-spacing:.18em;margin:0;color:#fff}
+.trust-kotake__banner__en{display:block;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.3em;color:rgba(255,255,255,.85);margin-top:8px}
+.trust-kotake__banner__desc{font-size:13px;line-height:1.9;color:rgba(255,255,255,.85);max-width:280px;margin:0 32px 0 0}
+.trust-kotake__banner__cta{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:12px;letter-spacing:.3em;color:#fff;padding:14px 24px;border:1px solid rgba(255,255,255,.55);text-transform:lowercase}
+
+@media (max-width:880px){
+  .trust-kotake{padding:80px 22px 64px}
+  .trust-kotake__row{grid-template-columns:1fr;gap:36px}
+  .trust-kotake__h2{font-size:24px}
+  .trust-kotake__philosophy_title{font-size:21px}
+  .trust-kotake__banner__inner{flex-direction:column;justify-content:center;text-align:center;padding:32px 22px;gap:18px}
+  .trust-kotake__banner__desc{margin:0}
+  .trust-kotake__banner{height:auto;min-height:240px}
+}
+</style>
+
+<div class="trust-kotake__inner">
+  <header class="trust-kotake__head">
+    <h2 class="trust-kotake__h2">私たちの想い</h2>
+    <span class="trust-kotake__en">company</span>
+    <p class="trust-kotake__lead">エディオン 天満橋店は大阪市中央区でリフォームをご提供しています。専門用語に頼らないわかりやすいご説明と、お客様の暮らしに寄り添ったご提案を心がけています。</p>
+  </header>
+
+  <div class="trust-kotake__row">
+    <figure class="trust-kotake__photo">
+      <img src="https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-ceo/670/665" alt="">
+    </figure>
+    <div class="trust-kotake__content">
+      <h3 class="trust-kotake__philosophy_title">暮らしを、<br>もっと心地よく。</h3>
+      <div class="trust-kotake__desc">
+        <p>「住まいを直す」だけでなく、「暮らしを整える」こと。私たちはお客様の日々の心地よさを大切にしています。</p>
+        <p>ご相談から施工、お引き渡し後のアフターまで、一貫してお付き合いさせていただきます。</p>
+        <p>地域に根ざした業者として、長く頼っていただける関係づくりを心がけています。</p>
+        <p>大阪市中央区でリフォームのことならお気軽にご相談ください。</p>
+      </div>
+      <p class="trust-kotake__sig">エディオン 天満橋店<br>代表　ご紹介</p>
+      <a class="trust-kotake__more" href="#company">詳しく見る</a>
+    </div>
+  </div>
+
+  <a class="trust-kotake__banner" href="#staff">
+    <span class="trust-kotake__banner__bg" style="background-image:url('https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-staff/1200/400')"></span>
+    <div class="trust-kotake__banner__inner">
+      <div>
+        <h3 class="trust-kotake__banner__ttl">スタッフ紹介<span class="trust-kotake__banner__en">staff</span></h3>
+      </div>
+      <p class="trust-kotake__banner__desc">お客様の住まいづくりに<br>誠実に向き合うスタッフがご対応します</p>
+      <span class="trust-kotake__banner__cta">スタッフ紹介一覧</span>
+    </div>
+  </a>
+</div>
+</section>
+
+</div>
+<div id="services" class="site-section site-section--services">
+<!-- services: kotake -->
+<!--
+  Archetype: services / kotake
+  Source:    小竹建設 (https://www.kotake.jp/) を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: WordPress / 自社テーマ / Noto Serif JP + Cormorant Garamond
+  - 構造:
+      <section id="concept"> > .concept-menu
+        .menu menu-concept menu-concept--3 内に 3 タイル
+          a.menu--design / menu--performance / menu--quality
+            .menu-label "注文住宅"（小ラベル）
+            .menu-content > h2 .menu-ttl "デザイン" + p .menu-en "design"
+            .menu-bg（背景画像オーバーレイ）
+            .menu-more "more →"
+        .menu menu-diagonal menu-diagonal--2 内に 2 タイル
+          menu--standard-house / menu--reform-renov
+            （subtitle なし、h2 + en + bg + more）
+  - 配色: 黒背景 + 白文字、写真背景にダーク overlay
+  - フォント: "Shippori Mincho"（和文）, "Cormorant Garamond"（英字 italic）
+  - 動き: on--opa class → ホバーで写真 opacity 変化
+  - 注意: 模写の主役は「タイル 3 + タイル 2」の 2 段組。"more →" は丸ボタンの代わりにライン
+  ## Placeholders
+    {{services.menu_1_label}} ~ menu_3_label   小ラベル（注文住宅 等）
+    {{services.menu_1_ttl}}   ~ menu_3_ttl     大見出し（デザイン/性能/品質）
+    {{services.menu_1_en}}    ~ menu_3_en      英字（design/performance/quality）
+    {{services.menu_1_image}} ~ menu_3_image   背景画像
+    {{services.sub_1_ttl}}    ~ sub_2_ttl      下段 2 タイルの和文 ttl
+    {{services.sub_1_en}}     ~ sub_2_en       下段 2 タイルの英字
+    {{services.sub_1_image}}  ~ sub_2_image    下段 2 タイル背景
+    {{services.more_label}}                    "more" 文言
+-->
+<section class="services-kotake">
+<style>
+.services-kotake{padding:120px 0;background:#1a1a1a;color:#fff;font-family:"Shippori Mincho",serif}
+.services-kotake__container{max-width:1280px;margin:0 auto;padding:0 40px}
+.services-kotake__row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:24px}
+.services-kotake__row--two{grid-template-columns:repeat(2,1fr)}
+.services-kotake__tile{position:relative;display:block;height:360px;overflow:hidden;text-decoration:none;color:#fff;background:#000;isolation:isolate}
+.services-kotake__tile-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s ease,opacity .3s ease;z-index:0}
+.services-kotake__tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18) 0%,rgba(0,0,0,.55) 100%);z-index:1;pointer-events:none;transition:background .3s ease}
+.services-kotake__tile:hover .services-kotake__tile-bg{transform:scale(1.05);opacity:.78}
+.services-kotake__tile:hover::after{background:linear-gradient(180deg,rgba(0,0,0,.32) 0%,rgba(0,0,0,.7) 100%)}
+.services-kotake__tile-inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:32px;text-align:center}
+.services-kotake__tile-label{font-family:"Shippori Mincho",serif;font-size:13px;letter-spacing:.32em;color:rgba(255,255,255,.85);margin:0 0 18px}
+.services-kotake__tile-ttl{font-family:"Shippori Mincho",serif;font-weight:500;font-size:34px;letter-spacing:.18em;line-height:1.4;margin:0 0 10px;color:#fff}
+.services-kotake__tile-en{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.32em;color:rgba(255,255,255,.7);margin:0 0 26px;text-transform:lowercase}
+.services-kotake__tile-more{display:inline-flex;align-items:center;gap:10px;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.24em;color:#fff;padding-bottom:4px;border-bottom:1px solid rgba(255,255,255,.6);transition:border-color .2s ease}
+.services-kotake__tile-more::after{content:"→"}
+.services-kotake__tile:hover .services-kotake__tile-more{border-bottom-color:#fff}
+
+.services-kotake__row--two .services-kotake__tile{height:240px}
+.services-kotake__row--two .services-kotake__tile-ttl{font-size:24px;letter-spacing:.14em}
+
+@media (max-width:880px){
+  .services-kotake{padding:72px 0}
+  .services-kotake__container{padding:0 20px}
+  .services-kotake__row{grid-template-columns:1fr;gap:16px;margin-bottom:16px}
+  .services-kotake__row--two{grid-template-columns:1fr}
+  .services-kotake__tile{height:280px}
+  .services-kotake__tile-ttl{font-size:26px}
+  .services-kotake__row--two .services-kotake__tile{height:200px}
+}
+</style>
+
+<div class="services-kotake__container">
+  <div class="services-kotake__row">
+    <a href="#" class="services-kotake__tile">
+      <div class="services-kotake__tile-bg" style="background-image:url('https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-svc-1/900/600')"></div>
+      <div class="services-kotake__tile-inner">
+        <p class="services-kotake__tile-label">リフォーム</p>
+        <h3 class="services-kotake__tile-ttl">デザイン提案</h3>
+        <p class="services-kotake__tile-en">service 01</p>
+        <span class="services-kotake__tile-more">詳しく見る</span>
+      </div>
+    </a>
+    <a href="#" class="services-kotake__tile">
+      <div class="services-kotake__tile-bg" style="background-image:url('https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-svc-2/900/600')"></div>
+      <div class="services-kotake__tile-inner">
+        <p class="services-kotake__tile-label">リフォーム</p>
+        <h3 class="services-kotake__tile-ttl">確かな施工</h3>
+        <p class="services-kotake__tile-en">service 02</p>
+        <span class="services-kotake__tile-more">詳しく見る</span>
+      </div>
+    </a>
+    <a href="#" class="services-kotake__tile">
+      <div class="services-kotake__tile-bg" style="background-image:url('https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-svc-3/900/600')"></div>
+      <div class="services-kotake__tile-inner">
+        <p class="services-kotake__tile-label">リフォーム</p>
+        <h3 class="services-kotake__tile-ttl">アフター対応</h3>
+        <p class="services-kotake__tile-en">service 03</p>
+        <span class="services-kotake__tile-more">詳しく見る</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="services-kotake__row services-kotake__row--two">
+    <a href="#" class="services-kotake__tile">
+      <div class="services-kotake__tile-bg" style="background-image:url('https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-svc-4/900/500')"></div>
+      <div class="services-kotake__tile-inner">
+        <h3 class="services-kotake__tile-ttl">部分リフォーム</h3>
+        <p class="services-kotake__tile-en">partial</p>
+        <span class="services-kotake__tile-more">詳しく見る</span>
+      </div>
+    </a>
+    <a href="#" class="services-kotake__tile">
+      <div class="services-kotake__tile-bg" style="background-image:url('https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-svc-5/900/500')"></div>
+      <div class="services-kotake__tile-inner">
+        <h3 class="services-kotake__tile-ttl">全面リノベーション</h3>
+        <p class="services-kotake__tile-en">full</p>
+        <span class="services-kotake__tile-more">詳しく見る</span>
+      </div>
+    </a>
+  </div>
+</div>
+</section>
+
+</div>
+<div id="gallery" class="site-section site-section--gallery">
+<!-- gallery: gm -->
+<!--
+  Archetype: gallery / gm
+  Source:    GM Contractors / Gordon Mitchell Contractors (https://gmcontractors.co.uk/) を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: 自前 + Awwwards Honorable Mention 取得サイト
+  - section: content.bg-gray-ltr > grid-container > home-projects-header + card-list
+  - 構造:
+    - home-projects-header:
+      - h2.text-sm.text-uppercase.text-bold.tracking-wide.line-heading "Selected projects"
+        （uppercase 英 small heading + 横ライン装飾）
+      - a "View all" 右端配置
+    - ul.card-list.related-projects.fade-up: 13 個 li.card
+      各 card:
+        - a > .image > .inner（background-image cover で 4:3 程度）
+        - .text:
+          - .top > h2.text-lg.text-bold.text-black.text-uppercase （プロジェクト名 "Lynwood" / "Drumnagesk" 等 1 語の地名）
+          - .category-list > button + button （"Residential" + "New Build" 等の 2 つ chip）
+          - .bottom > btn.btn-stroke.btn-black > span "View project"
+  - 配色: 黒/赤/グレー 3 色のミニマル配色（bg-gray-ltr 薄グレー背景 + black 文字 + 黒ストロークボタン）
+  - 動き: SVG アニメ主体の控えめ、fade-up scroll trigger
+
+  ## Placeholders
+    {{gallery.section_label}}        "Selected projects"
+    {{gallery.view_all_label}}       "View all"
+    {{gallery.card_N_image}}         N=1..6 (今回は6枚に縮小、実際は13)
+    {{gallery.card_N_title}}         プロジェクト名 (uppercase)
+    {{gallery.card_N_cat_1}}         カテゴリ chip 1（"Residential"）
+    {{gallery.card_N_cat_2}}         カテゴリ chip 2（"New Build"）
+    {{gallery.view_project_label}}   "View project"
+-->
+<section class="gallery-gm">
+<style>
+.gallery-gm{position:relative;background:#f1f1f1;color:#1a1a1a;padding:100px 0 110px;font-family:"Poppins","Noto Sans JP",sans-serif}
+.gallery-gm__container{max-width:1380px;margin:0 auto;padding:0 28px}
+
+.gallery-gm__header{display:flex;justify-content:space-between;align-items:center;margin-bottom:48px;gap:32px;flex-wrap:wrap}
+.gallery-gm__section-label{font-family:"Poppins",sans-serif;font-size:12px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:#1a1a1a;margin:0;position:relative;padding-left:36px}
+.gallery-gm__section-label::before{content:"";position:absolute;left:0;top:50%;width:24px;height:1px;background:#1a1a1a}
+.gallery-gm__view-all{font-family:"Poppins",sans-serif;font-size:12px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:#888;text-decoration:none;transition:color .25s}
+.gallery-gm__view-all:hover{color:#c0211f}
+
+.gallery-gm__list{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;list-style:none;padding:0;margin:0}
+.gallery-gm__card{position:relative;background:#fff;overflow:hidden;display:flex;flex-direction:column}
+.gallery-gm__card a{display:flex;flex-direction:column;text-decoration:none;color:inherit;flex:1}
+.gallery-gm__card-image{aspect-ratio:4/3;background-position:center;background-size:cover;background-color:#999;transition:transform .8s ease}
+.gallery-gm__card:hover .gallery-gm__card-image{transform:scale(1.04)}
+.gallery-gm__card-text{padding:24px 24px 26px;display:flex;flex-direction:column;justify-content:space-between;flex:1;gap:18px}
+.gallery-gm__card-title{font-family:"Poppins",sans-serif;font-size:22px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#1a1a1a;margin:0 0 12px;line-height:1.2}
+.gallery-gm__cat-list{display:flex;flex-wrap:wrap;gap:6px;margin:0}
+.gallery-gm__cat-list button{background:transparent;border:1px solid #999;padding:5px 12px;font-family:"Poppins",sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#555;cursor:pointer}
+.gallery-gm__btn{align-self:flex-start;background:transparent;border:1px solid #1a1a1a;padding:11px 22px;font-family:"Poppins",sans-serif;font-size:11px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:#1a1a1a;cursor:pointer;transition:all .25s}
+.gallery-gm__btn:hover{background:#1a1a1a;color:#fff}
+
+@media (max-width:880px){
+  .gallery-gm{padding:60px 0 80px}
+  .gallery-gm__container{padding:0 18px}
+  .gallery-gm__list{grid-template-columns:1fr;gap:18px}
+  .gallery-gm__card-title{font-size:20px}
+}
+</style>
+
+<div class="gallery-gm__container">
+  <div class="gallery-gm__header">
+    <h2 class="gallery-gm__section-label">Projects</h2>
+    <a href="#" class="gallery-gm__view-all">view all</a>
+  </div>
+
+  <ul class="gallery-gm__list">
+
+    <li class="gallery-gm__card">
+      <a href="#">
+        <div class="gallery-gm__card-image" style="background-image:url('https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-d7d3057f/1024/683')"></div>
+        <div class="gallery-gm__card-text">
+          <div>
+            <h3 class="gallery-gm__card-title">戸建てリフォーム例</h3>
+            <div class="gallery-gm__cat-list">
+              <button>リフォーム</button>
+              <button>大阪市中央区</button>
+            </div>
+          </div>
+          <button class="gallery-gm__btn">view project</button>
+        </div>
+      </a>
+    </li>
+
+    <li class="gallery-gm__card">
+      <a href="#">
+        <div class="gallery-gm__card-image" style="background-image:url('https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-79858296/1024/683')"></div>
+        <div class="gallery-gm__card-text">
+          <div>
+            <h3 class="gallery-gm__card-title">外壁塗装例</h3>
+            <div class="gallery-gm__cat-list">
+              <button>リフォーム</button>
+              <button>大阪市中央区</button>
+            </div>
+          </div>
+          <button class="gallery-gm__btn">view project</button>
+        </div>
+      </a>
+    </li>
+
+    <li class="gallery-gm__card">
+      <a href="#">
+        <div class="gallery-gm__card-image" style="background-image:url('https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-1d0c5718/1024/683')"></div>
+        <div class="gallery-gm__card-text">
+          <div>
+            <h3 class="gallery-gm__card-title">屋根改修例</h3>
+            <div class="gallery-gm__cat-list">
+              <button>リフォーム</button>
+              <button>大阪市中央区</button>
+            </div>
+          </div>
+          <button class="gallery-gm__btn">view project</button>
+        </div>
+      </a>
+    </li>
+
+    <li class="gallery-gm__card">
+      <a href="#">
+        <div class="gallery-gm__card-image" style="background-image:url('https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-cebb79cb/1024/683')"></div>
+        <div class="gallery-gm__card-text">
+          <div>
+            <h3 class="gallery-gm__card-title">水回りリフォーム例</h3>
+            <div class="gallery-gm__cat-list">
+              <button>リフォーム</button>
+              <button>大阪市中央区</button>
+            </div>
+          </div>
+          <button class="gallery-gm__btn">view project</button>
+        </div>
+      </a>
+    </li>
+
+    <li class="gallery-gm__card">
+      <a href="#">
+        <div class="gallery-gm__card-image" style="background-image:url('https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-fd6e206d/1024/683')"></div>
+        <div class="gallery-gm__card-text">
+          <div>
+            <h3 class="gallery-gm__card-title">和室改修例</h3>
+            <div class="gallery-gm__cat-list">
+              <button>リフォーム</button>
+              <button>大阪市中央区</button>
+            </div>
+          </div>
+          <button class="gallery-gm__btn">view project</button>
+        </div>
+      </a>
+    </li>
+
+    <li class="gallery-gm__card">
+      <a href="#">
+        <div class="gallery-gm__card-image" style="background-image:url('https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-7afd2dee/1024/683')"></div>
+        <div class="gallery-gm__card-text">
+          <div>
+            <h3 class="gallery-gm__card-title">外構工事例</h3>
+            <div class="gallery-gm__cat-list">
+              <button>リフォーム</button>
+              <button>大阪市中央区</button>
+            </div>
+          </div>
+          <button class="gallery-gm__btn">view project</button>
+        </div>
+      </a>
+    </li>
+
+  </ul>
+</div>
+</section>
+
+</div>
+<div id="process" class="site-section site-section--process">
+<!-- process: fls -->
+<!--
+  Archetype: process / fls
+  Source:    FL Specialty Roofing (https://www.flsroof.com/) を忠実模写
+  ## 模写スペック（raw HTML 抽出 + main.min.css 実測値）
+  - 制作技術: WordPress + contractor-starter theme + tiny-slider.js (横スライダー)
+  - 構造: <section class="process pt-def pb-lg">
+      └ header.process-title  (h2.micro tt-up fs-i / h3.lvl-2 "Feel Valued at Every Step.")
+      └ .container > .slider.process__slider.d-flex
+          └ 5× .col-process
+              └ .process--icon > <img> (上)
+              └ .process--info > h4 + p (白カード + box-shadow)
+      └ .slider-nav (prev / count / next)
+  - 配色: bg #fff / process-title bg #f6f6f6 / cards #fff with shadow 0 0 30px 4px rgba(0,0,0,.05)
+  - フォント: Poppins (h3 weight 275 uppercase, h4 weight 275 capitalize)
+  - 5 step: Discovery phase / Present the Estimate / Project Coordination / Construction Kickoff / Close Out
+  - 動き: tiny-slider 横スライダー（PC 3 表示 / mobile 1 表示）prev/next 矢印 + index count
+  - レスポンシブ: PC max-height:480px / SP slider 1 表示
+  ## Placeholders
+    {{process.section_title}}        小見出し（micro、英語）
+    {{process.section_heading}}      大見出し（"Feel Valued at Every Step." 相当）
+    {{process.step_1_image}}         step1 画像
+    {{process.step_1_title}}         step1 タイトル（"Discovery phase" 相当）
+    {{process.step_1_text}}          step1 説明本文
+    {{process.step_2_image}}
+    {{process.step_2_title}}
+    {{process.step_2_text}}
+    {{process.step_3_image}}
+    {{process.step_3_title}}
+    {{process.step_3_text}}
+    {{process.step_4_image}}
+    {{process.step_4_title}}
+    {{process.step_4_text}}
+    {{process.step_5_image}}
+    {{process.step_5_title}}
+    {{process.step_5_text}}
+-->
+<section class="process-fls">
+<style>
+.process-fls{position:relative;padding:80px 0 100px;background:#fff;font-family:"Poppins","Noto Sans JP",sans-serif;color:#434343}
+
+.process-fls__title{padding:20px 0;background-color:#f6f6f6;margin:0 0 25px;text-align:center}
+.process-fls__title-small{color:#434343;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.18em;text-transform:uppercase;margin:0 0 8px;font-weight:500}
+.process-fls__title-h3{color:#434343;font-family:"Poppins",sans-serif;font-size:clamp(24px,3.2vw,36px);font-weight:275;text-transform:uppercase;letter-spacing:.04em;margin:0;line-height:normal}
+
+.process-fls__container{width:100%;max-width:1185px;margin:0 auto;padding:0 16px;position:relative}
+.process-fls__slider{display:flex;gap:0;overflow:hidden}
+
+.process-fls__col{flex:0 0 calc((100% - 60px)/3);min-width:0;height:480px;max-height:480px;background-color:transparent;position:relative;overflow:hidden;display:flex;flex-direction:column;margin:0 30px;transition:transform .5s ease}
+.process-fls__icon{height:230px;max-height:230px;overflow:hidden}
+.process-fls__icon img{width:100%;height:100%;object-fit:cover;display:block}
+.process-fls__info{flex:1;background:#fff;box-shadow:0 0 30px 4px rgba(0,0,0,.05);padding:35px 25px 45px;text-align:center;overflow:visible}
+.process-fls__info h4{color:#434343;font-family:"Poppins",sans-serif;font-size:20px;font-weight:275;line-height:normal;text-transform:capitalize;margin:0 0 14px;letter-spacing:.02em}
+.process-fls__info p{color:#434343;font-family:"Poppins",sans-serif;font-size:14px;font-weight:300;line-height:1.6;margin:0 auto;max-width:47ch}
+
+.process-fls__nav{display:flex;justify-content:flex-end;gap:18px;align-items:center;margin:30px 30px 0;position:relative}
+.process-fls__nav button{width:36px;height:36px;border:1px solid #BD8B2A;background:transparent;color:#BD8B2A;cursor:pointer;font-family:"Poppins",sans-serif;font-size:16px;line-height:1;transition:all .3s;display:inline-flex;align-items:center;justify-content:center;padding:0}
+.process-fls__nav button:hover{background:#BD8B2A;color:#fff}
+.process-fls__nav button:disabled{opacity:.25;cursor:not-allowed;pointer-events:none}
+.process-fls__count{color:#a7a7a7;font-family:"Poppins",sans-serif;font-size:14px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;min-width:60px;text-align:center}
+
+@media (max-width:1024px){
+  .process-fls__col{flex:0 0 calc((100% - 40px)/2);margin:0 20px}
+}
+@media (max-width:768px){
+  .process-fls__col{flex:0 0 calc(100% - 24px);margin:0 12px;height:auto;max-height:none}
+  .process-fls__icon{height:200px}
+  .process-fls__nav{justify-content:center;gap:30px;margin-top:24px}
+}
+</style>
+
+<header class="process-fls__title">
+  <p class="process-fls__title-small">ご相談から施工までの流れ</p>
+  <h3 class="process-fls__title-h3">Process</h3>
+</header>
+
+<div class="process-fls__container">
+  <div class="process-fls__slider" data-process-fls-slider>
+    <div class="process-fls__col">
+      <div class="process-fls__icon"><img src="https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-b92fa35b/800/600" alt="お問い合わせ" loading="lazy"></div>
+      <div class="process-fls__info">
+        <h4>お問い合わせ</h4>
+        <p>お電話・お問い合わせフォームより、お気軽にご連絡ください。</p>
+      </div>
+    </div>
+    <div class="process-fls__col">
+      <div class="process-fls__icon"><img src="https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-e3249ec3/800/600" alt="現地調査・ヒアリング" loading="lazy"></div>
+      <div class="process-fls__info">
+        <h4>現地調査・ヒアリング</h4>
+        <p>現地を拝見し、ご要望を丁寧にお伺いいたします。</p>
+      </div>
+    </div>
+    <div class="process-fls__col">
+      <div class="process-fls__icon"><img src="https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-66f08953/800/600" alt="お見積りのご提示" loading="lazy"></div>
+      <div class="process-fls__info">
+        <h4>お見積りのご提示</h4>
+        <p>施工内容とお見積りをわかりやすくご提示します。</p>
+      </div>
+    </div>
+    <div class="process-fls__col">
+      <div class="process-fls__icon"><img src="https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-d1dfd4c4/800/600" alt="ご契約" loading="lazy"></div>
+      <div class="process-fls__info">
+        <h4>ご契約</h4>
+        <p>ご納得いただいた上でご契約となります。</p>
+      </div>
+    </div>
+    <div class="process-fls__col">
+      <div class="process-fls__icon"><img src="https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-b9594920/800/600" alt="施工開始" loading="lazy"></div>
+      <div class="process-fls__info">
+        <h4>施工開始</h4>
+        <p>事前にスケジュールをお伝えし、丁寧に施工いたします。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="process-fls__nav">
+    <button type="button" data-process-fls-prev aria-label="Previous">‹</button>
+    <div class="process-fls__count" data-process-fls-count>1 / 5</div>
+    <button type="button" data-process-fls-next aria-label="Next">›</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root=document.currentScript&&document.currentScript.closest('.process-fls');
+  if(!root)root=document.querySelector('.process-fls');
+  if(!root)return;
+  var slider=root.querySelector('[data-process-fls-slider]');
+  var cols=slider.querySelectorAll('.process-fls__col');
+  var prev=root.querySelector('[data-process-fls-prev]');
+  var next=root.querySelector('[data-process-fls-next]');
+  var count=root.querySelector('[data-process-fls-count]');
+  var total=cols.length;
+  var current=0;
+  function visible(){var w=window.innerWidth;if(w<=768)return 1;if(w<=1024)return 2;return 3;}
+  function update(){
+    var v=visible();
+    if(current>total-v)current=Math.max(0,total-v);
+    if(current<0)current=0;
+    var step=cols[0].getBoundingClientRect().width + (parseInt(getComputedStyle(cols[0]).marginLeft)||0)*2;
+    slider.style.transform='translateX(-'+(current*step)+'px)';
+    slider.style.transition='transform .5s ease';
+    count.textContent=(current+1)+' / '+total;
+    prev.disabled=current<=0;
+    next.disabled=current>=total-v;
+  }
+  prev.addEventListener('click',function(){current--;update();});
+  next.addEventListener('click',function(){current++;update();});
+  window.addEventListener('resize',update);
+  update();
+})();
+</script>
+</section>
+
+</div>
+<div id="area" class="site-section site-section--area">
+<!-- area: kotake -->
+<!--
+  Archetype: area / kotake
+  Source:    小竹建設 (https://www.kotake.jp/) を忠実模写
+  ## 模写スペック（raw HTML + front.css/common.css 実測値）
+  - 制作技術: WordPress（kotake-shinchiku theme）, fonts: NotoSerifJP + Adobe Typekit "maecenas" (serif)
+  - 構造: footer .info 内に .area（sec-head pin アイコン + sec-ttl + sec-en + area-desc + notes）
+          直下に .shop（複数店舗を横並び。各店舗: shop-image + shop-content[ttl + add] + shop-map[Google Maps iframe]）
+  - 文言（参考）:
+      対応エリア / area
+      「長野県飯田市、下伊那を中心に1時間圏内で対応しております。」
+      ※「そのほか地域の方もまずはお問い合わせください。」
+  - 配色: 白背景 #fff / 本文 #2c2c2c / 区切り #d2d2d2 / 注釈うす色
+  - sec-head ::before に pin.svg（位置マーカー）を中央配置
+  - shop-map .ggmap は padding-bottom:45% で aspect-ratio 制御
+  - 動き: 静止（footer 内の info ブロックなのでアニメなし）
+  ## Placeholders
+    {{area.section_label_jp}}             "対応エリア"
+    {{area.section_label_en}}             "area"
+    {{area.desc_main}}                    「◯◯ を中心に◯時間圏内で対応しております。」
+    {{area.desc_notes}}                   「そのほか地域の方も…」
+    {{area.shop_1_image}}                 店舗 1 外観写真
+    {{area.shop_1_name}}                  "本社" / "本店" 等
+    {{area.shop_1_address}}               郵便番号 + 住所 + TEL（<br> 込み HTML）
+    {{area.shop_1_map_embed}}             Google Maps 埋め込み URL（iframe src）
+    {{area.shop_2_image}}                 店舗 2 外観写真
+    {{area.shop_2_name}}
+    {{area.shop_2_address}}
+    {{area.shop_2_map_embed}}
+-->
+<section class="area-kotake">
+<style>
+.area-kotake{background:#fff;color:#2c2c2c;font-family:"Noto Serif JP","NotoSerifJP",serif;padding:80px 0;position:relative}
+.area-kotake__info{max-width:1140px;margin:0 auto;padding:24px 40px 36px;display:flex;justify-content:space-between;align-items:center;gap:48px;border-top:1px solid #d2d2d2;border-bottom:1px solid #d2d2d2}
+
+.area-kotake__head{position:relative;flex:0 0 auto;width:130px;padding-top:42px;text-align:center}
+.area-kotake__head::before{content:"";position:absolute;top:0;left:50%;width:18px;height:27px;transform:translateX(-50%);background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 27'><path d='M9 0C4 0 0 4 0 9c0 6 9 18 9 18s9-12 9-18c0-5-4-9-9-9z' fill='%232c2c2c'/><circle cx='9' cy='9' r='3.5' fill='%23fff'/></svg>") center/contain no-repeat}
+.area-kotake__ttl{font-family:"Noto Serif JP",serif;font-weight:500;font-size:20px;line-height:1.21;margin:0;letter-spacing:.06em}
+.area-kotake__en{font-family:"Cormorant Garamond",maecenas,serif;font-weight:400;font-size:14px;letter-spacing:.08em;margin:.3em 0 0;color:#8a8073;text-transform:lowercase}
+
+.area-kotake__desc{flex:1 1 auto;max-width:450px}
+.area-kotake__desc p{margin:0;line-height:1.75em;letter-spacing:.04em;font-size:15px;color:#2c2c2c}
+.area-kotake__desc p.notes{margin-top:.2em;padding-left:1em;font-size:13px;text-indent:-1em;color:#8a8073}
+.area-kotake__desc p.notes::before{content:"※"}
+
+.area-kotake__shop{max-width:1140px;margin:0 auto;padding:40px;display:flex;justify-content:space-between;gap:40px}
+.area-kotake__shop-card{width:50%;display:flex;flex-direction:column}
+.area-kotake__shop-image{margin-bottom:14px;overflow:hidden}
+.area-kotake__shop-image img{display:block;width:100%;height:180px;object-fit:cover}
+.area-kotake__shop-contents{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:14px}
+.area-kotake__shop-content{flex:1 1 auto}
+.area-kotake__shop-ttl{margin:0 0 .5em;font-size:20px;font-weight:500;line-height:1.25em;letter-spacing:.12em;font-family:"Noto Serif JP",serif}
+.area-kotake__shop-add p{margin:0;line-height:1.75em;font-size:13px;color:#3a3a3a}
+.area-kotake__shop-map{position:relative;width:100%;padding-bottom:45%;overflow:hidden}
+.area-kotake__shop-map iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+
+@media (max-width:880px){
+  .area-kotake{padding:48px 0}
+  .area-kotake__info{flex-direction:column;align-items:center;gap:14px;padding:24px;text-align:center}
+  .area-kotake__head{width:auto;padding-top:42px}
+  .area-kotake__desc{max-width:none}
+  .area-kotake__shop{flex-direction:column;padding:24px;gap:32px}
+  .area-kotake__shop-card{width:100%}
+  .area-kotake__shop-map{padding-bottom:55%}
+}
+</style>
+
+<div class="area-kotake__info">
+  <div class="area-kotake__head">
+    <h2 class="area-kotake__ttl">対応エリア</h2>
+    <p class="area-kotake__en">area</p>
+  </div>
+  <div class="area-kotake__desc">
+    <p>大阪市中央区を中心に、近隣エリアまで対応いたします。</p>
+    <p class="notes">そのほかの地域もまずはご相談ください。</p>
+  </div>
+</div>
+
+<div class="area-kotake__shop">
+  <div class="area-kotake__shop-card">
+    <div class="area-kotake__shop-image">
+      <img src="https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-72168fe6/700/300" alt="エディオン 天満橋店">
+    </div>
+    <div class="area-kotake__shop-contents">
+      <div class="area-kotake__shop-content">
+        <p class="area-kotake__shop-ttl">エディオン 天満橋店</p>
+        <div class="area-kotake__shop-add"><p>〒540-0032 大阪府大阪市中央区天満橋京町１−１ ６階<br>TEL：06-6940-2820</p></div>
+      </div>
+    </div>
+    <div class="area-kotake__shop-map">
+      <iframe src="https://maps.google.com/maps?q=%E3%80%92540-0032+%E5%A4%A7%E9%98%AA%E5%BA%9C%E5%A4%A7%E9%98%AA%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%A4%A9%E6%BA%80%E6%A9%8B%E4%BA%AC%E7%94%BA%EF%BC%91%E2%88%92%EF%BC%91+%EF%BC%96%E9%9A%8E&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div class="area-kotake__shop-card">
+    <div class="area-kotake__shop-image">
+      <img src="https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-e64edbf2/700/300" alt="">
+    </div>
+    <div class="area-kotake__shop-contents">
+      <div class="area-kotake__shop-content">
+        <p class="area-kotake__shop-ttl"></p>
+        <div class="area-kotake__shop-add"><p></p></div>
+      </div>
+    </div>
+    <div class="area-kotake__shop-map">
+      <iframe src="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+</section>
+
+</div>
+<div id="cta" class="site-section site-section--cta">
+<!-- cta: kotake -->
+<!--
+  Archetype: cta / kotake
+  Source:    小竹建設 (https://www.kotake.jp/) を忠実模写
+  ## 模写スペック（raw HTML + 抽出 CSS）
+  - 構造: <a.bnr.bnr--consultation> 全体クリッカブル横長バナー
+    > .bnr-content (左の文字組: bnr-ttl "土地から探す/家づくり" + bnr-en "Free Consultation")
+    > .bnr-btn (右下: btn-main--bg "土地の無料相談会を申し込む")
+    > .bnr-in > .bnr-bg (背景写真 consultation.jpg)
+  - サイズ (PC ≧ 1441): width 990px / height 375px / btn 340x60 (right -10 bottom 40)
+  - サイズ (PC 751-1440): 68.75vw / 26vw height
+  - サイズ (SP ≦ 750): 94.6vw / 72.4vw height、ttl 8.8vw、btn bottom 4vw / width 69.3vw
+  - bnr-ttl: NotoSerifJP weight 500 / letter-spacing .12em / 白
+  - bnr-en: maecenas serif（Typekit） / 白 / 1.6vw or 24px
+  - 動き: ホバーで bg scale(1.05) transform .4s
+  ## Placeholders
+    {{cta.banner_image}}        背景写真（consultation.jpg 相当）
+    {{cta.banner_url}}          バナー全体リンク先（/support/ 相当）
+    {{cta.title_line_1}}        bnr-ttl 1 行目（"土地から探す"）
+    {{cta.title_line_2}}        bnr-ttl 2 行目（"家づくり"）
+    {{cta.en_label}}            bnr-en（"Free Consultation"）
+    {{cta.button_label}}        btn 内テキスト（"土地の無料相談会を申し込む"）
+-->
+<section class="cta-kotake">
+<style>
+.cta-kotake{padding:40px 0;background:#fff;font-family:"Noto Serif JP",serif}
+.cta-kotake__bnr{position:relative;display:block;margin:0 auto;width:94.6666666667vw;height:72.4vw;color:#fff;text-decoration:none;overflow:hidden;border-radius:0}
+.cta-kotake__content{position:absolute;top:8vw;left:8.6666666667vw;z-index:2}
+.cta-kotake__ttl{margin:0;color:#fff;font-family:"Shippori Mincho","Noto Serif JP",serif;font-size:8.8vw;font-weight:500;line-height:1.5em;letter-spacing:.12em}
+.cta-kotake__ttl span{display:block}
+.cta-kotake__en{margin-top:.3em;color:#fff;font-family:"Cormorant Garamond","Maecenas",serif;font-style:italic;font-size:5.3333333333vw;font-weight:500;letter-spacing:.12em}
+.cta-kotake__btn{position:absolute;right:0;bottom:4vw;width:69.3333333333vw;z-index:2;height:60px;display:flex;align-items:center;justify-content:center;background:#1a1a1a;color:#fff;font-family:"Shippori Mincho","Noto Serif JP",serif;font-size:14px;letter-spacing:.18em;font-weight:500}
+.cta-kotake__in{position:relative;width:100%;height:100%;overflow:hidden}
+.cta-kotake__bg{position:absolute;top:0;left:0;width:100%;height:100%;background-image:url("https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-cta/1600/600");background-position:center;background-repeat:no-repeat;background-size:cover;transition:transform .4s}
+.cta-kotake__bnr:hover .cta-kotake__bg{transform:scale(1.05,1.05)}
+
+@media (min-width:751px){
+  .cta-kotake__bnr{width:68.75vw;height:26.0416666667vw}
+  .cta-kotake__content{top:50%;left:3.125vw;transform:translateY(-50%)}
+  .cta-kotake__ttl{font-size:2.5vw;line-height:1.75em}
+  .cta-kotake__en{font-size:1.6666666667vw}
+  .cta-kotake__btn{right:-.6944444444vw;bottom:2.7777777778vw;width:23.6111111111vw;height:60px}
+}
+@media (min-width:1441px){
+  .cta-kotake__bnr{width:990px;height:375px}
+  .cta-kotake__content{left:45px}
+  .cta-kotake__ttl{font-size:3.6rem}
+  .cta-kotake__en{font-size:2.4rem}
+  .cta-kotake__btn{right:-10px;bottom:40px;width:340px}
+}
+</style>
+
+<a class="cta-kotake__bnr" href="#contact">
+  <div class="cta-kotake__content">
+    <h2 class="cta-kotake__ttl"><span>お見積り・ご相談は</span><span>お気軽にどうぞ</span></h2>
+    <p class="cta-kotake__en">Contact</p>
+  </div>
+  <div class="cta-kotake__btn"><span>お問い合わせはこちら</span></div>
+  <div class="cta-kotake__in">
+    <div class="cta-kotake__bg"></div>
+  </div>
+</a>
+</section>
+
+</div>
+<div id="footer" class="site-section site-section--footer">
+<!-- footer: fls -->
+<!--
+  Archetype: footer / fls
+  Source:    FL Specialty Roofing (https://flsroof.com/) を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: WordPress + 自前 (Bootstrap grid 系)
+  - 構造: footer-wrap > 2 カラム
+    左 .footer-logo: 大ロゴ画像 + .footer-social (4 SVG: Google/FB/LinkedIn/IG) + .copyright (long text)
+    右 .footer-nav--wrap:
+        nav#menu-footer 5 親 li with sub-menu (About>Areas/Careers / Services>Residential/Multi-Family/Commercial/Custom / Resources>Products/FAQs/Testimonials/Blog / Gallery / Contact)
+        .hr
+        .address-wrap: call-icon (tel) + address-icon (address) + time-icon (M-F: 8 AM - 5 PM, Sat-Sun: Closed)
+  - 配色: ベース dark navy + 白 / アクセント orange (FLS brand)
+  - フォント: 主 sans (Roboto / Inter 風)
+  - 動き: hover で a 色変化
+  ## Placeholders
+    footer.logo_img              大ロゴ画像
+    footer.social_url_1~footer.social_url_4    SNS 4 個 URL
+    footer.social_label_1~footer.social_label_4    SNS ラベル (GO/FB/IN/IG)
+    footer.copyright             長文 copyright + privacy/terms
+    footer.nav_1_title~footer.nav_3_title    About/Services/Resources 親 + 子
+    footer.nav_1_child_1~footer.nav_3_child_4    子リンク
+    footer.nav_4_title/footer.nav_5_title        Gallery/Contact (子なし)
+    company.tel_display          tel 表示
+    company.tel                  href tel:
+    footer.address               住所
+    footer.address_url           Google Maps URL
+    footer.hours                 営業時間 "M-F: 8 AM - 5 PM, Sat - Sun: Closed"
+-->
+<section class="footer-fls">
+<style>
+.footer-fls{background:#0e2433;color:#fff;font-family:"Poppins","Noto Sans JP",sans-serif;padding:80px 32px 48px;box-sizing:border-box}
+.footer-fls__inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:64px}
+
+.footer-fls__logo-col{}
+.footer-fls__logo{display:block;max-width:280px;margin:0 0 32px}
+.footer-fls__logo img{width:100%;height:auto;display:block}
+.footer-fls__social{display:flex;gap:16px;margin-bottom:24px}
+.footer-fls__social a{display:inline-flex;width:42px;height:42px;align-items:center;justify-content:center;background:#fff;color:#0e2433;border-radius:50%;font-family:"Poppins",sans-serif;font-size:13px;font-weight:600;letter-spacing:.04em;text-decoration:none;transition:background .2s,color .2s}
+.footer-fls__social a:hover{background:#f0a050;color:#0e2433}
+.footer-fls__copyright{font-family:"Poppins",sans-serif;font-size:12px;line-height:1.7;color:#b3c4d1;margin:0;max-width:420px}
+.footer-fls__copyright a{color:#fff;text-decoration:underline;transition:color .2s}
+.footer-fls__copyright a:hover{color:#f0a050}
+
+.footer-fls__nav-col{}
+.footer-fls__nav{display:flex;flex-wrap:wrap;gap:24px 40px;list-style:none;padding:0;margin:0 0 28px}
+.footer-fls__nav > li{flex:1 1 140px}
+.footer-fls__nav > li > a{display:block;font-family:"Poppins",sans-serif;font-size:15px;font-weight:600;letter-spacing:.04em;color:#fff;text-decoration:none;margin-bottom:10px;transition:color .2s}
+.footer-fls__nav > li > a:hover{color:#f0a050}
+.footer-fls__sub{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+.footer-fls__sub a{font-family:"Poppins",sans-serif;font-size:13px;color:#b3c4d1;text-decoration:none;transition:color .2s}
+.footer-fls__sub a:hover{color:#fff}
+
+.footer-fls__hr{height:1px;background:#2a4255;border:0;margin:0 0 28px}
+
+.footer-fls__address-wrap{display:flex;flex-direction:column;gap:14px;font-family:"Poppins",sans-serif;font-size:14px}
+.footer-fls__address-wrap a{color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:color .2s}
+.footer-fls__address-wrap a:hover{color:#f0a050}
+.footer-fls__icon{display:inline-flex;width:20px;height:20px;align-items:center;justify-content:center;color:#f0a050}
+.footer-fls__time{font-family:"Poppins",sans-serif;font-size:13px;color:#b3c4d1;margin:0;display:inline-flex;align-items:center;gap:10px}
+
+@media (max-width:880px){
+  .footer-fls{padding:56px 20px 32px}
+  .footer-fls__inner{grid-template-columns:1fr;gap:40px}
+  .footer-fls__nav{gap:20px}
+}
+</style>
+
+<div class="footer-fls__inner">
+  <div class="footer-fls__logo-col">
+    <a class="footer-fls__logo" href="/"><img src="https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-7041f7ac/300/80" alt=""></a>
+    <div class="footer-fls__social">
+      <a href="#" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
+      <a href="#" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+      <a href="#" target="_blank" rel="noopener" aria-label="X">X</a>
+      <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
+    </div>
+    <p class="footer-fls__copyright">© エディオン 天満橋店</p>
+  </div>
+
+  <div class="footer-fls__nav-col">
+    <nav>
+      <ul class="footer-fls__nav">
+        <li>
+          <a href="#">サービス</a>
+          <ul class="footer-fls__sub">
+            <li><a href="#">リフォーム</a></li>
+            <li><a href="#">メンテナンス</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">会社</a>
+          <ul class="footer-fls__sub">
+            <li><a href="#">会社概要</a></li>
+            <li><a href="#">施工事例</a></li>
+            <li><a href="#">お客様の声</a></li>
+            <li><a href="#">ブログ</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">サポート</a>
+          <ul class="footer-fls__sub">
+            <li><a href="#">お問い合わせ</a></li>
+            <li><a href="#">よくあるご質問</a></li>
+            <li><a href="#">プライバシー</a></li>
+            <li><a href="#">利用規約</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"></a>
+        </li>
+        <li>
+          <a href="#"></a>
+        </li>
+      </ul>
+    </nav>
+
+    <hr class="footer-fls__hr">
+
+    <div class="footer-fls__address-wrap">
+      <a href="tel:0669402820"><span class="footer-fls__icon">T</span>06-6940-2820</a>
+      <a href="https://www.google.com/maps?q=%E3%80%92540-0032+%E5%A4%A7%E9%98%AA%E5%BA%9C%E5%A4%A7%E9%98%AA%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%A4%A9%E6%BA%80%E6%A9%8B%E4%BA%AC%E7%94%BA%EF%BC%91%E2%88%92%EF%BC%91+%EF%BC%96%E9%9A%8E" target="_blank" rel="noopener"><span class="footer-fls__icon">A</span>〒540-0032 大阪府大阪市中央区天満橋京町１−１ ６階</a>
+      <p class="footer-fls__time"><span class="footer-fls__icon">H</span>受付 9:00-18:00</p>
+    </div>
+  </div>
+</div>
+</section>
+
+</div>
+
+<script>
+(function(){
+  var header = document.querySelector('[data-site-header]');
+  var nav = document.querySelector('[data-site-nav]');
+  var burgers = document.querySelectorAll('[data-burger]');
+  var navLinks = nav ? nav.querySelectorAll('a[href^="#"]') : [];
+
+  function onScroll(){
+    if(!header) return;
+    if(window.scrollY > 80) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  function toggleNav(force){
+    if(!nav) return;
+    var open = (typeof force === 'boolean') ? force : !nav.classList.contains('is-open');
+    nav.classList.toggle('is-open', open);
+    nav.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+    var btn = document.querySelector('.site-header__burger');
+    if(btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  burgers.forEach(function(b){ b.addEventListener('click', function(){ toggleNav(); }); });
+  navLinks.forEach(function(a){ a.addEventListener('click', function(){ toggleNav(false); }); });
+})();
+</script>
+</body>
+</html>
