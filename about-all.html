@@ -1,0 +1,2389 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ABOUT archetype 一覧 — 確認用プレビュー（サンプルデータ）</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Poppins:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<!-- Splide for fade slideshow (photo / teto-replica) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" defer></script>
+<!-- Swiper for parallax (narrative) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#f5f3ef;font-family:"Noto Sans JP",sans-serif;color:#2c2c2c}
+.warning-banner{position:sticky;top:0;background:#c97557;color:#fff;text-align:center;padding:10px 16px;font-size:13px;letter-spacing:.12em;z-index:9999;font-family:"Shippori Mincho",serif}
+.warning-banner strong{font-weight:600}
+.intro{padding:60px 32px;text-align:center;border-bottom:1px solid #d8d2c7}
+.intro h1{font-family:"Shippori Mincho",serif;font-size:30px;letter-spacing:.14em;margin:0 0 14px;color:#2c2c2c;font-weight:500}
+.intro p{max-width:720px;margin:0 auto;font-size:14px;line-height:1.95;color:#5b574f}
+.intro .meta{margin-top:24px;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:12px;letter-spacing:.24em;color:#8d8479}
+.archetype-label{background:#2c2c2c;color:#f5f3ef;padding:18px 32px;display:flex;align-items:baseline;gap:16px;border-top:4px solid #d4a574}
+.archetype-label .num{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.24em;color:#d4a574}
+.archetype-label .name{font-family:"JetBrains Mono",monospace;font-size:15px;letter-spacing:.04em}
+.archetype-label .src{font-family:"Shippori Mincho",serif;font-size:13px;letter-spacing:.14em;color:#a4a5a9;margin-left:auto}
+</style>
+</head>
+<body>
+<div class="warning-banner">⚠️ これは <strong>確認用プレビュー</strong> です。すべて <strong>サンプル／デモ値</strong> が入っています。実業者データではありません。</div>
+
+<section class="intro">
+  <h1>ABOUT archetype 一覧</h1>
+  <p>archetype の粒度確認用。サンプルデータ（「デモカンパニー」「サンプル」「◯◯ 年」等）を流し込んでいます。実 HP の生成時にはこれらが実業者の情報に置き換わります。</p>
+  <p class="meta">— preview build / 2026-05-20 11:53 —</p>
+</section>
+
+<div class="archetype-label">
+  <span class="num">B1</span>
+  <span class="name">about / yutaka</span>
+  <span class="src">ユタカプラス 忠実模写（home_about 4 写真重ね + 緑見出し）</span>
+</div>
+<!--
+  Archetype: about / yutaka
+  Source:    ユタカプラス (https://yutakaplus.jp/) の home_about ブロックを忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: WordPress + jQuery（slick.min.js は本 section 内不使用）
+  - 構造: <section.home_about> > div.flex.flex-j-end.flex-sp-block
+      > .imgarea.pos_rel
+        > img.about_img01 720x480 (メイン写真、奥)
+        > img.about_img02 321x483 (サブ縦長、絶対配置で重なる)
+        > img.about_img03 382x420 (サブ横長、絶対配置で重なる)
+      > .txtarea.pos_rel
+        > h2.home_ttl
+          > span.font-en "ABOUT US"
+          > span.font-jp "ユタカプラスについて"
+        > p.about--txt 5〜6 行のリード（プロ職人 / 鉄道・高速・工場 / 柔軟性・高品質・安全 ...）
+        > .btn > a "会社概要をみる"
+        > img.about_img04 232x240 (右下絶対配置、丸装飾)
+  - 配色: 全体 home_bg ベージュ系（#f5f0e6 系）、英字見出しは明るいグリーン #6fba2c、本文 #2c2c2c
+  - フォント: 英字 Sen / Albert Sans + 大きめ、和字 Noto Sans JP 700 + 縦並び 2 段見出し
+  - 動き: 写真の絶対配置によるオーバーラップ。scroll fade-in は参考になし
+  ## Placeholders
+    about.intro_label_en       "ABOUT US" 英字見出し
+    about.title_jp             "ユタカプラスについて" 和字見出し（br 改行可）
+    about.lead_html            本文 HTML 可（<br> 多用）
+    about.button_label         "会社概要をみる" 相当
+    about.button_href          ボタン遷移先
+    about.image_main           メイン写真 (720x480 想定)
+    about.image_sub1           サブ写真 1 (縦長、321x483 想定)
+    about.image_sub2           サブ写真 2 (横長、382x420 想定)
+    about.image_deco           右下丸装飾 (232x240 想定)
+-->
+<section class="about-yutaka">
+<style>
+.about-yutaka{position:relative;padding:96px 32px 120px;background:#f5f0e6;color:#2c2c2c;font-family:"Noto Sans JP",sans-serif;overflow:hidden}
+.about-yutaka__inner{max-width:1280px;margin:0 auto;display:flex;justify-content:flex-end;align-items:flex-start;gap:64px}
+
+.about-yutaka__imgarea{position:relative;flex:0 0 56%;min-height:560px}
+.about-yutaka__img-main{display:block;width:75%;height:auto;border-radius:2px;box-shadow:0 12px 32px rgba(0,0,0,.12)}
+.about-yutaka__img-sub1{position:absolute;left:0;top:38%;width:32%;height:auto;border-radius:2px;box-shadow:0 8px 22px rgba(0,0,0,.18)}
+.about-yutaka__img-sub2{position:absolute;right:0;top:62%;width:42%;height:auto;border-radius:2px;box-shadow:0 8px 22px rgba(0,0,0,.18)}
+
+.about-yutaka__txtarea{position:relative;flex:0 0 38%;padding-top:24px}
+.about-yutaka__ttl{margin:0 0 32px;font-weight:700;line-height:1.3}
+.about-yutaka__ttl-en{display:block;font-family:"Sen","Albert Sans",sans-serif;font-weight:700;font-size:54px;letter-spacing:.06em;color:#6fba2c;margin-bottom:8px;line-height:1}
+.about-yutaka__ttl-jp{display:block;font-family:"Noto Sans JP",sans-serif;font-weight:700;font-size:24px;letter-spacing:.08em;color:#2c2c2c}
+.about-yutaka__lead{font-size:14px;line-height:2.1;letter-spacing:.04em;color:#2c2c2c;margin:0 0 40px}
+.about-yutaka__btn{display:inline-block}
+.about-yutaka__btn a{display:inline-flex;align-items:center;gap:14px;padding:16px 36px;background:#2c2c2c;color:#fff;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:.18em;border-radius:2px;transition:background .2s}
+.about-yutaka__btn a::after{content:"→";font-family:"Sen",sans-serif;font-size:16px;color:#7bc63f}
+.about-yutaka__btn a:hover{background:#3e8616}
+.about-yutaka__img-deco{position:absolute;right:-32px;bottom:-32px;width:200px;height:auto;border-radius:50%;box-shadow:0 12px 28px rgba(0,0,0,.18);object-fit:cover}
+
+@media (max-width:1024px){
+  .about-yutaka__inner{gap:32px}
+  .about-yutaka__imgarea{min-height:480px}
+  .about-yutaka__ttl-en{font-size:42px}
+}
+@media (max-width:880px){
+  .about-yutaka{padding:64px 20px 80px}
+  .about-yutaka__inner{flex-direction:column;align-items:stretch;gap:32px}
+  .about-yutaka__imgarea{flex:1 1 auto;min-height:auto;height:auto}
+  .about-yutaka__img-main{width:88%;margin-left:auto;display:block}
+  .about-yutaka__img-sub1{width:42%;top:48%}
+  .about-yutaka__img-sub2{width:48%;top:auto;bottom:-32px}
+  .about-yutaka__txtarea{flex:1 1 auto;padding-top:16px}
+  .about-yutaka__ttl-en{font-size:34px}
+  .about-yutaka__ttl-jp{font-size:20px}
+  .about-yutaka__img-deco{right:0;bottom:-24px;width:120px}
+}
+@media (max-width:768px){
+  .about-yutaka__lead{font-size:13px;line-height:2.0}
+}
+</style>
+
+<div class="about-yutaka__inner">
+  <div class="about-yutaka__imgarea">
+    <img class="about-yutaka__img-main" src="https://picsum.photos/seed/yutaka-about-main/720/480" alt="">
+    <img class="about-yutaka__img-sub1" src="https://picsum.photos/seed/yutaka-about-sub1/321/483" alt="">
+    <img class="about-yutaka__img-sub2" src="https://picsum.photos/seed/yutaka-about-sub2/382/420" alt="">
+  </div>
+  <div class="about-yutaka__txtarea">
+    <h2 class="about-yutaka__ttl">
+      <span class="about-yutaka__ttl-en">ABOUT US</span>
+      <span class="about-yutaka__ttl-jp">サンプル屋号<br class="pc-none">について</span>
+    </h2>
+    <p class="about-yutaka__lead">多様な事業の取り組み、時代と共に歩んできた歴史、そしてその基盤を支える会社の在り方。技術と人に裏打ちされた建設力で、革新への挑戦をつづけるサンプル建設についてご紹介します。</p>
+    <div class="about-yutaka__btn"><a href="#sample-story">More</a></div>
+    <img class="about-yutaka__img-deco" src="https://picsum.photos/seed/yutaka-about-deco/232/240" alt="" aria-hidden="true">
+  </div>
+</div>
+</section>
+
+<div class="archetype-label">
+  <span class="num">B2</span>
+  <span class="name">about / jeffseals</span>
+  <span class="src">Jeff Seals Remodeling 忠実模写（テラコッタ縦線 + 2 段落紹介文）</span>
+</div>
+<!--
+  Archetype: about / jeffseals
+  Source:    Jeff Seals Remodeling（https://www.jeffsealsremodeling.com/）の "San Diego's Premier General Contractors" 段落部分を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: WordPress + Elementor（2 段落の長文本文 + 中央寄せ見出し）
+  - 構造:
+      <section.about>
+        > .about__inner
+          > h2 (大見出し: "San Diego's Premier General Contractors")
+          > p (1 段落目: "For over 25 years, ... a trusted partner ...")
+          > p (2 段落目: "We know your home is more than just a project ...")
+      ※ 写真や顔写真は本ブロックには無く、純テキスト段落のみ。
+  - 配色: 暖色オフホワイト #FAF6F0、本文ダークブラウン #2E2620、
+          見出し色は深テラコッタ #8C3E1F、左に細いテラコッタライン装飾
+  - 動き: 静的。参考に scroll fade-in なし
+  - 文字: 見出し Cormorant Garamond italic（serif）、本文 Poppins 400 行高 1.85
+  ## Placeholders
+    about.heading            大見出し（"San Diego's Premier General Contractors" 相当）
+    about.paragraph_1_html   1 段落目 HTML 可（年数訴求 + 信頼パートナー文）
+    about.paragraph_2_html   2 段落目 HTML 可（顧客満足 + 品質訴求文）
+-->
+<section class="about-jeffseals">
+<style>
+.about-jeffseals{position:relative;padding:120px 32px;background:#faf6f0;color:#2e2620;font-family:"Poppins",sans-serif}
+.about-jeffseals__inner{max-width:880px;margin:0 auto;position:relative;padding-left:40px}
+.about-jeffseals__inner::before{content:"";position:absolute;left:0;top:6px;width:3px;height:64px;background:#c9572e}
+.about-jeffseals__heading{margin:0 0 36px;font-family:"Cormorant Garamond",serif;font-weight:500;font-style:italic;font-size:clamp(34px,4.6vw,52px);line-height:1.18;color:#8c3e1f;letter-spacing:.005em}
+.about-jeffseals__paragraph{margin:0 0 22px;font-size:16px;line-height:1.92;color:#2e2620;font-weight:400}
+.about-jeffseals__paragraph:last-child{margin-bottom:0}
+
+@media (max-width:880px){
+  .about-jeffseals{padding:80px 20px}
+  .about-jeffseals__inner{padding-left:24px}
+  .about-jeffseals__inner::before{width:2px;height:48px;top:4px}
+  .about-jeffseals__heading{font-size:30px;margin-bottom:24px}
+  .about-jeffseals__paragraph{font-size:15px;line-height:1.85}
+}
+</style>
+
+<div class="about-jeffseals__inner">
+  <h2 class="about-jeffseals__heading">初めまして、サンプル屋号です。</h2>
+  <p class="about-jeffseals__paragraph">創業◯◯ 年以上、サンプル地域のご家庭の住まいづくりをサポートしてきました。これまでに◯◯◯件以上の地域案件をお手伝いし、リノベーション・修繕・改装の信頼パートナーとしてご愛顧いただいています。</p>
+  <p class="about-jeffseals__paragraph">住まいは単なる工事対象ではなく、お客様の暮らしそのもの。だからこそデモカンパニーは、お客様のご満足を何より大切に、安心して任せていただける品質と、ご納得いただける丁寧な進行をお約束します。</p>
+</div>
+</section>
+
+<div class="archetype-label">
+  <span class="num">B3</span>
+  <span class="name">about / aichler</span>
+  <span class="src">AICHLER 忠実模写（pAbout: About+Construction 2 ブロック並列、color/mono 切替）</span>
+</div>
+<!--
+  Archetype: about / aichler
+  Source:    AICHLER (https://aichler.jp/) の pAbout ブロックを忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 構造: <section.pAbout>
+      > .pAbout__inner
+        > .pAbout__content--1 (About / 私たちの家づくり)
+          > hgroup .pAbout__headline
+            > p.pAbout__headline_en "About"
+            > h2.pAbout__headline_jp cTextSkew "私たちの家づくり"
+          > .pAbout__image--1 .cChangeImage (color/monochro 切替 + hover で 4 種類の data-about="1-4" 画像差替)
+          > .pAbout__image_line (装飾の細い罫イラスト 2 本)
+          > nav.pAboutNav--1
+            > ol.pAboutNav__list--1 (4 件、cArrowLink: 01. 私たちの家づくり / 02. 会社概要 / 03. プロフィール / 04. アクセス)
+          > .pAbout__more cLineLink "view more"
+        > .pAbout__content--2 (Construction / 施工・アフターサポートについて)
+          > 同じく hgroup + image (color/mono + 2 hover) + nav (2 件、index + 見出し + description 付き)
+      > .pAbout__bottom (グラデーション装飾画像帯)
+  - 配色: 白×クリーム #faf8f4、英字見出し #7d9b6a italic 大、和字 #101010、装飾線 #d9d2c4
+  - フォント: 英字 Cormorant Garamond italic、和字 Noto Serif JP / Noto Sans JP
+  - 動き: hover で画像差替 (4 つの hover layer)、スクロールで cChangeImage の color→monochro 切替
+  ## Placeholders
+    about.headline_1_en        左ブロック英字 (例「About」)
+    about.headline_1_jp        左ブロック和字 (例「私たちの家づくり」)
+    about.image_1_color        左メイン写真 color
+    about.image_1_monochro     左メイン写真 monochro
+    about.nav_1_item_1_label   左 nav 01 ラベル (例「私たちの家づくり」)
+    about.nav_1_item_1_href    左 nav 01 リンク
+    about.nav_1_item_2_label   左 nav 02 ラベル (例「会社概要」)
+    about.nav_1_item_2_href    左 nav 02 リンク
+    about.nav_1_item_3_label   左 nav 03 ラベル (例「プロフィール」)
+    about.nav_1_item_3_href    左 nav 03 リンク
+    about.nav_1_item_4_label   左 nav 04 ラベル (例「アクセス」)
+    about.nav_1_item_4_href    左 nav 04 リンク
+    about.more_1_label         左 more ボタン (例「view more」)
+    about.more_1_href          左 more リンク
+    about.headline_2_en        右ブロック英字 (例「Construction」)
+    about.headline_2_jp        右ブロック和字 (例「施工・アフターサポートについて」)
+    about.image_2_color        右メイン写真 color
+    about.image_2_monochro     右メイン写真 monochro
+    about.nav_2_item_1_label   右 nav 01 ラベル (例「施工へのこだわり」)
+    about.nav_2_item_1_desc    右 nav 01 説明文
+    about.nav_2_item_1_href    右 nav 01 リンク
+    about.nav_2_item_2_label   右 nav 02 ラベル (例「アフターサポート」)
+    about.nav_2_item_2_desc    右 nav 02 説明文
+    about.nav_2_item_2_href    右 nav 02 リンク
+    about.bottom_image         セクション末尾の装飾画像 (1600x320 想定、薄カラー)
+-->
+<section class="about-aichler">
+<style>
+.about-aichler{position:relative;padding:140px 6vw 0;background:#faf8f4;color:#101010;font-family:"Noto Sans JP",sans-serif;overflow:hidden}
+.about-aichler__inner{position:relative;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:start}
+
+.about-aichler__content{position:relative;display:flex;flex-direction:column;gap:48px}
+
+.about-aichler__headline{margin:0;display:flex;flex-direction:column;gap:8px}
+.about-aichler__headline_en{margin:0;font-family:"Cormorant Garamond","Albert Sans",serif;font-style:italic;font-weight:400;font-size:64px;letter-spacing:.04em;line-height:1;color:#7d9b6a}
+.about-aichler__headline_jp{margin:0;font-family:"Noto Serif JP",serif;font-weight:700;font-size:22px;letter-spacing:.14em;line-height:1.4;color:#101010}
+
+.about-aichler__image{position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;background:#eae3d3}
+.about-aichler__image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:opacity .6s ease}
+.about-aichler__image_color{opacity:1;z-index:1}
+.about-aichler__image_monochro{opacity:0;z-index:2;filter:grayscale(1) contrast(.95)}
+.about-aichler__content.is-mono .about-aichler__image_monochro{opacity:1}
+.about-aichler__image_line{position:absolute;inset:8px;border:1px solid #d9d2c4;pointer-events:none;z-index:3}
+
+.about-aichler__nav{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:0}
+.about-aichler__nav_item{border-bottom:1px solid #d9d2c4}
+.about-aichler__nav_item:first-child{border-top:1px solid #d9d2c4}
+.about-aichler__nav_link{display:flex;align-items:center;gap:24px;padding:20px 4px;text-decoration:none;color:#101010;transition:padding-left .25s,color .25s}
+.about-aichler__nav_link:hover{padding-left:12px;color:#7d9b6a}
+.about-aichler__nav_index{font-family:"Cormorant Garamond","Albert Sans",serif;font-style:italic;font-weight:400;font-size:20px;color:#7d9b6a;flex:0 0 auto;letter-spacing:.04em}
+.about-aichler__nav_text{flex:1 1 auto;font-family:"Noto Sans JP",sans-serif;font-weight:500;font-size:15px;letter-spacing:.12em}
+.about-aichler__nav_arrow{flex:0 0 auto;color:#7d9b6a;font-size:18px;line-height:1}
+
+.about-aichler__nav--2 .about-aichler__nav_item{padding:8px 0}
+.about-aichler__nav--2 .about-aichler__nav_link{flex-direction:column;align-items:flex-start;gap:8px;padding:24px 4px}
+.about-aichler__nav--2 .about-aichler__nav_link_inner{display:flex;align-items:center;gap:16px;width:100%}
+.about-aichler__nav--2 .about-aichler__nav_desc{font-family:"Noto Sans JP",sans-serif;font-size:13px;line-height:1.9;letter-spacing:.06em;color:#5a5a52;margin:4px 0 0;padding-left:40px}
+
+.about-aichler__more{margin-top:16px}
+.about-aichler__more_link{display:inline-flex;align-items:center;gap:18px;text-decoration:none;color:#101010;font-family:"Cormorant Garamond","Albert Sans",serif;font-style:italic;font-size:18px;letter-spacing:.06em;padding-bottom:6px;border-bottom:1px solid #101010;transition:gap .25s,color .25s}
+.about-aichler__more_link::after{content:"→";font-style:normal;color:#7d9b6a}
+.about-aichler__more_link:hover{gap:28px;color:#7d9b6a}
+
+.about-aichler__bottom{position:relative;margin-top:120px;width:100%;aspect-ratio:1600/320;overflow:hidden;background:#eae3d3}
+.about-aichler__bottom img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(.2)}
+
+@media (max-width:1024px){
+  .about-aichler{padding:96px 6vw 0}
+  .about-aichler__inner{gap:48px}
+  .about-aichler__headline_en{font-size:48px}
+}
+@media (max-width:880px){
+  .about-aichler{padding:64px 6vw 0}
+  .about-aichler__inner{grid-template-columns:1fr;gap:64px}
+  .about-aichler__headline_en{font-size:42px}
+  .about-aichler__bottom{margin-top:80px;aspect-ratio:16/9}
+  .about-aichler__nav--2 .about-aichler__nav_desc{padding-left:0}
+}
+</style>
+
+<div class="about-aichler__inner">
+
+  <div class="about-aichler__content about-aichler__content--1">
+    <hgroup class="about-aichler__headline">
+      <p class="about-aichler__headline_en">About</p>
+      <h2 class="about-aichler__headline_jp">私たちの家づくり</h2>
+    </hgroup>
+    <div class="about-aichler__image">
+      <img class="about-aichler__image_color" src="https://picsum.photos/seed/aichler-ab1c/640/800" alt="">
+      <img class="about-aichler__image_monochro" src="https://picsum.photos/seed/aichler-ab1m/640/800" alt="" aria-hidden="true">
+      <span class="about-aichler__image_line" aria-hidden="true"></span>
+    </div>
+    <nav>
+      <ol class="about-aichler__nav about-aichler__nav--1">
+        <li class="about-aichler__nav_item">
+          <a class="about-aichler__nav_link" href="#">
+            <span class="about-aichler__nav_index">01.</span>
+            <span class="about-aichler__nav_text">私たちの家づくり</span>
+            <span class="about-aichler__nav_arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="about-aichler__nav_item">
+          <a class="about-aichler__nav_link" href="#">
+            <span class="about-aichler__nav_index">02.</span>
+            <span class="about-aichler__nav_text">会社概要</span>
+            <span class="about-aichler__nav_arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="about-aichler__nav_item">
+          <a class="about-aichler__nav_link" href="#">
+            <span class="about-aichler__nav_index">03.</span>
+            <span class="about-aichler__nav_text">プロフィール</span>
+            <span class="about-aichler__nav_arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="about-aichler__nav_item">
+          <a class="about-aichler__nav_link" href="#">
+            <span class="about-aichler__nav_index">04.</span>
+            <span class="about-aichler__nav_text">アクセス</span>
+            <span class="about-aichler__nav_arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      </ol>
+    </nav>
+    <div class="about-aichler__more">
+      <a class="about-aichler__more_link" href="#">view more</a>
+    </div>
+  </div>
+
+  <div class="about-aichler__content about-aichler__content--2">
+    <hgroup class="about-aichler__headline">
+      <p class="about-aichler__headline_en">Construction</p>
+      <h2 class="about-aichler__headline_jp">施工・アフターサポートについて</h2>
+    </hgroup>
+    <div class="about-aichler__image">
+      <img class="about-aichler__image_color" src="https://picsum.photos/seed/aichler-ab2c/640/800" alt="">
+      <img class="about-aichler__image_monochro" src="https://picsum.photos/seed/aichler-ab2m/640/800" alt="" aria-hidden="true">
+      <span class="about-aichler__image_line" aria-hidden="true"></span>
+    </div>
+    <nav>
+      <ol class="about-aichler__nav about-aichler__nav--2">
+        <li class="about-aichler__nav_item">
+          <a class="about-aichler__nav_link" href="#">
+            <span class="about-aichler__nav_link_inner">
+              <span class="about-aichler__nav_index">01</span>
+              <span class="about-aichler__nav_text">施工へのこだわり</span>
+              <span class="about-aichler__nav_arrow" aria-hidden="true">→</span>
+            </span>
+            <span class="about-aichler__nav_desc">見た目だけではわからない部分も、サンプル屋号は手を抜きません。住んでみてわかる心地よさを追求します。</span>
+          </a>
+        </li>
+        <li class="about-aichler__nav_item">
+          <a class="about-aichler__nav_link" href="#">
+            <span class="about-aichler__nav_link_inner">
+              <span class="about-aichler__nav_index">02</span>
+              <span class="about-aichler__nav_text">アフターサポート</span>
+              <span class="about-aichler__nav_arrow" aria-hidden="true">→</span>
+            </span>
+            <span class="about-aichler__nav_desc">◯つの安心保証によって、ご購入後も安心してお住まいいただけます。緊急トラブル・シロアリによる被害にも対応いたします。</span>
+          </a>
+        </li>
+      </ol>
+    </nav>
+  </div>
+
+</div>
+
+<div class="about-aichler__bottom">
+  <img src="https://picsum.photos/seed/aichler-abbtm/1600/320" alt="" aria-hidden="true">
+</div>
+
+<script>
+(function(){
+  var root=document.currentScript&&document.currentScript.closest('.about-aichler');
+  if(!root)root=document.querySelector('.about-aichler');
+  if(!root)return;
+  var contents=root.querySelectorAll('.about-aichler__content');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){en.target.classList.add('is-mono');io.unobserve(en.target);}
+      });
+    },{threshold:.35});
+    contents.forEach(function(el){io.observe(el);});
+  }else{
+    contents.forEach(function(el){el.classList.add('is-mono');});
+  }
+})();
+</script>
+</section>
+
+<div class="archetype-label">
+  <span class="num">B4</span>
+  <span class="name">about / ksart</span>
+  <span class="src">Ks Art 忠実模写（2 行大見出し + 正方形写真 + 円形 MORE）</span>
+</div>
+<!--
+  Archetype: about / ksart
+  Source:    Ks Art (https://ksart.jp/) の home_about ブロックを忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: WordPress + 静的 HTML、scroll fade-in のみ
+  - 構造: <section.section_pdg.home_about#home_about>
+      > .inner.inner-sm
+        > h2.section_ttl.mgn-btm160.txt-ctr "ABOUT<br>US"（2 行大見出し中央寄せ）
+        > .flex.flex-j-ctr.flex-col2.flex-sp-block
+          > .imgarea > img 360x360 正方形写真
+          > .txtarea.txt-sm
+            > p 和字本文 1 段落（mgn-btm32）
+            > p.txt-en.txt-italic 英字 italic 補足 1 段落
+            > p.txt-rgt > a.btn.btn-round.txt-italic "MORE"（右寄せ円形ボタン）
+  - 配色: 白背景 + 深いネイビー #142b3d 文字。「MORE」ボタンは丸枠の白＋紺
+  - フォント: 英字大見出し EB Garamond italic / Cormorant Garamond、和字本文 Mincho 系
+  - 動き: 各要素 scroll fade-in（opacity + translateY）。MORE ボタン hover で背景反転
+  - 特徴: 「2 カラム + bilingual 本文 + 円形 MORE」のシンプル構成。yutaka の about（4 写真重ね）とは正反対のミニマル系
+  ## Placeholders
+    about.title_line_1        英字大見出し 1 行目（例 "ABOUT"）
+    about.title_line_2        英字大見出し 2 行目（例 "US"）
+    about.image_main          正方形写真 (360x360 想定)
+    about.lead_jp             和字本文 HTML 可
+    about.lead_en             英字 italic 補足 HTML 可
+    about.button_label        ボタンラベル（例 "MORE"）
+    about.button_href         ボタン遷移先
+-->
+<section class="about-ksart">
+<style>
+.about-ksart{padding:120px 32px 140px;background:#ffffff;color:#142b3d;font-family:"Noto Serif JP","Hiragino Mincho ProN",serif}
+.about-ksart__inner{max-width:920px;margin:0 auto}
+
+.about-ksart__ttl{margin:0 auto 120px;text-align:center;font-family:"EB Garamond","Cormorant Garamond",serif;font-style:italic;font-weight:500;font-size:clamp(40px,5.2vw,68px);letter-spacing:.06em;line-height:1.18;color:#142b3d}
+.about-ksart__ttl span{display:block}
+
+.about-ksart__cols{display:flex;justify-content:center;align-items:flex-start;gap:64px}
+.about-ksart__imgarea{flex:0 0 360px}
+.about-ksart__img{display:block;width:100%;height:auto;max-width:360px;aspect-ratio:1/1;object-fit:cover}
+
+.about-ksart__txtarea{flex:1 1 auto;max-width:440px;padding-top:8px}
+.about-ksart__lead{margin:0 0 32px;font-size:14px;line-height:2.1;letter-spacing:.06em;color:#142b3d;text-align:justify}
+.about-ksart__lead-en{margin:0 0 40px;font-family:"EB Garamond","Cormorant Garamond",serif;font-style:italic;font-weight:500;font-size:13px;line-height:1.95;letter-spacing:.04em;color:#5a6776;text-align:justify}
+
+.about-ksart__btn-wrap{text-align:right}
+.about-ksart__btn{display:inline-flex;align-items:center;justify-content:center;min-width:120px;padding:14px 28px;border:1px solid #142b3d;border-radius:999px;background:#fff;color:#142b3d;text-decoration:none;font-family:"EB Garamond","Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.12em;transition:background .2s,color .2s}
+.about-ksart__btn:hover{background:#142b3d;color:#fff}
+
+.about-ksart__fade{opacity:0;transform:translateY(18px);transition:opacity 1.0s ease,transform 1.0s ease}
+.about-ksart__fade.is-in{opacity:1;transform:translateY(0)}
+
+@media (max-width:880px){
+  .about-ksart{padding:80px 24px 100px}
+  .about-ksart__ttl{margin-bottom:64px;font-size:42px}
+  .about-ksart__cols{flex-direction:column;align-items:center;gap:40px}
+  .about-ksart__imgarea{flex:1 1 auto;width:100%;max-width:360px}
+  .about-ksart__txtarea{max-width:none;width:100%}
+  .about-ksart__btn-wrap{text-align:center}
+}
+</style>
+
+<div class="about-ksart__inner">
+  <h2 class="about-ksart__ttl about-ksart__fade">
+    <span>ABOUT</span>
+    <span>US</span>
+  </h2>
+  <div class="about-ksart__cols">
+    <div class="about-ksart__imgarea about-ksart__fade">
+      <img class="about-ksart__img" src="https://picsum.photos/seed/yutaka-about-main/720/480" alt="">
+    </div>
+    <div class="about-ksart__txtarea">
+      <p class="about-ksart__lead about-ksart__fade">美術と工芸を融け合わせ、上質で心地よい空間を提案する（サンプル）。</p>
+      <p class="about-ksart__lead-en about-ksart__fade">Happiness that comes from a comfortable space</p>
+      <p class="about-ksart__btn-wrap about-ksart__fade">
+        <a class="about-ksart__btn" href="#sample-story">More</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root=document.currentScript&&document.currentScript.closest('.about-ksart');
+  if(!root)root=document.querySelector('.about-ksart');
+  if(!root)return;
+  var targets=root.querySelectorAll('.about-ksart__fade');
+  if(!('IntersectionObserver' in window)){
+    targets.forEach(function(el){el.classList.add('is-in');});return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}});
+  },{threshold:.16});
+  targets.forEach(function(el){io.observe(el);});
+})();
+</script>
+</section>
+
+<div class="archetype-label">
+  <span class="num">B5</span>
+  <span class="name">about / shichifuku</span>
+  <span class="src">七福建設 忠実模写（Introduction + Company 統合 2 ブロック）</span>
+</div>
+<!--
+  Archetype: about / shichifuku
+  Source:    七福建設 (https://e-729.com/) を忠実模写（#introduction + #company-and-news > .t-company）
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: 純 CSS、sfiu class は scroll fade-in （IntersectionObserver で開始）
+  - 構造（七福建設は About を 2 ブロックで構成、本 archetype は両方を 1 つに統合せず分離して表現）:
+      Block 1 — Introduction
+        > section#introduction.sfiu
+          > .int-catch > h2.en "Introduction" + p "心地よさと\n暮らす家"
+          > .tips > p (リード文 br 改行) + a.more "七福建設とは" + arrow
+      Block 2 — Company
+        > .t-company.sfiu
+          > a.photo (背景画像)
+          > .sec-tips > h3 "あなたの家づくりを支えるプロフェッショナル" + p (リード) + a.more "詳細を見る"
+  - 配色: 背景 ベージュ #f5f1ea / アクセント 深緑 #2f4a3a / 文字 黒 #1a1a1a
+  - フォント: 見出し "Noto Serif JP" 細、英 "Cormorant Garamond" italic
+  - 動き: sfiu = scroll fade-in up（CSS transition で代用）、a.more の矢印スライド
+  ## Placeholders
+    about.intro_en        「Introduction」相当 EN
+    about.intro_copy_1    詩的コピー 1 行目（例: "心地よさと"）
+    about.intro_copy_2    詩的コピー 2 行目（例: "暮らす家"）
+    about.intro_lead      リード文 HTML 可（<br> 含む）
+    about.intro_more_label    「サンプル工務店とは」相当
+    about.intro_more_href     遷移先
+    about.company_image       会社写真 URL
+    about.company_image_href  写真クリック時の遷移先
+    about.company_headline    h3 「あなたの家づくりを支えるプロフェッショナル」相当
+    about.company_lead        リード文
+    about.company_more_label  「詳細を見る」相当
+    about.company_more_href   遷移先
+-->
+<section class="about-shichifuku">
+<style>
+.about-shichifuku{background:#f5f1ea;color:#1a1a1a;padding:120px 48px;font-family:"Noto Sans JP",sans-serif}
+.about-shichifuku__inner{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:120px}
+
+.about-shichifuku__intro{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start}
+.about-shichifuku__int-catch h2{margin:0 0 28px;font-family:"Cormorant Garamond","Marcellus",serif;font-weight:400;font-size:16px;letter-spacing:.32em;color:#2f4a3a;font-style:italic;text-transform:capitalize}
+.about-shichifuku__int-catch p{margin:0;font-family:"Noto Serif JP",serif;font-weight:300;font-size:clamp(34px,4vw,52px);line-height:1.55;letter-spacing:.1em;color:#1a1a1a}
+.about-shichifuku__tips p{margin:0 0 32px;font-size:14.5px;line-height:2.2;color:#3a3a3a;letter-spacing:.06em}
+.about-shichifuku__more{display:inline-flex;align-items:center;gap:14px;font-family:"Marcellus",serif;font-size:12px;letter-spacing:.22em;color:#2f4a3a;text-decoration:none;padding-bottom:6px;border-bottom:1px solid #2f4a3a;transition:gap .2s,color .2s}
+.about-shichifuku__more::after{content:"→";transition:transform .2s}
+.about-shichifuku__more:hover::after{transform:translateX(4px)}
+
+.about-shichifuku__company{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center}
+.about-shichifuku__company-photo{display:block;width:100%;aspect-ratio:5/4;background-color:#ddd;background-size:cover;background-position:center;transition:opacity .25s}
+.about-shichifuku__company-photo:hover{opacity:.88}
+.about-shichifuku__company-tips h3{margin:0 0 24px;font-family:"Noto Serif JP",serif;font-weight:400;font-size:26px;line-height:1.7;letter-spacing:.06em;color:#1a1a1a}
+.about-shichifuku__company-tips p{margin:0 0 32px;font-size:14px;line-height:2.1;color:#3a3a3a;letter-spacing:.04em}
+
+@media (max-width:880px){
+  .about-shichifuku{padding:80px 20px}
+  .about-shichifuku__inner{gap:80px}
+  .about-shichifuku__intro{grid-template-columns:1fr;gap:36px}
+  .about-shichifuku__int-catch p{font-size:30px}
+  .about-shichifuku__company{grid-template-columns:1fr;gap:32px}
+  .about-shichifuku__company-tips h3{font-size:20px}
+}
+</style>
+
+<div class="about-shichifuku__inner">
+
+  <div class="about-shichifuku__intro">
+    <div class="about-shichifuku__int-catch">
+      <h2>Introduction</h2>
+      <p>心地よさと<br>暮らす家</p>
+    </div>
+    <div class="about-shichifuku__tips">
+      <p>住む人が心地よく、<br>自分らしく暮らせる家づくりが一番大切。<br>お客様の「したい暮らし」を丁寧に汲み取り、<br>最適なデザインやアイデアをご提案。<br>サンプル工務店がお客様に寄り添いサポート。<br>主役はお客様です。</p>
+      <a class="about-shichifuku__more" href="#">サンプル工務店とは</a>
+    </div>
+  </div>
+
+  <div class="about-shichifuku__company">
+    <a class="about-shichifuku__company-photo" href="#company" aria-label="" style="background-image:url('https://picsum.photos/seed/shichifuku-company/1024/820')"></a>
+    <div class="about-shichifuku__company-tips">
+      <h3>あなたの家づくりを支える<br>プロフェッショナル</h3>
+      <p>お客様一人ひとりの「心地よい暮らし」を実現するために、家づくりに情熱を傾けるプロフェッショナル集団です。私たちは、お客様との繋がりを大切にし、住まいの設計から施工、アフターサポートまで、心を込めてお手伝いします。</p>
+      <a class="about-shichifuku__more" href="#">詳細を見る</a>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<div class="archetype-label">
+  <span class="num">B6</span>
+  <span class="name">about / sososya</span>
+  <span class="src">想創舎 忠実模写（経年美ナラティブ 5 段落、中央寄せ静かな縦組み）</span>
+</div>
+<!--
+  Archetype: about / sososya
+  Source:    想創舎 (https://sososya.com/) の .top-lead を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: 純 HTML + CSS、scroll fade-in なし（自然な縦組み）
+  - 構造: <div.top-lead>
+      > h2 "想創舎の家づくり"（小見出し、灰色字）
+      > h3 "歳をかさねて、美しくなる。"（大コピー、br 強制改行・wide class）
+      > .txt
+        > p x 5 段落（br 改行多用、詩的）
+          1. "「家は新築が一番きれいだ」なんて、どうか言わないでください。"
+          2. "家は長く住まうもの。"
+          3. 時をかさねていくほどに、磨きがかかる…
+          4. 資産価値、こども・孫の代へ住み継がれる…
+          5. 歳を重ねていくほどに美しくなる、人も家もそうでありたい
+  - 配色: 背景 #f5f0e6 / 小見出し #7a6e5c / 大コピー h3 #2a241c / 本文 #52483b
+  - フォント: h2 Noto Sans JP 14px letter-spacing .12em / h3 Noto Serif JP 36-42px line-height 1.7 / p Noto Sans JP 14-15px line-height 2.2
+  - 動き: なし。静かな縦組み、段落 margin で「呼吸」を作る
+  - 特徴: 「歳をかさねて、美しくなる。」をブランドコピーとして据える型。経年美ナラティブ
+  ## Placeholders
+    about.subhead             小見出し（例「サンプル工務店の家づくり」）
+    about.headline_line_1     大コピー 1 行目（例「歳をかさねて、」）
+    about.headline_line_2     大コピー 2 行目（例「美しくなる。」）
+    about.paragraph_1         段落 1 HTML 可
+    about.paragraph_2         段落 2
+    about.paragraph_3         段落 3
+    about.paragraph_4         段落 4
+    about.paragraph_5         段落 5
+-->
+<section class="about-sososya">
+  <style>
+    .about-sososya { background:#f5f0e6; padding:96px 0 80px; color:#2a241c; font-family:"Noto Sans JP",sans-serif; }
+    .about-sososya__inner { max-width:780px; margin:0 auto; padding:0 24px; text-align:center; }
+    .about-sososya__subhead { font-size:14px; letter-spacing:.18em; color:#7a6e5c; font-weight:500; margin:0 0 32px; }
+    .about-sososya__title { font-family:"Noto Serif JP",serif; font-weight:400; font-size:38px; line-height:1.65; letter-spacing:.06em; color:#2a241c; margin:0 0 56px; }
+    .about-sososya__body { font-size:14px; line-height:2.2; color:#52483b; }
+    .about-sososya__body p { margin:0 0 24px; }
+    .about-sososya__body p:last-child { margin-bottom:0; }
+    @media (max-width:880px) {
+      .about-sososya { padding:64px 0 56px; }
+      .about-sososya__title { font-size:24px; margin-bottom:40px; }
+      .about-sososya__subhead { margin-bottom:20px; }
+      .about-sososya__body { font-size:13px; line-height:2; }
+      .about-sososya__body p { margin-bottom:18px; }
+    }
+  </style>
+  <div class="about-sososya__inner">
+    <h2 class="about-sososya__subhead">フルリフォームの専門会社</h2>
+    <h3 class="about-sososya__title">歳をかさねて、<br>美しくなる。</h3>
+    <div class="about-sososya__body">
+      <p>◯◯◯◯年の創業以来、一戸建て・マンション・ビルなどたくさんのリフォームを手掛けてきました。</p>
+      <p>一旦構造体のみに解体し、間取りとデザインをゼロから構築するフルリフォームが中心。</p>
+      <p>設計から施工まで、自社で行っています。</p>
+      <p>家族構成やライフスタイルに寄り添うたった一つの住まいのため、心を込めてつくり上げています。</p>
+      <p>どうか、◯◯に出るようなリラックスした気持ちで、遊びに来てください。</p>
+    </div>
+  </div>
+</section>
+
+<div class="archetype-label">
+  <span class="num">B7</span>
+  <span class="name">about / yarddental</span>
+  <span class="src">Yard Dental Clinic 忠実模写（緑+ベージュ + 院長メッセージ）</span>
+</div>
+<!--
+  Archetype: about / yarddental
+  Source:    Yard Dental Clinic (https://yard-dental.com/) の "Our message" セクションを忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: Nuxt 3 (Vue 3) + IntersectionObserver fade-in（参考は word-by-word の split text 装飾あり）
+  - 構造:
+      <section.message>
+        > .message__deco (背景大文字 "Our message" タイポ装飾、薄ベージュ #fcf7e1)
+        > .message__container
+          > .message__thumbnail (左、縦長 3:4 写真、ベージュフレーム)
+          > .message__main
+            > .section-title "Message"（緑ボーダー下線）
+            > .heading 大見出し（"あ、そろそろ歯医者に行ってみよう。"）
+            > .paragraph * 4-5（短い行を畳んだ詩的本文）
+  - 配色: ベージュ背景 #fffdf6、装飾大文字 #fcf7e1、本文 #282d27、アクセント緑 #5a9f4d
+  - フォント: 大見出し Shippori Mincho、本文 Noto Serif JP、装飾英字 Cormorant Garamond italic
+  - 動き: 静的（参考は word-mask フェード、ここは省略して fade-in 1 段で近似）
+  ## Placeholders
+    about.deco_text             背景装飾英字（"Our message" 相当）
+    about.section_label         セクションラベル英字（"Message"）
+    about.heading_line_1        大見出し 1 行目（"あ、そろそろ歯医者に行ってみよう。" 相当）
+    about.heading_line_2        大見出し 2 行目（任意、空可）
+    about.thumbnail             左サムネ画像 URL（縦長 3:4）
+    about.paragraph_1           本文 1 行目
+    about.paragraph_2           本文 2 行目
+    about.paragraph_3           本文 3 行目
+    about.paragraph_4           本文 4 行目
+    about.paragraph_5           本文 5 行目（空可）
+-->
+<section class="about-yarddental">
+<style>
+.about-yarddental{position:relative;padding:140px 32px;background:#fffdf6;color:#282d27;font-family:"Noto Serif JP",serif;overflow:hidden}
+.about-yarddental__deco{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:500;font-size:clamp(120px,18vw,260px);letter-spacing:-.01em;color:#fcf7e1;white-space:nowrap;z-index:0;line-height:1;pointer-events:none}
+.about-yarddental__container{position:relative;z-index:2;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1.3fr;gap:80px;align-items:center}
+.about-yarddental__thumb{aspect-ratio:3/4;width:100%;background:#ece4cc url("https://picsum.photos/seed/yd-msg/600/800") center/cover;box-shadow:0 12px 36px rgba(40,45,39,.08)}
+
+.about-yarddental__main{display:flex;flex-direction:column;gap:28px}
+.about-yarddental__label{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.42em;color:#5a9f4d;display:inline-flex;align-items:center;gap:14px;text-transform:uppercase}
+.about-yarddental__label::after{content:"";width:48px;height:1px;background:#5a9f4d}
+.about-yarddental__heading{font-family:"Shippori Mincho",serif;font-weight:500;font-size:clamp(26px,3.2vw,40px);line-height:1.55;letter-spacing:.06em;color:#282d27;margin:0}
+.about-yarddental__heading span{display:block}
+.about-yarddental__paragraphs{display:flex;flex-direction:column;gap:10px;margin:0;font-size:16px;line-height:2.05;letter-spacing:.04em;color:#3a4039}
+.about-yarddental__paragraphs p{margin:0}
+
+@media (max-width:880px){
+  .about-yarddental{padding:80px 20px}
+  .about-yarddental__deco{font-size:80px}
+  .about-yarddental__container{grid-template-columns:1fr;gap:36px}
+  .about-yarddental__thumb{aspect-ratio:4/3;max-height:360px}
+  .about-yarddental__heading{font-size:22px;line-height:1.7}
+  .about-yarddental__paragraphs{font-size:15px;line-height:1.9}
+}
+</style>
+
+<div class="about-yarddental__deco" aria-hidden="true">Our message</div>
+
+<div class="about-yarddental__container">
+  <div class="about-yarddental__thumb" role="img" aria-label="message"></div>
+  <div class="about-yarddental__main">
+    <span class="about-yarddental__label">( Story )</span>
+    <h2 class="about-yarddental__heading">
+      <span>あなたの</span>
+      <span>「快住」をいっしょにつくります。</span>
+    </h2>
+    <div class="about-yarddental__paragraphs">
+      <p>◯◯◯◯年の創業以来、一戸建て・マンション・ビルなどたくさんのリフォームを手掛けてきました。</p>
+      <p>一旦構造体のみに解体し、間取りとデザインをゼロから構築するフルリフォームが中心。</p>
+      <p>設計から施工まで、自社で行っています。</p>
+      <p>家族構成やライフスタイルに寄り添うたった一つの住まいのため、心を込めてつくり上げています。</p>
+      <p>どうか、◯◯に出るようなリラックスした気持ちで、遊びに来てください。</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="archetype-label">
+  <span class="num">B8</span>
+  <span class="name">about / neie</span>
+  <span class="src">neie 忠実模写（news 帯 + 縦書きタイトル + 5 縦長画像ページリンク横並び）</span>
+</div>
+<!--
+  Archetype: about / neie
+  Source:    neie (https://neie.jp/) の l-topIntro 帯を忠実模写
+  Group:     1 (ELEGANT) - 落ち着き・上品
+  業種:      注文住宅・リノベーション
+
+  ## 模写スペック
+  - 制作技術: HTML/CSS, picture 要素で webp/jpg 切替
+  - 構造: news 1 件 (date + category + title) + 縦書きタイトル + 大本文画像/長文 + 5 枚ページリンク横並び (p-pageLink data-count="5")
+  - 配色: ベース #fdfaf5 (オフホワイト) / 墨 #1f1d1a / 細罫線 #c8c2b6
+  - 動き: scroll 時に header 表示制御 (top では非表示) 連動領域 — preview では省略
+  - フォント: 縦書きタイトル "Noto Serif JP" 0.42em letter-spacing
+  - 5 ページリンクは縦長 (510:1020 ≒ 1:2) の人物・建築写真 + 下部に和文ラベル
+
+  ## Placeholders
+    about.news_date           - news 日付 (YYYY.MM.DD)
+    about.news_category       - news カテゴリ
+    about.news_title          - news タイトル
+    about.news_href           - news リンク
+    about.copy_title_vertical - 縦書きタイトル詩句
+    about.copy_body_html      - 大本文 (HTML 可, br 区切り)
+    about.link1_image         - 5 リンク 1 枚目 画像
+    about.link1_label         - 5 リンク 1 枚目 ラベル
+    about.link1_href          - 5 リンク 1 枚目 リンク
+    about.link2_image
+    about.link2_label
+    about.link2_href
+    about.link3_image
+    about.link3_label
+    about.link3_href
+    about.link4_image
+    about.link4_label
+    about.link4_href
+    about.link5_image
+    about.link5_label
+    about.link5_href
+-->
+<section class="about-neie">
+  <a class="about-neie__news" href="#">
+    <time class="about-neie__news-date">2026.05.19</time>
+    <span class="about-neie__news-category">コラム</span>
+    <span class="about-neie__news-title">「サンプル手仕事のリレー」を公開しました</span>
+  </a>
+
+  <div class="about-neie__copy">
+    <div class="about-neie__copy-title">
+      <span>暮らしを、ていねいに。</span>
+    </div>
+    <div class="about-neie__copy-body">私たちは、サンプル地域の自然素材と建築士の対話を重ねながら、<br>そこに住まう方の物語を、◯◯年かたちにしてきました。<br>装いを整えるだけでなく、暮らしの背景までを設計する。<br>それが、サンプル設計事務所の家づくりです。</div>
+  </div>
+
+  <ul class="about-neie__links" data-count="5">
+    <li class="about-neie__link-item">
+      <a class="about-neie__link" href="#">
+        <span class="about-neie__link-image"><img src="https://picsum.photos/seed/neie-link-concept/510/1020" alt="" loading="lazy"></span>
+        <span class="about-neie__link-text">コンセプト</span>
+      </a>
+    </li>
+    <li class="about-neie__link-item">
+      <a class="about-neie__link" href="#">
+        <span class="about-neie__link-image"><img src="https://picsum.photos/seed/neie-link-design/510/1020" alt="" loading="lazy"></span>
+        <span class="about-neie__link-text">建築士と建てる家</span>
+      </a>
+    </li>
+    <li class="about-neie__link-item">
+      <a class="about-neie__link" href="#">
+        <span class="about-neie__link-image"><img src="https://picsum.photos/seed/neie-link-feature/510/1020" alt="" loading="lazy"></span>
+        <span class="about-neie__link-text">向き合い方</span>
+      </a>
+    </li>
+    <li class="about-neie__link-item">
+      <a class="about-neie__link" href="#">
+        <span class="about-neie__link-image"><img src="https://picsum.photos/seed/neie-link-history/510/1020" alt="" loading="lazy"></span>
+        <span class="about-neie__link-text">わたしたちの歩み</span>
+      </a>
+    </li>
+    <li class="about-neie__link-item">
+      <a class="about-neie__link" href="#">
+        <span class="about-neie__link-image"><img src="https://picsum.photos/seed/neie-link-column/510/1020" alt="" loading="lazy"></span>
+        <span class="about-neie__link-text">コラム</span>
+      </a>
+    </li>
+  </ul>
+
+  <style>
+    .about-neie { background: #fdfaf5; color: #1f1d1a; padding: 88px 0 120px; font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif; }
+
+    .about-neie__news { display: flex; align-items: center; gap: 18px; max-width: 1080px; margin: 0 auto 64px; padding: 18px 32px; border-top: 1px solid #c8c2b6; border-bottom: 1px solid #c8c2b6; color: #1f1d1a; text-decoration: none; transition: background .2s; }
+    .about-neie__news:hover { background: rgba(0,0,0,.03); }
+    .about-neie__news-date { font-family: "Cormorant Garamond", serif; font-size: 14px; letter-spacing: .14em; color: #6e6859; }
+    .about-neie__news-category { font-size: 12px; letter-spacing: .2em; padding: 4px 14px; border: 1px solid #6e6859; color: #6e6859; flex-shrink: 0; }
+    .about-neie__news-title { font-size: 15px; letter-spacing: .08em; color: #1f1d1a; }
+
+    .about-neie__copy { display: flex; align-items: center; gap: 56px; max-width: 1080px; margin: 0 auto 96px; padding: 0 32px; }
+    .about-neie__copy-title { flex-shrink: 0; }
+    .about-neie__copy-title > span { writing-mode: vertical-rl; text-orientation: mixed; font-size: 22px; letter-spacing: .42em; line-height: 2; max-height: 340px; display: block; color: #1f1d1a; }
+    .about-neie__copy-body { font-size: 16px; letter-spacing: .14em; line-height: 2.4; color: #4a4538; font-weight: 300; }
+
+    .about-neie__links { list-style: none; padding: 0; margin: 0 auto; display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; max-width: 1280px; }
+    .about-neie__link-item { margin: 0; }
+    .about-neie__link { display: block; position: relative; text-decoration: none; color: #fff; aspect-ratio: 510 / 1020; overflow: hidden; }
+    .about-neie__link-image { position: absolute; inset: 0; display: block; }
+    .about-neie__link-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s ease; }
+    .about-neie__link:hover .about-neie__link-image img { transform: scale(1.04); }
+    .about-neie__link-text { position: absolute; left: 0; right: 0; bottom: 28px; text-align: center; font-size: 15px; letter-spacing: .24em; color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,.4); }
+
+    @media (max-width: 1024px) {
+      .about-neie__links { grid-template-columns: repeat(5, 1fr); }
+      .about-neie__copy { gap: 36px; }
+    }
+    @media (max-width: 768px) {
+      .about-neie { padding: 56px 0 80px; }
+      .about-neie__news { flex-wrap: wrap; gap: 10px; padding: 14px 18px; margin-bottom: 48px; }
+      .about-neie__news-title { font-size: 13px; width: 100%; }
+      .about-neie__copy { flex-direction: column; align-items: stretch; gap: 28px; padding: 0 22px; margin-bottom: 64px; }
+      .about-neie__copy-title { align-self: center; }
+      .about-neie__copy-title > span { font-size: 18px; max-height: 240px; letter-spacing: .36em; }
+      .about-neie__copy-body { font-size: 14px; letter-spacing: .1em; line-height: 2.1; }
+      .about-neie__links { grid-template-columns: repeat(2, 1fr); gap: 8px; padding: 0 16px; }
+      .about-neie__link { aspect-ratio: 510 / 760; }
+      .about-neie__link-text { bottom: 18px; font-size: 13px; letter-spacing: .18em; }
+    }
+  </style>
+</section>
+
+<div class="archetype-label">
+  <span class="num">B9</span>
+  <span class="name">about / yurumaru</span>
+  <span class="src">YURUMARU 忠実模写（BRAND STORY + 非対称 3 画像 + 大コピー + 4 段落本文）</span>
+</div>
+<!--
+  Archetype: about / yurumaru
+  Source:    YURUMARU（https://yurumaru.life/）の page-top__mv__story（BRAND STORY 帯）を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: Shopify テーマ + js-sa fade-in (IntersectionObserver) で 3 画像と詩的本文を順次表示
+  - 構造:
+      <section.page-top__mv__story id="Story">
+        > .head: h2 "BRAND STORY"（EN 大文字）
+        > .body
+          > .image image1, image2, image3（縦長 3 枚を非対称配置）
+          > .textBox: 大コピー "身も心もゆるまる、わたしが選んだあたらしい居場所。"
+                     + 段落本文（4 段落: 日常 → YURUMARU → やわらかさ → あたらしい居場所）
+  - 配色: ベース #e9e6e4 / 文字 #2f2b28 / 写真の素材感そのまま
+  - フォント: 大コピー Hiragino Mincho 系（jp_go_title）、本文 Hiragino Sans
+  - 動き:
+      - js-sa__up / js-sa__op: IntersectionObserver で 600ms 上スライド + フェード
+      - 画像 3 枚は非対称配置（image1 左大、image2 右中、image3 中央下）
+  ## Placeholders
+    about.section_label       EN section label（例: "BRAND STORY"）
+    about.copy_jp_line_1      大コピー JP 1 行目
+    about.copy_jp_line_2      大コピー JP 2 行目
+    about.para_1              本文段落 1
+    about.para_2              本文段落 2
+    about.para_3              本文段落 3
+    about.para_4              本文段落 4
+    about.image_1             画像 1（縦長 720x900）
+    about.image_2             画像 2（縦長 720x900）
+    about.image_3             画像 3（横長 900x720）
+-->
+<section class="about-yurumaru">
+<style>
+.about-yurumaru{position:relative;width:100%;background:#e9e6e4;color:#2f2b28;font-family:"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;padding:140px 0 160px}
+.about-yurumaru__wrap{max-width:1280px;margin:0 auto;padding:0 48px;position:relative}
+.about-yurumaru__head{text-align:center;margin:0 0 96px}
+.about-yurumaru__label{display:inline-block;font-family:"Ysabeau SC","Times New Roman",serif;font-size:14px;font-style:italic;letter-spacing:.42em;color:#2f2b28;margin:0;text-transform:uppercase;position:relative;padding-bottom:24px}
+.about-yurumaru__label::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:48px;height:1px;background:#2f2b28}
+
+.about-yurumaru__body{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:start}
+.about-yurumaru__images{position:relative;width:100%;height:760px}
+.about-yurumaru__images .img{position:absolute;display:block;overflow:hidden;background:#d9d6d4}
+.about-yurumaru__images .img img{width:100%;height:100%;object-fit:cover;display:block}
+.about-yurumaru__images .image1{top:0;left:0;width:62%;height:62%}
+.about-yurumaru__images .image2{top:18%;right:0;width:46%;height:48%}
+.about-yurumaru__images .image3{bottom:0;left:20%;width:56%;height:38%}
+
+.about-yurumaru__textBox{padding-top:32px}
+.about-yurumaru__copy{margin:0 0 48px;font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-weight:500;font-size:clamp(26px,2.6vw,34px);line-height:2.0;letter-spacing:.14em;color:#2f2b28}
+.about-yurumaru__copy .line{display:block}
+.about-yurumaru__copy .accent{letter-spacing:.5em;display:inline-block}
+.about-yurumaru__para{margin:0 0 22px;font-size:15px;line-height:2.2;letter-spacing:.06em;color:#3a3633}
+.about-yurumaru__para:last-child{margin-bottom:0}
+
+@media (max-width:1024px) and (min-width:881px){
+  .about-yurumaru__body{gap:48px}
+  .about-yurumaru__images{height:600px}
+}
+@media (max-width:880px){
+  .about-yurumaru{padding:80px 0 96px}
+  .about-yurumaru__wrap{padding:0 20px}
+  .about-yurumaru__head{margin-bottom:48px}
+  .about-yurumaru__label{font-size:12px;letter-spacing:.32em;padding-bottom:18px}
+  .about-yurumaru__body{grid-template-columns:1fr;gap:48px}
+  .about-yurumaru__images{height:480px}
+  .about-yurumaru__textBox{padding-top:0}
+  .about-yurumaru__copy{font-size:22px;line-height:2.0;letter-spacing:.1em;margin-bottom:32px}
+  .about-yurumaru__para{font-size:14px;line-height:2.0}
+}
+</style>
+
+<div class="about-yurumaru__wrap">
+  <div class="about-yurumaru__head">
+    <h2 class="about-yurumaru__label">( Story )</h2>
+  </div>
+  <div class="about-yurumaru__body">
+    <div class="about-yurumaru__images">
+      <div class="img image1"><img src="https://picsum.photos/seed/sanjigen-msg1/780/610" alt=""></div>
+      <div class="img image2"><img src="https://picsum.photos/seed/sanjigen-msg2/570/400" alt=""></div>
+      <div class="img image3"><img src="https://picsum.photos/seed/sanjigen-msg3/730/520" alt=""></div>
+    </div>
+    <div class="about-yurumaru__textBox">
+      <p class="about-yurumaru__copy">
+        <span class="line">身も心もゆるまる、</span>
+        <span class="line">わたしが選んだあたらしい居場所。</span>
+      </p>
+      <p class="about-yurumaru__para">日常の中でつい後回しにしてしまう、ありのままの「わたし」。その時間をそっと思い出させてくれるのが、デモブランドの居場所です。</p>
+      <p class="about-yurumaru__para">新感覚のもっちりとしたやわらかさが、身も心もやさしく包み込みます。</p>
+      <p class="about-yurumaru__para">家族と過ごす時間にも。ひとり静かな時間にも。</p>
+      <p class="about-yurumaru__para">暮らしに自然と馴染みながら、心地よい余白を生み出してくれる ― あたらしい居場所を、あなたに。</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="archetype-label">
+  <span class="num">??</span>
+  <span class="name">about / nu</span>
+  <span class="src"></span>
+</div>
+<!--
+  Archetype: about / nu
+  Source:    nu リノベーション (https://n-u.jp/) BRAND CONCEPT セクションを忠実模写
+  ## 模写スペック（raw HTML 抽出 or 実測値）
+  - 制作技術: 純粋 HTML + CSS。背景は無彩色 + 余白演出のみ、装飾なし。
+  - 構造: <section.brand> > <article>
+      > .ttl_box (B アイコン + BRAND CONCEPT/nuリノベーションについて 大見出し + リード文 2 行)
+      > .btn_box (MORE 黒線ボタン)
+  - 配色: 純白 #fff bg、テキスト #1a1a1a、補助グレー #7a7a7a。装飾なし、余白で間を取る。
+  - フォント: 英字 = Montserrat 500 / 0.06em、本文 = Noto Sans JP 400 line-height 1.95
+  - 動き: なし（hover で btn 反転のみ）
+  - レイアウト: 中央寄せ。アイコン + 大見出し + リード + MORE が縦に並ぶシンプル構成
+  - 文字サイズ実測: h2 = clamp(28px, 3.2vw, 40px)、リード = 14-15px line-height 1.95
+  - 特徴: nu は about を「ブランド姿勢の入口」として極めて簡素にまとめ、詳細は別ページに送る → archetype として「中央寄せ + シンプル」の枠を保持
+  ## Placeholders
+    about.eyebrow_label        「BRAND CONCEPT」相当
+    about.eyebrow_ja           「nu リノベーションについて」相当の日本語サブ
+    about.lead_html            リード本文（HTML 可、br 改行可）
+    about.more_btn_label       MORE
+    about.more_btn_href
+-->
+<section class="about-nu">
+<style>
+.about-nu{padding:120px 6vw;background:#fff;color:#1a1a1a;font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;text-align:center}
+.about-nu__inner{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:32px;align-items:center}
+.about-nu__eyebrow{display:flex;align-items:baseline;gap:14px;justify-content:center}
+.about-nu__eyebrow-mark{display:inline-flex;width:44px;height:44px;border:1px solid #1a1a1a;border-radius:50%;align-items:center;justify-content:center;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:22px;color:#1a1a1a;flex:0 0 auto}
+.about-nu__h2{font-family:"Montserrat","Helvetica Neue",sans-serif;font-weight:500;font-size:clamp(28px,3.2vw,40px);letter-spacing:.08em;margin:0;line-height:1.25;text-align:left}
+.about-nu__h2 span{display:block;font-family:"Noto Sans JP",sans-serif;font-size:13px;letter-spacing:.16em;color:#7a7a7a;margin-top:10px;font-weight:400}
+.about-nu__lead{font-size:15px;line-height:2.0;color:#3a3a3a;margin:0}
+.about-nu__btn{display:inline-block;min-width:220px;padding:16px 28px;text-align:center;font-family:"Montserrat",sans-serif;font-size:11px;letter-spacing:.22em;color:#1a1a1a;text-decoration:none;border:1px solid #1a1a1a;transition:background .25s ease,color .25s ease;margin-top:12px}
+.about-nu__btn:hover{background:#1a1a1a;color:#fff}
+
+@media (max-width:768px){
+  .about-nu{padding:80px 5vw}
+  .about-nu__inner{gap:24px}
+  .about-nu__h2{font-size:24px}
+  .about-nu__lead{font-size:13px;line-height:1.95}
+}
+</style>
+
+<div class="about-nu__inner">
+  <div class="about-nu__eyebrow">
+    <span class="about-nu__eyebrow-mark">B</span>
+    <h2 class="about-nu__h2">BRAND CONCEPT<span>サンプル屋号について</span></h2>
+  </div>
+  <p class="about-nu__lead">多様な事業の取り組み、時代と共に歩んできた歴史、そしてその基盤を支える会社の在り方。技術と人に裏打ちされた建設力で、革新への挑戦をつづけるサンプル建設についてご紹介します。</p>
+  <a class="about-nu__btn" href="#sample-brand">MORE</a>
+</div>
+</section>
+
+<div class="archetype-label">
+  <span class="num">??</span>
+  <span class="name">about / mori</span>
+  <span class="src"></span>
+</div>
+<!--
+  Archetype: about / mori
+  Source:    モリ・リフォーム (https://mori-reform.jp/) の .home-about を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: WordPress + scroll-obj fade-in（CSS で近似）+ アイコンカテゴリ分割（SVG inline）
+  - 構造:
+      <section.home-about>
+        > h2.home-about__title 大見出し（"あなたの「快住」をいっしょにつくります。"）
+        > p.home-about__text リード文（4 行）
+        > ul.home-about__items（4 列、4 カテゴリ）
+          各 item:
+            - icon (SVG)
+            - title 和文（"創業から / 変わらない / 私たちの思い"）
+            - text 短い説明
+            - link "くわしく知る！"
+            - copy 英字（"PHILOSOPHY" / "STAFF" / "FULL REFORM" / "NEW BUILDING"）
+  - 配色: 背景 #fdf9f0 / 文字 #3a2f1f / リンク 屋号緑 #6a8d4e / icon ベージュ枠 #d9c8a3
+  - フォント: 見出し Shippori Mincho 太め / 英字 Cormorant Garamond italic
+  - 動き: scroll-obj は IntersectionObserver で in-view 時 fade-in → CSS のみで初期透明度 .92 で近似
+  ## Placeholders
+    about.heading_line_1        大見出し 1 行目
+    about.heading_line_2        大見出し 2 行目（"「快住」をいっしょにつくります。" 相当、空可）
+    about.lead                  リード本文（HTML 可、<br> 含む）
+    about.card_1_title          カード 1 タイトル（3 行可、<br> 区切り）
+    about.card_1_text           カード 1 本文
+    about.card_1_label_en       カード 1 英字ラベル（"PHILOSOPHY" 相当）
+    about.card_1_href           カード 1 遷移先
+    about.card_2_title          カード 2 タイトル
+    about.card_2_text           カード 2 本文
+    about.card_2_label_en       カード 2 英字ラベル（"STAFF" 相当）
+    about.card_2_href           カード 2 遷移先
+    about.card_3_title          カード 3 タイトル
+    about.card_3_text           カード 3 本文
+    about.card_3_label_en       カード 3 英字ラベル（"FULL REFORM" 相当）
+    about.card_3_href           カード 3 遷移先
+    about.card_4_title          カード 4 タイトル
+    about.card_4_text           カード 4 本文
+    about.card_4_label_en       カード 4 英字ラベル（"NEW BUILDING" 相当）
+    about.card_4_href           カード 4 遷移先
+    about.link_label            リンクラベル（"くわしく知る！" 相当、全カード共通）
+-->
+<section class="about-mori">
+<style>
+.about-mori{background:#fdf9f0;color:#3a2f1f;padding:120px 40px;font-family:"Noto Serif JP",serif}
+.about-mori__inner{max-width:1280px;margin:0 auto}
+.about-mori__heading{margin:0 0 36px;text-align:center;font-family:"Shippori Mincho",serif;font-weight:600;font-size:clamp(28px,3.6vw,46px);line-height:1.6;letter-spacing:.1em;color:#3a2f1f}
+.about-mori__heading span{display:block}
+.about-mori__lead{margin:0 0 80px;text-align:center;font-size:15px;line-height:2.2;letter-spacing:.08em;color:#5a4e3a;max-width:720px;margin-left:auto;margin-right:auto}
+
+.about-mori__items{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.about-mori__item{display:flex;flex-direction:column;align-items:center;text-align:center;padding:32px 18px;background:#fff;border-radius:8px;box-shadow:0 8px 24px rgba(58,47,31,.05);transition:transform .25s,box-shadow .25s}
+.about-mori__item:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(58,47,31,.1)}
+.about-mori__icon{width:72px;height:72px;border-radius:50%;background:#fdf3df;display:flex;align-items:center;justify-content:center;margin-bottom:18px;border:1px solid #d9c8a3}
+.about-mori__icon svg{width:36px;height:36px;color:#6a8d4e}
+.about-mori__item-title{margin:0 0 14px;font-family:"Shippori Mincho",serif;font-weight:600;font-size:17px;line-height:1.65;letter-spacing:.06em;color:#3a2f1f}
+.about-mori__item-text{margin:0 0 20px;font-size:13px;line-height:1.85;color:#6a5e4a;flex-grow:1}
+.about-mori__item-link{font-size:12px;color:#6a8d4e;text-decoration:none;border-bottom:1px solid #6a8d4e;padding-bottom:2px;margin-bottom:14px;transition:opacity .2s}
+.about-mori__item-link::after{content:"→";margin-left:6px;font-family:"Cormorant Garamond",serif}
+.about-mori__item-link:hover{opacity:.7}
+.about-mori__item-en{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:12px;letter-spacing:.32em;color:#a89870;text-transform:uppercase}
+
+@media (max-width:1024px){
+  .about-mori__items{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:560px){
+  .about-mori{padding:72px 20px}
+  .about-mori__items{grid-template-columns:1fr;gap:20px}
+  .about-mori__heading{font-size:24px}
+}
+</style>
+
+<div class="about-mori__inner">
+  <h2 class="about-mori__heading">
+    <span>あなたの</span>
+    <span>「快住」をいっしょにつくります。</span>
+  </h2>
+  <p class="about-mori__lead">サンプル設計事務所は、◯◯エリアを拠点とする受賞歴のあるアーキテクチャ + インテリアデザインスタジオ。住まう方の暮らしのリズムから設計を組み立てます。</p>
+  <ul class="about-mori__items">
+    <li class="about-mori__item">
+      <span class="about-mori__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3l8 5v9.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5V8l8-5z"/><path d="M9 18v-5h6v5"/></svg>
+      </span>
+      <h3 class="about-mori__item-title">創業から<br>変わらない<br>私たちの思い</h3>
+      <p class="about-mori__item-text">サンプル快住ノートなど、お客様視点の取り組みなどをご紹介します。</p>
+      <a class="about-mori__item-link" href="#philosophy-demo">会社概要を見る（サンプル）</a>
+      <span class="about-mori__item-en">PHILOSOPHY</span>
+    </li>
+    <li class="about-mori__item">
+      <span class="about-mori__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-3.5 3.8-5.5 7-5.5s6.2 2 7 5.5"/></svg>
+      </span>
+      <h3 class="about-mori__item-title">「快適住空間」を<br>つくる<br>スタッフたち</h3>
+      <p class="about-mori__item-text">家や暮らしにとことんこだわるサンプルスタッフが粒ぞろい。</p>
+      <a class="about-mori__item-link" href="#staff-demo">会社概要を見る（サンプル）</a>
+      <span class="about-mori__item-en">STAFF</span>
+    </li>
+    <li class="about-mori__item">
+      <span class="about-mori__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="9" width="16" height="11" rx="1"/><path d="M4 9l8-6 8 6"/><path d="M10 20v-5h4v5"/></svg>
+      </span>
+      <h3 class="about-mori__item-title">暮らしに<br>あわせる<br>フルリフォーム</h3>
+      <p class="about-mori__item-text">独り立ちに孫、今の暮らしに合わせて住まいを変えるご提案。</p>
+      <a class="about-mori__item-link" href="#full-reform-demo">会社概要を見る（サンプル）</a>
+      <span class="about-mori__item-en">FULL REFORM</span>
+    </li>
+    <li class="about-mori__item">
+      <span class="about-mori__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><rect x="9" y="12" width="6" height="9"/></svg>
+      </span>
+      <h3 class="about-mori__item-title">深呼吸を<br>したくなる<br>新築</h3>
+      <p class="about-mori__item-text">リフォーム会社のノウハウがつまったサンプル新築とは？</p>
+      <a class="about-mori__item-link" href="#new-building-demo">会社概要を見る（サンプル）</a>
+      <span class="about-mori__item-en">NEW BUILDING</span>
+    </li>
+  </ul>
+</div>
+</section>
+
+<div class="archetype-label">
+  <span class="num">??</span>
+  <span class="name">about / dinesen</span>
+  <span class="src"></span>
+</div>
+<!--
+  Archetype: about / dinesen
+  Source:    Dinesen (https://www.dinesen.com/en) の "Dinesen Country Home" image-text ブロックを忠実模写
+  ## 模写スペック（raw HTML 抽出 / 実測値）
+  - 制作技術: Foundation 6 grid-x grid-padding-x align-middle image-text + js-parallax (figure 縦微動)
+              + lazyload.js（写真）
+  - 構造: <div.grid-container>
+      > .grid-x.grid-padding-x.align-middle.image-text
+        > .cell.small-12.medium-6.text-center > figure.js-parallax > picture > img (heritage 邸宅写真)
+        > .cell.small-12.medium-5.medium-offset-1
+          > .image-text__text
+            > .image-text__text--big > h2.p1 + p.p1（heritage タイトル + 本文 1 段落）
+            > p > a (テキストリンク "Explore Dinesen Country Home")
+  - 配色: 白背景 #ffffff + ベージュ階調の余白、ヘッディング #1a1a1a、本文 #4a463f、
+          リンクは下線付き #1a1a1a + hover で薄く
+  - フォント: 見出しは Cormorant Garamond / Caudex serif 大きめ、本文は Open Sans / Inter sans
+              の組み合わせ（Dinesen 標準）。letter-spacing は控えめで読みやすさ重視
+  - 動き: 画像 figure に js-parallax (スクロール時 +/- 8% 縦動)、本実装では IntersectionObserver
+          で軽い fade + translateY のみで近似
+  - 余白: section padding 上下 120-160px、画像 cell と text cell の間に medium-offset-1
+          で gap 1 列分。画像 aspect-ratio は 4:3 程度（実 1120x840 fetch）
+  ## Placeholders
+    about.section_label   小見出し英字（任意、"HERITAGE" 等）
+    about.heading         大見出し（heritage 名 / 由来地名）
+    about.lead_paragraph  本文 1 段落（創業 / 歴史 / 場所 / 哲学）
+    about.image           heritage 邸宅 / 工房 写真 URL
+    about.image_caption   写真キャプション（任意、写真下の小文）
+    about.cta_label       テキストリンク文言（"詳しく見る" 等）
+    about.cta_href        テキストリンク遷移先
+-->
+<section class="about-dinesen">
+<style>
+.about-dinesen{padding:140px 0 160px;background:#ffffff;color:#1a1a1a;font-family:"Noto Serif JP","Hiragino Mincho ProN",serif}
+.about-dinesen__inner{max-width:1240px;margin:0 auto;padding:0 56px;display:grid;grid-template-columns:6fr 5fr;gap:80px;align-items:center}
+
+.about-dinesen__figure{position:relative;margin:0;overflow:hidden;background:#ece4d5}
+.about-dinesen__figure-wrap{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden}
+.about-dinesen__img{width:100%;height:100%;object-fit:cover;display:block;transform:translateY(0);transition:transform 1.6s ease-out}
+.about-dinesen.is-in .about-dinesen__img{transform:translateY(-6%)}
+.about-dinesen__caption{margin:12px 0 0;font-family:"EB Garamond","Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.04em;color:#7a7368}
+
+.about-dinesen__text{padding:8px 0}
+.about-dinesen__label{display:block;margin:0 0 24px;font-family:"EB Garamond","Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.32em;text-transform:uppercase;color:#8a7d68}
+.about-dinesen__heading{margin:0 0 32px;font-family:"Cormorant Garamond","EB Garamond","Noto Serif JP",serif;font-weight:500;font-size:clamp(30px,3.4vw,46px);letter-spacing:.012em;line-height:1.25;color:#1a1a1a}
+.about-dinesen__lead{margin:0 0 32px;font-size:15px;line-height:2.0;letter-spacing:.06em;color:#4a463f}
+.about-dinesen__link{display:inline-block;color:#1a1a1a;text-decoration:none;font-family:"EB Garamond","Cormorant Garamond",serif;font-style:italic;font-size:15px;letter-spacing:.06em;border-bottom:1px solid #1a1a1a;padding-bottom:4px;transition:color .2s,border-color .2s}
+.about-dinesen__link:hover{color:#7a7368;border-color:#7a7368}
+.about-dinesen__link::after{content:" →";font-style:normal}
+
+@media (max-width:1024px){
+  .about-dinesen{padding:100px 0 120px}
+  .about-dinesen__inner{gap:56px;padding:0 40px}
+}
+@media (max-width:880px){
+  .about-dinesen{padding:72px 0 88px}
+  .about-dinesen__inner{grid-template-columns:1fr;gap:36px;padding:0 24px}
+  .about-dinesen__heading{font-size:28px}
+  .about-dinesen__lead{font-size:14px;line-height:1.9}
+  .about-dinesen__figure-wrap{aspect-ratio:5/4}
+}
+</style>
+
+<div class="about-dinesen__inner">
+  <figure class="about-dinesen__figure">
+    <div class="about-dinesen__figure-wrap">
+      <img class="about-dinesen__img" src="https://picsum.photos/seed/hadashi-about/800/960" alt="">
+    </div>
+    <figcaption class="about-dinesen__caption">サンプル地域のロングハウス（◯◯ 年築）</figcaption>
+  </figure>
+
+  <div class="about-dinesen__text">
+    <span class="about-dinesen__label">( Story )</span>
+    <h2 class="about-dinesen__heading">初めまして、サンプル屋号です。</h2>
+    <p class="about-dinesen__lead">サンプル屋号は、住まいづくりにおける一つひとつのご相談に丁寧に向き合いながら、お客様の暮らしに寄り添ったご提案を心がけています（サンプル）。</p>
+    <a class="about-dinesen__link" href="/about/">サンプル工房について</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.currentScript.closest('.about-dinesen');
+  if (!root || !('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting){ root.classList.add('is-in'); io.disconnect(); }});
+  }, {threshold:.18});
+  io.observe(root);
+})();
+</script>
+</section>
+
+<div class="archetype-label">
+  <span class="num">??</span>
+  <span class="name">about / craft</span>
+  <span class="src"></span>
+</div>
+<!--
+  Archetype: about / craft
+  Source:    株式会社クラフト (https://craftdesign.tokyo/) の <section class="top-about"> を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: AOS（fade-right + delay スタガード）+ CSS parallax bg
+  - 構造:
+      <section.top-about.top-section>
+        > .top-about-image-wrap > .top-about-image.js-parallax-bg（フル背景画像 / 視差スクロール）
+        > .top-section-inner.inner
+          > .top-about-head.c-title-wrap[data-aos="fade-up"]
+              > h2.c-title__ja.mod-color-white  "クラフトについて"
+              > .top-about-title.c-title.m-small
+                  > span.m-sans-serif "ABOUT"
+                  > span.m-serif "CRAFT"
+              > p.top-about-lead  "フルリフォームの専門会社"
+              > p.top-about-text  本文 4 段（1982 年〜）
+          > .top-section-button-wrap
+              > a.c-arrow-button "クラフトの特徴"
+      フル背景画像 + 文字白オーバーレイ。AOS 段階表示で「英字 → サブヘッド → 本文 → CTA」の 4 段読み
+  - 配色: 背景画像 + 黒オーバーレイ 0.42、文字 #fff、CTA ゴールド #b59175
+  - フォント: 見出し m-sans-serif (Roboto 700) + m-serif (Lusitana)、本文 Roboto + YuGothic 16px line-height 2
+             letter-spacing .12em（英字大文字）
+  - 動き: bg-fixed parallax、AOS fade-right 800ms スタガード（400/700/1000/1300ms delay）
+  - 特徴: フル幅背景画像でブランド世界観を語る pre-services 配置。short ja heading + 英字 + 本文 4 段 + CTA の文芸的構成
+  ## Placeholders
+    about.bg_image                背景画像 URL（1920x900 想定、室内 living）
+    about.heading_ja              日本語見出し（"サンプル屋号について"）
+    about.heading_en_1            英字前半（"ABOUT"）
+    about.heading_en_2            英字後半（"SAMPLE"）
+    about.subhead                 サブヘッド一行（"フルリフォームの専門会社"）
+    about.paragraph_1             本文 1 行目
+    about.paragraph_2             本文 2 行目
+    about.paragraph_3             本文 3 行目
+    about.paragraph_4             本文 4 行目
+    about.button_label            CTA ラベル（"サンプル屋号の特徴"）
+    about.button_href             CTA 遷移先
+-->
+<section class="about-craft">
+  <style>
+    .about-craft{position:relative;padding:160px 32px;color:#fff;font-family:"Roboto","游ゴシック体",YuGothic,sans-serif;overflow:hidden;isolation:isolate}
+    .about-craft__bg{position:absolute;inset:0;background-size:cover;background-position:center;background-attachment:fixed;z-index:-2}
+    .about-craft__bg::after{content:"";position:absolute;inset:0;background:rgba(10,10,10,.42);z-index:-1}
+    .about-craft__inner{max-width:960px;margin:0 auto;text-align:center;position:relative}
+    .about-craft__heading-ja{font-family:Lusitana,"Times New Roman","Noto Serif JP","Yu Mincho",serif;font-size:15px;font-weight:400;letter-spacing:.22em;color:#e7dfcd;margin:0 0 22px;display:block}
+    .about-craft__heading-en{display:flex;justify-content:center;align-items:baseline;gap:14px;letter-spacing:.15em;margin:0 0 36px}
+    .about-craft__heading-en .m-sans-serif{font-family:"Roboto","游ゴシック体",YuGothic,sans-serif;font-weight:700;font-size:42px;color:#fff}
+    .about-craft__heading-en .m-serif{font-family:Lusitana,"Times New Roman",serif;font-weight:400;font-size:42px;color:#fff}
+    .about-craft__subhead{font-family:Lusitana,"Times New Roman","Noto Serif JP","Yu Mincho",serif;font-size:24px;font-weight:400;letter-spacing:.14em;margin:0 0 32px;color:#fff}
+    .about-craft__text{font-size:16px;line-height:2.1;color:#f3efe8;margin:0 0 48px;letter-spacing:.06em}
+    .about-craft__text p{margin:0 0 .4em}
+    .about-craft__btn{display:inline-flex;align-items:center;gap:14px;padding:18px 44px;background:transparent;color:#fff;text-decoration:none;font-size:13px;letter-spacing:.18em;font-family:Lusitana,"Times New Roman",serif;border:1px solid #b59175;transition:background .3s ease, color .3s ease}
+    .about-craft__btn::after{content:"→";color:#b59175;transition:transform .3s ease, color .3s ease}
+    .about-craft__btn:hover{background:#b59175;color:#fff}
+    .about-craft__btn:hover::after{color:#fff;transform:translateX(4px)}
+    @media (max-width:768px){
+      .about-craft{padding:96px 24px}
+      .about-craft__bg{background-attachment:scroll}
+      .about-craft__heading-en .m-sans-serif,.about-craft__heading-en .m-serif{font-size:30px}
+      .about-craft__subhead{font-size:18px}
+      .about-craft__text{font-size:14px;line-height:1.95}
+      .about-craft__btn{padding:14px 32px;font-size:12px}
+    }
+  </style>
+  <div class="about-craft__bg" style="background-image:url('https://picsum.photos/seed/craft-about-bg/1920/900')"></div>
+  <div class="about-craft__inner">
+    <span class="about-craft__heading-ja">私たちについて</span>
+    <div class="about-craft__heading-en">
+      <span class="m-sans-serif">ABOUT</span>
+      <span class="m-serif">SAMPLE</span>
+    </div>
+    <p class="about-craft__subhead">フルリフォームの専門会社</p>
+    <div class="about-craft__text">
+      <p>◯◯◯◯年の創業以来、一戸建て・マンション・ビルなどたくさんのリフォームを手掛けてきました。</p>
+      <p>一旦構造体のみに解体し、間取りとデザインをゼロから構築するフルリフォームが中心。</p>
+      <p>設計から施工まで、自社で行っています。</p>
+      <p>家族構成やライフスタイルに寄り添うたった一つの住まいのため、心を込めてつくり上げています。</p>
+    </div>
+    <a class="about-craft__btn" href="#sample-story">More</a>
+  </div>
+</section>
+
+<div class="archetype-label">
+  <span class="num">??</span>
+  <span class="name">about / kinari</span>
+  <span class="src"></span>
+</div>
+<!--
+  Archetype: about / kinari
+  Source:    キナリデザイン (https://www.kinari-design.com/exterior/#aboutus) の About 章を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: Bootstrap 4.1 + jQuery / 自前 import.css
+  - 構造:
+      <article.EXTERIOR.MODULE.wrap.second#aboutus>
+        > h3.center.gray data-eng="About Us" "初めまして、キナリデザインです。"
+        > ul.flex 2 カラム
+            li.Hagukumi01:
+              dt 大見出し "はぐみます。美しい景色を。いとおしい時を。"
+              dd 本文 2 段落（母体多田工業 / 戸建+ファサード+ランドマーク）
+            li.Hagukumi02:
+              figure 大写真（建築×外構の景色）
+        > ul.flex.threeClum 3 カラム（ストーリーカード）
+            li-1: dt "当社のロゴマーク" + dd ロゴの由来（アンナの光、生成り）+ logo 画像
+            li-2: dt "銀河鉄道の夜" + dd ルーツ岩手県 + 写真
+            li-3: dt "わらぶきの曲り家" + dd 心の原風景 + 写真
+        > ul.flex.no-bottom 2 カラム（クロージング）
+            li-1: dt "2つの要素をバランスよく…" + dd 家と庭・建築と外構
+            li-2: figure 大写真
+      → 「会社の物語を 3 つの象徴で語る」構成（業者プロフィールとして希少）
+  - 配色: ベース #fbf8f1（生成り）/ ストーリーカード白背景 / 罫線 #d8cdb3 / 大見出しグレー #3a342c
+  - フォント: data-eng 英字 Cantata One serif、和見出し Shippori Mincho、本文 Noto Serif JP
+  - 動き: scroll で fade-in（IntersectionObserver）、写真 hover で scale(1.03)、no-bar variant 等の細かな figure 罫線オフ
+  ## Placeholders
+    about.section_label       英字ラベル "About Us"
+    about.heading             章タイトル "初めまして、◯◯です。"
+    about.opener_title        オープナー大見出し 1 行（HTML 可 <br>）
+    about.opener_body_1       オープナー本文段落 1
+    about.opener_body_2       オープナー本文段落 2
+    about.opener_image        オープナー写真 URL
+    about.story_N_title       ストーリー N タイトル（N=1..3）
+    about.story_N_body        ストーリー N 本文
+    about.story_N_image       ストーリー N 写真 URL
+    about.closer_title        クロージング大見出し
+    about.closer_body_1       クロージング本文 1
+    about.closer_body_2       クロージング本文 2
+    about.closer_image        クロージング写真 URL
+-->
+<section class="about-kinari">
+<style>
+.about-kinari{position:relative;padding:120px 32px;background:#fbf8f1;color:#4a4a4a;font-family:"Noto Serif JP",serif}
+.about-kinari__container{max-width:1180px;margin:0 auto}
+.about-kinari__heading{font-family:"Shippori Mincho",serif;font-weight:500;font-size:clamp(22px,2.4vw,30px);letter-spacing:.16em;text-align:center;color:#3a342c;margin:0 0 12px;position:relative;padding-bottom:18px}
+.about-kinari__heading::before{content:attr(data-eng);display:block;font-family:"Cantata One",serif;font-size:13px;letter-spacing:.34em;color:#a89770;margin-bottom:14px;text-transform:uppercase;font-weight:400}
+.about-kinari__heading::after{content:"";display:block;width:46px;height:1px;background:#bcae93;margin:18px auto 0}
+
+/* opener (2 col) */
+.about-kinari__opener{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;margin:80px 0 96px;align-items:center}
+.about-kinari__opener-title{font-family:"Shippori Mincho",serif;font-weight:500;font-size:clamp(18px,2.0vw,24px);line-height:2.05;letter-spacing:.1em;color:#3a342c;margin:0 0 26px}
+.about-kinari__opener-body{font-size:14.5px;line-height:2.15;letter-spacing:.05em;color:#5b574e;margin:0 0 18px}
+.about-kinari__opener-figure{aspect-ratio:5/4;background:#ece4d2 center/cover no-repeat;background-image:url("https://picsum.photos/seed/kinari-opener/900/720")}
+
+/* stories (3 col) */
+.about-kinari__stories{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;margin-bottom:96px}
+.about-kinari__story{display:flex;flex-direction:column;gap:18px}
+.about-kinari__story-title{font-family:"Shippori Mincho",serif;font-weight:500;font-size:16px;line-height:1.85;letter-spacing:.08em;color:#3a342c;margin:0;padding-bottom:14px;border-bottom:1px solid #d8cdb3}
+.about-kinari__story-body{font-size:13.5px;line-height:2.05;letter-spacing:.04em;color:#5b574e;margin:0}
+.about-kinari__story-figure{aspect-ratio:4/3;background:#ece4d2 center/cover no-repeat;margin-top:auto}
+.about-kinari__story-figure--1{background-image:url("https://picsum.photos/seed/kinari-logo/400/400");background-size:contain;background-color:#fff}
+.about-kinari__story-figure--2{background-image:url("https://picsum.photos/seed/kinari-story-2/400/300")}
+.about-kinari__story-figure--3{background-image:url("https://picsum.photos/seed/kinari-story-3/400/300")}
+
+/* closer (2 col, mirrored) */
+.about-kinari__closer{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center}
+.about-kinari__closer-title{font-family:"Shippori Mincho",serif;font-weight:500;font-size:clamp(17px,1.9vw,22px);line-height:1.95;letter-spacing:.1em;color:#3a342c;margin:0 0 24px}
+.about-kinari__closer-body{font-size:14px;line-height:2.15;letter-spacing:.05em;color:#5b574e;margin:0 0 16px}
+.about-kinari__closer-figure{aspect-ratio:5/4;background:#ece4d2 center/cover no-repeat;background-image:url("https://picsum.photos/seed/kinari-closer/900/720")}
+
+@media (max-width:1024px){
+  .about-kinari__opener,.about-kinari__closer{grid-template-columns:1fr;gap:32px}
+  .about-kinari__stories{grid-template-columns:1fr;gap:48px}
+}
+@media (max-width:768px){
+  .about-kinari{padding:80px 20px}
+  .about-kinari__opener,.about-kinari__closer{margin:48px 0 64px}
+}
+</style>
+
+<div class="about-kinari__container">
+  <h2 class="about-kinari__heading" data-eng="( Story )">初めまして、サンプル屋号です。</h2>
+
+  <div class="about-kinari__opener">
+    <div>
+      <h3 class="about-kinari__opener-title">サンプルではぐみます。美しい景色を。<br>いとおしい時を。</h3>
+      <p class="about-kinari__opener-body">私たちサンプル屋号 design works は◯◯ 年以上の施工実績を有するデモ外構専門店を母体とする、サンプルエクステリアデザインに特化したサンプル一級建築士事務所です。</p>
+      <p class="about-kinari__opener-body">サンプル戸建住宅エクステリアをメインフレームに、デモファサード設計・サンプルランドマーク設計まで幅広く手掛ける、その総合力で、あなただけの景色を美しく、心地よくデザインします。</p>
+    </div>
+    <div class="about-kinari__opener-figure" role="img" aria-label="about opener"></div>
+  </div>
+
+  <div class="about-kinari__stories">
+    <article class="about-kinari__story">
+      <h3 class="about-kinari__story-title">サンプル当社のロゴマーク</h3>
+      <p class="about-kinari__story-body">サンプル「アンナの光」をイメージに、落ち着きある直線で“建築”を、そして“ふわりとそよぐ風”をやわらかな曲線と位置付けて“外構”とし、デモの生成りベージュを基にデザインしたものです。</p>
+      <div class="about-kinari__story-figure about-kinari__story-figure--1" role="img" aria-label="story 1"></div>
+    </article>
+    <article class="about-kinari__story">
+      <h3 class="about-kinari__story-title">サンプル銀河鉄道の夜</h3>
+      <p class="about-kinari__story-body">サンプル◯◯県　デモのルーツとなる土地が、私たちのルーツです。デモの遠野市に生まれた当社会長が創業者です。</p>
+      <div class="about-kinari__story-figure about-kinari__story-figure--2" role="img" aria-label="story 2"></div>
+    </article>
+    <article class="about-kinari__story">
+      <h3 class="about-kinari__story-title">サンプルわらぶきの曲り家</h3>
+      <p class="about-kinari__story-body">サンプルわらぶきの曲り家、デモ囲炉裏のやわらかな火──<br>人と人との温かいつながりが、私たちの心の原風景です。</p>
+      <div class="about-kinari__story-figure about-kinari__story-figure--3" role="img" aria-label="story 3"></div>
+    </article>
+  </div>
+
+  <div class="about-kinari__closer">
+    <div>
+      <h3 class="about-kinari__closer-title">サンプル 2 つの要素をバランスよく、お互いに生き生きとあるように</h3>
+      <p class="about-kinari__closer-body">サンプル家と庭があればなお、そこにはあたたかな家庭が育まれるでしょう？<br>建築と外構があってこそ、そこにはうつくしい街並みが育まれます。</p>
+      <p class="about-kinari__closer-body">この 2 つの要素をバランスよく、お互いに生き生きとあるように外構をデザインしたい。いつも　そう思っています。</p>
+    </div>
+    <div class="about-kinari__closer-figure" role="img" aria-label="about closer"></div>
+  </div>
+</div>
+</section>
+
+<div class="archetype-label">
+  <span class="num">??</span>
+  <span class="name">about / sanjigen</span>
+  <span class="src"></span>
+</div>
+<!--
+  Archetype: about / sanjigen
+  Source:    三次元 The Classic (https://3jigen.jp/) の p-home-message を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: GSAP ScrollTrigger inviewContents/inviewShow による段階フェード
+              ※プレビューは IntersectionObserver で代替
+  - 構造:
+      <section.p-home-message>
+        > .p-home-message__gallery (3 枚重ね写真、各々 rellax で異なる速度)
+            > img1 777x606 速度+5 z=2
+            > img2 567x401 速度+1 z=2
+            > img3 732x517 速度+2 z=2
+        > .l-container > .p-home-message__text
+            > p×3 段落（明朝・詩的、ブランドステートメント）
+            > a "View Concept"（c-button-more -line、下線リンク）
+  - 配色: 背景 #f5f1ea / 本文 #2b2b2b / リンク #181818 + 下線
+  - フォント: 本文 Shippori Mincho 400、リンク Cormorant Garamond italic
+  - 動き: 3 枚の写真が異なる速度で上下視差、本文 + ボタンが下からフェードイン
+  ## Placeholders
+    about.copy_lead_1          本文 1 段落目（"家には、物語が生まれ、刻まれていきます。" 相当）
+    about.copy_lead_2          本文 2 段落目（"私たちが大切にしているのは、" 相当）
+    about.copy_lead_3          本文 3 段落目（"故きを温ねて新しきを知る" 相当）
+    about.button_label         "View Concept" 相当のリンクラベル
+    about.button_href          リンク先 URL
+    about.image_1              3 枚写真 1 枚目（左大、777x606 比）
+    about.image_2              3 枚写真 2 枚目（右上、567x401 比）
+    about.image_3              3 枚写真 3 枚目（右下、732x517 比）
+-->
+<section class="about-sanjigen">
+<style>
+.about-sanjigen{position:relative;padding:160px 0 200px;background:#f5f1ea;color:#2b2b2b;font-family:"Shippori Mincho",serif;overflow:hidden}
+.about-sanjigen__gallery{position:relative;max-width:1280px;margin:0 auto 96px;height:760px}
+.about-sanjigen__gallery img{position:absolute;display:block;width:100%;height:auto;object-fit:cover;opacity:0;transform:translateY(40px);transition:opacity 1.4s ease,transform 1.4s ease;box-shadow:0 18px 48px rgba(24,24,24,.12)}
+.about-sanjigen.is-inview .about-sanjigen__gallery img{opacity:1;transform:translateY(0)}
+.about-sanjigen__gallery-img1{top:60px;left:6%;width:42%;max-width:560px;z-index:2;transition-delay:.05s}
+.about-sanjigen__gallery-img2{top:0;right:8%;width:30%;max-width:420px;z-index:3;transition-delay:.25s}
+.about-sanjigen__gallery-img3{top:380px;right:14%;width:38%;max-width:520px;z-index:2;transition-delay:.45s}
+
+.about-sanjigen__text{position:relative;max-width:680px;margin:0 auto;padding:0 32px;text-align:center;display:flex;flex-direction:column;gap:28px;opacity:0;transform:translateY(20px);transition:opacity 1.4s ease .6s,transform 1.4s ease .6s}
+.about-sanjigen.is-inview .about-sanjigen__text{opacity:1;transform:translateY(0)}
+.about-sanjigen__text p{margin:0;font-family:"Shippori Mincho",serif;font-weight:400;font-size:17px;line-height:2.4;letter-spacing:.14em;color:#2b2b2b}
+.about-sanjigen__more{display:inline-flex;align-self:center;align-items:center;gap:16px;margin-top:12px;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:18px;letter-spacing:.16em;color:#181818;text-decoration:none;padding:8px 0;border-bottom:1px solid #181818;transition:gap .25s,letter-spacing .25s}
+.about-sanjigen__more::after{content:"→";font-family:"Shippori Mincho",serif;font-style:normal}
+.about-sanjigen__more:hover{gap:22px;letter-spacing:.22em}
+
+@media (max-width:880px){
+  .about-sanjigen{padding:80px 0 100px}
+  .about-sanjigen__gallery{height:520px;margin-bottom:48px}
+  .about-sanjigen__gallery-img1{top:40px;left:4%;width:56%}
+  .about-sanjigen__gallery-img2{top:0;right:4%;width:38%}
+  .about-sanjigen__gallery-img3{top:260px;right:10%;width:50%}
+  .about-sanjigen__text{padding:0 24px;gap:20px}
+  .about-sanjigen__text p{font-size:14px;line-height:2.1;letter-spacing:.08em}
+  .about-sanjigen__more{font-size:15px}
+}
+</style>
+
+<div class="about-sanjigen__gallery" aria-hidden="true">
+  <img class="about-sanjigen__gallery-img1" src="https://picsum.photos/seed/sanjigen-msg1/780/610" alt="">
+  <img class="about-sanjigen__gallery-img2" src="https://picsum.photos/seed/sanjigen-msg2/570/400" alt="">
+  <img class="about-sanjigen__gallery-img3" src="https://picsum.photos/seed/sanjigen-msg3/730/520" alt="">
+</div>
+
+<div class="about-sanjigen__text">
+  <p>家には、物語が生まれ、刻まれていきます。住まい手とともに時を重ね、その美しさが深まっていきます。</p>
+  <p>私たちが大切にしているのは、流行に左右されない、クラシックな佇まい。</p>
+  <p>「故きを温ねて新しきを知る」 いつまでも、誇りと愛着を持てる住まいをご提案いたします。</p>
+  <a class="about-sanjigen__more" href="#sample-story">More</a>
+</div>
+
+<script>
+(function(){
+  var root = document.currentScript.closest('.about-sanjigen');
+  if (!root) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ root.classList.add('is-inview'); io.disconnect(); }
+    });
+  }, {threshold:.18});
+  io.observe(root);
+})();
+</script>
+</section>
+
+<div class="archetype-label">
+  <span class="num">??</span>
+  <span class="name">about / nos</span>
+  <span class="src"></span>
+</div>
+<!--
+  Archetype: about / nos
+  Source:    NOS-Design (https://nos-design.jp/) の ABOUT NOS-design セクションを忠実模写
+  ## 模写スペック（raw HTML 抽出 or 実測値）
+  - 制作技術: Elementor section、左に EN大ラベル + 日本語 h2、右に詩的本文段落 4 行 + 5 項目リスト
+  - 構造:
+      > .about-nos__inner
+        > .about-nos__head（EN ラベル "ABOUT NOS-design" + 細ライン下線 48px）
+        > .about-nos__body grid 2col
+          > .about-nos__title（h2: 「サンプル屋号-外構･エクステリア専門の設計事務所」 ja serif）
+          > .about-nos__lead（詩的本文 3 段落、Noto Serif JP 16px line-height 2.1）
+          > .about-nos__list（5 項目「設計と施工」「リフォーム/リガーデン」「総合外構計画」「企業施設対応」「平面図/3Dパース」）
+  - 配色: 背景 #fafaf7（オフホワイト）/ EN ラベル #5a8c4d（植栽グリーン）/ 本文 #1a1a1a / 罫線 #d9d2c4
+  - フォント: EN Cormorant Garamond italic 14px letter-spacing .42em uppercase / h2 Noto Serif JP 500 clamp(24px,3vw,36px) / body Noto Serif JP 16px line-height 2.1
+  - 動き: 装飾なし、静的な「読ませる」セクション
+  - 特徴: 「設計事務所」というポジショニングを文字主導で訴求。リストは「・」記号 + serif で論文的トーン
+  ## Placeholders
+    about.label_en        "ABOUT NOS-design" 等 EN 章ラベル
+    about.label_ja        日本語サブラベル
+    about.title           h2 見出し
+    about.lead_p1         本文 1 段落目
+    about.lead_p2         本文 2 段落目
+    about.lead_p3         本文 3 段落目
+    about.list_item_1     リスト 1（例: 設計と施工）
+    about.list_item_2     リスト 2
+    about.list_item_3     リスト 3
+    about.list_item_4     リスト 4
+    about.list_item_5     リスト 5
+-->
+<section class="about-nos" id="about">
+  <style>
+    .about-nos{background:#fafaf7;padding:120px 0 130px;color:#1a1a1a;font-family:"Noto Sans JP",sans-serif}
+    .about-nos__inner{max-width:1180px;margin:0 auto;padding:0 32px}
+    .about-nos__head{margin:0 0 64px;text-align:center}
+    .about-nos__label-en{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.42em;text-transform:uppercase;color:#5a8c4d;margin:0;display:inline-block;position:relative;padding-bottom:14px}
+    .about-nos__label-en::after{content:"";display:block;width:48px;height:1px;background:#5a8c4d;position:absolute;left:50%;bottom:0;transform:translateX(-50%)}
+    .about-nos__label-ja{display:block;font-family:"Noto Serif JP",serif;font-size:12px;letter-spacing:.18em;color:#888;margin-top:14px}
+    .about-nos__body{display:grid;grid-template-columns:1fr 1.6fr;gap:64px;align-items:start}
+    .about-nos__title{font-family:"Noto Serif JP",serif;font-weight:500;font-size:clamp(24px,3vw,34px);line-height:1.55;letter-spacing:.04em;color:#1a1a1a;margin:0}
+    .about-nos__right{display:flex;flex-direction:column;gap:22px}
+    .about-nos__lead p{font-family:"Noto Serif JP",serif;font-size:16px;line-height:2.1;color:#1a1a1a;margin:0 0 18px}
+    .about-nos__lead p:last-child{margin-bottom:0}
+    .about-nos__list{list-style:none;padding:24px 0 0;margin:0;border-top:1px solid #d9d2c4;display:flex;flex-direction:column;gap:10px}
+    .about-nos__list li{font-family:"Noto Serif JP",serif;font-size:14px;line-height:1.8;color:#444;letter-spacing:.06em;padding-left:18px;position:relative}
+    .about-nos__list li::before{content:"";position:absolute;left:0;top:14px;width:6px;height:1px;background:#5a8c4d}
+    @media (max-width:880px){
+      .about-nos{padding:72px 0 80px}
+      .about-nos__head{margin-bottom:40px}
+      .about-nos__body{grid-template-columns:1fr;gap:32px}
+      .about-nos__title{font-size:22px}
+      .about-nos__lead p{font-size:14px;line-height:2}
+    }
+  </style>
+  <div class="about-nos__inner">
+    <div class="about-nos__head">
+      <p class="about-nos__label-en">ABOUT サンプル屋号<span class="about-nos__label-ja">設計事務所として外構を考える</span></p>
+    </div>
+    <div class="about-nos__body">
+      <h2 class="about-nos__title">サンプル県◯◯町の外構・エクステリア専門の設計事務所サンプル屋号</h2>
+      <div class="about-nos__right">
+        <div class="about-nos__lead">
+          <p>エクステリア（外構）とガーデン（庭園）のデザインと施工。お客様と庭屋が一緒に美しく経年変化できる庭づくりを第一に考え設計しています。</p>
+          <p>デザインとお客様の趣味嗜好を調和した機能美と、実質剛健で安心安全な構造を有し、ご家族の成長やライフスタイルの変化に寄りそう入念なアフターフォローを大事にしています。</p>
+          <p>サンプル町を拠点に◯◯市・◯◯市・◯◯市など県内のワンランク上のプランニングで、家族との温かいときを造ります。</p>
+        </div>
+        <ul class="about-nos__list">
+          <li>エクステリア（外構）とガーデン（庭園）のデザインと施工</li>
+          <li>リフォーム・リガーデンのデザインと施工</li>
+          <li>戸建住宅・マンション・分譲地の総合外構計画</li>
+          <li>企業施設（飲食店・幼稚園・結婚式場・老人ホーム等）対応</li>
+          <li>平面図・断面図・3Dパースによる忠実な完成形の再現</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="archetype-label">
+  <span class="num">??</span>
+  <span class="name">about / minale</span>
+  <span class="src"></span>
+</div>
+<!--
+  Archetype: about / minale
+  Source:    Minale + Mann (https://minaleandmann.com/) のホーム one-page-scroll slider 第 13 セル (About) + 全体冒頭の caption "Minale + Mann is an award winning architectural and interior design studio based in London." を忠実模写
+  Group:     1 (ELEGANT) - 落ち着き・上品
+  業種:      architecture + interior design + build (design-and-build 一体型) / UK
+
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: WordPress + Pegasus theme + jQuery、本家は About cell が動画 BG (slide_10.mp4) + 静止 poster + 右下 append "Minale + Mann / About"。caption 用テキストは別途 captions-full モードで表示
+  - 構造: archetype では「① 縦長 portrait 動画 / 静止画 + ② 右に大見出し + リード + Under one roof ストーリー」の 2 カラム split
+      > .about-minale__media (左 41%、portrait 4:5、動画 or 静止画)
+        > <video> (option) or <img> (poster)
+        > .about-minale__media_caption (画像下端に append: ブランド名 + "About" 小キャプス)
+      > .about-minale__content (右 59%、stacked text)
+        > .section-label "About"
+        > h2 大見出し italic serif (例「design matters」)
+        > .lead 段落 1 ("Minale + Mann is an award winning architectural and interior design studio based in London.")
+        > .body 段落 2 ("Under one roof" = 社内設計士 + 社内施工 + PM の 3 機能統合の強み訴求。本家サイト中で受賞 + ロンドン拠点 + Battersea ベース + 100+ プロジェクトを「ひとつ屋根の下で」)
+        > .signature 縦組 hairline + 屋号 (装飾)
+  - 配色: ベース #faf8f4 (クリーム白)、テキスト #1b1b1e、アクセントゴールド #c7a76a、hairline #d8d2c4
+  - フォント: 見出し Cormorant Garamond italic 56-78px、本文 Onest 300-400 15px line-height 2.0、英字小キャプス letter-spacing .42em
+  - 動き: scroll で IntersectionObserver fade-up (media は 60px translateY、content は 30px、stagger 200ms)。本家動画は preview では poster 静止画でフォールバック
+  - 重要: 「Under one roof」(社内設計+施工+PM 一体型) は本家サイトの強みストーリーの中核 → A2 帯 ELEGANT らしさを保つために「数字ではなく言葉で」訴求する。受賞の具体名 (RIBA / The Drum Design Awards) は placeholder で抽象化 (「グッドデザイン受賞」「一級建築士事務所」相当に置換)
+
+  ## Placeholders
+    about.section_label         英字ラベル (例「About」)
+    about.heading_main          大見出し italic serif (例「デザインは生き方」)
+    about.lead                  リード段落 1 (例「サンプル設計事務所は◯◯エリアを拠点とする…」)
+    about.body_html             本文段落 HTML 可 (例「Under one roof = 設計・施工・PM を一体化…」)
+    about.media_image           portrait 写真 (640x800、室内シーン or 邸宅外観)
+    about.media_video           portrait 動画 URL (option、空文字でフォールバック)
+    about.media_brand_label     画像下端の屋号 (例「サンプル設計事務所」)
+    about.media_sub_label       画像下端の小キャプス (例「About」)
+    about.signature_label       右下縦組 装飾 (例「Studio in ◯◯」)
+-->
+<section class="about-minale">
+<style>
+.about-minale{position:relative;padding:140px 7vw 140px;background:#faf8f4;color:#1b1b1e;font-family:"Onest","Helvetica Neue","Noto Sans JP",sans-serif;overflow:hidden}
+.about-minale__inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:41% 1fr;gap:96px;align-items:start}
+
+.about-minale__media{position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;background:#eae5d6;opacity:0;transform:translateY(60px);transition:opacity 1.4s ease,transform 1.4s ease}
+.about-minale__media.is-visible{opacity:1;transform:translateY(0)}
+.about-minale__media_img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0}
+.about-minale__media_video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:1}
+.about-minale__media_overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.45) 100%)}
+.about-minale__media_caption{position:absolute;left:24px;right:24px;bottom:24px;z-index:3;color:#ffffff}
+.about-minale__media_caption_brand{margin:0;font-family:"Cormorant Garamond","Fjord One",serif;font-style:italic;font-weight:400;font-size:24px;letter-spacing:.01em;line-height:1.1}
+.about-minale__media_caption_sub{display:block;margin-top:8px;font-family:"Onest","Helvetica Neue",sans-serif;font-weight:400;font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:#c7a76a}
+
+.about-minale__content{display:flex;flex-direction:column;gap:32px;padding-top:24px;opacity:0;transform:translateY(30px);transition:opacity 1.4s .2s ease,transform 1.4s .2s ease}
+.about-minale__content.is-visible{opacity:1;transform:translateY(0)}
+.about-minale__section-label{display:inline-flex;align-items:center;gap:14px;font-family:"Onest","Helvetica Neue",sans-serif;font-weight:400;font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:#c7a76a;margin:0}
+.about-minale__section-label::after{content:"";display:inline-block;width:42px;height:1px;background:#c7a76a}
+.about-minale__heading_main{margin:0;font-family:"Cormorant Garamond","Fjord One",serif;font-style:italic;font-weight:400;font-size:clamp(40px,5.4vw,72px);letter-spacing:.005em;line-height:1.1;color:#1b1b1e;max-width:14ch}
+.about-minale__lead{margin:0;font-family:"Onest","Helvetica Neue","Noto Sans JP",sans-serif;font-weight:400;font-size:17px;line-height:1.95;letter-spacing:.04em;color:#1b1b1e;max-width:48ch}
+.about-minale__body{margin:0;font-family:"Onest","Helvetica Neue","Noto Sans JP",sans-serif;font-weight:300;font-size:15px;line-height:2.05;letter-spacing:.05em;color:#3a3a3c;max-width:54ch}
+.about-minale__body::before{content:"";display:block;width:42px;height:1px;background:#d8d2c4;margin:0 0 28px}
+
+.about-minale__signature{display:flex;align-items:center;gap:18px;margin-top:8px;font-family:"Cormorant Garamond","Fjord One",serif;font-style:italic;font-size:14px;letter-spacing:.06em;color:#8a7a55}
+.about-minale__signature::before{content:"";display:inline-block;width:54px;height:1px;background:#c7a76a}
+
+@media (max-width:1024px){
+  .about-minale{padding:110px 6vw}
+  .about-minale__inner{grid-template-columns:1fr;gap:64px}
+  .about-minale__media{max-width:520px;margin:0 auto}
+  .about-minale__content{padding-top:0}
+}
+@media (max-width:768px){
+  .about-minale{padding:80px 6vw 96px}
+  .about-minale__inner{gap:48px}
+  .about-minale__heading_main{font-size:clamp(32px,8vw,46px)}
+  .about-minale__lead{font-size:15px;line-height:1.85}
+  .about-minale__body{font-size:14px;line-height:1.95}
+}
+</style>
+
+<div class="about-minale__inner">
+
+  <figure class="about-minale__media">
+    <img class="about-minale__media_img" src="https://picsum.photos/seed/minale-about-poster/640/800" alt="" loading="lazy">
+    <video class="about-minale__media_video" src="" poster="https://picsum.photos/seed/minale-about-poster/640/800" muted loop playsinline preload="none"></video>
+    <span class="about-minale__media_overlay" aria-hidden="true"></span>
+    <figcaption class="about-minale__media_caption">
+      <p class="about-minale__media_caption_brand">サンプル設計事務所</p>
+      <span class="about-minale__media_caption_sub">About</span>
+    </figcaption>
+  </figure>
+
+  <div class="about-minale__content">
+    <span class="about-minale__section-label">( Story )</span>
+    <h2 class="about-minale__heading_main">デザインは生き方</h2>
+    <p class="about-minale__lead">サンプル設計事務所は、◯◯エリアを拠点とする受賞歴のあるアーキテクチャ + インテリアデザインスタジオ。住まう方の暮らしのリズムから設計を組み立てます。</p>
+    <p class="about-minale__body">三重県◯◯市にあるサンプル塗装は、◯◯年の豊富な実績の中で、大手ゼネコンの下請けとして一般住宅をはじめ、公共や民間の建物など多種多様かつ高いレベルを求められる塗装経験を重ねてきました。<br>この技術力、サービス品質の高さを、これからはもっと地域のみなさまへ。<br>お客様に寄り添った提案はもちろん、プロに認められた品質・技術を発揮し、美しく・スマートに外壁・屋根塗装をしています。</p>
+    <span class="about-minale__signature">Studio in ◯◯エリア</span>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var root = document.currentScript.closest('.about-minale');
+  if(!root) return;
+  var targets = root.querySelectorAll('.about-minale__media,.about-minale__content');
+  if(!('IntersectionObserver' in window)){
+    targets.forEach(function(el){el.classList.add('is-visible');});
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.18});
+  targets.forEach(function(el){io.observe(el);});
+
+  var video = root.querySelector('.about-minale__media_video');
+  if(video && video.getAttribute('src')){
+    try{video.play().catch(function(){});}catch(e){}
+  }else if(video){
+    video.remove();
+  }
+})();
+</script>
+</section>
+
+<div class="archetype-label">
+  <span class="num">??</span>
+  <span class="name">about / oneit</span>
+  <span class="src"></span>
+</div>
+<!--
+  Archetype: about / oneit
+  Source:    one it (https://oneit.co.jp/) を忠実模写
+  ## 模写スペック（raw HTML 抽出 or 実測値）
+  - 制作技術: WordPress + GSAP の u-event class で IntersectionObserver fade-up（archetype では CSS のみで近似）
+  - 構造: <div.l-spacer.-large.-both.p-home-about>
+      > .l-container.-wide > h2.c-small-title「About us」（小さめ caption 風タイトル）
+      > section.l-conts-imgtext
+        > .l-conts-imgtext__img.p-home-about__img.u-event（横長写真、軽井沢別荘の窓越し風景）
+        > .l-conts-imgtext__text.p-home-about__text.u-event
+          > .l-conts-imgtext__textInner
+            > <p> 説明文（4-5 行、株式会社 one it は…）
+            > .l-spacer.-em2 > .p-home-about__more > c-button--more（「view more About us」矢印リンク）
+  - 配色: 背景 #ffffff、本文 #1a1a1a、説明文 line-height 約 2.0。タイトル「About us」は serif 系の小キャプ（c-text-en 寄り）
+  - フォント: 本文 = Noto Sans JP、heading = Cormorant Garamond + small caps
+  - 動き: スクロール in 時に img → text の順で fade up 0.6s（IntersectionObserver）
+  - レイアウト: img:text = 約 6:4、img は full-bleed 寄り（左 padding 0）、text は右側に padding。SP は縦積み（img → text）
+  ## Placeholders
+    about.section_label        「About us」相当の小キャプタイトル
+    about.image                右側に置く横長メイン画像
+    about.body_html            本文段落（HTML 可、br 改行可）
+    about.more_label           「About us」相当の view more 末尾ラベル
+    about.more_href            About ページ詳細リンク URL
+-->
+<section class="about-oneit">
+<style>
+.about-oneit{padding:120px 0;background:#fff;color:#1a1a1a;font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif}
+.about-oneit__container{max-width:1280px;margin:0 auto;padding:0 60px}
+.about-oneit__label{font-family:"Cormorant Garamond","Times New Roman",serif;font-size:14px;letter-spacing:.22em;color:#1a1a1a;margin:0 0 64px;text-transform:none;font-weight:400}
+.about-oneit__inner{display:grid;grid-template-columns:6fr 4fr;gap:80px;align-items:center}
+.about-oneit__img{width:100%;aspect-ratio:1644/1170;overflow:hidden;opacity:0;transform:translateY(20px);transition:opacity .9s ease,transform .9s ease}
+.about-oneit__img.is-in{opacity:1;transform:none}
+.about-oneit__img img{width:100%;height:100%;object-fit:cover;display:block}
+.about-oneit__text{opacity:0;transform:translateY(20px);transition:opacity .9s ease .15s,transform .9s ease .15s}
+.about-oneit__text.is-in{opacity:1;transform:none}
+.about-oneit__body{font-size:15px;line-height:2;letter-spacing:.04em;color:#2a2a2a;margin:0 0 32px}
+.about-oneit__more{display:inline-flex;align-items:center;gap:10px;font-family:"Cormorant Garamond",serif;font-size:13px;letter-spacing:.14em;color:#1a1a1a;text-decoration:none;padding-bottom:6px;border-bottom:1px solid transparent;transition:border-color .2s ease,color .2s ease}
+.about-oneit__more:hover{color:#6a4a2a;border-color:#6a4a2a}
+.about-oneit__more-light{font-size:11px;letter-spacing:.1em;opacity:.62;margin-right:2px}
+.about-oneit__more::after{content:"";display:inline-block;width:18px;height:1px;background:currentColor;margin-left:6px}
+@media (max-width:880px){
+  .about-oneit{padding:64px 0}
+  .about-oneit__container{padding:0 24px}
+  .about-oneit__label{margin-bottom:32px;font-size:12px}
+  .about-oneit__inner{grid-template-columns:1fr;gap:32px}
+  .about-oneit__body{font-size:14px;line-height:1.9}
+}
+</style>
+<div class="about-oneit__container">
+  <h2 class="about-oneit__label">( Story )</h2>
+</div>
+<div class="about-oneit__container">
+  <div class="about-oneit__inner">
+    <div class="about-oneit__img" data-about-in>
+      <img src="https://picsum.photos/seed/hadashi-about/800/960" alt="">
+    </div>
+    <div class="about-oneit__text" data-about-in>
+      <div class="about-oneit__body">三重県◯◯市にあるサンプル塗装は、◯◯年の豊富な実績の中で、大手ゼネコンの下請けとして一般住宅をはじめ、公共や民間の建物など多種多様かつ高いレベルを求められる塗装経験を重ねてきました。<br>この技術力、サービス品質の高さを、これからはもっと地域のみなさまへ。<br>お客様に寄り添った提案はもちろん、プロに認められた品質・技術を発揮し、美しく・スマートに外壁・屋根塗装をしています。</div>
+      <a href="#sample-about" class="about-oneit__more"><span class="about-oneit__more-light">view more</span>About us</a>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var root=document.currentScript.closest('.about-oneit');
+  if(!root) return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}});},{threshold:.18});
+  root.querySelectorAll('[data-about-in]').forEach(function(el){io.observe(el);});
+})();
+</script>
+</section>
+
+<div class="archetype-label">
+  <span class="num">??</span>
+  <span class="name">about / ietsukuru</span>
+  <span class="src"></span>
+</div>
+<!--
+  Archetype: about / ietsukuru
+  Source:    家をつくるしごと株式会社 (https://ie-tsukuru.com/) の <section class="about"> を忠実模写
+  Group:     2 (FRIENDLY) - 親しみ・地域密着 / 工務店ナチュラル
+
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: HTML + Splide (pickup-slider for top of section)
+  - 構造: 上に施工実績 pickup スライダー 3 枚 → sec-head "WHAT IS / 会社名英字" + dotted line 装飾 → 縦書きセリフ大タイトル + 英字 lead + 本文 (h3 + 3 段落 + 会社概要リンク) + 大判画像 2 枚 (左下/右上)
+  - 配色: ベース #faf6ec / 墨 #2c2826 / アクセント #5d5346 / 装飾点線 #c8c2b6
+  - 動き: pickup-slider は Splide (autoplay 5s, fade), 画像は fade-in-up
+  - フォント: Noto Serif JP 本文 / Cormorant Garamond 英字 sec-title
+
+  ## Placeholders
+    about.pickup_1_image       - pickup スライド 1 画像
+    about.pickup_1_alt         - alt テキスト
+    about.pickup_1_href        - リンク先
+    about.pickup_2_image
+    about.pickup_2_alt
+    about.pickup_2_href
+    about.pickup_3_image
+    about.pickup_3_alt
+    about.pickup_3_href
+    about.sec_label_en         - sec-head 英字 (例: WHAT IS)
+    about.sec_label_jp         - sec-head 和文 (会社名/サブ)
+    about.title_vertical_html  - 縦書きタイトル (HTML 可, br 区切り)
+    about.lead_en              - 英字 lead 段落 (br 区切り可)
+    about.body_h3              - 本文 h3
+    about.body_p1              - 本文 第 1 段落
+    about.body_p2              - 本文 第 2 段落
+    about.body_p3              - 本文 第 3 段落
+    about.link_label           - リンクボタンラベル
+    about.link_href            - リンクボタン href
+    about.feature_image_1      - 大判画像 1 (左下)
+    about.feature_image_2      - 大判画像 2 (右下)
+-->
+<section class="about-ietsukuru">
+  <div class="about-ietsukuru__pickup">
+    <div class="splide about-ietsukuru__pickup-splide" aria-label="サンプル施工事例ピックアップ">
+      <div class="splide__track">
+        <ul class="splide__list">
+          <li class="splide__slide about-ietsukuru__pickup-item"><a href="#"><img src="https://picsum.photos/seed/ietsukuru-about-pickup-1/1815/1380" alt="サンプル古民家リフォーム事例 1" loading="eager"></a></li>
+          <li class="splide__slide about-ietsukuru__pickup-item"><a href="#"><img src="https://picsum.photos/seed/ietsukuru-about-pickup-2/1815/1380" alt="サンプル古民家リフォーム事例 2" loading="eager"></a></li>
+          <li class="splide__slide about-ietsukuru__pickup-item"><a href="#"><img src="https://picsum.photos/seed/ietsukuru-about-pickup-3/1815/1380" alt="サンプル伝統建築の技法紹介" loading="eager"></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-ietsukuru__container">
+    <div class="about-ietsukuru__head">
+      <span class="about-ietsukuru__sec-label-en">WHAT IS</span>
+      <span class="about-ietsukuru__sec-label-jp">SAMPLE KOMUTEN.inc</span>
+      <span class="about-ietsukuru__line">
+        <span></span><span></span><span></span><span></span>
+      </span>
+    </div>
+
+    <div class="about-ietsukuru__body">
+      <h2 class="about-ietsukuru__title-vertical">宮大工の知識・技術を<br>理想の木造新築や<br>古民家リノベーションに</h2>
+      <p class="about-ietsukuru__lead-en">Happiness that comes from a comfortable space</p>
+
+      <div class="about-ietsukuru__content">
+        <h3 class="about-ietsukuru__content-title">サンプル工務店とは</h3>
+        <p>サンプル工務店は、奈良県◯◯市にあるデモ宮大工のいる工務店です。</p>
+        <p>今まで培ってきた「木造の知識」と「現代住宅の知識」をもとに、それぞれの良いところを融合した建物をつくっています。なかでも伝統建築、和建築、古民家、木を使った建築を得意としています（サンプル文）。</p>
+        <p>リフォームや新築で理想を諦められた建物も「サンプル工務店」なら実現できるかもしれません。経験や技術をお客さまのために存分に使うことを大切にしています。</p>
+        <a class="about-ietsukuru__link" href="#">
+          <span>会社概要を見る（サンプル）</span>
+          <span class="about-ietsukuru__link-arrow">&rarr;</span>
+        </a>
+      </div>
+
+      <div class="about-ietsukuru__image about-ietsukuru__image--1"><img src="https://picsum.photos/seed/ietsukuru-about-feat-1/840/1029" alt="" loading="lazy"></div>
+      <div class="about-ietsukuru__image about-ietsukuru__image--2"><img src="https://picsum.photos/seed/ietsukuru-about-feat-2/691/846" alt="" loading="lazy"></div>
+    </div>
+  </div>
+
+  <style>
+    .about-ietsukuru { background: #faf6ec; color: #2c2826; padding: 0 0 140px; font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif; }
+
+    .about-ietsukuru__pickup { width: 100%; padding: 80px 0; }
+    .about-ietsukuru__pickup-splide .splide__list { display: flex; gap: 24px; }
+    .about-ietsukuru__pickup-item { flex: 0 0 32%; aspect-ratio: 1815/1380; overflow: hidden; border-radius: 6px; }
+    .about-ietsukuru__pickup-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .about-ietsukuru__pickup-item:hover img { transform: scale(1.04); }
+
+    .about-ietsukuru__container { max-width: 1140px; margin: 0 auto; padding: 0 32px; }
+
+    .about-ietsukuru__head { display: flex; align-items: baseline; gap: 18px; margin: 0 0 84px; }
+    .about-ietsukuru__sec-label-en { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 28px; letter-spacing: .14em; color: #2c2826; }
+    .about-ietsukuru__sec-label-jp { font-size: 14px; letter-spacing: .18em; color: #5d5346; }
+    .about-ietsukuru__line { flex: 1; display: inline-flex; gap: 6px; align-items: center; }
+    .about-ietsukuru__line span { flex: 1; height: 1px; border-top: 1px dotted #c8c2b6; }
+
+    .about-ietsukuru__body { display: grid; grid-template-columns: 1fr 1fr; grid-template-areas: "title content" "image1 content" "image1 image2"; gap: 32px 60px; align-items: start; }
+
+    .about-ietsukuru__title-vertical { grid-area: title; writing-mode: vertical-rl; -webkit-writing-mode: vertical-rl; font-size: 44px; letter-spacing: .14em; line-height: 1.7; margin: 0; min-height: 460px; font-weight: 500; color: #2c2826; }
+
+    .about-ietsukuru__lead-en { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 14px; letter-spacing: .18em; color: #8d8479; line-height: 1.9; margin: 16px 0 0; }
+
+    .about-ietsukuru__content { grid-area: content; padding-top: 32px; }
+    .about-ietsukuru__content-title { font-size: 28px; letter-spacing: .12em; margin: 0 0 32px; font-weight: 500; line-height: 1.6; }
+    .about-ietsukuru__content p { font-size: 15px; line-height: 2.1; margin: 0 0 22px; color: #2c2826; }
+
+    .about-ietsukuru__link { display: inline-flex; align-items: center; gap: 14px; margin-top: 24px; padding: 14px 28px; border: 1px solid #2c2826; color: #2c2826; text-decoration: none; font-size: 13px; letter-spacing: .14em; transition: background .2s, color .2s; }
+    .about-ietsukuru__link:hover { background: #2c2826; color: #faf6ec; }
+    .about-ietsukuru__link-arrow { font-family: "Cormorant Garamond", serif; }
+
+    .about-ietsukuru__image { overflow: hidden; border-radius: 4px; }
+    .about-ietsukuru__image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .about-ietsukuru__image--1 { grid-area: image1; aspect-ratio: 840/1029; }
+    .about-ietsukuru__image--2 { grid-area: image2; aspect-ratio: 691/846; margin-top: -60px; }
+
+    @media (max-width: 880px) {
+      .about-ietsukuru { padding-bottom: 80px; }
+      .about-ietsukuru__pickup { padding: 56px 0; }
+      .about-ietsukuru__pickup-item { flex: 0 0 80%; }
+      .about-ietsukuru__head { flex-wrap: wrap; gap: 12px; margin-bottom: 48px; }
+      .about-ietsukuru__sec-label-en { font-size: 22px; }
+      .about-ietsukuru__line { flex-basis: 100%; }
+      .about-ietsukuru__body { grid-template-columns: 1fr; grid-template-areas: "title" "content" "image1" "image2"; gap: 32px; }
+      .about-ietsukuru__title-vertical { font-size: 32px; min-height: 320px; }
+      .about-ietsukuru__content-title { font-size: 22px; }
+      .about-ietsukuru__image--2 { margin-top: 0; }
+    }
+  </style>
+
+  <script>
+    (function(){
+      var root = document.currentScript.closest('.about-ietsukuru');
+      if (!root || !window.Splide) return;
+      var el = root.querySelector('.about-ietsukuru__pickup-splide');
+      if (!el) return;
+      new Splide(el, { type: 'loop', perPage: 3, gap: '24px', arrows: false, pagination: false, autoplay: true, interval: 5000, pauseOnHover: true, breakpoints: { 880: { perPage: 1.2 } } }).mount();
+    })();
+  </script>
+</section>
+
+<div class="archetype-label">
+  <span class="num">??</span>
+  <span class="name">about / hadashi</span>
+  <span class="src"></span>
+</div>
+<!--
+  Archetype: about / hadashi
+  Source:    はだしの家 (https://hadashinoie.co.jp/) の <section.home-about> を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: WordPress + Sass。grid 12 カラム（lg:col-3/8/5/6 etc）
+  - 構造: <section.home-about>
+      > h2.section__header__title "About"
+      > .home-about__content
+        > h3.home-about__lead
+          > .home-about__lead__ja  和文「素足から伝わるここちよさ。」
+          > .home-about__lead__en  英文「Happiness that comes from a comfortable space」
+        > p.home-about__paragraph 本文 4-5 行
+        > a "View more"
+      > figure.home-about__figure 大画像（右側）
+  - 配色: 背景 透明 (#fffdf5 想定) / 文字 #2a221b / アクセント #b08858（"View more" 下線）
+  - フォント: 和文 Noto Serif JP 400 / 英文 Cormorant Garamond italic
+  - 動き: なし（純粋な静的レイアウト、IntersectionObserver fade-in は親側）
+  ## Placeholders
+    about.section_label       "About" (英字セクションラベル)
+    about.lead_ja             和文リード見出し
+    about.lead_en             英文リード（italic small）
+    about.body_paragraph      本文段落（複数行 HTML 可、br 使用可）
+    about.button_label        "View more"
+    about.button_href         #
+    about.image               右側大画像
+-->
+<section class="about-hadashi">
+  <style>
+    .about-hadashi { background:#fffdf5; padding:100px 0 120px; color:#2a221b; font-family:"Noto Sans JP",sans-serif; }
+    .about-hadashi__inner { max-width:1280px; margin:0 auto; padding:0 24px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+    .about-hadashi__label { font-family:"Cormorant Garamond",serif; font-style:italic; font-weight:400; font-size:42px; letter-spacing:.04em; color:#b08858; margin:0 0 32px; }
+    .about-hadashi__lead-ja { font-family:"Noto Serif JP",serif; font-weight:400; font-size:28px; line-height:1.7; letter-spacing:.06em; color:#2a221b; margin:0 0 12px; }
+    .about-hadashi__lead-en { font-family:"Cormorant Garamond",serif; font-style:italic; font-size:16px; color:#8a7250; letter-spacing:.04em; margin:0 0 28px; }
+    .about-hadashi__body { font-size:15px; line-height:2.1; color:#4a3e30; margin:0 0 40px; }
+    .about-hadashi__btn { display:inline-flex; align-items:center; gap:14px; font-family:"Cormorant Garamond",serif; font-style:italic; font-size:18px; letter-spacing:.06em; color:#b08858; text-decoration:none; padding-bottom:6px; border-bottom:1px solid #b08858; transition:gap .25s ease; }
+    .about-hadashi__btn::after { content:""; width:24px; height:1px; background:#b08858; transition:width .25s ease; }
+    .about-hadashi__btn:hover { gap:20px; }
+    .about-hadashi__btn:hover::after { width:32px; }
+    .about-hadashi__figure { position:relative; aspect-ratio:5/6; overflow:hidden; background:#d9cfb9; }
+    .about-hadashi__figure img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    @media (max-width:1024px) {
+      .about-hadashi__inner { grid-template-columns:1fr; gap:48px; }
+      .about-hadashi__label { font-size:32px; }
+      .about-hadashi__lead-ja { font-size:22px; }
+      .about-hadashi__figure { aspect-ratio:4/3; max-width:560px; margin:0 auto; }
+    }
+    @media (max-width:600px) {
+      .about-hadashi { padding:64px 0 80px; }
+      .about-hadashi__lead-ja { font-size:18px; }
+      .about-hadashi__body { font-size:14px; line-height:2; }
+    }
+  </style>
+  <div class="about-hadashi__inner">
+    <div class="about-hadashi__content">
+      <p class="about-hadashi__label">( Story )</p>
+      <h2 class="about-hadashi__lead-ja">素足から伝わるここちよさ。</h2>
+      <p class="about-hadashi__lead-en">Happiness that comes from a comfortable space</p>
+      <p class="about-hadashi__body">冬場でも子供がTシャツで過ごせる。サンプル工房はそのような家を追求しています。手足で触れるところに無垢の木を使い、どの部屋に行っても温度差の少ない環境を作る。家の中くらい、すっと肩の荷を下ろし、はだしで過ごそう。心地いい空間から毎日幸せは生まれる。</p>
+      <a class="about-hadashi__btn" href="#sample-story">More</a>
+    </div>
+    <figure class="about-hadashi__figure">
+      <img src="https://picsum.photos/seed/hadashi-about/800/960" alt="">
+    </figure>
+  </div>
+</section>
+
+<div class="archetype-label">
+  <span class="num">??</span>
+  <span class="name">about / ichimura</span>
+  <span class="src"></span>
+</div>
+<!--
+  Archetype: about / ichimura
+  Source:    東海市村塗装 (https://www.ichimura-painting.jp/) home_message を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: WordPress + jQuery, scroll_active で fade-in
+  - 構造: <section#message>
+      > .ttl-01-sub（小英字キャプション "MESSAGE"）
+      > .home_message--box（中央寄せ縦並びカード: 大見出し serif ja + 詩的本文段落 + 「東海市村塗装について」ボタン）
+      > .home_message--area（左右に装飾画像 message-img01..04 を絶対配置）
+      > .message_scroll--area（黒帯フル幅: BEAUTIFUL & SMART PAINTING ループ + 詩的本文 + 大見出し）
+  - 配色: ベース #f7f6f3（淡ベージュ）、本文 #1c1c1c、サブヘッダー英字 #2844ed、CTA ボタン枠線 #1c1c1c
+  - フォント: 英字 Inter italic + letter-spacing .42em（小キャプス）, ja-jp Noto Serif JP 700, 本文 Noto Sans JP 400
+  - 動き: 画像装飾は scroll_active で 600ms fade + slight upward translate
+  - 特徴: 「黒ベース + ブルー 1 色アクセント」を冒頭の大見出し下線色とサブキャプション色のみに絞る（kiiro 戦略の塗装版）
+  ## Placeholders
+    about.section_label        英字キャプション（MESSAGE 相当）
+    about.section_label_jp     和訳キャプション（ご挨拶 相当）
+    about.heading_html         大見出し HTML（<br> 改行可、詩的フレーズ）
+    about.body_html            本文 HTML（複数行段落、<br> 可）
+    about.button_label         CTA ラベル（「サンプル塗装について」相当）
+    about.button_href          CTA 遷移先
+    about.deco_image_1         装飾画像 1（左上 480x640）
+    about.deco_image_2         装飾画像 2（右中 360x480）
+    about.deco_image_3         装飾画像 3（左下 360x480）
+    about.loop_phrase          黒帯ループ英字フレーズ（BEAUTIFUL & SMART PAINTING 相当）
+-->
+<section class="about-ichimura">
+<style>
+.about-ichimura{position:relative;background:#f7f6f3;color:#1c1c1c;font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;padding:120px 0 0;overflow:hidden}
+.about-ichimura__inner{position:relative;max-width:920px;margin:0 auto;padding:0 24px;z-index:2}
+.about-ichimura__label{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:48px}
+.about-ichimura__label-en{font-family:"Inter","Helvetica Neue",sans-serif;font-style:italic;font-weight:600;font-size:14px;letter-spacing:.42em;text-transform:uppercase;color:#2844ed;position:relative;padding-bottom:14px}
+.about-ichimura__label-en::after{content:"";position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:48px;height:1px;background:#2844ed}
+.about-ichimura__label-jp{font-family:"Noto Serif JP","Yu Mincho",serif;font-size:13px;letter-spacing:.28em;color:#1c1c1c}
+.about-ichimura__heading{font-family:"Noto Serif JP","Yu Mincho",serif;font-weight:700;font-size:clamp(24px,3.4vw,40px);letter-spacing:.12em;line-height:1.85;text-align:center;margin:0 0 48px}
+.about-ichimura__body{font-size:15px;line-height:2.2;letter-spacing:.06em;text-align:center;color:#313131;margin:0 0 56px}
+.about-ichimura__btn-wrap{text-align:center}
+.about-ichimura__btn{display:inline-block;padding:18px 56px;border:1px solid #1c1c1c;background:transparent;color:#1c1c1c;text-decoration:none;font-family:"Noto Sans JP",sans-serif;font-size:13px;letter-spacing:.24em;transition:background .2s,color .2s}
+.about-ichimura__btn:hover{background:#1c1c1c;color:#fff}
+
+.about-ichimura__deco{position:absolute;inset:0;pointer-events:none;z-index:1}
+.about-ichimura__deco img{position:absolute;object-fit:cover;opacity:.9}
+.about-ichimura__deco--1{top:120px;left:3%;width:200px;aspect-ratio:3/4}
+.about-ichimura__deco--2{top:240px;right:4%;width:160px;aspect-ratio:4/5}
+.about-ichimura__deco--3{bottom:80px;left:6%;width:180px;aspect-ratio:4/5}
+
+.about-ichimura__loop{margin-top:120px;background:#1c1c1c;color:#fff;padding:80px 0;overflow:hidden;position:relative}
+.about-ichimura__loop-track{display:flex;gap:64px;animation:loopScroll-ichimura 24s linear infinite;white-space:nowrap;margin-bottom:48px}
+.about-ichimura__loop-track span{font-family:"Inter","Helvetica Neue",sans-serif;font-weight:900;font-style:italic;font-size:clamp(48px,8vw,96px);letter-spacing:.04em;color:#2844ed;text-transform:uppercase;flex-shrink:0}
+@keyframes loopScroll-ichimura{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+
+@media (max-width:880px){
+  .about-ichimura{padding:80px 0 0}
+  .about-ichimura__heading{font-size:20px;line-height:1.95;margin-bottom:32px}
+  .about-ichimura__body{font-size:14px;line-height:2.0;margin-bottom:40px}
+  .about-ichimura__btn{padding:14px 36px;font-size:12px}
+  .about-ichimura__deco--1,.about-ichimura__deco--2,.about-ichimura__deco--3{display:none}
+  .about-ichimura__loop{margin-top:80px;padding:48px 0}
+  .about-ichimura__loop-track span{font-size:36px}
+}
+</style>
+
+<div class="about-ichimura__deco" aria-hidden="true">
+  <img class="about-ichimura__deco--1" src="https://picsum.photos/seed/ichimura-about-1/480/640" alt="">
+  <img class="about-ichimura__deco--2" src="https://picsum.photos/seed/ichimura-about-2/360/450" alt="">
+  <img class="about-ichimura__deco--3" src="https://picsum.photos/seed/ichimura-about-3/360/450" alt="">
+</div>
+
+<div class="about-ichimura__inner">
+  <div class="about-ichimura__label">
+    <span class="about-ichimura__label-en">( Story )</span>
+    <span class="about-ichimura__label-jp">ご挨拶</span>
+  </div>
+  <h2 class="about-ichimura__heading">この技術力と<br>サービス品質の高さを<br>これからは<br>もっと地域のみなさまへ</h2>
+  <p class="about-ichimura__body">三重県◯◯市にあるサンプル塗装は、◯◯年の豊富な実績の中で、大手ゼネコンの下請けとして一般住宅をはじめ、公共や民間の建物など多種多様かつ高いレベルを求められる塗装経験を重ねてきました。<br>この技術力、サービス品質の高さを、これからはもっと地域のみなさまへ。<br>お客様に寄り添った提案はもちろん、プロに認められた品質・技術を発揮し、美しく・スマートに外壁・屋根塗装をしています。</p>
+  <div class="about-ichimura__btn-wrap">
+    <a class="about-ichimura__btn" href="#sample-story">More</a>
+  </div>
+</div>
+
+<div class="about-ichimura__loop" aria-hidden="true">
+  <div class="about-ichimura__loop-track">
+    <span>BEAUTIFUL & SMART PAINTING</span>
+    <span>BEAUTIFUL & SMART PAINTING</span>
+    <span>BEAUTIFUL & SMART PAINTING</span>
+    <span>BEAUTIFUL & SMART PAINTING</span>
+  </div>
+</div>
+</section>
+
+<div class="archetype-label">
+  <span class="num">??</span>
+  <span class="name">about / matsuo</span>
+  <span class="src"></span>
+</div>
+<!--
+  Archetype: about / matsuo
+  Source:    松尾工務店 (https://www.matsuo-komuten.co.jp/) の home-about セクションを忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: Alpine.js + homeImageMaskChange（pointer の lat-lng で右上のマスク画像を切替）
+  - 構造:
+      <section.about-matsuo>
+        > .about-matsuo__head (左大見出し "About us" + 説明本文 1 ブロック)
+        > .about-matsuo__list (右側、大型リンク 3 行 = 事業紹介 / ヒストリー / 会社概要)
+          各行は font-shippori font-size-44 tracking-[.1em]、下に hairline 1px、hover で
+          画像が右側マスク領域に fade-in、テキストが微かに右へスライド
+  - 配色: 純白背景 #fff / テキスト #1a1a1a / hairline #c8c8c8 / hover アンダーライン #003c7a
+  - フォント: 和文 Shippori Mincho B1 / 欧文 Cormorant Garamond italic (h2 "About us")
+  - 動き: hover で右上画像 swap + テキスト左へ -8px + 下線が左→右に伸びる (CSS transform-origin)
+  - 余白: padding 120px 56px (左右 col-1 帯)、見出し → 本文 mt-fluid-97、本文 → list mt-fluid-150
+  ## Placeholders
+    about.heading_en            "About us" 英字大見出し
+    about.heading_ja            和文サブ見出し
+    about.lead_html             リード本文（HTML 改行可）
+    about.row_1_label           1 行目テキスト ("事業紹介" 相当)
+    about.row_1_image           1 行目 hover 画像 URL
+    about.row_1_href            1 行目リンク先
+    about.row_2_label           2 行目テキスト
+    about.row_2_image           2 行目 hover 画像 URL
+    about.row_2_href            2 行目リンク先
+    about.row_3_label           3 行目テキスト
+    about.row_3_image           3 行目 hover 画像 URL
+    about.row_3_href            3 行目リンク先
+-->
+<section class="about-matsuo">
+<style>
+.about-matsuo{padding:140px 56px;background:#fff;color:#1a1a1a;font-family:"Noto Serif JP","Shippori Mincho B1",serif;max-width:1480px;margin:0 auto}
+.about-matsuo__inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.about-matsuo__head{position:relative}
+.about-matsuo__heading-en{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:400;font-size:clamp(56px,7vw,116px);line-height:1;letter-spacing:.04em;color:#1a1a1a;margin:0}
+.about-matsuo__heading-ja{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.36em;text-transform:uppercase;color:#888;margin:18px 0 0;display:block}
+.about-matsuo__lead{font-family:"Noto Sans JP",sans-serif;font-size:15px;line-height:2.1;letter-spacing:.04em;color:#333;margin:54px 0 0;max-width:480px}
+
+.about-matsuo__list{position:relative;display:flex;flex-direction:column}
+.about-matsuo__mask{position:absolute;right:0;top:0;width:46%;aspect-ratio:48/60;overflow:hidden;background:#eee;pointer-events:none;opacity:0;transition:opacity .35s ease}
+.about-matsuo__mask.is-on{opacity:1}
+.about-matsuo__mask img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s ease}
+.about-matsuo__mask img.is-on{opacity:1}
+
+.about-matsuo__row{position:relative;display:block;padding:30px 0;color:#1a1a1a;text-decoration:none;border-bottom:1px solid #c8c8c8;transition:padding-left .3s ease}
+.about-matsuo__row:first-child{border-top:1px solid #c8c8c8}
+.about-matsuo__row::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:#003c7a;transform:scaleX(0);transform-origin:left center;transition:transform .45s ease}
+.about-matsuo__row:hover{padding-left:8px}
+.about-matsuo__row:hover::after{transform:scaleX(1)}
+.about-matsuo__row-label{display:inline-block;font-family:"Shippori Mincho B1","Noto Serif JP",serif;font-weight:500;font-size:44px;line-height:1;letter-spacing:.1em;color:#1a1a1a}
+.about-matsuo__row-arrow{position:absolute;right:0;top:50%;transform:translateY(-50%);font-family:"Cormorant Garamond",serif;font-style:italic;font-size:18px;letter-spacing:.16em;color:#888;transition:transform .3s ease,color .3s ease}
+.about-matsuo__row:hover .about-matsuo__row-arrow{transform:translate(8px,-50%);color:#003c7a}
+
+@media (max-width:880px){
+  .about-matsuo{padding:80px 24px}
+  .about-matsuo__inner{grid-template-columns:1fr;gap:48px}
+  .about-matsuo__heading-en{font-size:64px}
+  .about-matsuo__lead{font-size:14px;line-height:1.95;margin-top:32px;max-width:100%}
+  .about-matsuo__mask{position:relative;width:100%;margin-bottom:24px;opacity:1}
+  .about-matsuo__mask img{opacity:0}
+  .about-matsuo__mask img:first-child{opacity:1}
+  .about-matsuo__row-label{font-size:28px}
+  .about-matsuo__row{padding:22px 0}
+}
+</style>
+
+<div class="about-matsuo__inner">
+  <div class="about-matsuo__head">
+    <h2 class="about-matsuo__heading-en">About us</h2>
+    <span class="about-matsuo__heading-ja">私たちについて</span>
+    <p class="about-matsuo__lead">多様な事業の取り組み、時代と共に歩んできた歴史、そしてその基盤を支える会社の在り方。技術と人に裏打ちされた建設力で、革新への挑戦をつづけるサンプル建設についてご紹介します。</p>
+  </div>
+
+  <div class="about-matsuo__list">
+    <div class="about-matsuo__mask" data-mask>
+      <img src="https://picsum.photos/seed/matsuo-about-service/640/800" alt="" data-mask-img="0"/>
+      <img src="https://picsum.photos/seed/matsuo-about-history/640/800" alt="" data-mask-img="1"/>
+      <img src="https://picsum.photos/seed/matsuo-about-company/640/800" alt="" data-mask-img="2"/>
+    </div>
+    <a class="about-matsuo__row" href="#service" data-row="0">
+      <span class="about-matsuo__row-label">事業紹介</span>
+      <span class="about-matsuo__row-arrow">View</span>
+    </a>
+    <a class="about-matsuo__row" href="#history" data-row="1">
+      <span class="about-matsuo__row-label">ヒストリー</span>
+      <span class="about-matsuo__row-arrow">View</span>
+    </a>
+    <a class="about-matsuo__row" href="#company" data-row="2">
+      <span class="about-matsuo__row-label">会社概要</span>
+      <span class="about-matsuo__row-arrow">View</span>
+    </a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root=document.currentScript&&document.currentScript.closest('.about-matsuo');
+  if(!root)root=document.querySelector('.about-matsuo');
+  if(!root)return;
+  var mask=root.querySelector('[data-mask]');
+  var imgs=root.querySelectorAll('[data-mask-img]');
+  var rows=root.querySelectorAll('[data-row]');
+  rows.forEach(function(r){
+    r.addEventListener('mouseenter',function(){
+      var i=parseInt(r.getAttribute('data-row'),10);
+      mask.classList.add('is-on');
+      imgs.forEach(function(img,j){img.classList.toggle('is-on',i===j)});
+    });
+    r.addEventListener('mouseleave',function(){
+      mask.classList.remove('is-on');
+    });
+  });
+})();
+</script>
+</section>
+
+<div class="archetype-label">
+  <span class="num">??</span>
+  <span class="name">about / niwaya</span>
+  <span class="src"></span>
+</div>
+<!--
+  Archetype: about / niwaya
+  Source:    Niwaya / Sun Garden (https://niwaya.co.jp/) の `l-story` セクション「庭と共に紡ぐ 私たちの軌跡 / Woven Story」を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: Swiper 11（自動連続スライド、slidesPerView=1.6 ピーク見せ）+ lazysizes
+  - 構造:
+      <section.l-story>
+        > .p-story
+          > .swiper.p-story__swiper
+            > .swiper-wrapper > .swiper-slide × 4（横長 gallery 写真）
+          > .p-story__content
+            > .p-story__content-text
+              > p 本文（父の背中・修行・お客様の理想…）
+              > a "More"
+            > .p-story__content-en-wrapper > p "Woven Story"（en italic 縦書き）
+        参考は写真スライダーが画面下部を流れ、テキストカードが手前に乗る構造。
+        archetype では「写真は背景連続フロー、テキストは下に独立ブロック」で再現する。
+  - 配色:
+      bg #2a2722（深い炭墨色、夜更けの庭の質感）
+      テキスト #ece4d3（オフホワイト和紙）
+      en italic アクセント #c8b78f（古銅金）
+      btn 下線 #c8b78f
+  - フォント:
+      縦書きタイトル ja: "Shippori Mincho" 36px letter-spacing .28em
+      en 大: "Cormorant Garamond" italic 90px letter-spacing .06em（背景うっすら）
+      本文: "Noto Serif JP" 15px line-height 2.1 letter-spacing .08em
+  - 動き:
+      Swiper 風の写真は CSS keyframes で右→左に 30s 等速ループ（jQuery 不要、reduced-motion 対応）
+      btn の arrow hover で 6px 右ずれ
+      本文ブロックは IntersectionObserver で 1 段 fade-in
+  - 余白:
+      section padding 0（写真帯の上下を完全フル幅）+ テキストカード padding 96px 0
+      写真スライド aspect 16:11 height 320px、SP では 200px
+  ## Placeholders
+    about.slide_1_image    背景写真 1（横長）
+    about.slide_2_image
+    about.slide_3_image
+    about.slide_4_image
+    about.title_ja_1       縦書きタイトル 1 行目（"庭と共に紡ぐ" 相当）
+    about.title_ja_2       縦書きタイトル 2 行目（"私たちの軌跡" 相当）
+    about.title_en         背景大文字 en（"Woven Story" 相当）
+    about.section_label    小キャプス英字（"( Story )" 相当）
+    about.body             本文（4-6 行 詩的、改行は <br> 入れて OK）
+    about.button_label     btn 文言（"More" 等）
+    about.button_href      btn 遷移先
+-->
+<section class="about-niwaya">
+<style>
+.about-niwaya{position:relative;background:#2a2722;color:#ece4d3;font-family:"Noto Serif JP","Hiragino Mincho ProN",serif;overflow:hidden}
+.about-niwaya__deco{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);font-family:"Cormorant Garamond","EB Garamond",serif;font-style:italic;font-weight:400;font-size:clamp(72px,12vw,180px);letter-spacing:.04em;color:rgba(200,183,143,.08);white-space:nowrap;z-index:0;pointer-events:none;line-height:1}
+
+.about-niwaya__strip{position:relative;width:100%;height:320px;overflow:hidden;z-index:1}
+.about-niwaya__track{display:flex;gap:24px;width:max-content;height:100%;animation:about-niwaya-scroll 36s linear infinite;padding:0 12px}
+.about-niwaya__slide{flex:0 0 auto;width:520px;height:100%;background:#3a3328 center/cover no-repeat;border-radius:2px}
+@keyframes about-niwaya-scroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+
+.about-niwaya__content{position:relative;z-index:2;max-width:1180px;margin:0 auto;padding:96px 56px 120px;display:grid;grid-template-columns:1fr 200px;gap:64px;align-items:end}
+.about-niwaya__text{display:flex;flex-direction:column;gap:34px}
+.about-niwaya__label{margin:0;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.42em;text-transform:uppercase;color:#c8b78f;display:inline-flex;align-items:center;gap:14px}
+.about-niwaya__label::before{content:"";display:inline-block;width:48px;height:1px;background:#c8b78f}
+.about-niwaya__body{margin:0;font-family:"Noto Serif JP",serif;font-weight:400;font-size:15px;line-height:2.1;letter-spacing:.08em;color:#ece4d3;max-width:680px}
+.about-niwaya__btn{display:inline-flex;align-items:center;gap:18px;padding:14px 4px;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.42em;text-transform:uppercase;color:#ece4d3;text-decoration:none;border-bottom:1px solid #c8b78f;align-self:flex-start;transition:color .3s ease}
+.about-niwaya__btn-arrow{display:inline-block;width:34px;height:1px;background:#c8b78f;position:relative;transition:transform .3s ease}
+.about-niwaya__btn-arrow::after{content:"";position:absolute;right:0;top:-3px;width:8px;height:8px;border-right:1px solid #c8b78f;border-top:1px solid #c8b78f;transform:rotate(45deg)}
+.about-niwaya__btn:hover .about-niwaya__btn-arrow{transform:translateX(6px)}
+.about-niwaya__btn:hover{color:#c8b78f}
+
+.about-niwaya__title{margin:0;writing-mode:vertical-rl;font-family:"Shippori Mincho","Noto Serif JP",serif;font-weight:500;font-size:clamp(28px,2.6vw,36px);letter-spacing:.28em;line-height:1.5;color:#ece4d3;display:flex;flex-direction:row-reverse;gap:20px;justify-self:end}
+.about-niwaya__title span{display:block}
+
+@media (prefers-reduced-motion: reduce){
+  .about-niwaya__track{animation:none}
+}
+
+@media (max-width:880px){
+  .about-niwaya__strip{height:200px}
+  .about-niwaya__slide{width:300px}
+  .about-niwaya__content{grid-template-columns:1fr;gap:40px;padding:60px 22px 80px}
+  .about-niwaya__title{writing-mode:horizontal-tb;flex-direction:column;gap:8px;font-size:22px;letter-spacing:.18em;justify-self:start}
+  .about-niwaya__body{font-size:14px;line-height:1.95;letter-spacing:.06em}
+  .about-niwaya__label{font-size:11px;letter-spacing:.32em}
+  .about-niwaya__deco{font-size:64px}
+}
+</style>
+
+<div class="about-niwaya__deco" aria-hidden="true">Woven Story</div>
+
+<div class="about-niwaya__strip">
+  <div class="about-niwaya__track">
+    <div class="about-niwaya__slide" style="background-image:url('https://picsum.photos/seed/niwaya-st-1/1040/700')"></div>
+    <div class="about-niwaya__slide" style="background-image:url('https://picsum.photos/seed/niwaya-st-2/1040/700')"></div>
+    <div class="about-niwaya__slide" style="background-image:url('https://picsum.photos/seed/niwaya-st-3/1040/700')"></div>
+    <div class="about-niwaya__slide" style="background-image:url('https://picsum.photos/seed/niwaya-st-4/1040/700')"></div>
+    <div class="about-niwaya__slide" style="background-image:url('https://picsum.photos/seed/niwaya-st-1/1040/700')"></div>
+    <div class="about-niwaya__slide" style="background-image:url('https://picsum.photos/seed/niwaya-st-2/1040/700')"></div>
+    <div class="about-niwaya__slide" style="background-image:url('https://picsum.photos/seed/niwaya-st-3/1040/700')"></div>
+    <div class="about-niwaya__slide" style="background-image:url('https://picsum.photos/seed/niwaya-st-4/1040/700')"></div>
+  </div>
+</div>
+
+<div class="about-niwaya__content">
+  <div class="about-niwaya__text">
+    <span class="about-niwaya__label">( Story )</span>
+    <p class="about-niwaya__body">幼い頃から庭師の父の背中を見て育ち、「庭づくりで人を喜ばせたい」という想いを胸に刻んできました。やがて修行を重ね、ひとつひとつの庭にお客様の理想を映すことを使命として歩み続けています。（サンプル）</p>
+    <a class="about-niwaya__btn" href="#sample-story">More<span class="about-niwaya__btn-arrow" aria-hidden="true"></span></a>
+  </div>
+
+  <h2 class="about-niwaya__title">
+    <span>庭と共に紡ぐ</span>
+    <span>私たちの軌跡</span>
+  </h2>
+</div>
+</section>
+
+
+</body>
+</html>

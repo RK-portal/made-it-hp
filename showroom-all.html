@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHOWROOM archetype 一覧 — 確認用プレビュー（サンプルデータ）</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Poppins:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<!-- Splide for fade slideshow (photo / teto-replica) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" defer></script>
+<!-- Swiper for parallax (narrative) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#f5f3ef;font-family:"Noto Sans JP",sans-serif;color:#2c2c2c}
+.warning-banner{position:sticky;top:0;background:#c97557;color:#fff;text-align:center;padding:10px 16px;font-size:13px;letter-spacing:.12em;z-index:9999;font-family:"Shippori Mincho",serif}
+.warning-banner strong{font-weight:600}
+.intro{padding:60px 32px;text-align:center;border-bottom:1px solid #d8d2c7}
+.intro h1{font-family:"Shippori Mincho",serif;font-size:30px;letter-spacing:.14em;margin:0 0 14px;color:#2c2c2c;font-weight:500}
+.intro p{max-width:720px;margin:0 auto;font-size:14px;line-height:1.95;color:#5b574f}
+.intro .meta{margin-top:24px;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:12px;letter-spacing:.24em;color:#8d8479}
+.archetype-label{background:#2c2c2c;color:#f5f3ef;padding:18px 32px;display:flex;align-items:baseline;gap:16px;border-top:4px solid #d4a574}
+.archetype-label .num{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.24em;color:#d4a574}
+.archetype-label .name{font-family:"JetBrains Mono",monospace;font-size:15px;letter-spacing:.04em}
+.archetype-label .src{font-family:"Shippori Mincho",serif;font-size:13px;letter-spacing:.14em;color:#a4a5a9;margin-left:auto}
+</style>
+</head>
+<body>
+<div class="warning-banner">⚠️ これは <strong>確認用プレビュー</strong> です。すべて <strong>サンプル／デモ値</strong> が入っています。実業者データではありません。</div>
+
+<section class="intro">
+  <h1>SHOWROOM archetype 一覧</h1>
+  <p>archetype の粒度確認用。サンプルデータ（「デモカンパニー」「サンプル」「◯◯ 年」等）を流し込んでいます。実 HP の生成時にはこれらが実業者の情報に置き換わります。</p>
+  <p class="meta">— preview build / 2026-05-20 11:53 —</p>
+</section>
+
+<div class="archetype-label">
+  <span class="num">J1</span>
+  <span class="name">showroom / sososya</span>
+  <span class="src">想創舎 忠実模写（横長背景画像 + 右下白カード重ね、showroom archetype 初出）</span>
+</div>
+<!--
+  Archetype: showroom / sososya
+  Source:    想創舎 (https://sososya.com/) の .top-modelhouse を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: 純 HTML + CSS、背景に大画像 + 白カードを重ねるレイアウト
+  - 構造: <section.top-modelhouse>
+      > figure.bg > img（横長 1440x720 系のモデルハウス外観）
+      > .card（白カード、絶対配置で右寄せ）
+        > p.lead "私たちが理想とする住まいの形をモデルハウスで表現しています。"
+        > p.note "随時見学が可能です。いつでもお気軽にお越しください。"
+        > h3 "想創舎 モデルハウス"
+        > address "〒838-0062 福岡県朝倉市堤615-1"
+        > p.tel "tel. 0946-28-8244"
+        > a.btn "見学会・モデルハウス"
+  - 配色: 背景画像オーバーレイあり / 白カード #fff / 文字 #2a241c / btn 茶 #4a3c2a 文字白
+  - フォント: lead Noto Serif JP 16px line-height 2 / h3 Noto Serif JP 18px / tel Cormorant Garamond italic 22px
+  - 動き: btn hover で background-color #2a241c に。card は static で動きなし
+  - 特徴: 「随時見学可能」とハードルを下げる文言 + 物理住所提示で「行ける場所」感を出す。showroom 1 拠点完結型
+  ## Placeholders
+    showroom.image            背景画像 URL（1440x720 想定）
+    showroom.lead             詩的リード（例「サンプル工務店が理想とする…」）
+    showroom.note             "随時見学が可能です。" 相当
+    showroom.name             モデルハウス名（例「サンプル工務店 モデルハウス」）
+    showroom.address          住所
+    showroom.tel              電話番号
+    showroom.button_label     CTA ラベル（例「見学会・モデルハウス」）
+    showroom.button_href      CTA 遷移先
+-->
+<section class="showroom-sososya">
+  <style>
+    .showroom-sososya { background:#f5f0e6; padding:96px 0 96px; color:#2a241c; font-family:"Noto Sans JP",sans-serif; }
+    .showroom-sososya__inner { max-width:1280px; margin:0 auto; padding:0 24px; position:relative; }
+    .showroom-sososya__wrap { position:relative; }
+    .showroom-sososya__bg { margin:0; aspect-ratio:1440/720; overflow:hidden; background:#ddd; }
+    .showroom-sososya__bg img { width:100%; height:100%; object-fit:cover; display:block; }
+    .showroom-sososya__card { background:#fff; padding:40px 36px; max-width:420px; position:absolute; right:48px; bottom:-56px; box-shadow:0 8px 24px rgba(0,0,0,.06); }
+    .showroom-sososya__lead { font-family:"Noto Serif JP",serif; font-size:16px; line-height:2; color:#2a241c; margin:0 0 14px; }
+    .showroom-sososya__note { font-size:13px; line-height:1.8; color:#52483b; margin:0 0 24px; }
+    .showroom-sososya__name { font-family:"Noto Serif JP",serif; font-weight:400; font-size:18px; margin:0 0 10px; letter-spacing:.06em; }
+    .showroom-sososya__address { font-style:normal; font-size:13px; line-height:1.7; color:#52483b; margin:0 0 8px; }
+    .showroom-sososya__tel { font-family:"Cormorant Garamond",serif; font-style:italic; font-size:22px; color:#4a3c2a; margin:0 0 24px; letter-spacing:.04em; }
+    .showroom-sososya__btn { display:inline-block; padding:14px 28px; background:#4a3c2a; color:#fff; text-decoration:none; font-size:13px; letter-spacing:.08em; transition:background .2s ease; }
+    .showroom-sososya__btn::after { content:"→"; margin-left:12px; }
+    .showroom-sososya__btn:hover { background:#2a241c; }
+    @media (max-width:880px) {
+      .showroom-sososya { padding:56px 0 80px; }
+      .showroom-sososya__card { position:static; max-width:none; right:auto; bottom:auto; margin-top:24px; padding:28px 24px; box-shadow:none; border:1px solid #e7dfcd; }
+      .showroom-sososya__lead { font-size:14px; }
+      .showroom-sososya__tel { font-size:20px; }
+    }
+  </style>
+  <div class="showroom-sososya__inner">
+    <div class="showroom-sososya__wrap">
+      <figure class="showroom-sososya__bg"><img src="https://picsum.photos/seed/shinka-model/1024/680" alt=""></figure>
+      <div class="showroom-sososya__card">
+        <p class="showroom-sososya__lead">サンプル町をはじめ過去に製作した外構パースをご紹介します。</p>
+        <p class="showroom-sososya__note">/築◯◯年</p>
+        <h3 class="showroom-sososya__name">サンプル青山ショールーム</h3>
+        <address class="showroom-sososya__address">〒679-◯◯◯◯ サンプル県◯◯郡◯◯町◯◯◯-◯</address>
+        <p class="showroom-sososya__tel">0790-◯◯-◯◯◯◯</p>
+        <a class="showroom-sososya__btn" href="/modelhouse">View More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="archetype-label">
+  <span class="num">??</span>
+  <span class="name">showroom / mori</span>
+  <span class="src"></span>
+</div>
+<!--
+  Archetype: showroom / mori
+  Source:    モリ・リフォーム (https://mori-reform.jp/) の .showroom セクションを忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: WordPress + Swiper.js（showroom__images）+ 純 CSS
+  - 構造:
+      <section.showroom>
+        > .showroom__in
+          > .showroom__title 大見出し（"見本を見たい！直接ご相談したい！ / ショールームへのご案内"）
+          > .showroom__text リード（"リフォームに関するご相談に…設備の展示や、カタログを取りそろえて…"）
+          > .showroom__images.swiper-container (写真スライダー、3 枚)
+          > .showroom__info 右情報ブロック
+            > .showroom__info-title "ご予約や事前のご相談など、お気軽にお電話ください。"
+            > .showroom__info-tel 大電話番号
+            > a.showroom__info-button.form "お問い合わせフォーム"
+            > a.showroom__info-button.line "公式LINE"
+          > .showroom__meta (左メタブロック)
+            > .showroom__meta-title address "所在地" / .showroom__meta-text address 住所
+            > .showroom__meta-button form "アクセスマップ"
+            > .showroom__meta-text worktime 営業時間
+            > .showroom__meta-text holiday 定休日
+          > .showroom__note (4 つの安心バッジ：駐車場 30 台 / 車椅子 OK / おもちゃ / カード可)
+          > .showroom__tree (装飾 SVG)
+  - 配色: 背景 #fdf9f0 / カード bg 白 / 屋号緑 #6a8d4e / 装飾 ピンク #d99a7a
+  - フォント: 見出し Shippori Mincho / tel Cormorant Garamond italic / 本文 Noto Serif JP
+  - 動き: Swiper auto-play / バッジ static
+  - 特徴: 「行ける場所」感を強化する 4 安心バッジ（参考通り模写）と装飾的な木立 SVG
+  ## Placeholders
+    showroom.heading_jp         大見出し 日本語 1 行目
+    showroom.heading_jp_2       大見出し 日本語 2 行目
+    showroom.lead               リード本文
+    showroom.image_1            写真 1 URL
+    showroom.image_2            写真 2 URL
+    showroom.image_3            写真 3 URL
+    showroom.info_title         右ブロック 見出し
+    showroom.tel                電話番号
+    showroom.form_button_label  フォーム CTA ラベル
+    showroom.form_button_href   フォーム CTA 遷移先
+    showroom.line_button_label  LINE CTA ラベル
+    showroom.line_button_href   LINE CTA 遷移先
+    showroom.address            住所
+    showroom.access_button_label アクセスマップ CTA ラベル
+    showroom.access_button_href アクセスマップ CTA 遷移先
+    showroom.worktime           営業時間（HTML 可）
+    showroom.holiday            定休日 + 補足
+    showroom.badge_1            安心バッジ 1
+    showroom.badge_2            安心バッジ 2
+    showroom.badge_3            安心バッジ 3
+    showroom.badge_4            安心バッジ 4
+-->
+<section class="showroom-mori">
+<style>
+.showroom-mori{background:#fdf9f0;padding:120px 40px;color:#3a2f1f;font-family:"Noto Serif JP",serif;position:relative;overflow:hidden}
+.showroom-mori__inner{max-width:1280px;margin:0 auto;position:relative;z-index:2}
+.showroom-mori__head{text-align:center;margin-bottom:48px}
+.showroom-mori__heading{margin:0 0 24px;font-family:"Shippori Mincho",serif;font-weight:600;font-size:clamp(24px,3.2vw,38px);line-height:1.6;letter-spacing:.1em;color:#3a2f1f}
+.showroom-mori__heading span{display:block}
+.showroom-mori__heading span:nth-child(1){font-size:.7em;color:#6a8d4e;margin-bottom:8px}
+.showroom-mori__lead{margin:0 auto;max-width:720px;font-size:14.5px;line-height:2;letter-spacing:.06em;color:#5a4e3a}
+
+.showroom-mori__images{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;margin-bottom:48px}
+.showroom-mori__img{aspect-ratio:4/3;background:#e6d9bf center/cover;border-radius:6px}
+.showroom-mori__img--main{grid-row:span 2;aspect-ratio:4/4}
+
+.showroom-mori__body{display:grid;grid-template-columns:1fr 1fr;gap:36px;background:#fff;border-radius:12px;padding:48px;box-shadow:0 12px 28px rgba(58,47,31,.06);margin-bottom:32px}
+.showroom-mori__meta-title{margin:0 0 8px;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:12px;letter-spacing:.32em;color:#6a8d4e;text-transform:uppercase}
+.showroom-mori__meta-text{margin:0 0 24px;font-size:14px;line-height:1.85;color:#3a2f1f}
+.showroom-mori__access-button{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border:1px solid #3a2f1f;color:#3a2f1f;text-decoration:none;font-size:12px;letter-spacing:.12em;border-radius:999px;margin-bottom:24px;transition:background .2s,color .2s}
+.showroom-mori__access-button::after{content:"→"}
+.showroom-mori__access-button:hover{background:#3a2f1f;color:#fff}
+
+.showroom-mori__info-title{margin:0 0 16px;font-family:"Shippori Mincho",serif;font-weight:600;font-size:16px;line-height:1.7;color:#3a2f1f}
+.showroom-mori__tel{margin:0 0 24px;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:32px;color:#6a8d4e;letter-spacing:.04em}
+.showroom-mori__buttons{display:flex;flex-direction:column;gap:12px}
+.showroom-mori__button{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:14px 24px;text-decoration:none;font-size:13px;letter-spacing:.12em;border-radius:999px;transition:background .2s,transform .2s}
+.showroom-mori__button::after{content:"→"}
+.showroom-mori__button--form{background:#6a8d4e;color:#fff}
+.showroom-mori__button--form:hover{background:#587735;transform:translateY(-2px)}
+.showroom-mori__button--line{background:#06c755;color:#fff}
+.showroom-mori__button--line:hover{background:#04a945;transform:translateY(-2px)}
+
+.showroom-mori__badges{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.showroom-mori__badge{padding:14px 16px;background:#fff;border:1px dashed #d9c8a3;border-radius:6px;text-align:center;font-size:12.5px;line-height:1.6;color:#5a4e3a;letter-spacing:.04em}
+
+.showroom-mori__deco{position:absolute;bottom:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:#fdf3df;opacity:.5;z-index:1}
+
+@media (max-width:880px){
+  .showroom-mori{padding:72px 20px}
+  .showroom-mori__images{grid-template-columns:1fr 1fr;gap:8px}
+  .showroom-mori__img--main{grid-row:span 1;aspect-ratio:4/3}
+  .showroom-mori__body{grid-template-columns:1fr;padding:32px 24px;gap:24px}
+  .showroom-mori__tel{font-size:26px}
+  .showroom-mori__badges{grid-template-columns:repeat(2,1fr)}
+  .showroom-mori__heading{font-size:22px}
+}
+</style>
+
+<div class="showroom-mori__inner">
+  <div class="showroom-mori__head">
+    <h2 class="showroom-mori__heading">
+      <span>見本を見たい！直接ご相談したい！</span>
+      <span>ショールームへのご案内</span>
+    </h2>
+    <p class="showroom-mori__lead">サンプル町をはじめ過去に製作した外構パースをご紹介します。</p>
+  </div>
+
+  <div class="showroom-mori__images" aria-hidden="true">
+    <div class="showroom-mori__img showroom-mori__img--main" style="background-image:url('https://picsum.photos/seed/sanjigen-mh1/900/680')"></div>
+    <div class="showroom-mori__img" style="background-image:url('https://picsum.photos/seed/sanjigen-mh2/640/480')"></div>
+    <div class="showroom-mori__img" style="background-image:url('https://picsum.photos/seed/sanjigen-mh3/640/480')"></div>
+  </div>
+
+  <div class="showroom-mori__body">
+    <div class="showroom-mori__meta">
+      <p class="showroom-mori__meta-title">ADDRESS</p>
+      <p class="showroom-mori__meta-text">〒679-◯◯◯◯ サンプル県◯◯郡◯◯町◯◯◯-◯</p>
+      <a class="showroom-mori__access-button" href="#access-demo">アクセスマップ</a>
+      <p class="showroom-mori__meta-title">WORK TIME</p>
+      <p class="showroom-mori__meta-text">9:00 〜 18:00</p>
+      <p class="showroom-mori__meta-title">HOLIDAY</p>
+      <p class="showroom-mori__meta-text">水曜日<br>※ 営業時間外や水曜日もご相談可能、お気軽にご連絡ください。</p>
+    </div>
+    <div class="showroom-mori__info">
+      <p class="showroom-mori__info-title">ご予約や事前のご相談など、お気軽にお電話ください。</p>
+      <p class="showroom-mori__tel">0790-◯◯-◯◯◯◯</p>
+      <div class="showroom-mori__buttons">
+        <a class="showroom-mori__button showroom-mori__button--form" href="#contact-form-demo">サンプル問い合わせフォーム</a>
+        <a class="showroom-mori__button showroom-mori__button--line" href="#line-demo">公式 LINE</a>
+      </div>
+    </div>
+  </div>
+
+  <ul class="showroom-mori__badges" style="list-style:none;margin:0;padding:0">
+    <li class="showroom-mori__badge">駐車場 ◯◯ 台</li>
+    <li class="showroom-mori__badge">車椅子の方も安心</li>
+    <li class="showroom-mori__badge">お子様用おもちゃ・布団あり</li>
+    <li class="showroom-mori__badge">クレジットカード払い可能</li>
+  </ul>
+</div>
+
+<div class="showroom-mori__deco" aria-hidden="true"></div>
+</section>
+
+<div class="archetype-label">
+  <span class="num">??</span>
+  <span class="name">showroom / craft</span>
+  <span class="src"></span>
+</div>
+<!--
+  Archetype: showroom / craft
+  Source:    株式会社クラフト (https://craftdesign.tokyo/) の <section class="top-modelroom"> を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: 純 HTML + CSS Grid（PC 3 列、SP 縦積み）+ AOS（fade-right delay）
+  - 構造:
+      <section.top-modelroom.top-section.mod-bgc-white-smoke>
+        > .top-section-inner.inner
+          > .top-section-head.c-title-wrap
+              > h2.c-title__ja "ショールーム・モデルルーム"
+              > .top-section-title.c-title
+                  > span.m-sans-serif "SHOW"
+                  > span.m-serif "ROOM"
+              > p.top-section-lead "208㎡の大空間をフルリフォームした、上質な暮らしを体感できるショールーム。"
+          > .top-section-body
+              > .c-topModelroom
+                  > a.c-topModelroom__list[href=/modelroom/aoyama/]（クリッカブル全体）
+                      > .c-topModelroom__item._main_ > img（青山ショールーム LDK 335x140）
+                      > .c-topModelroom__item._sub_ > img（ベッドルーム 165x140）
+                      > .c-topModelroom__item._sub_ > img（シャワールーム 165x140）
+                  > .c-card.m-sp-column-12
+                      > .c-card-list > .c-card-item > a.c-card-link
+                          > .c-card-contents-title.icon-arrow.m-gold  "青山ショールーム /築27年"
+                          > .c-card-contents-lead "アクセス/銀座線「外苑前駅」1a出口徒歩4分..."
+          > .top-section-button-wrap > a.c-arrow-button "ショールーム一覧"
+      参考は 1 拠点（青山）を main、ナレーション + サブ画像 2 枚で「208㎡空間体験」を強調。
+      A2 帯の「拠点 = 物理的接点 / 体験」を強く訴求するパターン
+  - 配色: 背景 #f5f5f5 (white-smoke)、メインカード #fff、文字 #1a1a1a、サブテキスト #7a7a7a、CTA ゴールド #b59175
+  - フォント: タイトル m-sans-serif + m-serif、本文 Roboto + YuGothic 14-15px
+  - 動き: AOS fade-right スタガード、メイン画像 hover で scale(1.04)、カードタイトル矢印 → スライド
+  - 特徴: 「ショールーム 1 拠点を全面に出す」+「メイン + 2 サブ画像で空間量を可視化」+ 駅アクセス情報の 3 軸。
+           sososya J1 が 1 拠点 + 白カード重ねの簡素型なのに対し、craft J2 はメイン 1 大 + サブ 2 小の "3 画像ショウリール" 型
+  ## Placeholders
+    showroom.heading_ja           日本語見出し（"ショールーム・モデルルーム"）
+    showroom.heading_en_1         英字前半（"SHOW"）
+    showroom.heading_en_2         英字後半（"ROOM"）
+    showroom.lead                 リード（"◯◯㎡の大空間を..."）
+    showroom.main_image           メイン画像（1024x430、LDK 等）
+    showroom.sub_image_1          サブ画像 1（500x430、ベッドルーム等）
+    showroom.sub_image_2          サブ画像 2（500x430、シャワールーム等）
+    showroom.name                 ショールーム名（"サンプル青山ショールーム"）
+    showroom.note                 補足（"/築◯◯年" 等）
+    showroom.access               アクセス情報（HTML 可、br 含む）
+    showroom.detail_href          ショールーム詳細ページ URL
+    showroom.button_label         CTA ラベル（"ショールーム一覧"）
+    showroom.button_href          CTA 遷移先
+-->
+<section class="showroom-craft">
+  <style>
+    .showroom-craft{padding:120px 32px 128px;background:#f5f5f5;color:#1a1a1a;font-family:"Roboto","游ゴシック体",YuGothic,sans-serif}
+    .showroom-craft__inner{max-width:1280px;margin:0 auto}
+    .showroom-craft__head{text-align:center;margin-bottom:64px}
+    .showroom-craft__heading-ja{font-family:Lusitana,"Times New Roman","Noto Serif JP","Yu Mincho",serif;font-size:15px;font-weight:400;letter-spacing:.22em;color:#7a7a7a;margin:0 0 18px;display:block}
+    .showroom-craft__heading-en{display:flex;justify-content:center;align-items:baseline;gap:14px;letter-spacing:.15em;margin:0 0 24px}
+    .showroom-craft__heading-en .m-sans-serif{font-family:"Roboto","游ゴシック体",YuGothic,sans-serif;font-weight:700;font-size:36px;color:#1a1a1a}
+    .showroom-craft__heading-en .m-serif{font-family:Lusitana,"Times New Roman",serif;font-weight:400;font-size:36px;color:#1a1a1a}
+    .showroom-craft__lead{font-size:15px;line-height:2;color:#4a4a4a;margin:0;letter-spacing:.05em}
+    .showroom-craft__body{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:start}
+    .showroom-craft__gallery{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:8px;aspect-ratio:670/430;text-decoration:none;color:inherit;background:#e7e2d8}
+    .showroom-craft__main-image{grid-row:1/3;width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;background:#e7e2d8}
+    .showroom-craft__sub-image{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;background:#e7e2d8}
+    .showroom-craft__gallery:hover .showroom-craft__main-image,.showroom-craft__gallery:hover .showroom-craft__sub-image{transform:scale(1.04)}
+    .showroom-craft__main-wrap,.showroom-craft__sub-wrap{overflow:hidden;background:#e7e2d8}
+    .showroom-craft__main-wrap{grid-row:1/3}
+    .showroom-craft__card{background:#fff;padding:48px 40px;display:flex;flex-direction:column;justify-content:center;min-height:430px}
+    .showroom-craft__card-title{font-family:"Roboto","游ゴシック体",YuGothic,sans-serif;font-size:22px;font-weight:600;letter-spacing:.06em;margin:0 0 6px;color:#1a1a1a;position:relative;padding-right:28px;display:flex;align-items:baseline;flex-wrap:wrap;gap:8px}
+    .showroom-craft__card-title::after{content:"→";position:absolute;right:0;top:.15em;color:#b59175;font-size:16px;transition:transform .3s ease}
+    .showroom-craft__card-title a:hover::after,.showroom-craft__card:hover .showroom-craft__card-title::after{transform:translateX(4px)}
+    .showroom-craft__card-note{font-family:Lusitana,"Times New Roman",serif;font-size:13px;color:#b59175;letter-spacing:.08em;font-weight:400}
+    .showroom-craft__card-divider{width:48px;height:1px;background:#b59175;margin:20px 0 22px}
+    .showroom-craft__card-access{font-size:14px;line-height:1.95;color:#4a4a4a;margin:0;letter-spacing:.04em}
+    .showroom-craft__btn-wrap{text-align:center;margin-top:64px}
+    .showroom-craft__btn{display:inline-flex;align-items:center;gap:14px;padding:16px 40px;background:transparent;color:#1a1a1a;text-decoration:none;font-size:13px;letter-spacing:.18em;font-family:Lusitana,"Times New Roman",serif;border:1px solid #b59175;transition:background .3s ease, color .3s ease}
+    .showroom-craft__btn::after{content:"→";color:#b59175;transition:transform .3s ease, color .3s ease}
+    .showroom-craft__btn:hover{background:#b59175;color:#fff}
+    .showroom-craft__btn:hover::after{color:#fff;transform:translateX(4px)}
+    @media (max-width:1024px){
+      .showroom-craft__body{grid-template-columns:1fr;gap:0}
+      .showroom-craft__card{min-height:auto;padding:32px 28px}
+    }
+    @media (max-width:768px){
+      .showroom-craft{padding:80px 24px 88px}
+      .showroom-craft__head{margin-bottom:40px}
+      .showroom-craft__heading-en .m-sans-serif,.showroom-craft__heading-en .m-serif{font-size:26px}
+      .showroom-craft__lead{font-size:14px}
+      .showroom-craft__gallery{aspect-ratio:335/280;gap:6px}
+      .showroom-craft__card-title{font-size:18px}
+      .showroom-craft__btn-wrap{margin-top:40px}
+    }
+  </style>
+  <div class="showroom-craft__inner">
+    <div class="showroom-craft__head">
+      <span class="showroom-craft__heading-ja">ショールーム・モデルルーム</span>
+      <div class="showroom-craft__heading-en">
+        <span class="m-sans-serif">SHOW</span>
+        <span class="m-serif">ROOM</span>
+      </div>
+      <p class="showroom-craft__lead">サンプル町をはじめ過去に製作した外構パースをご紹介します。</p>
+    </div>
+    <div class="showroom-craft__body">
+      <a class="showroom-craft__gallery" href="#">
+        <div class="showroom-craft__main-wrap"><img class="showroom-craft__main-image" src="https://picsum.photos/seed/craft-show-main/1024/430" alt=""></div>
+        <div class="showroom-craft__sub-wrap"><img class="showroom-craft__sub-image" src="https://picsum.photos/seed/craft-show-sub1/500/430" alt=""></div>
+        <div class="showroom-craft__sub-wrap"><img class="showroom-craft__sub-image" src="https://picsum.photos/seed/craft-show-sub2/500/430" alt=""></div>
+      </a>
+      <div class="showroom-craft__card">
+        <h3 class="showroom-craft__card-title">サンプル青山ショールーム<span class="showroom-craft__card-note">/築◯◯年</span></h3>
+        <div class="showroom-craft__card-divider"></div>
+        <p class="showroom-craft__card-access">アクセス／サンプル線「◯◯駅」◯出口徒歩◯分<br>サンプル線・◯◯線「◯◯駅」◯出口徒歩◯分</p>
+      </div>
+    </div>
+    <div class="showroom-craft__btn-wrap">
+      <a class="showroom-craft__btn" href="/modelhouse">View More</a>
+    </div>
+  </div>
+</section>
+
+<div class="archetype-label">
+  <span class="num">??</span>
+  <span class="name">showroom / shinka</span>
+  <span class="src"></span>
+</div>
+<!--
+  Archetype: showroom / shinka
+  Source:    SHIN KA（益三建設）(https://shinka-masumi.jp/) の .model_container を忠実模写
+  Group:     1 (ELEGANT) - 落ち着き・上品
+  業種:      注文住宅 / LCCM 住宅認定モデルハウス紹介
+
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: WordPress / CSS のみ
+  - 構造: <div.model_container>
+      > .model_up_block（2 カラム）
+        > .model_up_unit01 (左)
+          > h2.section_title02 "MODEL HOUSE"（飾り英字大キャプス）
+        > .model_up_unit02 (右)
+          > p.model_up_title 大コピー 3 行（br_sp5 で SP 折返し）
+          > p.model_up_txt 本文 1 行（短）
+          > p.model_up_txt 本文 4 行（長）— br_pc5 で PC 折返し
+      > .model_down_block（2 カラム）
+        > .model_down_unit01 (左) > img 大画像
+        > .model_down_unit02 (右)
+          > .model_table > table (敷地面積/建物面積/建蔽率/容積率/間取り/所在地)
+          > .section_btn_box > a.section_btn.section_btn_gray "詳しくはこちら"
+  - 配色: 背景 #f7f5f1 オフホワイト / table th #6a665e グレー / td #1a1a1a / 罫線 #d8d2c5
+  - フォント:
+      - h2.section_title02 = Cormorant Garamond italic 36-44px letter-spacing .12em（model だけ大きく扱う）
+      - p.model_up_title = Noto Serif JP 24-28px line-height 1.7 太字寄り
+      - p.model_up_txt = Noto Sans JP 14px line-height 2
+      - table th = Cormorant italic 13px letter-spacing .12em / td = Noto Sans JP 14px
+  - 動き: なし（静的）
+  - レイアウト: 上段は左:右 = 1:1.4、下段は左:右 = 1.2:1（画像を大きく）
+
+  ## Placeholders
+    showroom.label_en        英字 (例「MODEL HOUSE」)
+    showroom.title           大コピー (例「みどりの地球を守り、豊かで健康的な暮らしを創造する」)
+    showroom.body1           短いコピー 1
+    showroom.body2_html      長いコピー HTML（br 込みで 3-4 行想定）
+    showroom.image           外観大画像 (1024x680 想定)
+    showroom.image_alt       外観画像 alt
+    showroom.spec1_label / spec1_value  例「敷地面積」/「259.59㎡」
+    showroom.spec2_label / spec2_value  例「建物面積」/「119.30㎡」
+    showroom.spec3_label / spec3_value  例「建蔽率」/「60％」
+    showroom.spec4_label / spec4_value  例「容積率」/「200％」
+    showroom.spec5_label / spec5_value  例「間取り」/「3LDK+ホール」
+    showroom.spec6_label / spec6_value  例「所在地」/「サンプル市◯◯町◯◯」
+    showroom.button_label    例「詳しくはこちら」
+    showroom.button_href     例「/modelhouse-lp/」
+-->
+<section class="showroom-shinka">
+  <style>
+    .showroom-shinka { background:#f7f5f1; padding:120px 0 140px; font-family:"Noto Sans JP",sans-serif; color:#1a1a1a; }
+    .showroom-shinka__inner { max-width:1280px; margin:0 auto; padding:0 40px; }
+    .showroom-shinka__up { display:grid; grid-template-columns:1fr 1.4fr; gap:80px; align-items:start; margin-bottom:80px; }
+    .showroom-shinka__label { display:block; margin:0; font-family:"Cormorant Garamond","Cormorant",serif; font-style:italic; font-weight:400; font-size:clamp(28px, 3.4vw, 40px); letter-spacing:.12em; color:#1a1a1a; }
+    .showroom-shinka__title { margin:0 0 28px; font-family:"Noto Serif JP",serif; font-weight:500; font-size:clamp(22px, 2.6vw, 28px); line-height:1.7; letter-spacing:.04em; }
+    .showroom-shinka__body { margin:0 0 16px; font-size:14px; line-height:2; color:#3a3a3a; }
+    .showroom-shinka__body:last-child { margin-bottom:0; }
+    .showroom-shinka__down { display:grid; grid-template-columns:1.2fr 1fr; gap:64px; align-items:center; }
+    .showroom-shinka__img { position:relative; aspect-ratio:1024/680; overflow:hidden; background:#e5e1da; }
+    .showroom-shinka__img img { width:100%; height:100%; object-fit:cover; display:block; }
+    .showroom-shinka__table-wrap { padding:8px 0; }
+    .showroom-shinka__table { width:100%; border-collapse:collapse; margin-bottom:32px; }
+    .showroom-shinka__table th, .showroom-shinka__table td { padding:18px 8px; border-bottom:1px solid #d8d2c5; text-align:left; vertical-align:top; }
+    .showroom-shinka__table th { font-family:"Cormorant Garamond","Cormorant",serif; font-style:italic; font-weight:400; font-size:13px; letter-spacing:.12em; color:#6a665e; width:38%; }
+    .showroom-shinka__table td { font-family:"Noto Sans JP",sans-serif; font-size:14px; color:#1a1a1a; line-height:1.7; }
+    .showroom-shinka__btn { display:inline-flex; align-items:center; gap:14px; padding:14px 0; font-family:"Cormorant Garamond","Cormorant",serif; font-style:italic; font-size:14px; letter-spacing:.18em; color:#1a1a1a; text-decoration:none; border-bottom:1px solid #1a1a1a; transition:gap .25s ease; }
+    .showroom-shinka__btn::after { content:""; width:32px; height:1px; background:#1a1a1a; display:inline-block; transition:width .25s ease; }
+    .showroom-shinka__btn:hover { gap:22px; }
+    .showroom-shinka__btn:hover::after { width:48px; }
+    @media (max-width:880px) {
+      .showroom-shinka { padding:72px 0 88px; }
+      .showroom-shinka__inner { padding:0 24px; }
+      .showroom-shinka__up, .showroom-shinka__down { grid-template-columns:1fr; gap:32px; }
+      .showroom-shinka__up { margin-bottom:48px; }
+      .showroom-shinka__table th { width:42%; }
+    }
+  </style>
+  <div class="showroom-shinka__inner">
+    <div class="showroom-shinka__up">
+      <div class="showroom-shinka__up-left">
+        <span class="showroom-shinka__label">MODEL HOUSE</span>
+      </div>
+      <div class="showroom-shinka__up-right">
+        <p class="showroom-shinka__title">サンプル町や県内の外構3Dパース作品ご紹介</p>
+        <p class="showroom-shinka__body">私たちは、『単に施工する』だけではなく、想いをカタチにする会社です。お客様の想いをカタチにすべく、最高の計画を立てます。</p>
+        <p class="showroom-shinka__body">家づくりの在り方を少し先の未来を見据えて考えたモデルハウスです。環境問題が大きな社会問題となり、私たちは私たちにできることで、次世代の子どもたちにバトンを渡していきたいと考えます。それは建築においてできる限り環境負荷がかからない建材を選択すること、性能を高めること、断熱・気密・耐震・耐久性の高い住宅にすることで、家の寿命を長持ちさせること。このモデルハウスでは、それらの要素を盛り込んだ認定住宅となっています。</p>
+      </div>
+    </div>
+    <div class="showroom-shinka__down">
+      <div class="showroom-shinka__img"><img src="https://picsum.photos/seed/shinka-model/1024/680" alt="サンプルモデルハウス外観画像"></div>
+      <div class="showroom-shinka__table-wrap">
+        <table class="showroom-shinka__table">
+          <tbody>
+            <tr><th>敷地面積</th><td>◯◯◯.◯㎡ ／ ◯◯.◯坪</td></tr>
+            <tr><th>建物面積</th><td>◯◯◯.◯㎡ ／ ◯◯.◯坪</td></tr>
+            <tr><th>建蔽率</th><td>◯◯％</td></tr>
+            <tr><th>容積率</th><td>◯◯◯％</td></tr>
+            <tr><th>間取り</th><td>◯LDK+ホール</td></tr>
+            <tr><th>所在地</th><td>サンプル市◯◯町◯◯番地</td></tr>
+          </tbody>
+        </table>
+        <a class="showroom-shinka__btn" href="/modelhouse">View More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="archetype-label">
+  <span class="num">??</span>
+  <span class="name">showroom / sanjigen</span>
+  <span class="src"></span>
+</div>
+<!--
+  Archetype: showroom / sanjigen
+  Source:    三次元 The Classic (https://3jigen.jp/) の p-modelhouse-index を忠実模写
+  ## 模写スペック（raw HTML 抽出）
+  - 制作技術: 2 カラム grid + 4 画像非対称配置（top 2 + bottom 2）+ Rellax 各別速度
+              （プレビューは IntersectionObserver fade-in + 軽量 translateY 視差で代替）
+  - 構造:
+      <section.p-modelhouse-index>
+        > .p-modelhouse-index__conts (2 カラム)
+            > .p-modelhouse-index__img (左、4 画像非対称配置)
+                > .p-modelhouse-index__img-top
+                    > .img.img1 (大、data-rellax-speed=-1)
+                    > .img.img2 (小、data-rellax-speed=-0.6)
+                > .p-modelhouse-index__img-bottom
+                    > .img.img3 (小、data-rellax-speed=-0.7)
+                    > .img.img4 (大、data-rellax-speed=-0.8)
+            > .p-modelhouse-index__text (右)
+                > h2.c-title-section
+                    > img.c-title-section__en  (Model Housse SVG 301x39 ※原文 typo)
+                    > span.c-title-section__ja  ("モデルハウス")
+                > p  ("呉羽丘陵の豊かな自然〜お待ちしています。" の 2 段落)
+                > a "View More"  モデルハウス詳細ページへ
+  - 配色: 背景 #f5f1ea / 本文 #2b2b2b / 見出し #181818
+  - フォント: 英字見出し Cormorant Garamond italic 60px、和文 Shippori Mincho .3em
+              本文 17px line-height 2.2
+  - 動き: 4 画像が異なる速度で縦に微小視差、テキスト側はフェードイン
+  ## Placeholders
+    showroom.section_label     英字見出し（"Model House" 相当）
+    showroom.heading           和字見出し（"モデルハウス"）
+    showroom.copy_1            本文 1 段落（立地の説明）
+    showroom.copy_2            本文 2 段落（おもてなしの一言）
+    showroom.image_1           左上大画像 URL
+    showroom.image_2           左上小画像 URL
+    showroom.image_3           左下小画像 URL
+    showroom.image_4           左下大画像 URL
+    showroom.button_label      "View More" ラベル
+    showroom.button_href       モデルハウスページリンク
+-->
+<section class="showroom-sanjigen">
+<style>
+.showroom-sanjigen{position:relative;padding:160px 32px;background:#f5f1ea;color:#2b2b2b;font-family:"Shippori Mincho",serif;overflow:hidden}
+.showroom-sanjigen__container{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.25fr 1fr;gap:80px;align-items:center}
+
+.showroom-sanjigen__img{position:relative;width:100%;display:flex;flex-direction:column;gap:24px}
+.showroom-sanjigen__img-row{display:grid;gap:24px}
+.showroom-sanjigen__img-row--top{grid-template-columns:1.4fr 1fr}
+.showroom-sanjigen__img-row--bottom{grid-template-columns:1fr 1.4fr;margin-left:8%}
+.showroom-sanjigen__pic{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;background:#e2dccf;opacity:0;transform:translateY(28px);transition:opacity 1.4s ease,transform 1.4s ease}
+.showroom-sanjigen.is-inview .showroom-sanjigen__pic{opacity:1;transform:translateY(0)}
+.showroom-sanjigen__pic:nth-of-type(2){transition-delay:.1s}
+.showroom-sanjigen__pic--3{transition-delay:.2s}
+.showroom-sanjigen__pic--4{transition-delay:.3s}
+.showroom-sanjigen__pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
+
+.showroom-sanjigen__text{display:flex;flex-direction:column;gap:24px;align-items:flex-start;opacity:0;transform:translateY(28px);transition:opacity 1.4s ease .4s,transform 1.4s ease .4s}
+.showroom-sanjigen.is-inview .showroom-sanjigen__text{opacity:1;transform:translateY(0)}
+.showroom-sanjigen__label{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:500;font-size:clamp(40px,5vw,64px);line-height:1;letter-spacing:-.01em;color:#181818;margin:0}
+.showroom-sanjigen__heading{font-family:"Shippori Mincho",serif;font-weight:400;font-size:14px;letter-spacing:.32em;color:#2b2b2b;margin:-8px 0 0}
+.showroom-sanjigen__copy{font-family:"Shippori Mincho",serif;font-weight:400;font-size:17px;line-height:2.2;letter-spacing:.12em;color:#2b2b2b;margin:0}
+.showroom-sanjigen__more{display:inline-flex;align-items:center;gap:16px;margin-top:8px;text-decoration:none;color:#181818;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:18px;letter-spacing:.16em;padding:8px 0;border-bottom:1px solid #181818;transition:gap .25s,letter-spacing .25s}
+.showroom-sanjigen__more::after{content:"→"}
+.showroom-sanjigen__more:hover{gap:22px;letter-spacing:.22em}
+
+@media (max-width:880px){
+  .showroom-sanjigen{padding:80px 20px}
+  .showroom-sanjigen__container{grid-template-columns:1fr;gap:40px}
+  .showroom-sanjigen__img-row--bottom{margin-left:0}
+  .showroom-sanjigen__copy{font-size:15px;line-height:2.05}
+}
+</style>
+
+<div class="showroom-sanjigen__container">
+  <div class="showroom-sanjigen__img">
+    <div class="showroom-sanjigen__img-row showroom-sanjigen__img-row--top">
+      <div class="showroom-sanjigen__pic showroom-sanjigen__pic--1" data-speed="-1"><img src="https://picsum.photos/seed/sanjigen-mh1/900/680" alt="" loading="lazy"></div>
+      <div class="showroom-sanjigen__pic showroom-sanjigen__pic--2" data-speed="-0.6"><img src="https://picsum.photos/seed/sanjigen-mh2/640/480" alt="" loading="lazy"></div>
+    </div>
+    <div class="showroom-sanjigen__img-row showroom-sanjigen__img-row--bottom">
+      <div class="showroom-sanjigen__pic showroom-sanjigen__pic--3" data-speed="-0.7"><img src="https://picsum.photos/seed/sanjigen-mh3/640/480" alt="" loading="lazy"></div>
+      <div class="showroom-sanjigen__pic showroom-sanjigen__pic--4" data-speed="-0.8"><img src="https://picsum.photos/seed/sanjigen-mh4/900/680" alt="" loading="lazy"></div>
+    </div>
+  </div>
+
+  <div class="showroom-sanjigen__text">
+    <p class="showroom-sanjigen__label">Model House</p>
+    <p class="showroom-sanjigen__heading">モデルハウス</p>
+    <p class="showroom-sanjigen__copy">サンプル丘陵の豊かな自然に包まれた丘の上に、私たちのモデルハウスはあります。</p>
+    <p class="showroom-sanjigen__copy">美味しいコーヒーや紅茶を淹れてお待ちしています。</p>
+    <a class="showroom-sanjigen__more" href="/modelhouse">View More</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root = document.currentScript.closest('.showroom-sanjigen');
+  if (!root) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ root.classList.add('is-inview'); io.disconnect(); }
+    });
+  }, {threshold:.15});
+  io.observe(root);
+  // 4 画像を data-speed に応じて微小視差
+  var pics = root.querySelectorAll('.showroom-sanjigen__pic');
+  function onScroll(){
+    var rect = root.getBoundingClientRect();
+    var vh = window.innerHeight || 800;
+    var p = Math.max(-1, Math.min(1, (rect.top + rect.height/2 - vh/2) / vh));
+    pics.forEach(function(pic){
+      var spd = parseFloat(pic.getAttribute('data-speed')) || -0.5;
+      var img = pic.querySelector('img');
+      if (img) img.style.transform = 'translateY(' + (p * spd * 18) + 'px)';
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+</section>
+
+<div class="archetype-label">
+  <span class="num">??</span>
+  <span class="name">showroom / nos</span>
+  <span class="src"></span>
+</div>
+<!--
+  Archetype: showroom / nos
+  Source:    NOS-Design (https://nos-design.jp/) の「PERSPECTIVE - 3Dパース作品ご紹介」独立セクションを忠実模写
+  ## 模写スペック（raw HTML 抽出 or 実測値）
+  - 制作技術: Elementor、4 つの 3D パース作品を 2x2 grid で配置（外構業特有の「設計事務所」訴求要素）
+  - 構造:
+      > .showroom-nos__head（EN ラベル "PERSPECTIVE" + h2 + lead）
+      > .showroom-nos__grid 4 perspective cards
+        > .showroom-nos__card
+          > .showroom-nos__card-img（パース画像、16:10 横長）
+          > .showroom-nos__card-area "【栃木県 下都賀郡 壬生町】"
+          > .showroom-nos__card-title "ダークトーンに緑が映えるスタイリッシュモダンな外構" 風 詩的説明
+          > .showroom-nos__card-desc 詳細 1 段落（パース説明）
+      > .showroom-nos__cta "3Dパースの製作依頼はこちらから" 横長 banner
+  - 配色: 背景 #1a1a1a（ダーク反転で「設計図」感）/ カード白 #ffffff / area 文字 #5a8c4d / EN ラベル #a3d09a
+  - フォント: EN Cormorant Garamond italic 14px / h2 Noto Serif JP 500 / title Noto Serif JP 16px
+  - 動き: card hover でカード translateY(-6px) + 影 box-shadow 0 12px 32px rgba(0,0,0,.4)
+  - 特徴: ダーク背景で「設計事務所」のシリアスさを訴求 + CTA banner で「パース依頼を独立サービスとして売る」NOS 固有のビジネスモデル表現
+  ## Placeholders
+    showroom.eyebrow            EN 章ラベル "PERSPECTIVE"
+    showroom.title              h2 日本語
+    showroom.lead               lead 1 行
+    showroom.item_N_image       パース画像 URL
+    showroom.item_N_area        "【サンプル県 ◯◯町】"
+    showroom.item_N_title       詩的タイトル
+    showroom.item_N_desc        詳細説明
+    showroom.cta_text           "3Dパースの製作依頼はこちらから" 等
+    showroom.cta_button_label   CTA ボタンラベル
+    showroom.cta_button_href    CTA 遷移先
+-->
+<section class="showroom-nos" id="showroom">
+  <style>
+    .showroom-nos{background:#1a1a1a;padding:120px 0;color:#fafafa;font-family:"Noto Sans JP",sans-serif}
+    .showroom-nos__inner{max-width:1280px;margin:0 auto;padding:0 32px}
+    .showroom-nos__head{text-align:center;margin:0 0 72px}
+    .showroom-nos__eyebrow{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.42em;text-transform:uppercase;color:#a3d09a;margin:0 0 14px;display:inline-block;position:relative;padding-bottom:14px}
+    .showroom-nos__eyebrow::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:48px;height:1px;background:#a3d09a}
+    .showroom-nos__title{font-family:"Noto Serif JP",serif;font-weight:500;font-size:clamp(24px,3vw,34px);line-height:1.5;margin:0 0 16px;letter-spacing:.04em;color:#fff}
+    .showroom-nos__lead{font-family:"Noto Serif JP",serif;font-size:15px;line-height:1.9;color:#c8c8c8;margin:0;letter-spacing:.04em}
+    .showroom-nos__grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin:0 0 60px}
+    .showroom-nos__card{background:#ffffff;color:#1a1a1a;display:flex;flex-direction:column;transition:transform .35s ease,box-shadow .35s ease}
+    .showroom-nos__card:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(0,0,0,.4)}
+    .showroom-nos__card-img{margin:0;aspect-ratio:16/10;overflow:hidden;background:#222}
+    .showroom-nos__card-img img{width:100%;height:100%;object-fit:cover;display:block}
+    .showroom-nos__card-body{padding:28px 28px 32px;display:flex;flex-direction:column;gap:10px}
+    .showroom-nos__card-area{font-family:"Noto Serif JP",serif;font-size:13px;letter-spacing:.08em;color:#5a8c4d;margin:0}
+    .showroom-nos__card-title{font-family:"Noto Serif JP",serif;font-weight:500;font-size:16px;line-height:1.6;margin:0 0 4px;letter-spacing:.06em;color:#1a1a1a}
+    .showroom-nos__card-desc{font-family:"Noto Sans JP",sans-serif;font-size:13px;line-height:1.95;color:#444;margin:0;letter-spacing:.02em}
+    .showroom-nos__cta{display:flex;justify-content:space-between;align-items:center;padding:32px 36px;border:1px solid rgba(163,208,154,.4);background:rgba(255,255,255,.03)}
+    .showroom-nos__cta-text{font-family:"Noto Serif JP",serif;font-size:18px;letter-spacing:.06em;color:#fafafa;margin:0;line-height:1.55}
+    .showroom-nos__cta-btn{display:inline-block;padding:14px 32px;background:#5a8c4d;color:#fff;text-decoration:none;font-size:13px;letter-spacing:.18em;transition:background .25s ease}
+    .showroom-nos__cta-btn::after{content:"→";margin-left:14px}
+    .showroom-nos__cta-btn:hover{background:#476f3d}
+    @media (max-width:880px){
+      .showroom-nos{padding:72px 0}
+      .showroom-nos__head{margin-bottom:48px}
+      .showroom-nos__grid{grid-template-columns:1fr;gap:24px;margin-bottom:36px}
+      .showroom-nos__card-body{padding:20px 22px 24px}
+      .showroom-nos__cta{flex-direction:column;gap:18px;padding:24px}
+      .showroom-nos__cta-text{font-size:15px;text-align:center}
+    }
+  </style>
+  <div class="showroom-nos__inner">
+    <div class="showroom-nos__head">
+      <p class="showroom-nos__eyebrow">PERSPECTIVE</p>
+      <h2 class="showroom-nos__title">サンプル町や県内の外構3Dパース作品ご紹介</h2>
+      <p class="showroom-nos__lead">サンプル町をはじめ過去に製作した外構パースをご紹介します。</p>
+    </div>
+    <div class="showroom-nos__grid">
+      <article class="showroom-nos__card">
+        <figure class="showroom-nos__card-img"><img src="https://picsum.photos/seed/nos-perspective-1/800/500" alt=""></figure>
+        <div class="showroom-nos__card-body">
+          <p class="showroom-nos__card-area">【サンプル県 ◯◯郡 ◯◯町】</p>
+          <h3 class="showroom-nos__card-title">ダークトーンに緑が映えるスタイリッシュモダンな外構</h3>
+          <p class="showroom-nos__card-desc">サンプル町の外構パース。外壁のダークトーンに合わせ、エクステリアはお客様の要望よりカーポート、ウッドフェンス、門塀、フロート階段（浮き階段）を取り入れた、世界観のある造作外構です。</p>
+        </div>
+      </article>
+      <article class="showroom-nos__card">
+        <figure class="showroom-nos__card-img"><img src="https://picsum.photos/seed/nos-perspective-2/800/500" alt=""></figure>
+        <div class="showroom-nos__card-body">
+          <p class="showroom-nos__card-area">【サンプル県 ◯◯郡 ◯◯町】</p>
+          <h3 class="showroom-nos__card-title">横格子ウッドフェンスと人工芝のナチュラルモダンな外構</h3>
+          <p class="showroom-nos__card-desc">サンプル町の外構パース。淡い色彩の外壁材に合わせて自然木の目隠しウッドフェンスとフロート階段を合わせました。中庭は人工芝で家族の空間を確保しました。</p>
+        </div>
+      </article>
+      <article class="showroom-nos__card">
+        <figure class="showroom-nos__card-img"><img src="https://picsum.photos/seed/nos-perspective-3/800/500" alt=""></figure>
+        <div class="showroom-nos__card-body">
+          <p class="showroom-nos__card-area">【サンプル県 ◯◯郡 ◯◯町】</p>
+          <h3 class="showroom-nos__card-title">コンクリートとアイアン手すりのシンプルモダンな外構</h3>
+          <p class="showroom-nos__card-desc">サンプル町の外構パース。お客様よりモノクロームで無機質な外構にしたいとの要望を受け、現場打ちコンクリートのファサードと黒の排水性アスファルトを採用しました。</p>
+        </div>
+      </article>
+      <article class="showroom-nos__card">
+        <figure class="showroom-nos__card-img"><img src="https://picsum.photos/seed/nos-perspective-4/800/500" alt=""></figure>
+        <div class="showroom-nos__card-body">
+          <p class="showroom-nos__card-area">【サンプル県 ◯◯郡 ◯◯町】</p>
+          <h3 class="showroom-nos__card-title">緑を添えるオートクチュールな造作外構</h3>
+          <p class="showroom-nos__card-desc">ワンポイントに緑を添えた、お客様だけのオートクチュールな造作外構。素材の質感と植栽の配置を綿密に計算し、唯一無二のファサードに仕上げました。</p>
+        </div>
+      </article>
+    </div>
+    <div class="showroom-nos__cta">
+      <p class="showroom-nos__cta-text">3Dパースの製作依頼はこちらから</p>
+      <a class="showroom-nos__cta-btn" href="#cta">パース依頼</a>
+    </div>
+  </div>
+</section>
+
+
+</body>
+</html>
