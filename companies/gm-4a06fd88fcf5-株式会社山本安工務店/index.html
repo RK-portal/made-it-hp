@@ -64,37 +64,7 @@ img{max-width:100%;height:auto;display:block}
 
 <div id="top"></div>
 <div id="hero" class="site-section site-section--hero">
-<!-- hero: matsuo -->
-<!--
-  Archetype: hero / matsuo
-  Source:    松尾工務店 (https://www.matsuo-komuten.co.jp/) を忠実模写
-  ## 模写スペック（raw HTML 抽出 / 実測値）
-  - 制作技術: 自前 Alpine.js + Lenis + Splide + Vimeo iframe + clip-path opening-anime
-  - 構造:
-      <div.hero-matsuo>
-        > .hero-matsuo__mv (背景 Vimeo 動画 or fallback 写真、aspect-[315/420] → 全画面)
-        > .hero-matsuo__year-stamp (左中央、創業年 1915 を巨大 Cormorant Garamond で全画面ぶち抜き)
-        > .hero-matsuo__anniv (左下、110th SVG ロゴ 3 段重ね = "matsuo" + "110th" + "anniversary")
-        > .hero-matsuo__copy-zone (右下、Eternal Quality for Your Dream 英字 subtitle + 大コピー 2 行 "可能性を実現する、xxx" Shippori Mincho)
-        > .hero-matsuo__copy-block (画面下、ロングコピー 2 段 "創業年の創業以来〜" "技術を受け継ぎ〜永遠の品質保証〜")
-  - 配色: 黒バックグラウンド #0d0d0d / 白テキスト / 薄グレー #888 / 創業年数字は白半透明 opacity .14
-  - フォント: 和文 Shippori Mincho B1 (heading), 小塚明朝 (本文) / 欧文 Cormorant Garamond
-  - 動き: 創業年数字 count-up（CSS scroll IntersectionObserver で 1→1915 に弾く）、
-          大コピー fade-in upward、kenburns slow zoom (12s) を背景に
-  - 余白: padding 60px 56px, height 100vh / SP 100svh
-  ## Placeholders
-    company.name                ブランド名
-    hero.year_founded           創業年（数値、巨大表示用）
-    hero.anniversary_label      "◯◯◯th Anniversary" 相当
-    hero.anniversary_brand      anniversary 上段の英字屋号
-    hero.subtitle_en            英字サブタイトル ("Eternal Quality for Your Dream" 相当)
-    hero.headline_line_1        大コピー 1 行目
-    hero.headline_line_2        大コピー 2 行目
-    hero.long_copy_block_1      ロングコピー 1 段目 (HTML 改行 <br> 可)
-    hero.long_copy_block_2      ロングコピー 2 段目 (HTML 改行 <br> 可)
-    hero.mv_image               メインビジュアル写真 URL（Vimeo poster 代替）
-    hero.scroll_label           SCROLL 縦キューのラベル
--->
+
 <section class="hero-matsuo">
 <style>
 .hero-matsuo{position:relative;min-height:100svh;height:100vh;background:#0d0d0d;color:#fff;font-family:"Noto Serif JP","Shippori Mincho B1",serif;overflow:hidden}
@@ -196,33 +166,7 @@ img{max-width:100%;height:auto;display:block}
 
 </div>
 <div id="trust" class="site-section site-section--trust">
-<!-- trust: vitruvius -->
-<!--
-  Archetype: trust / vitruvius
-  Source:    Vitruvius Built (https://vitruviusbuilt.com/) の "AS SEEN IN" 掲載媒体ロゴ帯を忠実模写
-  ## 模写スペック（raw HTML 抽出）
-  - 制作技術: Framer の論理セクション。1 ラベル + 横並びロゴ列の上品な信頼バッジ帯
-  - 構造: <section data-framer-name="AS SEEN IN">
-      > .label "AS SEEN IN" 小キャプス英字
-      > .seperator (細 1px 線、ラベル左右の罫線)
-      > .logo_row (横並び 4-6 媒体ロゴ、grayscale 表示、SP では 2 列 grid に折返)
-  - 配色: クリーム背景 #faf5ea、テキスト #0a0a0a、ロゴはモノクロ grayscale(1) で控えめ。hover で grayscale(0) + opacity 1
-  - フォント: ラベル Onest 12px / letter-spacing:.34em / uppercase
-  - 動き: scroll で fade-in 全体、ロゴ個別の hover で色復活 (transition .3s)
-  - 重要: "publication logos" 系の trust 帯。FLS の partner ロゴ infinite scroll とは違い、こちらは「掲載実績」を静的に並べる「品格」型
-  ## Placeholders
-    trust.label                "AS SEEN IN" 相当 (例「メディア掲載」)
-    trust.logo_1_image         媒体 1 ロゴ画像 (240x80 想定、PNG 透過)
-    trust.logo_1_alt           媒体 1 名 (例「サンプル住宅雑誌」)
-    trust.logo_2_image         媒体 2 ロゴ画像
-    trust.logo_2_alt           媒体 2 名
-    trust.logo_3_image         媒体 3 ロゴ画像
-    trust.logo_3_alt           媒体 3 名
-    trust.logo_4_image         媒体 4 ロゴ画像
-    trust.logo_4_alt           媒体 4 名
-    trust.logo_5_image         媒体 5 ロゴ画像
-    trust.logo_5_alt           媒体 5 名
--->
+
 <section class="trust-vitruvius">
 <style>
 .trust-vitruvius{padding:96px 6vw 96px;background:#faf5ea;color:#0a0a0a;font-family:"Onest","Inter",sans-serif;text-align:center}
@@ -255,57 +199,18 @@ img{max-width:100%;height:auto;display:block}
     <p class="trust-vitruvius__label"></p>
   </div>
   <ul class="trust-vitruvius__logos">
-    <li><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-8cdb7d8e/1200/800" alt="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-8e011711/1200/800"></li>
-    <li><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-7141787d/1200/800" alt="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-de380530/1200/800"></li>
-    <li><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-fe09795d/1200/800" alt="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-cb49194d/1200/800"></li>
-    <li><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-488d604d/1200/800" alt="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-6179aaab/1200/800"></li>
-    <li><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-6853266a/1200/800" alt="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-2f99a6e1/1200/800"></li>
+    <li><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-8cdb7d8e/1200/800" alt=""></li>
+    <li><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-7141787d/1200/800" alt=""></li>
+    <li><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-fe09795d/1200/800" alt=""></li>
+    <li><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-488d604d/1200/800" alt=""></li>
+    <li><img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-6853266a/1200/800" alt=""></li>
   </ul>
 </div>
 </section>
 
 </div>
 <div id="services" class="site-section site-section--services">
-<!-- services: shinka -->
-<!--
-  Archetype: services / shinka
-  Source:    SHIN KA（益三建設）(https://shinka-masumi.jp/) の .about_container を忠実模写
-  Group:     1 (ELEGANT) - 落ち着き・上品
-  業種:      注文住宅 / 提供サービス 3 メニュー
 
-  ## 模写スペック（raw HTML 抽出）
-  - 制作技術: WordPress / CSS のみ
-  - 構造: <div.about_container>
-      > .about_block > ul > li.about_item x 3（横並び 3 カード）
-        > a (各カードがクリック可能)
-          > .about_up_side
-            > p.about_number.e_font "(01) / (02) / (03)"（Cormorant italic ナンバリング）
-            > .about_title_box > h2.about_title
-                "パッシブデザイン" + span.e_font "Passive Design"（縦並び：日本語大 / 英字小）
-          > .about_img > .about_img_inner._about_img_innerNN > img
-          > .about_down_side
-            > p.about_txt 説明 2-3 行
-            > .section_btn_box > span.section_btn.section_btn_white "詳しく見る" + arrow（白枠ボタン）
-  - 配色: 背景 #1a1a1a（黒）/ テキスト白 / 画像はカラー / 番号と英字 #c8c2b6 グレー
-  - フォント:
-      - .about_number = Cormorant Garamond italic 18px letter-spacing .12em
-      - h2.about_title 日本語 = Noto Serif JP 22-26px 太字
-      - .e_font (英字 sub) = Cormorant italic 14px letter-spacing .16em
-      - p.about_txt = Noto Sans JP 13px line-height 1.9 白透過 .8
-  - 動き: hover で画像 1.05 scale + btn arrow が右に 8px 移動 + カード全体に微 lift（translateY -4px）
-  - レイアウト: 3 カラム grid（PC）、SP 縦積み
-
-  ## Placeholders
-    services.card1_number    "(01)"
-    services.card1_title_ja  日本語 (例「サンプル設計」)
-    services.card1_title_en  英字 (例「Passive Design」)
-    services.card1_image     画像
-    services.card1_body      本文
-    services.card1_href      リンク先
-    services.card2_number ~ card2_body ~ card2_href
-    services.card3_number ~ card3_body ~ card3_href
-    services.button_label    各カード共通ボタンラベル (例「詳しく見る」)
--->
 <section class="services-shinka">
   <style>
     .services-shinka { background:#1a1a1a; padding:120px 0 140px; font-family:"Noto Sans JP",sans-serif; color:#fff; }
@@ -382,43 +287,7 @@ img{max-width:100%;height:auto;display:block}
 
 </div>
 <div id="gallery" class="site-section site-section--gallery">
-<!-- gallery: aichler -->
-<!--
-  Archetype: gallery / aichler
-  Source:    AICHLER (https://aichler.jp/) の pWorks ブロックを忠実模写
-  ## 模写スペック（raw HTML 抽出）
-  - 制作技術: WordPress + Lenis + 独自 js-scroll-target / cGradientImage / cTextSkew (1 文字傾き表示)
-  - 構造: <section.pWorks>
-      > .pWorks__background (背景フル画像、淡色クリーム重ね)
-      > .pWorks__inner
-        > .pWorks__square (PC: 4 sub-square の装飾 + Hover で色変化)
-        > .pWorks__box > h2.pWorks__headline "Works"
-        > .pWorksItem * N (最大 4 件、1 件目は大きく Story 本文と表紙画像 + sideE 等のタイトル + 地域 + 分譲 category badge、2-3 件目は小カード)
-        > .pWorksItem__line (装飾の細い line 罫イラスト 4 辺、SVG)
-        > .pWorks__more "All Works" cLineLink
-  - 配色: 背景クリーム #faf8f4、画像は色×モノクロ交互（cGradientImage で重ねる）、ヘッダー Works は大判 Cormorant Garamond italic、category badge は緑のテキスト、location は薄グレー
-  - フォント: 見出し Cormorant Garamond italic 80px+、タイトル Noto Serif JP 700、本文 Noto Sans JP 400
-  - 動き: スクロール深度で各 item が下から fade-in、装飾 line svg が四辺から伸縮（4 線の長さアニメ）
-  ## Placeholders
-    gallery.headline_en          大見出し (例「Works」)
-    gallery.background_image     背景画像 (1600x900 想定、淡い建物外観)
-    gallery.item_1_image         主役 1 (1024x768)
-    gallery.item_1_title         主役タイトル (例「"Argha" Akasaka II sideE」相当)
-    gallery.item_1_location      主役地域 (例「サンプル区」)
-    gallery.item_1_category      主役分類 (例「分譲」)
-    gallery.item_1_story_label   主役の本文ラベル (例「Story」)
-    gallery.item_1_story_html    主役の本文 HTML (br 含む、長文可)
-    gallery.item_2_image         サブ画像 2
-    gallery.item_2_title         サブタイトル 2
-    gallery.item_2_location      サブ地域 2
-    gallery.item_2_category      サブ分類 2
-    gallery.item_3_image         サブ画像 3
-    gallery.item_3_title         サブタイトル 3
-    gallery.item_3_location      サブ地域 3
-    gallery.item_3_category      サブ分類 3
-    gallery.more_label           「All Works」相当
-    gallery.more_href            一覧遷移先
--->
+
 <section class="gallery-aichler">
 <style>
 .gallery-aichler{position:relative;padding:140px 6vw 180px;background:#faf8f4;color:#101010;font-family:"Noto Sans JP",sans-serif;overflow:hidden}
@@ -558,45 +427,7 @@ img{max-width:100%;height:auto;display:block}
 
 </div>
 <div id="process" class="site-section site-section--process">
-<!-- process: kiiro -->
-<!--
-  Archetype: process / kiiro
-  Source:    キイロ (https://kiiro-d.com/) を忠実模写
-  ## 模写スペック（raw HTML 抽出 + index.css 実測値）
-  - 制作技術: WordPress (独自テーマ) + jQuery トグル開閉
-  - 構造: <section class="flow bg--green">
-      └ .flow__box.bg--gray   (width:85% margin-left:auto / padding 6.3vw 7.5vw)
-          └ .flow__top
-              ├ .flow__textWrapper
-              │   ├ h2.flow__heading "Workflow"
-              │   └ p.flow__text "ご依頼からお引渡しまでの流れ"
-              └ button.flow__button "ワークフローを見る" + + アイコン (toggle)
-          └ .flow__bottom (初期 display:none / open で展開)
-              └ .flowItems  (display:flex, max-width:752px, ::before で横線)
-                  └ 7× .flowItems__item
-                      ├ .flowItems__icon (pin型 44×38, .flowItems__num 01-07)
-                      └ .flowItems__textWrapper > p.flowItems__text  (writing-mode:vertical-rl)
-                          + optional p.flowItems__text--small (sub note)
-  - 配色: bg--green（薄緑 #E1E3D9 想定）/ bg--gray（白寄りグレー #F2F1ED 想定）/ 文字 #35453F / 横線 #35453F / num 文字 #E1E3D9
-  - フォント: NHaasGroteskTXPro-55Rg（数字・英字）/ 本文ゴシック
-  - 7 step: 現地調査 / お打ち合わせ / ご提案 (パース・プラン・お見積) / デザイン契約・設計 / 工事契約・施工 / お引き渡し / メンテナンス
-  - 動き: 「ワークフローを見る」クリックで .flow__bottom 開閉、+ → × 回転 .3s
-  - レイアウト: PC 横並び（vertical-rl text）/ SP 縦並び（horizontal-tb text）
-  - レスポンシブ: 768px 以下で縦並び、::before が縦線に変化
-  ## Placeholders
-    {{process.section_heading_en}}    英語見出し（"Workflow"）
-    {{process.section_heading_jp}}    日本語サブ（"ご依頼からお引渡しまでの流れ"）
-    {{process.toggle_label}}          開閉ボタンテキスト（"ワークフローを見る"）
-    {{process.step_1_num}}            数字（"01"）
-    {{process.step_1_text}}           ステップ名
-    {{process.step_1_sub}}            補足（任意、空欄可）
-    {{process.step_2_num}} ~ {{process.step_2_sub}}
-    {{process.step_3_num}} ~ {{process.step_3_sub}}
-    {{process.step_4_num}} ~ {{process.step_4_sub}}
-    {{process.step_5_num}} ~ {{process.step_5_sub}}
-    {{process.step_6_num}} ~ {{process.step_6_sub}}
-    {{process.step_7_num}} ~ {{process.step_7_sub}}
--->
+
 <section class="process-kiiro">
 <style>
 .process-kiiro{position:relative;background:#E1E3D9;color:#35453F;font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;padding:80px 0 40px}
@@ -736,187 +567,84 @@ img{max-width:100%;height:auto;display:block}
 
 </div>
 <div id="area" class="site-section site-section--area">
-<!-- area: ito -->
-<!--
-  Archetype: area / ito
-  Source:    伊藤はり・きゅう院 (https://itouharikyu.com/) を忠実模写
-  ## 模写スペック（raw HTML 抽出 / standard_sass theme）
-  - 制作技術: WordPress 自前 standard_sass theme（jQuery）
-  - 構造: footer_md ブロック内に「診療時間 + 住所 + 駐車場図」が独立カードとして配置されている
-            > .schedule
-                > .schedule--ttl  「要予約・当日◯時まで受付OK！」（CTA 風サブ見出し）
-                > .schedule--table  曜日 × ●/- マトリクス（受付時間）
-                > .schedule--info
-                    - .schedule--address（pin SVG + 住所 + 駅徒歩◯分）
-                    - .schedule--map（マップを見るリンク）
-            > .footer--pa（駐車場ブロック）
-                > img（駐車場図解 ①②）
-                > p（[P] 当院駐車場の説明）
-  - 文言（参考）:
-      「要予約・当日21時まで受付OK！」
-      受付時間 9:00〜21:00 / 火曜定休
-      岐阜市加納愛宕町7 [JR岐阜駅徒歩5分]
-      「マップを見る」
-      「当院建物の南隣、屋根付きの駐車場内①、②番が当院駐車場です。」
-  - 配色: 白背景 + アクセント blue-gray #2a3a4a + メイン #b8836b（cta オレンジ茶）
-  - フォント: 本文 sans-serif（NotoSansJP）+ 数字/英字 font-en（serif）
-  - 駐車場図: スタイル化されたシンプルなマップ図解（picsum で代替）
-  ## Placeholders
-    {{area.section_label_en}}             "Access" 等
-    {{area.cta_subhead}}                  「要予約・当日◯◯時まで受付OK！」
-    {{area.hours_header_label}}           "受付時間"
-    {{area.hours_time}}                   "◯◯：◯◯-◯◯：◯◯"
-    {{area.hours_day_mon}} ~ {{area.hours_day_sun}}  各曜日の "●" or "-"
-    {{area.address}}                      "サンプル市◯◯町◯-◯"
-    {{area.station_walk}}                 "[◯◯駅徒歩◯分]"
-    {{area.map_url}}                      Google Maps 詳細ページ URL
-    {{area.map_link_label}}               "マップを見る" 等
-    {{area.tel}}                          "0◯-◯◯◯◯-◯◯◯◯"
-    {{area.tel_display}}                  表示用電話
-    {{area.parking_image}}                駐車場図解画像
-    {{area.parking_note}}                 駐車場説明文
--->
-<section class="area-ito">
+
+<section class="area-vitruvius">
 <style>
-.area-ito{background:#fff;color:#2a3a4a;font-family:"Noto Sans JP",sans-serif;padding:80px 24px;position:relative}
-.area-ito__in{max-width:980px;margin:0 auto}
-.area-ito__head{text-align:center;margin-bottom:36px}
-.area-ito__en{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:400;font-size:14px;letter-spacing:.32em;color:#7a8aa0;margin:0 0 12px;text-transform:uppercase}
-.area-ito__sub{font-family:"Noto Serif JP",serif;font-weight:500;font-size:clamp(17px,1.8vw,22px);color:#b8836b;margin:0;letter-spacing:.06em}
+.area-vitruvius{position:relative;padding:140px 6vw 160px;background:#0a0a0a;color:#faf5ea;font-family:"Onest","Inter",sans-serif;overflow:hidden}
+.area-vitruvius__inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start}
 
-.area-ito__card{background:#fff;box-shadow:0 6px 30px rgba(42,58,74,.08);padding:36px;border-radius:4px}
+.area-vitruvius__heading{font-family:"Poppins","Onest",sans-serif;font-weight:100;font-size:clamp(32px,4.6vw,58px);line-height:1.14;letter-spacing:-.01em;color:#faf5ea;margin:0;max-width:12ch}
+.area-vitruvius__heading::after{content:"";display:block;width:64px;height:1px;background:#d1d1d1;margin-top:32px;opacity:.6}
 
-.area-ito__table{width:100%;border-collapse:collapse;margin-bottom:24px}
-.area-ito__table th,.area-ito__table td{padding:10px 6px;text-align:center;border-bottom:1px solid #e6e2dc;font-size:14px}
-.area-ito__table th{background:#f5f0e8;color:#7a6b53;font-weight:500;letter-spacing:.04em}
-.area-ito__table .lbl{font-size:13px;letter-spacing:.06em;color:#7a6b53;text-align:left;padding-left:12px}
-.area-ito__table .tm{font-family:"Cormorant Garamond",serif;font-size:18px;color:#2a3a4a;text-align:left;padding-left:12px;font-weight:500}
-.area-ito__table .open{color:#b8836b;font-size:16px}
+.area-vitruvius__right{display:flex;flex-direction:column;gap:48px}
+.area-vitruvius__lead{font-family:"Onest","Inter",sans-serif;font-weight:400;font-size:15px;line-height:1.85;color:#eaeaea;margin:0;max-width:56ch}
 
-.area-ito__info{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding-top:14px;border-top:1px solid #e6e2dc}
-.area-ito__addr{display:flex;align-items:center;gap:8px;font-size:15px;color:#2a3a4a;margin:0}
-.area-ito__addr svg{flex:0 0 auto;color:#7a8aa0}
-.area-ito__addr .walk{font-size:12px;color:#7a8aa0;margin-left:6px}
-.area-ito__map-link{font-family:"Cormorant Garamond",serif;font-size:13px;letter-spacing:.16em;color:#b8836b;text-decoration:none;border-bottom:1px solid #b8836b;padding-bottom:2px;transition:opacity .2s}
-.area-ito__map-link:hover{opacity:.7}
+.area-vitruvius__chips{display:flex;flex-wrap:wrap;gap:14px 12px;padding:0;margin:0;list-style:none}
+.area-vitruvius__chips li{opacity:0;transform:translateY(10px);transition:opacity .8s ease,transform .8s ease,background .3s ease,color .3s ease}
+.area-vitruvius__chips.is-visible li{opacity:1;transform:translateY(0)}
+.area-vitruvius__chips.is-visible li:nth-child(1){transition-delay:.05s}
+.area-vitruvius__chips.is-visible li:nth-child(2){transition-delay:.12s}
+.area-vitruvius__chips.is-visible li:nth-child(3){transition-delay:.19s}
+.area-vitruvius__chips.is-visible li:nth-child(4){transition-delay:.26s}
+.area-vitruvius__chips.is-visible li:nth-child(5){transition-delay:.33s}
+.area-vitruvius__chips.is-visible li:nth-child(6){transition-delay:.40s}
+.area-vitruvius__chips.is-visible li:nth-child(7){transition-delay:.47s}
+.area-vitruvius__chips.is-visible li:nth-child(8){transition-delay:.54s}
+.area-vitruvius__chips.is-visible li:nth-child(9){transition-delay:.61s}
 
-.area-ito__cta{display:flex;justify-content:center;align-items:center;gap:18px;margin-top:24px;flex-wrap:wrap}
-.area-ito__tel{display:inline-flex;align-items:center;gap:10px;font-family:"Cormorant Garamond",serif;font-size:28px;color:#2a3a4a;text-decoration:none;font-weight:500;letter-spacing:.04em}
-.area-ito__tel svg{color:#7a8aa0}
+.area-vitruvius__chips span{display:inline-flex;align-items:center;padding:11px 22px;border:1px solid #63615e;border-radius:999px;background:transparent;color:#faf5ea;font-family:"Onest","Inter",sans-serif;font-weight:500;font-size:12px;letter-spacing:.18em;text-transform:uppercase;line-height:1;transition:background .3s ease,color .3s ease,border-color .3s ease}
+.area-vitruvius__chips span:hover{background:#faf5ea;color:#0a0a0a;border-color:#faf5ea}
 
-.area-ito__parking{margin-top:30px;display:flex;align-items:center;gap:24px;padding:24px;background:#f5f0e8;border-radius:4px}
-.area-ito__parking-img{flex:0 0 auto;width:240px}
-.area-ito__parking-img img{width:100%;height:auto;display:block;border:1px solid #d8d2c7}
-.area-ito__parking-note{flex:1 1 auto;display:flex;align-items:flex-start;gap:14px;font-size:13px;line-height:1.85;color:#3a2e1f}
-.area-ito__parking-note .icon-p{flex:0 0 auto;font-family:"Cormorant Garamond",serif;font-size:28px;color:#b8836b;font-weight:500;line-height:1;border:2px solid #b8836b;border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center}
-
-@media (max-width:768px){
-  .area-ito{padding:52px 16px}
-  .area-ito__card{padding:24px}
-  .area-ito__table th,.area-ito__table td{padding:8px 4px;font-size:12px}
-  .area-ito__table .tm{font-size:15px}
-  .area-ito__info{flex-direction:column;align-items:flex-start;gap:12px}
-  .area-ito__parking{flex-direction:column;align-items:stretch}
-  .area-ito__parking-img{width:100%}
+@media (max-width:1024px){
+  .area-vitruvius__inner{grid-template-columns:1fr;gap:48px}
+  .area-vitruvius__heading{max-width:none}
+}
+@media (max-width:640px){
+  .area-vitruvius{padding:96px 6vw 112px}
+  .area-vitruvius__chips span{padding:9px 16px;font-size:11px;letter-spacing:.14em}
 }
 </style>
 
-<div class="area-ito__in">
-  <div class="area-ito__head">
-    <p class="area-ito__en">access</p>
-    <h2 class="area-ito__sub">大阪市中央区を中心に対応いたします</h2>
-  </div>
-
-  <div class="area-ito__card">
-    <table class="area-ito__table">
-      <tbody>
-        <tr>
-          <th class="lbl">受付時間</th>
-          <th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日</th>
-        </tr>
-        <tr>
-          <td class="tm">9:00 - 18:00</td>
-          <td class="open">月</td>
-          <td class="open">火</td>
-          <td class="open">水</td>
-          <td class="open">木</td>
-          <td class="open">金</td>
-          <td class="open">土</td>
-          <td class="open">日</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="area-ito__info">
-      <p class="area-ito__addr">
-        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="17" viewBox="0 0 13 17"><path d="M6.5 0C2.91 0 0 2.91 0 6.5 0 11.5 6.5 17 6.5 17S13 11.5 13 6.5C13 2.91 10.09 0 6.5 0zm0 9a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" fill="currentColor"/></svg>
-        〒546-0024 大阪府大阪市東住吉区公園南矢田２丁目１７−１５<span class="walk"></span>
-      </p>
-      <a href="https://www.google.com/maps?q=%E3%80%92546-0024+%E5%A4%A7%E9%98%AA%E5%BA%9C%E5%A4%A7%E9%98%AA%E5%B8%82%E6%9D%B1%E4%BD%8F%E5%90%89%E5%8C%BA%E5%85%AC%E5%9C%92%E5%8D%97%E7%9F%A2%E7%94%B0%EF%BC%92%E4%B8%81%E7%9B%AE%EF%BC%91%EF%BC%97%E2%88%92%EF%BC%91%EF%BC%95" class="area-ito__map-link" target="_blank" rel="noopener">地図を見る →</a>
-    </div>
-
-    <div class="area-ito__cta">
-      <a href="tel:0666924975" class="area-ito__tel">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 0 0-1.02.24l-2.2 2.2a15.06 15.06 0 0 1-6.59-6.58l2.2-2.21a1 1 0 0 0 .25-1.02A11.36 11.36 0 0 1 8.5 4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1c0 9.39 7.61 17 17 17a1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1z" fill="currentColor"/></svg>
-        06-6692-4975
-      </a>
-    </div>
-  </div>
-
-  <div class="area-ito__parking">
-    <div class="area-ito__parking-img">
-      <img src="https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-b918e0c5/800/600" alt="駐車場図解（サンプル）">
-    </div>
-    <p class="area-ito__parking-note">
-      <span class="icon-p">P</span>
-      <span>駐車スペースについてはお問い合わせください。</span>
-    </p>
+<div class="area-vitruvius__inner">
+  <h2 class="area-vitruvius__heading"></h2>
+  <div class="area-vitruvius__right">
+    <p class="area-vitruvius__lead">詳しくはお気軽にお問い合わせください。</p>
+    <ul class="area-vitruvius__chips">
+      <li><span></span></li>
+      <li><span></span></li>
+      <li><span></span></li>
+      <li><span></span></li>
+      <li><span></span></li>
+      <li><span></span></li>
+      <li><span></span></li>
+      <li><span></span></li>
+      <li><span></span></li>
+    </ul>
   </div>
 </div>
+
+<script>
+(function(){
+  var root=document.currentScript&&document.currentScript.closest('.area-vitruvius');
+  if(!root)root=document.querySelector('.area-vitruvius');
+  if(!root)return;
+  var chips=root.querySelector('.area-vitruvius__chips');
+  if(!chips)return;
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){if(en.isIntersecting){chips.classList.add('is-visible');io.disconnect();}});
+    },{threshold:.22});
+    io.observe(chips);
+  }else{
+    chips.classList.add('is-visible');
+  }
+})();
+</script>
 </section>
 
 </div>
 <div id="faq" class="site-section site-section--faq">
-<!-- faq: ito -->
-<!--
-  Archetype: faq / ito
-  Source:    伊藤はり・きゅう院 (https://itouharikyu.com/) を忠実模写
 
-  ## 模写スペック（raw HTML / theme CSS 抽出）
-  - 制作技術: WordPress + standard_sass theme + jQuery slideToggle(400)
-  - 構造:
-      <section class="home_faq">
-        <h2 class="ttl-01 font-jp txt-ctr">初めての方へ<span class="font-en">FAQ</span></h2>
-        <p class="txt-ctr-pc">説明文</p>
-        <div class="lps_parts--child">
-          <div class="faq_item shadow">
-            <div class="text">
-              <h4 class="ttl-03 font-jp"><span>質問</span></h4>  ← ::after で "Q." 装飾
-              <div class="mce-content-body"><p>回答</p></div>     ← slideToggle で開閉
-            </div>
-            <span class="toggle"></span>                          ← 右上の丸ボタン（active で 180deg 回転）
-          </div>
-          ... 5 items ...
-        </div>
-      </section>
-  - 配色: 白カード + 淡いシャドウ。toggle=ピンク #ffa59c、active で teal #c3e2e2
-          Q. 装飾文字 = teal #75bbbb（Sen / Montserrat 系）、見出しは serif 風 font-jp
-  - 動き:
-      ・カード全体クリックで toggle.active と mce-content-body の slideToggle(400)
-      ・toggle ボタンは active 時 transform:rotate(180deg)、内部 ::after の opacity:0 で「+」→「-」化
-  - 装飾: home_faq--deco_wrap（ふきだし 2 枚）はキャラクター性が強すぎる業種固有装飾なので
-          ここでは "サンプル" の吹き出し 2 枚を SVG で簡素再現
-  - レスポンシブ: 768px 以下で padding 縮小 / toggle 縮小 / 吹き出し非表示
-
-  ## Placeholders
-    {{faq.title_jp}}        和文見出し (例: "初めての方へ")
-    {{faq.title_en}}        英文サブ (例: "FAQ")
-    {{faq.intro}}           リード文 (1〜2 行)
-    {{faq.q1}} 〜 {{faq.q5}}  質問
-    {{faq.a1}} 〜 {{faq.a5}}  回答 (HTML 可)
-    {{faq.fukidashi_1}}     左下ふきだし (例: "痛みが/苦手だから/不安…")
-    {{faq.fukidashi_2}}     右上ふきだし (例: "保険は/きくのかな")
--->
 <section class="faq-ito">
 <style>
 .faq-ito{position:relative;background:#fbf6ee;padding:96px 24px 96px;font-family:"Shippori Mincho","Noto Serif JP",serif;color:#3a3a3a;overflow:hidden}
@@ -1032,26 +760,7 @@ img{max-width:100%;height:auto;display:block}
 
 </div>
 <div id="cta" class="site-section site-section--cta">
-<!-- cta: teto -->
-<!--
-  Archetype: cta / teto
-  Source:    teto paint (https://tetopaint.jp/) を忠実模写
-  ## 模写スペック（raw HTML + 抽出 CSS）
-  - 構造: <section> > .aside-contact (bg image 帯) > .aside-contact__card (白カード center, 49.75% / 80% sp)
-  - 中身: c-title__top (en "Contact us" + ja "お問い合わせ") + figure (img) + lead 文 + c-button__black (黒テキストボタン)
-  - 配色: 白カード on 茶系 bg-contact.jpg 帯, body #1B1E29 / 文字 #434343
-  - サイズ: card padding 70px 7vw、本文 mt 40 letter-spacing .06rem、ボタン mt 30
-  - 動き: ホバー反応のみ (data-hover-animation)、scroll-in なし
-  - レスポンシブ: 750px 以下で card width 80% / padding 60px 28px / radius 6px、bg padding 78px / 63px
-  ## Placeholders
-    {{cta.en_label}}            "Contact us" 相当（カード上 en 大見出し）
-    {{cta.ja_label}}            "お問い合わせ" 相当（en 直下、ja 小見出し）
-    {{cta.image}}               中央の画像 URL（contact.jpg 相当、横長）
-    {{cta.lead}}                リード文（複数行・<br> 許容）
-    {{cta.button_label}}        ボタンラベル（"Contact us" 相当）
-    {{cta.button_href}}         ボタン遷移先（/contact/ 相当）
-    {{cta.bg_image}}            外周帯の bg-contact.jpg 相当
--->
+
 <section class="cta-teto">
 <style>
 .cta-teto{margin:0;padding:78px 0 63px;background-image:url("https://picsum.photos/seed/gm-4a06fd88fcf5-株式会社山本安工務店-8b643c03/1600/800");background-size:cover;background-position:center;border-radius:0;overflow:hidden}
@@ -1087,38 +796,7 @@ img{max-width:100%;height:auto;display:block}
 
 </div>
 <div id="footer" class="site-section site-section--footer">
-<!-- footer: kon -->
-<!--
-  Archetype: footer / kon
-  Source:    コン工務店 (https://www.konkoumuten.jp/) を忠実模写
-  ## 模写スペック（raw HTML 抽出）
-  - 制作技術: 自前 (common/css/style.css) + Adobe Typekit ryo-gothic-plusn
-  - 構造:
-    - <footer> 内 2 section
-      [section.contact-con]
-        .desc h2 "お問い合わせ" + p 案内文 + Instagram a (ig + "Follow me !")
-        .link-wrap [
-          a.link-bg.mail (mail.svg + "お問い合わせ / モデルハウス見学も")
-          a.link-bg.telephone (tel.svg + "090-3354-8752 / 9:00-18:00 ／ 水・日曜定休日")
-        ]
-      [section.f-nav]
-        nav.flex > 複数 ul.nav-list [親 a + 子 ul.nav-detail-list]
-        .f-bottom flex > .f-logo (SVG logo + 屋号 + キャッチ) + .copyright
-  - 配色: ベース白系 (Hero と同様 cream tone)、見出し dark
-  - フォント: 主 ryo-gothic-plusn (Typekit), 英字 "Cormorant Garamond" italic
-  - 動き: 控えめ hover (transition 0.2s)
-  ## Placeholders
-    footer.cta_title                "お問い合わせ"
-    footer.cta_text                 "まずはお気軽に お問い合わせください。" 相当 (HTML可)
-    footer.social_url/footer.social_label    Instagram URL / "Follow me !"
-    footer.mail_title/footer.mail_sub        "お問い合わせ" / "モデルハウス見学も"
-    footer.tel_title/footer.tel_sub          "090-3354-8752" / 受付時間
-    company.tel                     tel: 用 href
-    footer.nav_block_1_title~footer.nav_block_5_title    親ナビ × 5
-    footer.nav_block_1_child_1~footer.nav_block_5_child_2    子ナビ
-    footer.brand_name/footer.brand_sub     "コン工務店" / 地域注文住宅 サブ
-    footer.copyright                "Copyright © Kon Co.,Ltd." 相当
--->
+
 <section class="footer-kon">
 <style>
 .footer-kon{background:#f5f1ea;color:#2b2b2b;font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;box-sizing:border-box}
