@@ -63,31 +63,7 @@ img{max-width:100%;height:auto;display:block}
 
 <div id="top"></div>
 <div id="hero" class="site-section site-section--hero">
-<!-- hero: gmscot -->
-<!--
-  Archetype: hero / gmscot
-  Source:    GM Construction (https://gmconstruction.co.uk/) を忠実模写
-  ## 模写スペック（raw HTML 抽出）
-  - 制作技術: WordPress + Elementor + jQuery + Swiper（実体は静的フル背景画像 + 中央 copy で Hero スライダーは未使用に近い）
-  - 構造: フル背景写真（暗 overlay）+ 大 h1（地域 + 業種）+ サブコピー（h3）+ 電話 CTA + scroll cue
-  - 配色: 深緑 #2c3a2a / クリーム #f4ecd8 / 黒 #1a1a1a / 白（英国 Dumfries & Galloway 地方系の渋い builder トーン）
-  - h1: 「Construction Services in ◯◯エリア」(地域名 + 業種、英文大文字小文字混在)
-  - サブ: 「decades of experience...passion for craftsmanship...」(英文 lead)
-  - CTA: 大電話番号 + Get a quote ボタン（既存 gm の Splide+venobox 動画 とは別物：gmscot は静止画 + 電話直撃型）
-  - 動き: hero text の IntersectionObserver fade-in （elementor-invisible class が DOM にあり、表示時に opacity 0->1）
-  ## Placeholders
-    company.name              ロゴ右テキスト / ブランド名
-    hero.bg_image             フル背景画像 URL
-    hero.headline_pre         h1 上のキャプス文言 「サンプル多能工サービス」等
-    hero.headline             h1 メイン 「◯◯エリアの建築・建設サービス」
-    hero.subhead              h3 サブコピー（craftsmanship 訴求）
-    hero.tel_label            「Call us on:」相当
-    hero.tel_number           電話番号
-    hero.tel_href             tel: link
-    hero.cta_label            「Get a quote」等
-    hero.cta_href             CTA 遷移先
-    hero.scroll_label         scroll cue 文言
--->
+
 <section class="hero-gmscot">
 <style>
 .hero-gmscot{position:relative;min-height:760px;height:100vh;max-height:920px;background:#1a1a1a;color:#f4ecd8;font-family:"Lora","Noto Serif JP",serif;overflow:hidden}
@@ -166,32 +142,7 @@ img{max-width:100%;height:auto;display:block}
 
 </div>
 <div id="trust" class="site-section site-section--trust">
-<!-- trust: fls -->
-<!--
-  Archetype: trust / fls
-  Source:    FL Specialty Roofing (https://www.flsroof.com/) を忠実模写
 
-  ## 模写スペック（raw HTML 抽出）
-  - 制作技術: WordPress + Bootstrap layout（contractor-starter theme）+ Splide スライダー
-  - 構造（2 ブロック構成）:
-      1. .trust-factors（白背景）: "Our Trusted Partners" ラベル + 認定パートナーロゴ 10 個の横スクロール carousel
-      2. .reviews（白背景）: 大見出し "What Other Happy Clients Are Saying." + リード文 + Google レビュー★ 5 カード 3 枚並列
-  - 配色: 白背景 #fff / テキストダーク #16223C / アクセント青 #2A6EB5（Google スター色）/ レビューカード薄グレー #f5f5f7
-  - フォント: 見出し Cormorant Garamond 系 serif, 本文 sans-serif（システム）
-  - 動き: パートナーロゴは Splide loop 横スクロール（autoScroll、ホバー停止しない）/ カードはホバーで微浮上 transition .2s
-  - 構成: 2 つのサブセクションが連続して縦に並ぶ（partner 帯 → reviews カード列）
-
-  ## Placeholders
-    {{trust.partners_label}}        パートナー帯ラベル（例: "Our Trusted Partners"）
-    {{trust.partner_1_logo}} ～ {{trust.partner_10_logo}}  パートナーロゴ画像 URL
-    {{trust.partner_1_alt}}  ～ {{trust.partner_10_alt}}   alt テキスト
-    {{trust.reviews_title}}         大見出し
-    {{trust.reviews_lead}}          リード文
-    {{trust.review_1_initials}} / {{trust.review_1_name}} / {{trust.review_1_body}}
-    {{trust.review_2_initials}} / {{trust.review_2_name}} / {{trust.review_2_body}}
-    {{trust.review_3_initials}} / {{trust.review_3_name}} / {{trust.review_3_body}}
-    {{trust.review_rating_label}}   レビュー元ラベル（例: "Google"）
--->
 <section class="trust-fls">
 <style>
 .trust-fls{background:#fff;color:#16223C;font-family:"Source Sans Pro","Helvetica Neue",Arial,sans-serif}
@@ -244,7 +195,7 @@ img{max-width:100%;height:auto;display:block}
       <img src="https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-eb29e821/240/120" alt="提携先">
       <img src="https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-50e3c53a/240/120" alt="提携先">
       <img src="https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-b3223b6d/240/120" alt="提携先">
-      <!-- ループ用に同セット 2 回 -->
+      
       <img src="https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-afbe59ce/240/120" alt="提携先">
       <img src="https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-c8f0fb6b/240/120" alt="提携先">
       <img src="https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-aa0602f6/240/120" alt="提携先">
@@ -309,52 +260,7 @@ img{max-width:100%;height:auto;display:block}
 
 </div>
 <div id="services" class="site-section site-section--services">
-<!-- services: yutaka -->
-<!--
-  Archetype: services / yutaka
-  Source:    ユタカプラス (https://yutakaplus.jp/) の home_service ブロックを忠実模写
-  ## 模写スペック（raw HTML 抽出）
-  - 制作技術: WordPress + 純 CSS の cercle 配置（slick 不使用）
-  - 構造: <section.home_service> > .service_content.flex.flex-a-ctr
-      > .cercle_list (左、円形にサービス 8 つを配置)
-        > .cercle_ttl--box (中央のタイトル円)
-          > span.cercle_ttl--deco
-          > h3.cercle_ttl.font-jp "8つの事業を中心に一括対応"
-        > ul (li.list01〜list08、各 num + cercle--txt)
-          - 01 塗装・吹付け工事
-          - 02 塗床工事
-          - 03 防水工事
-          - 04 コーキング工事
-          - 05 足場工事
-          - 06 補修工事（アスベスト除去）
-          - 07 左官工事
-          - 08 板金工事
-      > .txtarea.pos_rel (右、テキストブロック)
-        > h2.home_ttl > span.font-en "SERVICE" + span.font-jp "事業内容"
-        > p.home_txt 説明文 4 行
-        > .btn > a "事業内容一覧"
-      > .service_deco > p.home_ttl-deco "SERVICE" (薄い装飾大文字)
-  - 配色: home_bg ベージュ、cercle はピンク〜グリーン系のグラデ円、num はサンセリフ大数字、cercle--txt は和字小サイズ
-  - フォント: 英字 Sen / Albert Sans 700、和字 Noto Sans JP 700
-  - 動き: 静的（hover で円が少し浮く程度）。参考は scroll fade-in なし
-  - 円配置: 中央タイトル + 周囲 8 個を CSS で円形配置（transform:rotate + 子要素 rotate(-θ)で水平戻し）
-  ## Placeholders
-    services.title_en          "SERVICE"
-    services.title_jp          "事業内容"
-    services.lead_html         説明文 HTML 可
-    services.button_label      "事業内容一覧" 相当
-    services.button_href       ボタン遷移先
-    services.center_label      中央円タイトル「8つの事業を中心に一括対応」相当
-    services.deco_text         背景大文字装飾「SERVICE」相当
-    services.card_1_label      サービス 1 ラベル
-    services.card_2_label      サービス 2 ラベル
-    services.card_3_label      サービス 3 ラベル
-    services.card_4_label      サービス 4 ラベル
-    services.card_5_label      サービス 5 ラベル
-    services.card_6_label      サービス 6 ラベル
-    services.card_7_label      サービス 7 ラベル
-    services.card_8_label      サービス 8 ラベル
--->
+
 <section class="services-yutaka">
 <style>
 .services-yutaka{position:relative;padding:96px 32px 120px;background:#efe8d8;color:#2c2c2c;font-family:"Noto Sans JP",sans-serif;overflow:hidden}
@@ -476,34 +382,7 @@ img{max-width:100%;height:auto;display:block}
 
 </div>
 <div id="gallery" class="site-section site-section--gallery">
-<!-- gallery: ietsukuru -->
-<!--
-  Archetype: gallery / ietsukuru
-  Source:    家をつくるしごと株式会社 (https://ie-tsukuru.com/) の <section class="works"> 内 works-slider を忠実模写
-  Group:     2 (FRIENDLY) - 親しみ・地域密着 / 古民家リフォーム
 
-  ## 模写スペック（raw HTML 抽出）
-  - 制作技術: HTML + Splide (slide type, 3-up, prev/next arrows)
-  - 構造: sec-head "WORKS / 仕事 実績" + dotted line + 大見出し画像 (施工実績) + 英字 lead "Construction results" + 5 件カードスライダー (image 780x580 + 邸名 + h3 タイトル + category chips 1-2 個 + 詳しく見るボタン) + 全件 CTA ボタン
-  - 配色: ベース #faf6ec / カード白 / 墨 #2c2826 / アクセント #5d5346 / chip 背景 #ebe3d2
-  - 動き: slide 切替 0.6s ease, 自動再生 6s, arrows hover でスケール
-  - フォント: Noto Serif JP 本文 / Cormorant Garamond 英字
-  - aspect: 780/580 (約 4:3)
-
-  ## Placeholders
-    gallery.sec_label_en    - sec-head 英字
-    gallery.sec_label_jp    - sec-head 和文
-    gallery.heading         - 大見出し
-    gallery.lead_en         - 英字 lead
-    gallery.card_N_image    - カード N (1..5) 画像
-    gallery.card_N_area     - カード N 邸名/地域 (例: ◯◯市 ◯様邸)
-    gallery.card_N_title    - カード N タイトル
-    gallery.card_N_cat1     - カード N カテゴリ chip 1
-    gallery.card_N_cat2     - カード N カテゴリ chip 2 (空可)
-    gallery.card_N_href     - カード N 詳細リンク
-    gallery.cta_label       - 一覧 CTA ボタンラベル
-    gallery.cta_href        - 一覧 CTA リンク
--->
 <section class="gallery-ietsukuru">
   <div class="gallery-ietsukuru__container">
     <div class="gallery-ietsukuru__head">
@@ -668,43 +547,7 @@ img{max-width:100%;height:auto;display:block}
 
 </div>
 <div id="process" class="site-section site-section--process">
-<!-- process: fls -->
-<!--
-  Archetype: process / fls
-  Source:    FL Specialty Roofing (https://www.flsroof.com/) を忠実模写
-  ## 模写スペック（raw HTML 抽出 + main.min.css 実測値）
-  - 制作技術: WordPress + contractor-starter theme + tiny-slider.js (横スライダー)
-  - 構造: <section class="process pt-def pb-lg">
-      └ header.process-title  (h2.micro tt-up fs-i / h3.lvl-2 "Feel Valued at Every Step.")
-      └ .container > .slider.process__slider.d-flex
-          └ 5× .col-process
-              └ .process--icon > <img> (上)
-              └ .process--info > h4 + p (白カード + box-shadow)
-      └ .slider-nav (prev / count / next)
-  - 配色: bg #fff / process-title bg #f6f6f6 / cards #fff with shadow 0 0 30px 4px rgba(0,0,0,.05)
-  - フォント: Poppins (h3 weight 275 uppercase, h4 weight 275 capitalize)
-  - 5 step: Discovery phase / Present the Estimate / Project Coordination / Construction Kickoff / Close Out
-  - 動き: tiny-slider 横スライダー（PC 3 表示 / mobile 1 表示）prev/next 矢印 + index count
-  - レスポンシブ: PC max-height:480px / SP slider 1 表示
-  ## Placeholders
-    {{process.section_title}}        小見出し（micro、英語）
-    {{process.section_heading}}      大見出し（"Feel Valued at Every Step." 相当）
-    {{process.step_1_image}}         step1 画像
-    {{process.step_1_title}}         step1 タイトル（"Discovery phase" 相当）
-    {{process.step_1_text}}          step1 説明本文
-    {{process.step_2_image}}
-    {{process.step_2_title}}
-    {{process.step_2_text}}
-    {{process.step_3_image}}
-    {{process.step_3_title}}
-    {{process.step_3_text}}
-    {{process.step_4_image}}
-    {{process.step_4_title}}
-    {{process.step_4_text}}
-    {{process.step_5_image}}
-    {{process.step_5_title}}
-    {{process.step_5_text}}
--->
+
 <section class="process-fls">
 <style>
 .process-fls{position:relative;padding:80px 0 100px;background:#fff;font-family:"Poppins","Noto Sans JP",sans-serif;color:#434343}
@@ -824,149 +667,91 @@ img{max-width:100%;height:auto;display:block}
 
 </div>
 <div id="area" class="site-section site-section--area">
-<!-- area: hutchinson -->
-<!--
-  Archetype: area / hutchinson
-  Source:    Hutchinson Builders (https://www.hutchinsonbuilders.com.au/) を忠実模写
-  ## 模写スペック（raw HTML 抽出）
-  - 制作技術: カスタム JS（data-map-canvas） + Google Maps / Mapbox 系のカスタム実装
-  - 構造: <section data-section="6">
-            > .map.map-has-title
-                > .map-canvas.map-canvas-large（地図描画領域）
-                > .map-title-body
-                    > h3（block-text 単語ごとに改行積み上げ。"Australia's / Local / National / Builder"）
-                > .map-controls（zoom in / out / reset の 3 ボタン）
-                > article.infowindow（クリック時詳細）
-                > .map-filters
-                    > .button.button-mint.map-filter.active（"Show All"）
-                    > .button.button-white.map-filter（"Our Offices"）
-                    > .button.button-primary.map-filter（"Featured projects"）
-                    > .button.button-tertiary.map-filter（"Projects under construction"）
-                    > .button.button-dark.map-filter（"Where We've Worked"）
-  - 文言（参考）:
-      "Australia's Local National Builder"（block-text で 1 単語ずつ積み重ね）
-      4 つのフィルタカテゴリ + Show All
-  - 配色: ダーク背景（#1d1d1d 近辺）+ block-text に block-background-blue-medium #2d56b8 を矩形ハイライト
-  - 動き: フィルタクリックで地図 marker の表示切替（demo では装飾のみ）
-  - block-text: 各 span に背景色を付け、改行で積み上げるタイポグラフィ
-  ## Placeholders
-    {{area.title_word_1}} ~ {{area.title_word_4}}   タイトルを 4 単語に分割（block-text 用）
-    {{area.map_image}}                  地図画像（プレビュー用。実装時は JS map に置換）
-    {{area.filter_label_all}}           "Show All"
-    {{area.filter_label_offices}}       "Our Offices"
-    {{area.filter_label_featured}}      "Featured Projects" 等
-    {{area.filter_label_current}}       "Projects Under Construction"
-    {{area.filter_label_worked}}        "Where We've Worked"
--->
-<section class="area-hutchinson">
+
+<section class="area-kotake">
 <style>
-.area-hutchinson{background:#1d1d1d;color:#fff;font-family:"Roboto","Helvetica Neue",sans-serif;padding:0;position:relative;overflow:hidden}
-.area-hutchinson__map{position:relative;width:100%;height:640px;background:#283238}
-.area-hutchinson__canvas{position:absolute;inset:0;background-position:center;background-size:cover;background-repeat:no-repeat;filter:saturate(.7) brightness(.9)}
-.area-hutchinson__canvas::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18) 0%,rgba(0,0,0,.42) 100%)}
+.area-kotake{background:#fff;color:#2c2c2c;font-family:"Noto Serif JP","NotoSerifJP",serif;padding:80px 0;position:relative}
+.area-kotake__info{max-width:1140px;margin:0 auto;padding:24px 40px 36px;display:flex;justify-content:space-between;align-items:center;gap:48px;border-top:1px solid #d2d2d2;border-bottom:1px solid #d2d2d2}
 
-.area-hutchinson__title{position:absolute;top:48px;left:48px;z-index:4;max-width:420px;display:flex;flex-wrap:wrap;gap:6px 0}
-.area-hutchinson__title .block-text{display:inline-block;font-family:"Roboto",sans-serif;font-weight:700;font-size:clamp(28px,3.8vw,46px);line-height:1.15;letter-spacing:-.01em;color:#fff;background:#2d56b8;padding:4px 14px;margin-right:6px}
+.area-kotake__head{position:relative;flex:0 0 auto;width:130px;padding-top:42px;text-align:center}
+.area-kotake__head::before{content:"";position:absolute;top:0;left:50%;width:18px;height:27px;transform:translateX(-50%);background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 27'><path d='M9 0C4 0 0 4 0 9c0 6 9 18 9 18s9-12 9-18c0-5-4-9-9-9z' fill='%232c2c2c'/><circle cx='9' cy='9' r='3.5' fill='%23fff'/></svg>") center/contain no-repeat}
+.area-kotake__ttl{font-family:"Noto Serif JP",serif;font-weight:500;font-size:20px;line-height:1.21;margin:0;letter-spacing:.06em}
+.area-kotake__en{font-family:"Cormorant Garamond",maecenas,serif;font-weight:400;font-size:14px;letter-spacing:.08em;margin:.3em 0 0;color:#8a8073;text-transform:lowercase}
 
-.area-hutchinson__controls{position:absolute;top:48px;right:48px;z-index:4;display:flex;flex-direction:column;gap:6px}
-.area-hutchinson__controls button{width:42px;height:42px;border:0;background:rgba(255,255,255,.92);color:#1d1d1d;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
-.area-hutchinson__controls button:hover{background:#fff}
-.area-hutchinson__controls button svg{width:16px;height:16px}
+.area-kotake__desc{flex:1 1 auto;max-width:450px}
+.area-kotake__desc p{margin:0;line-height:1.75em;letter-spacing:.04em;font-size:15px;color:#2c2c2c}
+.area-kotake__desc p.notes{margin-top:.2em;padding-left:1em;font-size:13px;text-indent:-1em;color:#8a8073}
+.area-kotake__desc p.notes::before{content:"※"}
 
-.area-hutchinson__filters{position:absolute;left:0;right:0;bottom:0;z-index:4;display:flex;flex-wrap:wrap;justify-content:center;gap:0;padding:0;background:rgba(0,0,0,.55);backdrop-filter:blur(6px)}
-.area-hutchinson__filter{flex:1 1 auto;display:flex;align-items:center;justify-content:center;gap:10px;padding:18px 14px;font-size:13px;letter-spacing:.06em;font-weight:500;text-decoration:none;color:#fff;cursor:pointer;border:0;background:transparent;transition:background .2s;text-align:center}
-.area-hutchinson__filter:hover{background:rgba(255,255,255,.08)}
-.area-hutchinson__filter .circle{width:10px;height:10px;border-radius:50%;flex:0 0 auto;display:inline-block}
-.area-hutchinson__filter.is-all{background:#2dd4a4;color:#0a2a22}
-.area-hutchinson__filter.is-all .circle{background:#0a2a22}
-.area-hutchinson__filter.is-offices .circle{background:#fff;border:1px solid #1d1d1d}
-.area-hutchinson__filter.is-featured .circle{background:#2d56b8}
-.area-hutchinson__filter.is-current .circle{background:#d4a32d}
-.area-hutchinson__filter.is-worked .circle{background:#1d1d1d;border:1px solid #fff}
+.area-kotake__shop{max-width:1140px;margin:0 auto;padding:40px;display:flex;justify-content:space-between;gap:40px}
+.area-kotake__shop-card{width:50%;display:flex;flex-direction:column}
+.area-kotake__shop-image{margin-bottom:14px;overflow:hidden}
+.area-kotake__shop-image img{display:block;width:100%;height:180px;object-fit:cover}
+.area-kotake__shop-contents{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:14px}
+.area-kotake__shop-content{flex:1 1 auto}
+.area-kotake__shop-ttl{margin:0 0 .5em;font-size:20px;font-weight:500;line-height:1.25em;letter-spacing:.12em;font-family:"Noto Serif JP",serif}
+.area-kotake__shop-add p{margin:0;line-height:1.75em;font-size:13px;color:#3a3a3a}
+.area-kotake__shop-map{position:relative;width:100%;padding-bottom:45%;overflow:hidden}
+.area-kotake__shop-map iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
 
 @media (max-width:880px){
-  .area-hutchinson__map{height:520px}
-  .area-hutchinson__title{top:24px;left:24px;max-width:280px}
-  .area-hutchinson__title .block-text{font-size:22px;padding:3px 10px}
-  .area-hutchinson__controls{top:24px;right:24px}
-  .area-hutchinson__filters{flex-direction:column}
-  .area-hutchinson__filter{padding:14px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .area-kotake{padding:48px 0}
+  .area-kotake__info{flex-direction:column;align-items:center;gap:14px;padding:24px;text-align:center}
+  .area-kotake__head{width:auto;padding-top:42px}
+  .area-kotake__desc{max-width:none}
+  .area-kotake__shop{flex-direction:column;padding:24px;gap:32px}
+  .area-kotake__shop-card{width:100%}
+  .area-kotake__shop-map{padding-bottom:55%}
 }
 </style>
 
-<div class="area-hutchinson__map">
-  <div class="area-hutchinson__canvas" style="background-image:url('https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-47c3627b/1200/800')"></div>
+<div class="area-kotake__info">
+  <div class="area-kotake__head">
+    <h2 class="area-kotake__ttl">対応エリア</h2>
+    <p class="area-kotake__en">area</p>
+  </div>
+  <div class="area-kotake__desc">
+    <p>大阪市中央区を中心に、近隣エリアまで対応いたします。</p>
+    <p class="notes">そのほかの地域もまずはご相談ください。</p>
+  </div>
+</div>
 
-  <div class="area-hutchinson__title">
-    <span class="block-text">Service</span>
-    <span class="block-text">Area</span>
-    <span class="block-text">Across</span>
-    <span class="block-text">大阪市中央区</span>
+<div class="area-kotake__shop">
+  <div class="area-kotake__shop-card">
+    <div class="area-kotake__shop-image">
+      <img src="https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-72168fe6/700/300" alt="エディオン 天満橋店">
+    </div>
+    <div class="area-kotake__shop-contents">
+      <div class="area-kotake__shop-content">
+        <p class="area-kotake__shop-ttl">エディオン 天満橋店</p>
+        <div class="area-kotake__shop-add"><p>〒540-0032 大阪府大阪市中央区天満橋京町１−１ ６階<br>TEL：06-6940-2820</p></div>
+      </div>
+    </div>
+    <div class="area-kotake__shop-map">
+      <iframe src="https://maps.google.com/maps?q=%E3%80%92540-0032+%E5%A4%A7%E9%98%AA%E5%BA%9C%E5%A4%A7%E9%98%AA%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%A4%A9%E6%BA%80%E6%A9%8B%E4%BA%AC%E7%94%BA%EF%BC%91%E2%88%92%EF%BC%91+%EF%BC%96%E9%9A%8E&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    </div>
   </div>
 
-  <div class="area-hutchinson__controls">
-    <button type="button" aria-label="Zoom in">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="2" d="M8 0v16m8-8H0"/></svg>
-    </button>
-    <button type="button" aria-label="Zoom out">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="2" d="M16 8H0"/></svg>
-    </button>
-    <button type="button" aria-label="Reset zoom">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M15 3l2.3 2.3-2.89 2.87 1.42 1.42L18.7 6.7 21 9V3zM3 9l2.3-2.3 2.87 2.89 1.42-1.42L6.7 5.3 9 3H3zm6 12l-2.3-2.3 2.89-2.87-1.42-1.42L5.3 17.3 3 15v6zm12-6l-2.3 2.3-2.87-2.89-1.42 1.42 2.89 2.87L15 21h6z"/></svg>
-    </button>
-  </div>
-
-  <div class="area-hutchinson__filters">
-    <button class="area-hutchinson__filter is-all" type="button">
-      <span class="circle"></span><span>ALL</span>
-    </button>
-    <button class="area-hutchinson__filter is-offices" type="button">
-      <span class="circle"></span><span>拠点</span>
-    </button>
-    <button class="area-hutchinson__filter is-featured" type="button">
-      <span class="circle"></span><span>重点エリア</span>
-    </button>
-    <button class="area-hutchinson__filter is-current" type="button">
-      <span class="circle"></span><span>対応中</span>
-    </button>
-    <button class="area-hutchinson__filter is-worked" type="button">
-      <span class="circle"></span><span>施工実績あり</span>
-    </button>
+  <div class="area-kotake__shop-card">
+    <div class="area-kotake__shop-image">
+      <img src="https://picsum.photos/seed/gm-98491ead7927-エディオン天満橋店-e64edbf2/700/300" alt="">
+    </div>
+    <div class="area-kotake__shop-contents">
+      <div class="area-kotake__shop-content">
+        <p class="area-kotake__shop-ttl"></p>
+        <div class="area-kotake__shop-add"><p></p></div>
+      </div>
+    </div>
+    <div class="area-kotake__shop-map">
+      <iframe src="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    </div>
   </div>
 </div>
 </section>
 
 </div>
 <div id="footer" class="site-section site-section--footer">
-<!-- footer: fls -->
-<!--
-  Archetype: footer / fls
-  Source:    FL Specialty Roofing (https://flsroof.com/) を忠実模写
-  ## 模写スペック（raw HTML 抽出）
-  - 制作技術: WordPress + 自前 (Bootstrap grid 系)
-  - 構造: footer-wrap > 2 カラム
-    左 .footer-logo: 大ロゴ画像 + .footer-social (4 SVG: Google/FB/LinkedIn/IG) + .copyright (long text)
-    右 .footer-nav--wrap:
-        nav#menu-footer 5 親 li with sub-menu (About>Areas/Careers / Services>Residential/Multi-Family/Commercial/Custom / Resources>Products/FAQs/Testimonials/Blog / Gallery / Contact)
-        .hr
-        .address-wrap: call-icon (tel) + address-icon (address) + time-icon (M-F: 8 AM - 5 PM, Sat-Sun: Closed)
-  - 配色: ベース dark navy + 白 / アクセント orange (FLS brand)
-  - フォント: 主 sans (Roboto / Inter 風)
-  - 動き: hover で a 色変化
-  ## Placeholders
-    footer.logo_img              大ロゴ画像
-    footer.social_url_1~footer.social_url_4    SNS 4 個 URL
-    footer.social_label_1~footer.social_label_4    SNS ラベル (GO/FB/IN/IG)
-    footer.copyright             長文 copyright + privacy/terms
-    footer.nav_1_title~footer.nav_3_title    About/Services/Resources 親 + 子
-    footer.nav_1_child_1~footer.nav_3_child_4    子リンク
-    footer.nav_4_title/footer.nav_5_title        Gallery/Contact (子なし)
-    company.tel_display          tel 表示
-    company.tel                  href tel:
-    footer.address               住所
-    footer.address_url           Google Maps URL
-    footer.hours                 営業時間 "M-F: 8 AM - 5 PM, Sat - Sun: Closed"
--->
+
 <section class="footer-fls">
 <style>
 .footer-fls{background:#0e2433;color:#fff;font-family:"Poppins","Noto Sans JP",sans-serif;padding:80px 32px 48px;box-sizing:border-box}
