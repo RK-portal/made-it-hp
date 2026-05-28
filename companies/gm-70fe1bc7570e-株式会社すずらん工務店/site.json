@@ -1,0 +1,44 @@
+{
+  "template": "reform-fixed",
+  "company": {
+    "name": "ＬＩＬＹ’Ｓ ＨＯＭＥ 株式会社すずらん工務店",
+    "industry_words": "リフォーム",
+    "region_full": "大阪府高槻市",
+    "region_short": "高槻市",
+    "email": "info@lilys-home.net",
+    "mail_subject_encoded": "%EF%BC%AC%EF%BC%A9%EF%BC%AC%EF%BC%B9%E2%80%99%EF%BC%B3%20%EF%BC%A8%EF%BC%AF%EF%BC%AD%EF%BC%A5%20%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%E3%81%99%E3%81%9A%E3%82%89%E3%82%93%E5%B7%A5%E5%8B%99%E5%BA%97%20%E6%A7%98%20/%20%E3%83%AA%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%81%AE%E4%BB%B6%E3%81%A7%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B",
+    "gmap_search_url": "https://www.google.com/maps/search/?api=1&query=%EF%BC%AC%EF%BC%A9%EF%BC%AC%EF%BC%B9%E2%80%99%EF%BC%B3%20%EF%BC%A8%EF%BC%AF%EF%BC%AD%EF%BC%A5%20%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%E3%81%99%E3%81%9A%E3%82%89%E3%82%93%E5%B7%A5%E5%8B%99%E5%BA%97"
+  },
+  "composition": {
+    "hero": "hidamari",
+    "services": "sankouhome",
+    "gallery": "matsuo",
+    "process": "teto",
+    "area": "sankouhome",
+    "cta": "hidamari",
+    "footer": "kotake"
+  },
+  "img": {
+    "hero_1": "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=1600&q=80",
+    "hero_2": "https://images.unsplash.com/photo-1577790668485-b3e70d84b462?w=1600&q=80",
+    "hero_3": "https://images.unsplash.com/photo-1621565854953-04850d19ec3a?w=1600&q=80",
+    "service_roof": "https://images.unsplash.com/photo-1534073804884-d80017c6a5ba?w=900&q=80",
+    "service_paint": "https://images.unsplash.com/photo-1560184897-ae75f418493e?w=900&q=80",
+    "service_waterproof": "https://images.unsplash.com/photo-1715764718871-29fe6078d5d5?w=900&q=80",
+    "service_reform": "https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?w=900&q=80",
+    "process_1": "https://images.unsplash.com/photo-1579847188804-ecba0e2ea330?w=600&q=80",
+    "process_2": "https://images.unsplash.com/photo-1672748341520-6a839e6c05bb?w=600&q=80",
+    "process_3": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=80",
+    "process_4": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80",
+    "work_1_stage": "https://images.unsplash.com/photo-1592595896616-c37162298647?w=1600&q=80",
+    "work_1_thumb": "https://images.unsplash.com/photo-1592595896616-c37162298647?w=400&q=80",
+    "work_2_stage": "https://images.unsplash.com/photo-1680613854136-ae8171d10236?w=1600&q=80",
+    "work_2_thumb": "https://images.unsplash.com/photo-1680613854136-ae8171d10236?w=400&q=80",
+    "work_3_stage": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80",
+    "work_3_thumb": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80",
+    "work_4_stage": "https://images.unsplash.com/photo-1595814433015-e6f5ce69614e?w=1600&q=80",
+    "work_4_thumb": "https://images.unsplash.com/photo-1595814433015-e6f5ce69614e?w=400&q=80",
+    "work_5_stage": "https://images.unsplash.com/photo-1634586648651-f1fb9ec10d90?w=1600&q=80",
+    "work_5_thumb": "https://images.unsplash.com/photo-1634586648651-f1fb9ec10d90?w=400&q=80"
+  }
+}
