@@ -1,0 +1,44 @@
+{
+  "template": "reform-fixed",
+  "company": {
+    "name": "（株）谷田工務店",
+    "industry_words": "リフォーム",
+    "region_full": "京都府舞鶴市",
+    "region_short": "舞鶴市",
+    "email": "info@tanida-pal.co.jp",
+    "mail_subject_encoded": "%EF%BC%88%E6%A0%AA%EF%BC%89%E8%B0%B7%E7%94%B0%E5%B7%A5%E5%8B%99%E5%BA%97%20%E6%A7%98%20/%20%E3%83%AA%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%81%AE%E4%BB%B6%E3%81%A7%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B",
+    "gmap_search_url": "https://www.google.com/maps/search/?api=1&query=%EF%BC%88%E6%A0%AA%EF%BC%89%E8%B0%B7%E7%94%B0%E5%B7%A5%E5%8B%99%E5%BA%97"
+  },
+  "composition": {
+    "hero": "hidamari",
+    "services": "sankouhome",
+    "gallery": "matsuo",
+    "process": "teto",
+    "area": "sankouhome",
+    "cta": "hidamari",
+    "footer": "kotake"
+  },
+  "img": {
+    "hero_1": "https://images.unsplash.com/photo-1642306126238-f4162316d308?w=1600&q=80",
+    "hero_2": "https://images.unsplash.com/photo-1693664681816-f7f8422758f0?w=1600&q=80",
+    "hero_3": "https://images.unsplash.com/photo-1745683328332-ad297a8b81e4?w=1600&q=80",
+    "service_roof": "https://images.unsplash.com/photo-1657262585548-b12220e644f0?w=900&q=80",
+    "service_paint": "https://images.unsplash.com/photo-1688372199140-cade7ae820fe?w=900&q=80",
+    "service_waterproof": "https://images.unsplash.com/photo-1550309445-f37cdbe890fb?w=900&q=80",
+    "service_reform": "https://images.unsplash.com/photo-1444419988131-046ed4e5ffd6?w=900&q=80",
+    "process_1": "https://images.unsplash.com/photo-1567954970774-58d6aa6c50dc?w=600&q=80",
+    "process_2": "https://images.unsplash.com/photo-1579847188804-ecba0e2ea330?w=600&q=80",
+    "process_3": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&q=80",
+    "process_4": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=80",
+    "work_1_stage": "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?w=1600&q=80",
+    "work_1_thumb": "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?w=400&q=80",
+    "work_2_stage": "https://images.unsplash.com/photo-1577790668485-b3e70d84b462?w=1600&q=80",
+    "work_2_thumb": "https://images.unsplash.com/photo-1577790668485-b3e70d84b462?w=400&q=80",
+    "work_3_stage": "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1600&q=80",
+    "work_3_thumb": "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=400&q=80",
+    "work_4_stage": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=1600&q=80",
+    "work_4_thumb": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=400&q=80",
+    "work_5_stage": "https://images.unsplash.com/photo-1634586648651-f1fb9ec10d90?w=1600&q=80",
+    "work_5_thumb": "https://images.unsplash.com/photo-1634586648651-f1fb9ec10d90?w=400&q=80"
+  }
+}
