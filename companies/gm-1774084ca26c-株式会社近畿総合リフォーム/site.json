@@ -1,0 +1,44 @@
+{
+  "template": "reform-fixed",
+  "company": {
+    "name": "株式会社近畿総合リフォーム",
+    "industry_words": "リフォーム",
+    "region_full": "大阪府東大阪市",
+    "region_short": "東大阪市",
+    "email": "ksr@ksreform.co.jp",
+    "mail_subject_encoded": "%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%E8%BF%91%E7%95%BF%E7%B7%8F%E5%90%88%E3%83%AA%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%20%E6%A7%98%20/%20%E3%83%AA%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%81%AE%E4%BB%B6%E3%81%A7%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B",
+    "gmap_search_url": "https://www.google.com/maps/search/?api=1&query=%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%E8%BF%91%E7%95%BF%E7%B7%8F%E5%90%88%E3%83%AA%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0"
+  },
+  "composition": {
+    "hero": "hidamari",
+    "services": "sankouhome",
+    "gallery": "matsuo",
+    "process": "teto",
+    "area": "sankouhome",
+    "cta": "hidamari",
+    "footer": "kotake"
+  },
+  "img": {
+    "hero_1": "https://images.unsplash.com/photo-1559006863-03e0799b836a?w=1600&q=80",
+    "hero_2": "https://images.unsplash.com/photo-1642306126238-f4162316d308?w=1600&q=80",
+    "hero_3": "https://images.unsplash.com/photo-1560664394-cf43a5e45907?w=1600&q=80",
+    "service_roof": "https://images.unsplash.com/photo-1726589004565-bedfba94d3a2?w=900&q=80",
+    "service_paint": "https://images.unsplash.com/photo-1622250544703-997d69d856e3?w=900&q=80",
+    "service_waterproof": "https://images.unsplash.com/photo-1663566673926-04241bfbe038?w=900&q=80",
+    "service_reform": "https://images.unsplash.com/photo-1696846911635-83b97e53fb65?w=900&q=80",
+    "process_1": "https://images.unsplash.com/photo-1626885930974-4b69aa21bbf9?w=600&q=80",
+    "process_2": "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&q=80",
+    "process_3": "https://images.unsplash.com/photo-1535732759880-bbd5c7265e3f?w=600&q=80",
+    "process_4": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=80",
+    "work_1_stage": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1600&q=80",
+    "work_1_thumb": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&q=80",
+    "work_2_stage": "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=1600&q=80",
+    "work_2_thumb": "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=400&q=80",
+    "work_3_stage": "https://images.unsplash.com/photo-1545659705-c769b5c3d132?w=1600&q=80",
+    "work_3_thumb": "https://images.unsplash.com/photo-1545659705-c769b5c3d132?w=400&q=80",
+    "work_4_stage": "https://images.unsplash.com/photo-1634586648651-f1fb9ec10d90?w=1600&q=80",
+    "work_4_thumb": "https://images.unsplash.com/photo-1634586648651-f1fb9ec10d90?w=400&q=80",
+    "work_5_stage": "https://images.unsplash.com/photo-1523413363574-c30aa1c2a516?w=1600&q=80",
+    "work_5_thumb": "https://images.unsplash.com/photo-1523413363574-c30aa1c2a516?w=400&q=80"
+  }
+}
