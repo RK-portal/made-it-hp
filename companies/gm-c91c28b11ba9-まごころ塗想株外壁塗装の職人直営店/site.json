@@ -1,0 +1,44 @@
+{
+  "template": "reform-fixed",
+  "company": {
+    "name": "まごころ塗想（株）-外壁塗装の職人直営店",
+    "industry_words": "外壁塗装",
+    "region_full": "兵庫県神戸市",
+    "region_short": "神戸市",
+    "email": "info@magokorotoso.com",
+    "mail_subject_encoded": "%E3%81%BE%E3%81%94%E3%81%93%E3%82%8D%E5%A1%97%E6%83%B3%EF%BC%88%E6%A0%AA%EF%BC%89-%E5%A4%96%E5%A3%81%E5%A1%97%E8%A3%85%E3%81%AE%E8%81%B7%E4%BA%BA%E7%9B%B4%E5%96%B6%E5%BA%97%20%E6%A7%98%20/%20%E5%A4%96%E5%A3%81%E5%A1%97%E8%A3%85%E3%81%AE%E4%BB%B6%E3%81%A7%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B",
+    "gmap_search_url": "https://www.google.com/maps/search/?api=1&query=%E3%81%BE%E3%81%94%E3%81%93%E3%82%8D%E5%A1%97%E6%83%B3%EF%BC%88%E6%A0%AA%EF%BC%89-%E5%A4%96%E5%A3%81%E5%A1%97%E8%A3%85%E3%81%AE%E8%81%B7%E4%BA%BA%E7%9B%B4%E5%96%B6%E5%BA%97"
+  },
+  "composition": {
+    "hero": "hidamari",
+    "services": "sankouhome",
+    "gallery": "matsuo",
+    "process": "teto",
+    "area": "sankouhome",
+    "cta": "hidamari",
+    "footer": "kotake"
+  },
+  "img": {
+    "hero_1": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1600&q=80",
+    "hero_2": "https://images.unsplash.com/photo-1730033145968-180164c0caae?w=1600&q=80",
+    "hero_3": "https://images.unsplash.com/photo-1591454801480-66f53801ba22?w=1600&q=80",
+    "service_roof": "https://images.unsplash.com/photo-1643225523483-e2c434191bba?w=900&q=80",
+    "service_paint": "https://images.unsplash.com/photo-1688372199140-cade7ae820fe?w=900&q=80",
+    "service_waterproof": "https://images.unsplash.com/photo-1721745740020-ed1e8e0d4db8?w=900&q=80",
+    "service_reform": "https://images.unsplash.com/photo-1634586648651-f1fb9ec10d90?w=900&q=80",
+    "process_1": "https://images.unsplash.com/photo-1567954970774-58d6aa6c50dc?w=600&q=80",
+    "process_2": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=80",
+    "process_3": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80",
+    "process_4": "https://images.unsplash.com/photo-1535732759880-bbd5c7265e3f?w=600&q=80",
+    "work_1_stage": "https://images.unsplash.com/photo-1693664681816-f7f8422758f0?w=1600&q=80",
+    "work_1_thumb": "https://images.unsplash.com/photo-1693664681816-f7f8422758f0?w=400&q=80",
+    "work_2_stage": "https://images.unsplash.com/photo-1621565854953-04850d19ec3a?w=1600&q=80",
+    "work_2_thumb": "https://images.unsplash.com/photo-1621565854953-04850d19ec3a?w=400&q=80",
+    "work_3_stage": "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1600&q=80",
+    "work_3_thumb": "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=400&q=80",
+    "work_4_stage": "https://images.unsplash.com/photo-1605201470550-f107ba6fdad3?w=1600&q=80",
+    "work_4_thumb": "https://images.unsplash.com/photo-1605201470550-f107ba6fdad3?w=400&q=80",
+    "work_5_stage": "https://images.unsplash.com/photo-1624352908259-ec0b31e421ee?w=1600&q=80",
+    "work_5_thumb": "https://images.unsplash.com/photo-1624352908259-ec0b31e421ee?w=400&q=80"
+  }
+}
