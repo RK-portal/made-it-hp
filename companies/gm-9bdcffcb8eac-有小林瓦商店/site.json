@@ -1,0 +1,44 @@
+{
+  "template": "reform-fixed",
+  "company": {
+    "name": "（有）小林瓦商店",
+    "industry_words": "屋根工事",
+    "region_full": "兵庫県姫路市",
+    "region_short": "姫路市",
+    "email": "info@kawara-gaen.com",
+    "mail_subject_encoded": "%EF%BC%88%E6%9C%89%EF%BC%89%E5%B0%8F%E6%9E%97%E7%93%A6%E5%95%86%E5%BA%97%20%E6%A7%98%20/%20%E5%B1%8B%E6%A0%B9%E5%B7%A5%E4%BA%8B%E3%81%AE%E4%BB%B6%E3%81%A7%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B",
+    "gmap_search_url": "https://www.google.com/maps/search/?api=1&query=%EF%BC%88%E6%9C%89%EF%BC%89%E5%B0%8F%E6%9E%97%E7%93%A6%E5%95%86%E5%BA%97"
+  },
+  "composition": {
+    "hero": "hidamari",
+    "services": "sankouhome",
+    "gallery": "matsuo",
+    "process": "teto",
+    "area": "sankouhome",
+    "cta": "hidamari",
+    "footer": "kotake"
+  },
+  "img": {
+    "hero_1": "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?w=1600&q=80",
+    "hero_2": "https://images.unsplash.com/photo-1693664681816-f7f8422758f0?w=1600&q=80",
+    "hero_3": "https://images.unsplash.com/photo-1621565854953-04850d19ec3a?w=1600&q=80",
+    "service_roof": "https://images.unsplash.com/photo-1513692398020-cbaea622c427?w=900&q=80",
+    "service_paint": "https://images.unsplash.com/photo-1742900280864-bcc27353ceba?w=900&q=80",
+    "service_waterproof": "https://images.unsplash.com/photo-1681812490689-2bb9ab7ca660?w=900&q=80",
+    "service_reform": "https://images.unsplash.com/photo-1595814433015-e6f5ce69614e?w=900&q=80",
+    "process_1": "https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?w=600&q=80",
+    "process_2": "https://images.unsplash.com/photo-1535732759880-bbd5c7265e3f?w=600&q=80",
+    "process_3": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&q=80",
+    "process_4": "https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?w=600&q=80",
+    "work_1_stage": "https://images.unsplash.com/photo-1591454801480-66f53801ba22?w=1600&q=80",
+    "work_1_thumb": "https://images.unsplash.com/photo-1591454801480-66f53801ba22?w=400&q=80",
+    "work_2_stage": "https://images.unsplash.com/photo-1723698634159-849048be3cf3?w=1600&q=80",
+    "work_2_thumb": "https://images.unsplash.com/photo-1723698634159-849048be3cf3?w=400&q=80",
+    "work_3_stage": "https://images.unsplash.com/photo-1669682241256-dda2267feaa7?w=1600&q=80",
+    "work_3_thumb": "https://images.unsplash.com/photo-1669682241256-dda2267feaa7?w=400&q=80",
+    "work_4_stage": "https://images.unsplash.com/photo-1534073804884-d80017c6a5ba?w=1600&q=80",
+    "work_4_thumb": "https://images.unsplash.com/photo-1534073804884-d80017c6a5ba?w=400&q=80",
+    "work_5_stage": "https://images.unsplash.com/photo-1726589004565-bedfba94d3a2?w=1600&q=80",
+    "work_5_thumb": "https://images.unsplash.com/photo-1726589004565-bedfba94d3a2?w=400&q=80"
+  }
+}
