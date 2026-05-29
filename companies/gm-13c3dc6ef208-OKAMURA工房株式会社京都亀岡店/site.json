@@ -1,0 +1,44 @@
+{
+  "template": "reform-fixed",
+  "company": {
+    "name": "OKAMURA工房株式会社｜京都･亀岡店",
+    "industry_words": "リフォーム",
+    "region_full": "大阪府大阪市中央区",
+    "region_short": "大阪市中央区",
+    "email": "info@okabo.jp",
+    "mail_subject_encoded": "OKAMURA%E5%B7%A5%E6%88%BF%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%EF%BD%9C%E4%BA%AC%E9%83%BD%EF%BD%A5%E4%BA%80%E5%B2%A1%E5%BA%97%20%E6%A7%98%20/%20%E3%83%AA%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%81%AE%E4%BB%B6%E3%81%A7%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B",
+    "gmap_search_url": "https://www.google.com/maps/search/?api=1&query=OKAMURA%E5%B7%A5%E6%88%BF%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%EF%BD%9C%E4%BA%AC%E9%83%BD%EF%BD%A5%E4%BA%80%E5%B2%A1%E5%BA%97"
+  },
+  "composition": {
+    "hero": "hidamari",
+    "services": "sankouhome",
+    "gallery": "matsuo",
+    "process": "teto",
+    "area": "sankouhome",
+    "cta": "hidamari",
+    "footer": "kotake"
+  },
+  "img": {
+    "hero_1": "https://images.unsplash.com/photo-1642306126238-f4162316d308?w=1600&q=80",
+    "hero_2": "https://images.unsplash.com/photo-1591454801480-66f53801ba22?w=1600&q=80",
+    "hero_3": "https://images.unsplash.com/photo-1745683328332-ad297a8b81e4?w=1600&q=80",
+    "service_roof": "https://images.unsplash.com/photo-1635424709845-3a85ad5e1f5e?w=900&q=80",
+    "service_paint": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=900&q=80",
+    "service_waterproof": "https://images.unsplash.com/photo-1721745740020-ed1e8e0d4db8?w=900&q=80",
+    "service_reform": "https://images.unsplash.com/photo-1599619585752-c3edb42a414c?w=900&q=80",
+    "process_1": "https://images.unsplash.com/photo-1579847188804-ecba0e2ea330?w=600&q=80",
+    "process_2": "https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=600&q=80",
+    "process_3": "https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?w=600&q=80",
+    "process_4": "https://images.unsplash.com/photo-1587582423116-ec07293f0395?w=600&q=80",
+    "work_1_stage": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80",
+    "work_1_thumb": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80",
+    "work_2_stage": "https://images.unsplash.com/photo-1566204978576-77f6addcef4d?w=1600&q=80",
+    "work_2_thumb": "https://images.unsplash.com/photo-1566204978576-77f6addcef4d?w=400&q=80",
+    "work_3_stage": "https://images.unsplash.com/photo-1693664681816-f7f8422758f0?w=1600&q=80",
+    "work_3_thumb": "https://images.unsplash.com/photo-1693664681816-f7f8422758f0?w=400&q=80",
+    "work_4_stage": "https://images.unsplash.com/photo-1595814433015-e6f5ce69614e?w=1600&q=80",
+    "work_4_thumb": "https://images.unsplash.com/photo-1595814433015-e6f5ce69614e?w=400&q=80",
+    "work_5_stage": "https://images.unsplash.com/photo-1505798577917-a65157d3320a?w=1600&q=80",
+    "work_5_thumb": "https://images.unsplash.com/photo-1505798577917-a65157d3320a?w=400&q=80"
+  }
+}
