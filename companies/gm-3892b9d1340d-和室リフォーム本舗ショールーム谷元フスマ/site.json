@@ -1,0 +1,44 @@
+{
+  "template": "reform-fixed",
+  "company": {
+    "name": "和室リフォーム本舗（ショールーム）│谷元フスマ工飾株式会社",
+    "industry_words": "リフォーム",
+    "region_full": "大阪府八尾市",
+    "region_short": "八尾市",
+    "email": "shop@t-f-kosyoku.com",
+    "mail_subject_encoded": "%E5%92%8C%E5%AE%A4%E3%83%AA%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E6%9C%AC%E8%88%97%EF%BC%88%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%AB%E3%83%BC%E3%83%A0%EF%BC%89%E2%94%82%E8%B0%B7%E5%85%83%E3%83%95%E3%82%B9%E3%83%9E%E5%B7%A5%E9%A3%BE%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E6%A7%98%20/%20%E3%83%AA%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%81%AE%E4%BB%B6%E3%81%A7%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B",
+    "gmap_search_url": "https://www.google.com/maps/search/?api=1&query=%E5%92%8C%E5%AE%A4%E3%83%AA%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E6%9C%AC%E8%88%97%EF%BC%88%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%AB%E3%83%BC%E3%83%A0%EF%BC%89%E2%94%82%E8%B0%B7%E5%85%83%E3%83%95%E3%82%B9%E3%83%9E%E5%B7%A5%E9%A3%BE%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE"
+  },
+  "composition": {
+    "hero": "hidamari",
+    "services": "sankouhome",
+    "gallery": "matsuo",
+    "process": "teto",
+    "area": "sankouhome",
+    "cta": "hidamari",
+    "footer": "kotake"
+  },
+  "img": {
+    "hero_1": "https://images.unsplash.com/photo-1642306126238-f4162316d308?w=1600&q=80",
+    "hero_2": "https://images.unsplash.com/photo-1745683328332-ad297a8b81e4?w=1600&q=80",
+    "hero_3": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1600&q=80",
+    "service_roof": "https://images.unsplash.com/photo-1657262585548-b12220e644f0?w=900&q=80",
+    "service_paint": "https://images.unsplash.com/photo-1613844044163-1ad2f2d0b152?w=900&q=80",
+    "service_waterproof": "https://images.unsplash.com/photo-1636099362460-5717f3be17cf?w=900&q=80",
+    "service_reform": "https://images.unsplash.com/photo-1618832515490-e181c4794a45?w=900&q=80",
+    "process_1": "https://images.unsplash.com/photo-1567954970774-58d6aa6c50dc?w=600&q=80",
+    "process_2": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80",
+    "process_3": "https://images.unsplash.com/photo-1558227691-41ea78d1f631?w=600&q=80",
+    "process_4": "https://images.unsplash.com/photo-1579847188804-ecba0e2ea330?w=600&q=80",
+    "work_1_stage": "https://images.unsplash.com/photo-1577790668485-b3e70d84b462?w=1600&q=80",
+    "work_1_thumb": "https://images.unsplash.com/photo-1577790668485-b3e70d84b462?w=400&q=80",
+    "work_2_stage": "https://images.unsplash.com/photo-1723698634159-849048be3cf3?w=1600&q=80",
+    "work_2_thumb": "https://images.unsplash.com/photo-1723698634159-849048be3cf3?w=400&q=80",
+    "work_3_stage": "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=1600&q=80",
+    "work_3_thumb": "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=400&q=80",
+    "work_4_stage": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=1600&q=80",
+    "work_4_thumb": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=400&q=80",
+    "work_5_stage": "https://images.unsplash.com/photo-1634586648651-f1fb9ec10d90?w=1600&q=80",
+    "work_5_thumb": "https://images.unsplash.com/photo-1634586648651-f1fb9ec10d90?w=400&q=80"
+  }
+}
