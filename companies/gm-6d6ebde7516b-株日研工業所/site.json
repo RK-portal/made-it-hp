@@ -1,0 +1,44 @@
+{
+  "template": "reform-fixed",
+  "company": {
+    "name": "（株）日研工業所",
+    "industry_words": "外壁塗装",
+    "region_full": "大阪府大阪市生野区",
+    "region_short": "大阪市生野区",
+    "email": "hp@nikken-kogyosho.com",
+    "mail_subject_encoded": "%EF%BC%88%E6%A0%AA%EF%BC%89%E6%97%A5%E7%A0%94%E5%B7%A5%E6%A5%AD%E6%89%80%20%E6%A7%98%20/%20%E5%A4%96%E5%A3%81%E5%A1%97%E8%A3%85%E3%81%AE%E4%BB%B6%E3%81%A7%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B",
+    "gmap_search_url": "https://www.google.com/maps/search/?api=1&query=%EF%BC%88%E6%A0%AA%EF%BC%89%E6%97%A5%E7%A0%94%E5%B7%A5%E6%A5%AD%E6%89%80"
+  },
+  "composition": {
+    "hero": "hidamari",
+    "services": "sankouhome",
+    "gallery": "matsuo",
+    "process": "teto",
+    "area": "sankouhome",
+    "cta": "hidamari",
+    "footer": "kotake"
+  },
+  "img": {
+    "hero_1": "https://images.unsplash.com/photo-1559006863-03e0799b836a?w=1600&q=80",
+    "hero_2": "https://images.unsplash.com/photo-1560664394-cf43a5e45907?w=1600&q=80",
+    "hero_3": "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=1600&q=80",
+    "service_roof": "https://images.unsplash.com/photo-1516880711640-ef7db81be3e1?w=900&q=80",
+    "service_paint": "https://images.unsplash.com/photo-1622250544703-997d69d856e3?w=900&q=80",
+    "service_waterproof": "https://images.unsplash.com/photo-1621682988371-83cccd25c323?w=900&q=80",
+    "service_reform": "https://images.unsplash.com/photo-1595814433015-e6f5ce69614e?w=900&q=80",
+    "process_1": "https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=600&q=80",
+    "process_2": "https://images.unsplash.com/photo-1567954970774-58d6aa6c50dc?w=600&q=80",
+    "process_3": "https://images.unsplash.com/photo-1574757987642-5755f0839101?w=600&q=80",
+    "process_4": "https://images.unsplash.com/photo-1558227691-41ea78d1f631?w=600&q=80",
+    "work_1_stage": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80",
+    "work_1_thumb": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80",
+    "work_2_stage": "https://images.unsplash.com/photo-1723698634159-849048be3cf3?w=1600&q=80",
+    "work_2_thumb": "https://images.unsplash.com/photo-1723698634159-849048be3cf3?w=400&q=80",
+    "work_3_stage": "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?w=1600&q=80",
+    "work_3_thumb": "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?w=400&q=80",
+    "work_4_stage": "https://images.unsplash.com/photo-1605201470550-f107ba6fdad3?w=1600&q=80",
+    "work_4_thumb": "https://images.unsplash.com/photo-1605201470550-f107ba6fdad3?w=400&q=80",
+    "work_5_stage": "https://images.unsplash.com/photo-1688372199140-cade7ae820fe?w=1600&q=80",
+    "work_5_thumb": "https://images.unsplash.com/photo-1688372199140-cade7ae820fe?w=400&q=80"
+  }
+}
