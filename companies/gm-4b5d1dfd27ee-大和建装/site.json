@@ -1,0 +1,44 @@
+{
+  "template": "reform-fixed",
+  "company": {
+    "name": "大和建装",
+    "industry_words": "外壁塗装",
+    "region_full": "和歌山県和歌山市",
+    "region_short": "和歌山市",
+    "email": "info@daiwa-kensou.jp",
+    "mail_subject_encoded": "%E5%A4%A7%E5%92%8C%E5%BB%BA%E8%A3%85%20%E6%A7%98%20/%20%E5%A4%96%E5%A3%81%E5%A1%97%E8%A3%85%E3%81%AE%E4%BB%B6%E3%81%A7%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B",
+    "gmap_search_url": "https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E5%92%8C%E5%BB%BA%E8%A3%85"
+  },
+  "composition": {
+    "hero": "hidamari",
+    "services": "sankouhome",
+    "gallery": "matsuo",
+    "process": "teto",
+    "area": "sankouhome",
+    "cta": "hidamari",
+    "footer": "kotake"
+  },
+  "img": {
+    "hero_1": "https://images.unsplash.com/photo-1591454801480-66f53801ba22?w=1600&q=80",
+    "hero_2": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1600&q=80",
+    "hero_3": "https://images.unsplash.com/photo-1669682241256-dda2267feaa7?w=1600&q=80",
+    "service_roof": "https://images.unsplash.com/photo-1676802540678-2dceb1820113?w=900&q=80",
+    "service_paint": "https://images.unsplash.com/photo-1581922814484-0b48460b7010?w=900&q=80",
+    "service_waterproof": "https://images.unsplash.com/photo-1663566673926-04241bfbe038?w=900&q=80",
+    "service_reform": "https://images.unsplash.com/photo-1523413363574-c30aa1c2a516?w=900&q=80",
+    "process_1": "https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?w=600&q=80",
+    "process_2": "https://images.unsplash.com/photo-1672748341520-6a839e6c05bb?w=600&q=80",
+    "process_3": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&q=80",
+    "process_4": "https://images.unsplash.com/photo-1535732759880-bbd5c7265e3f?w=600&q=80",
+    "work_1_stage": "https://images.unsplash.com/photo-1642306126238-f4162316d308?w=1600&q=80",
+    "work_1_thumb": "https://images.unsplash.com/photo-1642306126238-f4162316d308?w=400&q=80",
+    "work_2_stage": "https://images.unsplash.com/photo-1730033145968-180164c0caae?w=1600&q=80",
+    "work_2_thumb": "https://images.unsplash.com/photo-1730033145968-180164c0caae?w=400&q=80",
+    "work_3_stage": "https://images.unsplash.com/photo-1693664681816-f7f8422758f0?w=1600&q=80",
+    "work_3_thumb": "https://images.unsplash.com/photo-1693664681816-f7f8422758f0?w=400&q=80",
+    "work_4_stage": "https://images.unsplash.com/photo-1605201470550-f107ba6fdad3?w=1600&q=80",
+    "work_4_thumb": "https://images.unsplash.com/photo-1605201470550-f107ba6fdad3?w=400&q=80",
+    "work_5_stage": "https://images.unsplash.com/photo-1560184897-ae75f418493e?w=1600&q=80",
+    "work_5_thumb": "https://images.unsplash.com/photo-1560184897-ae75f418493e?w=400&q=80"
+  }
+}
