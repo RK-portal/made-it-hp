@@ -1,0 +1,44 @@
+{
+  "template": "reform-fixed",
+  "company": {
+    "name": "（株）ビサイド",
+    "industry_words": "リフォーム",
+    "region_full": "兵庫県豊岡市",
+    "region_short": "豊岡市",
+    "email": "info@lifit.jp",
+    "mail_subject_encoded": "%EF%BC%88%E6%A0%AA%EF%BC%89%E3%83%93%E3%82%B5%E3%82%A4%E3%83%89%20%E6%A7%98%20/%20%E3%83%AA%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%81%AE%E4%BB%B6%E3%81%A7%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B",
+    "gmap_search_url": "https://www.google.com/maps/search/?api=1&query=%EF%BC%88%E6%A0%AA%EF%BC%89%E3%83%93%E3%82%B5%E3%82%A4%E3%83%89"
+  },
+  "composition": {
+    "hero": "hidamari",
+    "services": "sankouhome",
+    "gallery": "matsuo",
+    "process": "teto",
+    "area": "sankouhome",
+    "cta": "hidamari",
+    "footer": "kotake"
+  },
+  "img": {
+    "hero_1": "https://images.unsplash.com/photo-1592595896616-c37162298647?w=1600&q=80",
+    "hero_2": "https://images.unsplash.com/photo-1747892736982-ee5fb3f6481f?w=1600&q=80",
+    "hero_3": "https://images.unsplash.com/photo-1559006863-03e0799b836a?w=1600&q=80",
+    "service_roof": "https://images.unsplash.com/photo-1623489254637-a2dd8375243d?w=900&q=80",
+    "service_paint": "https://images.unsplash.com/photo-1616697412153-7ad8ac8aa5d9?w=900&q=80",
+    "service_waterproof": "https://images.unsplash.com/photo-1636099362460-5717f3be17cf?w=900&q=80",
+    "service_reform": "https://images.unsplash.com/photo-1502005097973-6a7082348e28?w=900&q=80",
+    "process_1": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&q=80",
+    "process_2": "https://images.unsplash.com/photo-1516216628859-9bccecab13ca?w=600&q=80",
+    "process_3": "https://images.unsplash.com/photo-1567954970774-58d6aa6c50dc?w=600&q=80",
+    "process_4": "https://images.unsplash.com/photo-1672748341520-6a839e6c05bb?w=600&q=80",
+    "work_1_stage": "https://images.unsplash.com/photo-1730033145968-180164c0caae?w=1600&q=80",
+    "work_1_thumb": "https://images.unsplash.com/photo-1730033145968-180164c0caae?w=400&q=80",
+    "work_2_stage": "https://images.unsplash.com/photo-1591454801480-66f53801ba22?w=1600&q=80",
+    "work_2_thumb": "https://images.unsplash.com/photo-1591454801480-66f53801ba22?w=400&q=80",
+    "work_3_stage": "https://images.unsplash.com/photo-1577790668485-b3e70d84b462?w=1600&q=80",
+    "work_3_thumb": "https://images.unsplash.com/photo-1577790668485-b3e70d84b462?w=400&q=80",
+    "work_4_stage": "https://images.unsplash.com/photo-1731168273756-e02cae42265b?w=1600&q=80",
+    "work_4_thumb": "https://images.unsplash.com/photo-1731168273756-e02cae42265b?w=400&q=80",
+    "work_5_stage": "https://images.unsplash.com/photo-1505798577917-a65157d3320a?w=1600&q=80",
+    "work_5_thumb": "https://images.unsplash.com/photo-1505798577917-a65157d3320a?w=400&q=80"
+  }
+}
