@@ -1,0 +1,44 @@
+{
+  "template": "reform-fixed",
+  "company": {
+    "name": "株式会社 慶緑",
+    "industry_words": "外構工事",
+    "region_full": "兵庫県明石市",
+    "region_short": "明石市",
+    "email": "info@keiryoku.jp",
+    "mail_subject_encoded": "%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E6%85%B6%E7%B7%91%20%E6%A7%98%20/%20%E5%A4%96%E6%A7%8B%E5%B7%A5%E4%BA%8B%E3%81%AE%E4%BB%B6%E3%81%A7%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B",
+    "gmap_search_url": "https://www.google.com/maps/search/?api=1&query=%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E6%85%B6%E7%B7%91"
+  },
+  "composition": {
+    "hero": "hidamari",
+    "services": "sankouhome",
+    "gallery": "matsuo",
+    "process": "teto",
+    "area": "sankouhome",
+    "cta": "hidamari",
+    "footer": "kotake"
+  },
+  "img": {
+    "hero_1": "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=1600&q=80",
+    "hero_2": "https://images.unsplash.com/photo-1745683328332-ad297a8b81e4?w=1600&q=80",
+    "hero_3": "https://images.unsplash.com/photo-1564540583246-934409427776?w=1600&q=80",
+    "service_roof": "https://images.unsplash.com/photo-1534073804884-d80017c6a5ba?w=900&q=80",
+    "service_paint": "https://images.unsplash.com/photo-1511822148790-e7b58ba14c72?w=900&q=80",
+    "service_waterproof": "https://images.unsplash.com/photo-1663566673926-04241bfbe038?w=900&q=80",
+    "service_reform": "https://images.unsplash.com/photo-1595814433015-e6f5ce69614e?w=900&q=80",
+    "process_1": "https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?w=600&q=80",
+    "process_2": "https://images.unsplash.com/photo-1574757987642-5755f0839101?w=600&q=80",
+    "process_3": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&q=80",
+    "process_4": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80",
+    "work_1_stage": "https://images.unsplash.com/photo-1730033145968-180164c0caae?w=1600&q=80",
+    "work_1_thumb": "https://images.unsplash.com/photo-1730033145968-180164c0caae?w=400&q=80",
+    "work_2_stage": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80",
+    "work_2_thumb": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80",
+    "work_3_stage": "https://images.unsplash.com/photo-1592595896616-c37162298647?w=1600&q=80",
+    "work_3_thumb": "https://images.unsplash.com/photo-1592595896616-c37162298647?w=400&q=80",
+    "work_4_stage": "https://images.unsplash.com/photo-1618832515490-e181c4794a45?w=1600&q=80",
+    "work_4_thumb": "https://images.unsplash.com/photo-1618832515490-e181c4794a45?w=400&q=80",
+    "work_5_stage": "https://images.unsplash.com/photo-1595814432314-90095f342694?w=1600&q=80",
+    "work_5_thumb": "https://images.unsplash.com/photo-1595814432314-90095f342694?w=400&q=80"
+  }
+}

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>株式会社 慶緑 | 外構工事の専門</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Noto+Serif+JP:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Poppins:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" defer></script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font-family:"Noto Sans JP",sans-serif;color:#2c2c2c;background:#fff;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+
+/* 共通 header */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:20px 32px;background:transparent;color:#fff;transition:background .3s ease, color .3s ease, box-shadow .3s ease, padding .3s ease}
+.site-header.is-scrolled{background:#fff;color:#1a1a1a;box-shadow:0 2px 14px rgba(0,0,0,.08);padding:14px 32px}
+.site-header__logo{font-family:"Shippori Mincho",serif;font-weight:500;font-size:17px;letter-spacing:.18em;color:inherit;text-decoration:none}
+.site-header__burger{display:inline-flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:transparent;border:0;cursor:pointer;padding:0;color:inherit}
+.site-header__burger span{display:block;width:22px;height:1.5px;background:currentColor;margin:0 auto;transition:transform .3s ease, opacity .3s ease}
+.site-nav{position:fixed;inset:0;z-index:200;background:rgba(26,26,26,.96);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;opacity:0;pointer-events:none;transition:opacity .35s ease}
+.site-nav.is-open{opacity:1;pointer-events:auto}
+.site-nav__close{position:absolute;top:24px;right:32px;background:transparent;border:0;color:#fff;font-size:20px;cursor:pointer;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;font-family:inherit}
+.site-nav__list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:24px;text-align:center}
+.site-nav__list a{font-family:"Shippori Mincho",serif;font-size:22px;letter-spacing:.18em;color:#fff;text-decoration:none;display:inline-block;padding:6px 12px;transition:opacity .2s}
+.site-nav__list a:hover{opacity:.6}
+@media (max-width:768px){
+  .site-header{padding:16px 20px}
+  .site-header.is-scrolled{padding:12px 20px}
+  .site-header__logo{font-size:15px;letter-spacing:.14em}
+  .site-nav__list a{font-size:18px}
+  .site-nav__close{top:16px;right:20px}
+}
+</style>
+</head>
+<body>
+<header class="site-header" data-site-header>
+  <a class="site-header__logo" href="#top">株式会社 慶緑</a>
+  <button class="site-header__burger" type="button" aria-label="メニューを開く" aria-expanded="false" data-burger>
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<nav class="site-nav" data-site-nav aria-hidden="true">
+  <button class="site-nav__close" type="button" aria-label="メニューを閉じる" data-burger>✕</button>
+  <ul class="site-nav__list">
+    <li><a href="#services">サービス</a></li>
+    <li><a href="#works">施工事例</a></li>
+    <li><a href="#process">ご依頼の流れ</a></li>
+    <li><a href="#area">対応エリア</a></li>
+    <li><a href="#cta">お問い合わせ</a></li>
+  </ul>
+</nav>
+
+<div id="top"></div>
+
+<!-- 1. HERO (hidamari) -->
+<section class="hero-hidamari">
+<style>
+.hero-hidamari{position:relative;min-height:100vh;background:#f7f3ec;color:#3a2a1a;font-family:"Shippori Mincho",serif;overflow:hidden}
+.hero-hidamari__bg{position:absolute;inset:0;z-index:0;opacity:.62}
+.hero-hidamari__bg .splide,.hero-hidamari__bg .splide__track,.hero-hidamari__bg .splide__list,.hero-hidamari__bg .splide__slide{height:100%}
+.hero-hidamari__bg .splide__slide{background-position:center;background-size:cover}
+.hero-hidamari::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(247,243,236,.6) 0%,rgba(247,243,236,.85) 100%);z-index:1;pointer-events:none}
+.hero-hidamari__inner{position:relative;z-index:3;display:grid;grid-template-columns:5fr 7fr;gap:60px;align-items:center;padding:60px 48px 80px;max-width:1280px;margin:0 auto;min-height:100vh}
+.hero-hidamari__copy .label{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.36em;color:#8a6a3a;margin:0 0 24px;text-transform:uppercase}
+.hero-hidamari__h1{font-family:"Shippori Mincho",serif;font-weight:500;font-size:clamp(28px,4vw,46px);line-height:1.85;letter-spacing:.06em;color:#3a2a1a;margin:0 0 30px}
+.hero-hidamari__philosophy{font-family:"Noto Serif JP",serif;font-size:14px;line-height:2.4;letter-spacing:.06em;color:#5a4a3a;margin:0 0 26px;font-weight:400}
+.hero-hidamari__more{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.16em;color:#8a6a3a;text-decoration:none;border-bottom:1px solid #8a6a3a;padding-bottom:3px}
+.hero-hidamari__photo-area{position:relative;height:520px;overflow:hidden}
+@media (max-width:880px){
+  .hero-hidamari__inner{grid-template-columns:1fr;padding:40px 24px;gap:24px;min-height:auto}
+  .hero-hidamari__h1{font-size:24px;line-height:1.85}
+  .hero-hidamari__photo-area{height:280px;order:-1}
+}
+</style>
+<div class="hero-hidamari__bg">
+  <div class="splide" data-splide='{"type":"fade","rewind":true,"autoplay":true,"interval":6000,"speed":2000,"arrows":false,"pagination":false,"pauseOnHover":false}'>
+    <div class="splide__track">
+      <ul class="splide__list">
+        <li class="splide__slide" style="background-image:url('https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=1600&q=80')"></li>
+        <li class="splide__slide" style="background-image:url('https://images.unsplash.com/photo-1745683328332-ad297a8b81e4?w=1600&q=80')"></li>
+        <li class="splide__slide" style="background-image:url('https://images.unsplash.com/photo-1564540583246-934409427776?w=1600&q=80')"></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="hero-hidamari__inner">
+  <div class="hero-hidamari__copy">
+    <p class="label">REFORM &amp; EXTERIOR</p>
+    <h1 class="hero-hidamari__h1">明石市の<br>外構工事の専門。<br>長く、美しく、住み継ぐために。</h1>
+    <p class="hero-hidamari__philosophy">屋根のひびや雨漏り、外壁の色あせや剥がれ。築年数を重ねたお住まいの「気になる」を、現地調査からアフターメンテナンスまで一貫してお手伝いします。地域に根ざした職人が、ひとつひとつの工事に責任を持って向き合います。</p>
+    <a class="hero-hidamari__more" href="#services">サービスを見る →</a>
+  </div>
+  <div class="hero-hidamari__photo-area"></div>
+</div>
+<script>
+(function(){
+  function init(){
+    var root=document.currentScript&&document.currentScript.closest('.hero-hidamari');
+    if(!root)root=document.querySelector('.hero-hidamari');
+    if(!root||!window.Splide)return;
+    new Splide(root.querySelector('.splide')).mount();
+  }
+  if(window.Splide)init();else window.addEventListener('load',init);
+})();
+</script>
+</section>
+
+<!-- 2. SERVICES (sankouhome) -->
+<section id="services" class="services-sankouhome">
+<style>
+.services-sankouhome{background:#fff;color:#2d2a26;padding:96px 24px 110px;font-family:"Noto Sans JP",sans-serif}
+.services-sankouhome__container{max-width:1280px;margin:0 auto}
+.services-sankouhome__head{text-align:center;margin-bottom:60px}
+.services-sankouhome__title{font-family:"Shippori Mincho","Noto Serif JP",serif;font-size:clamp(26px,3vw,34px);font-weight:500;letter-spacing:.16em;color:#2d2a26;margin:0 0 6px;line-height:1.5}
+.services-sankouhome__sub-en{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.32em;color:#5b7f44;display:block;margin:0 0 22px}
+.services-sankouhome__desc{max-width:680px;margin:0 auto;font-size:14px;line-height:2;color:#5a544c}
+.services-sankouhome__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:8px}
+.services-sankouhome__card{display:flex;flex-direction:column;background:#fff;border:1px solid #e3ddd0;text-decoration:none;color:inherit;transition:transform .3s,box-shadow .3s,border-color .3s;overflow:hidden}
+.services-sankouhome__card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(45,42,38,.08);border-color:#5b7f44}
+.services-sankouhome__card-thumb{width:100%;aspect-ratio:4/3;overflow:hidden;background:#f3f1ed}
+.services-sankouhome__card-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.services-sankouhome__card:hover .services-sankouhome__card-thumb img{transform:scale(1.05)}
+.services-sankouhome__card-body{padding:20px 18px 22px;display:flex;flex-direction:column;gap:10px}
+.services-sankouhome__card-cat{display:inline-block;font-family:"Shippori Mincho","Noto Serif JP",serif;font-size:11px;letter-spacing:.2em;color:#5b7f44;padding:0 0 4px;border-bottom:1px solid #5b7f44;align-self:flex-start}
+.services-sankouhome__card-title{margin:0;font-family:"Shippori Mincho","Noto Serif JP",serif;font-size:17px;letter-spacing:.08em;color:#2d2a26;font-weight:500;line-height:1.55}
+.services-sankouhome__card-desc{margin:0;font-size:13px;line-height:1.85;color:#5a544c}
+.services-sankouhome__card-arrow{margin-top:auto;padding-top:8px;font-family:"Cormorant Garamond",serif;font-size:14px;letter-spacing:.2em;color:#5b7f44}
+.services-sankouhome__card-arrow::after{content:"→";margin-left:6px;transition:transform .25s}
+.services-sankouhome__card:hover .services-sankouhome__card-arrow::after{transform:translateX(4px)}
+@media (max-width:1024px){.services-sankouhome__grid{grid-template-columns:repeat(2,1fr);gap:18px}}
+@media (max-width:600px){
+  .services-sankouhome{padding:64px 16px 76px}
+  .services-sankouhome__grid{grid-template-columns:1fr;gap:14px}
+  .services-sankouhome__card-thumb{aspect-ratio:16/9}
+}
+</style>
+<div class="services-sankouhome__container">
+  <div class="services-sankouhome__head">
+    <h2 class="services-sankouhome__title">サービス</h2>
+    <span class="services-sankouhome__sub-en">Services</span>
+    <p class="services-sankouhome__desc">屋根工事・外壁塗装・防水工事・各種リフォーム。お住まいの「気になる」に、それぞれの専門技術で応えます。</p>
+  </div>
+  <div class="services-sankouhome__grid">
+    <a class="services-sankouhome__card" href="#cta">
+      <div class="services-sankouhome__card-thumb"><img src="https://images.unsplash.com/photo-1534073804884-d80017c6a5ba?w=900&q=80" alt="" loading="lazy"></div>
+      <div class="services-sankouhome__card-body">
+        <span class="services-sankouhome__card-cat">ROOF</span>
+        <h3 class="services-sankouhome__card-title">屋根工事</h3>
+        <p class="services-sankouhome__card-desc">瓦の差し替え、葺き替え、カバー工法。雨漏りの原因調査から対応します。</p>
+        <span class="services-sankouhome__card-arrow">View More</span>
+      </div>
+    </a>
+    <a class="services-sankouhome__card" href="#cta">
+      <div class="services-sankouhome__card-thumb"><img src="https://images.unsplash.com/photo-1511822148790-e7b58ba14c72?w=900&q=80" alt="" loading="lazy"></div>
+      <div class="services-sankouhome__card-body">
+        <span class="services-sankouhome__card-cat">PAINT</span>
+        <h3 class="services-sankouhome__card-title">外壁塗装</h3>
+        <p class="services-sankouhome__card-desc">下地調整から仕上げまで、塗料の特性を活かしたご提案を行います。</p>
+        <span class="services-sankouhome__card-arrow">View More</span>
+      </div>
+    </a>
+    <a class="services-sankouhome__card" href="#cta">
+      <div class="services-sankouhome__card-thumb"><img src="https://images.unsplash.com/photo-1663566673926-04241bfbe038?w=900&q=80" alt="" loading="lazy"></div>
+      <div class="services-sankouhome__card-body">
+        <span class="services-sankouhome__card-cat">WATERPROOF</span>
+        <h3 class="services-sankouhome__card-title">防水工事</h3>
+        <p class="services-sankouhome__card-desc">ベランダ・屋上・バルコニーの防水。下地に合わせた工法を選定します。</p>
+        <span class="services-sankouhome__card-arrow">View More</span>
+      </div>
+    </a>
+    <a class="services-sankouhome__card" href="#cta">
+      <div class="services-sankouhome__card-thumb"><img src="https://images.unsplash.com/photo-1595814433015-e6f5ce69614e?w=900&q=80" alt="" loading="lazy"></div>
+      <div class="services-sankouhome__card-body">
+        <span class="services-sankouhome__card-cat">REFORM</span>
+        <h3 class="services-sankouhome__card-title">リフォーム全般</h3>
+        <p class="services-sankouhome__card-desc">水回り・内装・外構まで、お住まいまわりのご相談を承ります。</p>
+        <span class="services-sankouhome__card-arrow">View More</span>
+      </div>
+    </a>
+  </div>
+</div>
+</section>
+
+<!-- 3. WORKS / GALLERY (matsuo) -->
+<section id="works" class="gallery-matsuo">
+<style>
+.gallery-matsuo{padding:140px 56px;background:#fff;color:#1a1a1a;font-family:"Noto Serif JP","Shippori Mincho B1",serif;max-width:1480px;margin:0 auto}
+.gallery-matsuo__head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:64px}
+.gallery-matsuo__heading-wrap{display:flex;flex-direction:column;gap:24px}
+.gallery-matsuo__heading-en{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:400;font-size:clamp(56px,7vw,116px);line-height:1;letter-spacing:.04em;color:#1a1a1a;margin:0}
+.gallery-matsuo__sub{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.96em;text-transform:uppercase;color:#888;margin:0}
+.gallery-matsuo__pickup{display:flex;flex-direction:column;align-items:flex-end;gap:10px;font-family:"Cormorant Garamond",serif}
+.gallery-matsuo__pickup-label{font-style:italic;font-size:13px;letter-spacing:.34em;text-transform:uppercase;color:#888;margin-bottom:6px}
+.gallery-matsuo__pickup-nums{display:flex;gap:16px;font-size:14px;letter-spacing:.16em;color:#bbb}
+.gallery-matsuo__pickup-nums button{background:transparent;border:0;font:inherit;color:inherit;cursor:pointer;padding:4px 0;transition:color .3s ease}
+.gallery-matsuo__pickup-nums button.is-on{color:#1a1a1a;font-weight:500;border-bottom:1px solid #1a1a1a}
+.gallery-matsuo__stage{position:relative;width:100%;aspect-ratio:16/9;background:#eee;overflow:hidden}
+.gallery-matsuo__stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s ease}
+.gallery-matsuo__stage img.is-on{opacity:1}
+.gallery-matsuo__caption{position:absolute;left:32px;bottom:32px;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.5);max-width:60%}
+.gallery-matsuo__caption-num{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.32em;text-transform:uppercase;margin-bottom:10px}
+.gallery-matsuo__caption-title{font-family:"Shippori Mincho B1","Noto Serif JP",serif;font-weight:500;font-size:clamp(22px,2.4vw,34px);line-height:1.3;letter-spacing:.06em;margin:0}
+.gallery-matsuo__caption-cat{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.18em;color:#fff;opacity:.85;margin-top:8px}
+.gallery-matsuo__thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:24px}
+.gallery-matsuo__thumb{position:relative;aspect-ratio:4/3;background:#eee;overflow:hidden;cursor:pointer;border:0;padding:0}
+.gallery-matsuo__thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+.gallery-matsuo__thumb::after{content:"";position:absolute;inset:0;border:0 solid #1a1a1a;transition:border-width .25s ease}
+.gallery-matsuo__thumb.is-on::after{border-width:2px}
+.gallery-matsuo__thumb:hover img{transform:scale(1.05)}
+.gallery-matsuo__more{display:flex;justify-content:flex-end;margin-top:48px}
+.gallery-matsuo__more-btn{position:relative;display:inline-flex;align-items:center;gap:14px;padding:18px 32px;border:1px solid #1a1a1a;border-radius:9999px;background:transparent;font-family:"Shippori Mincho B1","Noto Serif JP",serif;font-size:15px;letter-spacing:.1em;color:#1a1a1a;text-decoration:none;transition:background .3s ease,color .3s ease}
+.gallery-matsuo__more-btn:hover{background:#1a1a1a;color:#fff}
+.gallery-matsuo__more-btn::after{content:"→";font-family:"Cormorant Garamond",serif;font-style:italic;font-size:16px}
+@media (max-width:880px){
+  .gallery-matsuo{padding:80px 24px}
+  .gallery-matsuo__head{flex-direction:column;align-items:flex-start;gap:16px;margin-bottom:32px}
+  .gallery-matsuo__heading-en{font-size:48px}
+  .gallery-matsuo__sub{letter-spacing:.4em;font-size:11px}
+  .gallery-matsuo__pickup{align-items:flex-start}
+  .gallery-matsuo__caption-title{font-size:17px}
+  .gallery-matsuo__caption{left:16px;bottom:16px;max-width:80%}
+  .gallery-matsuo__thumbs{grid-template-columns:repeat(5,1fr);gap:8px}
+  .gallery-matsuo__more{justify-content:center;margin-top:32px}
+}
+</style>
+<div class="gallery-matsuo__head">
+  <div class="gallery-matsuo__heading-wrap">
+    <h2 class="gallery-matsuo__heading-en">Works</h2>
+    <p class="gallery-matsuo__sub">R o o f &nbsp; E x t e r i o r &nbsp; R e f o r m</p>
+  </div>
+  <div class="gallery-matsuo__pickup">
+    <span class="gallery-matsuo__pickup-label">Pick up</span>
+    <div class="gallery-matsuo__pickup-nums">
+      <button data-pick="0" class="is-on">01</button>
+      <button data-pick="1">02</button>
+      <button data-pick="2">03</button>
+      <button data-pick="3">04</button>
+      <button data-pick="4">05</button>
+    </div>
+  </div>
+</div>
+<div class="gallery-matsuo__stage">
+  <img src="https://images.unsplash.com/photo-1730033145968-180164c0caae?w=1600&q=80" alt="" data-stage="0" class="is-on"/>
+  <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80" alt="" data-stage="1"/>
+  <img src="https://images.unsplash.com/photo-1592595896616-c37162298647?w=1600&q=80" alt="" data-stage="2"/>
+  <img src="https://images.unsplash.com/photo-1618832515490-e181c4794a45?w=1600&q=80" alt="" data-stage="3"/>
+  <img src="https://images.unsplash.com/photo-1595814432314-90095f342694?w=1600&q=80" alt="" data-stage="4"/>
+  <div class="gallery-matsuo__caption">
+    <p class="gallery-matsuo__caption-num" data-num>01</p>
+    <p class="gallery-matsuo__caption-title" data-title>サンプル：木造 2 階建ての屋根葺き替え工事</p>
+    <p class="gallery-matsuo__caption-cat" data-cat>明石市 / 屋根工事</p>
+  </div>
+</div>
+<div class="gallery-matsuo__thumbs">
+  <button class="gallery-matsuo__thumb is-on" data-thumb="0" data-title="サンプル：木造 2 階建ての屋根葺き替え工事" data-cat="明石市 / 屋根工事"><img src="https://images.unsplash.com/photo-1730033145968-180164c0caae?w=400&q=80" alt=""/></button>
+  <button class="gallery-matsuo__thumb" data-thumb="1" data-title="サンプル：築 30 年の外壁塗装リフォーム" data-cat="明石市 / 外壁塗装"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt=""/></button>
+  <button class="gallery-matsuo__thumb" data-thumb="2" data-title="サンプル：ベランダ防水工事 ウレタン塗膜" data-cat="明石市 / 防水工事"><img src="https://images.unsplash.com/photo-1592595896616-c37162298647?w=400&q=80" alt=""/></button>
+  <button class="gallery-matsuo__thumb" data-thumb="3" data-title="サンプル：戸建てフルリノベーション" data-cat="明石市 / リフォーム"><img src="https://images.unsplash.com/photo-1618832515490-e181c4794a45?w=400&q=80" alt=""/></button>
+  <button class="gallery-matsuo__thumb" data-thumb="4" data-title="サンプル：カバー工法による屋根改修" data-cat="明石市 / 屋根工事"><img src="https://images.unsplash.com/photo-1595814432314-90095f342694?w=400&q=80" alt=""/></button>
+</div>
+<div class="gallery-matsuo__more">
+  <a href="#cta" class="gallery-matsuo__more-btn">お問い合わせはこちら</a>
+</div>
+<script>
+(function(){
+  var root=document.currentScript&&document.currentScript.closest('.gallery-matsuo');
+  if(!root)root=document.querySelector('.gallery-matsuo');
+  if(!root)return;
+  var picks=root.querySelectorAll('[data-pick]');
+  var thumbs=root.querySelectorAll('[data-thumb]');
+  var stages=root.querySelectorAll('[data-stage]');
+  var titleEl=root.querySelector('[data-title]');
+  var catEl=root.querySelector('[data-cat]');
+  var numEl=root.querySelector('[data-num]');
+  function go(i){
+    var pad=String(i+1).padStart(2,'0');
+    picks.forEach(function(b,j){b.classList.toggle('is-on',i===j)});
+    thumbs.forEach(function(t,j){t.classList.toggle('is-on',i===j)});
+    stages.forEach(function(s,j){s.classList.toggle('is-on',i===j)});
+    var sel=thumbs[i];
+    if(sel&&titleEl)titleEl.textContent=sel.getAttribute('data-title');
+    if(sel&&catEl)catEl.textContent=sel.getAttribute('data-cat');
+    if(numEl)numEl.textContent=pad;
+  }
+  picks.forEach(function(b,i){b.addEventListener('click',function(){go(i)})});
+  thumbs.forEach(function(t,i){t.addEventListener('click',function(){go(i)})});
+})();
+</script>
+</section>
+
+<!-- 4. PROCESS (teto) -->
+<section id="process" class="process-teto">
+<style>
+.process-teto{position:relative;padding:100px 0 80px;background-color:#1B1E29;color:#fff;overflow:hidden;font-family:"Noto Sans JP",sans-serif}
+@media (min-width:768px){.process-teto{padding:150px 0 130px}}
+.process-teto__container{max-width:1240px;margin:0 auto;padding:0 24px}
+.process-teto__title{text-align:center;color:#fff}
+.process-teto__title-en{display:block;font-family:"Cormorant Garamond","Times New Roman",serif;font-style:italic;font-weight:400;font-size:clamp(40px,6vw,72px);line-height:1;letter-spacing:.04em;margin:0}
+.process-teto__title-jp{display:block;font-family:"Shippori Mincho","Noto Serif JP",serif;font-size:13px;font-weight:500;letter-spacing:.24em;color:#fff;margin:14px 0 0;opacity:.85}
+.process-teto__text{color:#fff;letter-spacing:.08em;text-align:center;font-size:14px;line-height:1.95;margin:30px auto 0;max-width:760px}
+@media (min-width:768px){.process-teto__text{font-size:15px;line-height:1.6;margin-top:50px}}
+.process-teto__images{position:relative;margin-top:50px}
+.process-teto__images::before{content:"";display:block;position:absolute;top:50%;left:0;width:100%;height:1px;background-color:#fff;transform:translateY(-50%);z-index:0}
+.process-teto__wrapper{display:flex;gap:4%;justify-content:space-between;position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 24px}
+.process-teto__img{flex:1 1 0;opacity:0;transform:translateY(20px);transition:opacity .9s ease,transform .9s ease;margin:0}
+.process-teto__img.is-in{opacity:1;transform:translateY(0)}
+.process-teto__img img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block;background:#0d0f17}
+.process-teto__img-caption{display:block;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.18em;color:#fff;margin-top:14px;text-align:center}
+@media (max-width:768px){
+  .process-teto__img:nth-child(4){display:none}
+  .process-teto__wrapper{gap:3%}
+}
+.process-teto__cta-row{text-align:center;margin-top:60px}
+.process-teto__cta{display:inline-flex;align-items:center;gap:14px;padding:18px 48px;border:1px solid #fff;color:#fff;text-decoration:none;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.2em;background:transparent;transition:all .3s}
+.process-teto__cta::after{content:"→";font-style:normal;transition:transform .3s}
+.process-teto__cta:hover{background:#fff;color:#1B1E29}
+.process-teto__cta:hover::after{transform:translateX(6px)}
+</style>
+<div class="process-teto__container">
+  <div class="process-teto__title">
+    <span class="process-teto__title-en">Flow</span>
+    <span class="process-teto__title-jp">ご依頼の流れ</span>
+  </div>
+  <p class="process-teto__text">お問い合わせから工事完了・アフターメンテナンスまで、4 つのステップでご案内いたします。</p>
+</div>
+<div class="process-teto__images">
+  <div class="process-teto__wrapper">
+    <figure class="process-teto__img" data-process-teto-img>
+      <img src="https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?w=600&q=80" alt="01 お問い合わせ" loading="lazy">
+      <figcaption class="process-teto__img-caption">01 お問い合わせ</figcaption>
+    </figure>
+    <figure class="process-teto__img" data-process-teto-img>
+      <img src="https://images.unsplash.com/photo-1574757987642-5755f0839101?w=600&q=80" alt="02 現地調査・お見積もり" loading="lazy">
+      <figcaption class="process-teto__img-caption">02 現地調査・お見積もり</figcaption>
+    </figure>
+    <figure class="process-teto__img" data-process-teto-img>
+      <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&q=80" alt="03 ご契約・施工" loading="lazy">
+      <figcaption class="process-teto__img-caption">03 ご契約・施工</figcaption>
+    </figure>
+    <figure class="process-teto__img" data-process-teto-img>
+      <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80" alt="04 お引き渡し・アフター" loading="lazy">
+      <figcaption class="process-teto__img-caption">04 お引き渡し・アフター</figcaption>
+    </figure>
+  </div>
+</div>
+<div class="process-teto__container">
+  <div class="process-teto__cta-row">
+    <a class="process-teto__cta" href="#cta">View more</a>
+  </div>
+</div>
+<script>
+(function(){
+  var root=document.currentScript&&document.currentScript.closest('.process-teto');
+  if(!root)root=document.querySelector('.process-teto');
+  if(!root)return;
+  var imgs=root.querySelectorAll('[data-process-teto-img]');
+  if(!('IntersectionObserver' in window)){
+    imgs.forEach(function(el){el.classList.add('is-in')});
+    return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e,i){
+      if(e.isIntersecting){
+        var el=e.target;
+        var idx=Array.prototype.indexOf.call(imgs,el);
+        setTimeout(function(){el.classList.add('is-in')},idx*180);
+        io.unobserve(el);
+      }
+    });
+  },{threshold:.15});
+  imgs.forEach(function(el){io.observe(el)});
+})();
+</script>
+</section>
+
+<!-- 5. AREA (sankouhome 簡素版) -->
+<section id="area" class="area-sankouhome">
+<style>
+.area-sankouhome{background:#fff;color:#2d2a26;padding:96px 24px 110px;font-family:"Noto Sans JP",sans-serif}
+.area-sankouhome__container{max-width:1180px;margin:0 auto}
+.area-sankouhome__head{text-align:center;margin-bottom:48px}
+.area-sankouhome__title{font-family:"Shippori Mincho","Noto Serif JP",serif;font-size:clamp(26px,3vw,32px);font-weight:500;letter-spacing:.16em;margin:0 0 6px;line-height:1.5}
+.area-sankouhome__sub-en{display:block;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.32em;color:#5b7f44;margin:0 0 22px}
+.area-sankouhome__desc{max-width:720px;margin:0 auto;font-size:14px;line-height:2;color:#5a544c}
+.area-sankouhome__map-wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;background:#f3f1ed;border:1px solid #e3ddd0;padding:36px}
+.area-sankouhome__map-img{width:100%;display:block;background:#e3ddd0}
+.area-sankouhome__map-img img{width:100%;height:auto;display:block}
+.area-sankouhome__map-content{display:flex;flex-direction:column;gap:18px}
+.area-sankouhome__legend{font-family:"Shippori Mincho","Noto Serif JP",serif;font-size:14px;line-height:2.1;color:#2d2a26;letter-spacing:.06em}
+.area-sankouhome__legend strong{display:block;color:#5b7f44;font-size:13px;letter-spacing:.18em;margin-bottom:4px;font-weight:500}
+.area-sankouhome__note{font-size:12px;line-height:1.85;color:#7a736b;padding-top:12px;border-top:1px dashed #c8c0ae}
+@media (max-width:880px){
+  .area-sankouhome{padding:64px 16px 80px}
+  .area-sankouhome__map-wrap{grid-template-columns:1fr;gap:24px;padding:20px}
+}
+</style>
+<div class="area-sankouhome__container">
+  <div class="area-sankouhome__head">
+    <h2 class="area-sankouhome__title">対応エリア</h2>
+    <span class="area-sankouhome__sub-en">Service Area</span>
+    <p class="area-sankouhome__desc">兵庫県明石市を中心に、お車で約 1 時間圏内のお住まいに対応しております。エリア外のご相談もお気軽にお問い合わせください。</p>
+  </div>
+  <div class="area-sankouhome__map-wrap">
+    <div class="area-sankouhome__map-img">
+      <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=900&q=80" alt="対応エリア地図" loading="lazy">
+    </div>
+    <div class="area-sankouhome__map-content">
+      <div class="area-sankouhome__legend">
+        <strong>主な対応エリア</strong>
+        兵庫県明石市およびその周辺
+      </div>
+      <p class="area-sankouhome__note">※ 上記エリア外のご相談もまずはメールにてお問い合わせください。</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 6. CTA (hidamari 簡素版) -->
+<section id="cta" class="cta-hidamari">
+<style>
+.cta-hidamari{padding:80px 24px;background:#fff;color:#1a1a1a;font-family:"Noto Serif JP",serif;text-align:center}
+.cta-hidamari__head{margin-bottom:32px}
+.cta-hidamari__catch{font-family:"Shippori Mincho","Noto Serif JP",serif;font-size:18px;letter-spacing:.18em;color:#1a1a1a;margin:0 0 24px;font-weight:500}
+.cta-hidamari__logo{display:inline-block;margin:0 auto;font-family:"Shippori Mincho",serif;font-weight:500;font-size:24px;letter-spacing:.18em;color:#1f1c18}
+.cta-hidamari__btns{display:flex;flex-direction:column;gap:14px;align-items:center;margin:24px auto 0;max-width:520px}
+.cta-hidamari__btns a{display:flex;align-items:center;justify-content:center;width:100%;padding:22px 24px;background:#7a6849;color:#fff;text-decoration:none;font-family:"Shippori Mincho","Noto Serif JP",serif;font-size:14px;letter-spacing:.18em;font-weight:500;transition:opacity .2s}
+.cta-hidamari__btns a:hover{opacity:.8}
+.cta-hidamari__btns .is-secondary{background:#d4a574}
+@media (min-width:768px){
+  .cta-hidamari{padding:120px 32px}
+  .cta-hidamari__btns{flex-direction:row;max-width:760px;gap:24px}
+  .cta-hidamari__btns a{padding:24px}
+}
+</style>
+<div class="cta-hidamari__head">
+  <p class="cta-hidamari__catch">外構工事の「気になる」を、まずはご相談ください。</p>
+  <span class="cta-hidamari__logo">株式会社 慶緑</span>
+</div>
+<div class="cta-hidamari__btns">
+  <a href="mailto:info@keiryoku.jp?subject=%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E6%85%B6%E7%B7%91%20%E6%A7%98%20/%20%E5%A4%96%E6%A7%8B%E5%B7%A5%E4%BA%8B%E3%81%AE%E4%BB%B6%E3%81%A7%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B"><span>メールでお問い合わせ</span></a>
+  <a class="is-secondary" href="https://www.google.com/maps/search/?api=1&query=%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E6%85%B6%E7%B7%91" target="_blank" rel="noopener"><span>Google で会社情報を見る</span></a>
+</div>
+</section>
+
+<!-- 7. FOOTER (kotake 簡素版) -->
+<section class="footer-kotake">
+<style>
+.footer-kotake{background:#fff;color:#1f1c18;font-family:"Noto Sans JP",sans-serif;padding:80px 32px 40px;box-sizing:border-box;border-top:1px solid #e6e0d4}
+.footer-kotake__inner{max-width:1200px;margin:0 auto}
+.footer-kotake__header{text-align:center;font-family:"Shippori Mincho",serif;font-weight:500;font-size:clamp(18px,2.4vw,24px);letter-spacing:.16em;margin:0 0 32px;color:#1f1c18}
+.footer-kotake__logo{text-align:center;margin:0 0 40px;font-family:"Shippori Mincho",serif;font-weight:500;font-size:28px;letter-spacing:.18em;color:#1f1c18}
+.footer-kotake__info{display:grid;grid-template-columns:1fr 1fr;gap:48px;padding:32px;background:#f5f0e6;border-radius:6px;margin-bottom:32px}
+.footer-kotake__contact{align-self:center}
+.footer-kotake__contact-label{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:13px;letter-spacing:.24em;color:#8a6b3a;margin:0 0 8px}
+.footer-kotake__contact-email{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:22px;letter-spacing:.04em;color:#1f1c18;margin:0;word-break:break-all}
+.footer-kotake__area{}
+.footer-kotake__area-head{display:flex;align-items:baseline;gap:14px;margin-bottom:14px}
+.footer-kotake__area-head h2{font-family:"Shippori Mincho",serif;font-weight:500;font-size:18px;letter-spacing:.16em;margin:0;color:#1f1c18}
+.footer-kotake__area-head .en{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:12px;letter-spacing:.24em;color:#8a6b3a;text-transform:uppercase}
+.footer-kotake__area p{font-family:"Noto Sans JP",sans-serif;font-size:13px;line-height:1.8;color:#3a3530;margin:0}
+.footer-kotake__notice{font-size:11px;color:#7c7670;line-height:1.7;text-align:center;margin:24px 0 0;padding:16px;background:#f9f6f0;border-radius:4px}
+.footer-kotake__bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;margin-top:24px;border-top:1px solid #e6e0d4}
+.footer-kotake__copy{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:12px;color:#5c5650;margin:0;letter-spacing:.18em}
+@media (max-width:880px){
+  .footer-kotake{padding:56px 20px 32px}
+  .footer-kotake__info{grid-template-columns:1fr;gap:24px;padding:24px}
+  .footer-kotake__bottom{flex-direction:column;align-items:center;text-align:center}
+}
+</style>
+<div class="footer-kotake__inner">
+  <p class="footer-kotake__header">明石市で外構工事のご相談なら</p>
+  <p class="footer-kotake__logo">株式会社 慶緑</p>
+  <div class="footer-kotake__info">
+    <div class="footer-kotake__contact">
+      <p class="footer-kotake__contact-label">CONTACT</p>
+      <a class="footer-kotake__contact-email" href="mailto:info@keiryoku.jp">info@keiryoku.jp</a>
+    </div>
+    <div class="footer-kotake__area">
+      <div class="footer-kotake__area-head">
+        <h2>対応エリア</h2>
+        <span class="en">Area</span>
+      </div>
+      <p>兵庫県明石市を中心に、お車で約 1 時間圏内</p>
+    </div>
+  </div>
+  <p class="footer-kotake__notice">※ 本サイトは、ご紹介を目的とした営業用に作成された仮設のページです。株式会社 慶緑様の公式サイトではありません。</p>
+  <div class="footer-kotake__bottom">
+    <p class="footer-kotake__copy">© 2026 株式会社 慶緑</p>
+  </div>
+</div>
+</section>
+
+<script>
+(function(){
+  var header = document.querySelector('[data-site-header]');
+  var nav = document.querySelector('[data-site-nav]');
+  var burgers = document.querySelectorAll('[data-burger]');
+  var navLinks = nav ? nav.querySelectorAll('a[href^="#"]') : [];
+  function onScroll(){
+    if(!header) return;
+    if(window.scrollY > 80) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  function toggleNav(force){
+    if(!nav) return;
+    var open = (typeof force === 'boolean') ? force : !nav.classList.contains('is-open');
+    nav.classList.toggle('is-open', open);
+    nav.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+    var btn = document.querySelector('.site-header__burger');
+    if(btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  burgers.forEach(function(b){ b.addEventListener('click', function(){ toggleNav(); }); });
+  navLinks.forEach(function(a){ a.addEventListener('click', function(){ toggleNav(false); }); });
+})();
+</script>
+</body>
+</html>
