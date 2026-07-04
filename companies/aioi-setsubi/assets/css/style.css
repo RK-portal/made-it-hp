@@ -81,8 +81,8 @@ img{max-width:100%; display:block}
 .hero__meta{display:flex; gap:28px; margin-bottom:auto}
 .hero__meta span{font-family:var(--sans); font-size:10.5px; letter-spacing:.24em; color:var(--paper-60)}
 .hero__title{
-  font-family:var(--sans); font-weight:600;
-  font-size:clamp(38px,5vw,76px); line-height:1.32; letter-spacing:.05em;
+  font-family:var(--min); font-weight:700;
+  font-size:clamp(36px,4.8vw,72px); line-height:1.42; letter-spacing:.14em;
   margin:18px 0 0;
 }
 .hero__title .line{display:block; overflow:hidden}
@@ -183,7 +183,7 @@ img{max-width:100%; display:block}
   display:inline-block; margin-top:12px;
   font-family:var(--sans); font-weight:500; font-size:13.5px; letter-spacing:.3em;
 }
-.sysrow .desc{font-size:12.5px; line-height:2.05; color:var(--ink-60); transition:color .3s}
+.sysrow .desc{font-size:13px; line-height:2.05; color:var(--ink-60); transition:color .3s}
 .sysrow:hover{background:var(--graphite); color:var(--paper)}
 .sysrow:hover .no{color:var(--steel)}
 .sysrow:hover .desc{color:var(--paper-60)}
@@ -272,8 +272,8 @@ img{max-width:100%; display:block}
 .band__inner{padding:0 var(--pad) clamp(44px,6vh,70px)}
 .band__inner .lbl{color:var(--paper-60)}
 .band h2{
-  margin-top:20px; font-family:var(--sans); font-weight:600;
-  font-size:clamp(24px,3vw,42px); line-height:1.6; letter-spacing:.05em;
+  margin-top:20px; font-family:var(--min); font-weight:800;
+  font-size:clamp(26px,3.3vw,46px); line-height:1.65; letter-spacing:.06em;
 }
 .band h2 i{font-style:normal; color:var(--steel)}
 .band p{margin-top:16px; font-size:12.5px; line-height:2; color:var(--paper-60); max-width:44em}
@@ -342,7 +342,7 @@ img{max-width:100%; display:block}
 .contact__inner{display:flex; justify-content:space-between; align-items:flex-end; gap:50px; flex-wrap:wrap; padding-top:clamp(34px,5vh,60px)}
 .contact h3{
   font-family:var(--sans); font-weight:600;
-  font-size:clamp(24px,2.6vw,36px); letter-spacing:.12em; line-height:1.7;
+  font-size:clamp(26px,3vw,40px); letter-spacing:.08em; line-height:1.6;
 }
 .contact .tel{
   font-family:var(--sans); font-weight:600; font-size:clamp(30px,3.6vw,50px); letter-spacing:.02em;
@@ -367,8 +367,8 @@ img{max-width:100%; display:block}
 }
 .r-hero .hero__meta{margin-bottom:34px}
 .r-hero h1{
-  font-family:var(--sans); font-weight:600;
-  font-size:clamp(30px,4.6vw,58px); line-height:1.4; letter-spacing:.05em;
+  font-family:var(--min); font-weight:700;
+  font-size:clamp(30px,4.6vw,58px); line-height:1.5; letter-spacing:.12em;
 }
 .r-hero h1 .line{display:block; overflow:hidden}
 .r-hero h1 .line>span{display:block; transform:translateY(112%); animation:lineUp 1s cubic-bezier(.16,.8,.24,1) forwards}
@@ -514,7 +514,7 @@ img{max-width:100%; display:block}
   padding:clamp(48px,7vh,84px) var(--pad) clamp(48px,7vh,72px);
   min-height:min(94vh,880px); display:flex; flex-direction:column;
 }
-.hero__title{font-size:clamp(38px,5vw,76px)}
+.hero__title{font-size:clamp(36px,4.8vw,72px)}
 .layers{z-index:2}
 .hero__cap{
   position:absolute; z-index:2; left:auto; right:var(--pad); bottom:24px;
@@ -615,12 +615,12 @@ img{max-width:100%; display:block}
 }
 .page-hero .lbl{color:var(--paper-60)}
 .page-hero h1{
-  margin-top:18px; font-family:var(--sans); font-weight:600;
-  font-size:clamp(28px,3.6vw,46px); letter-spacing:.06em; line-height:1.4;
+  margin-top:18px; font-family:var(--min); font-weight:700;
+  font-size:clamp(28px,3.6vw,46px); letter-spacing:.14em; line-height:1.5;
 }
 .page-hero p{margin-top:14px; font-size:12.5px; line-height:2; color:var(--paper-60); max-width:40em}
-.tx-link{border-bottom:1px solid var(--graphite); padding-bottom:4px}
-.tx-link:hover{color:var(--ink-60); border-color:var(--ink-30)}
+.tx-link{border-bottom:1px solid var(--steel); color:var(--steel); padding-bottom:4px}
+.tx-link:hover{color:var(--graphite); border-color:var(--graphite)}
 
 /* あゆみ */
 .history{padding-top:clamp(26px,4vh,44px)}
@@ -709,7 +709,7 @@ img{max-width:100%; display:block}
 .sysrow{grid-template-columns:110px minmax(0,1fr) minmax(0,42%); cursor:default}
 .sysrow .name b{
   display:block; font-family:var(--sans); font-weight:600;
-  font-size:clamp(19px,2vw,28px); line-height:1.2; letter-spacing:.05em; text-transform:uppercase;
+  font-size:clamp(30px,3.8vw,54px); line-height:1.1; letter-spacing:.01em;
 }
 .sysrow .name > span{display:block; margin-top:10px; font-size:12px; letter-spacing:.28em; color:var(--ink-60)}
 .sysrow:hover{background:transparent; color:inherit}
@@ -723,13 +723,13 @@ img{max-width:100%; display:block}
 }
 .proc div:last-child{border-bottom:var(--hair)}
 .proc b{
-  font-weight:600; font-size:clamp(22px,2.6vw,36px); letter-spacing:.03em;
+  font-weight:300; font-size:clamp(28px,3.2vw,46px); letter-spacing:.02em;
   text-transform:uppercase; flex:none;
 }
 .proc span{font-size:11.5px; letter-spacing:.2em; color:var(--ink-60); margin-left:auto}
 
 /* FEATURED SECTOR: 写真70 / 白30 の編集分離 */
-.feat{display:grid; grid-template-columns:minmax(0,7fr) minmax(0,3fr); background:var(--paper)}
+.feat{display:grid; grid-template-columns:minmax(0,3fr) minmax(0,2fr); background:var(--paper)}
 .feat__ph{margin:0; overflow:hidden}
 .feat__ph img{width:100%; height:100%; object-fit:cover; display:block; min-height:520px}
 .feat__tx{
@@ -737,15 +737,15 @@ img{max-width:100%; display:block}
   display:flex; flex-direction:column; justify-content:flex-end;
 }
 .feat__tx h2{
-  margin-top:20px; font-weight:600;
-  font-size:clamp(19px,1.7vw,26px); line-height:1.85; letter-spacing:.05em;
+  margin-top:22px; font-family:var(--min); font-weight:800;
+  font-size:clamp(22px,2.2vw,32px); line-height:1.8; letter-spacing:.06em;
 }
 .feat__tx p{margin-top:18px; font-size:12px; line-height:2.1; color:var(--ink-60)}
 
 /* COMPANY: 拠点表記の縮小 + 代表経歴の前出し */
 .company__base{
-  font-weight:600; font-size:clamp(17px,1.6vw,22px); letter-spacing:.08em;
-  line-height:1.7; text-transform:uppercase;
+  font-weight:600; font-size:clamp(24px,2.6vw,40px); letter-spacing:.04em;
+  line-height:1.4; text-transform:uppercase;
 }
 .company__exp{margin-top:30px; border-top:var(--hair); padding-top:18px}
 .company__exp p{margin-top:10px; font-size:12.5px; line-height:2; color:var(--ink-60)}
@@ -756,7 +756,7 @@ img{max-width:100%; display:block}
   display:grid; grid-template-columns:minmax(0,2fr) minmax(0,3fr); gap:70px;
   padding-top:clamp(30px,4.5vh,52px);
 }
-.careers__inner h3{font-weight:600; font-size:clamp(21px,2.3vw,30px); letter-spacing:.08em; line-height:1.75}
+.careers__inner h3{font-weight:600; font-size:clamp(26px,3vw,40px); letter-spacing:.06em; line-height:1.65}
 .careers__rows div{
   display:flex; justify-content:space-between; align-items:baseline;
   border-top:var(--hair); padding:16px 4px;
@@ -774,6 +774,7 @@ img{max-width:100%; display:block}
 @media (max-width:760px){
   .hero .hero__tag{order:2; padding:26px var(--pad) 0; margin:0}
   .hero .hero__title{order:2}
-  .proc b{font-size:clamp(24px,7vw,32px)}
+  .proc b{font-size:clamp(26px,7.4vw,34px); font-weight:300}
+  .sysrow .name b{font-size:clamp(38px,10.5vw,50px)}
   .sysrow .desc{max-width:30em}
 }
