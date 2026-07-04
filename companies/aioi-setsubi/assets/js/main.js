@@ -4,9 +4,9 @@
 
   /* ---- スクロール連動リビール ---- */
   var SELECTORS = [
-    '.sec__head', '.sysrow', '.fact', '.pos__text', '.pos__cols .diagram',
-    '.band__inner', '.company__cols > *', '.big-stat', '.recruit-b__side',
-    '.contact__inner > *', '.nstat', '.envrow', '.day-item', '.day .photo',
+    '.sec__head', '.sysrow', '.pos__text', '.pos__cols .proc',
+    '.band__inner', '.feat__tx', '.company__cols > *', '.careers__inner > *',
+    '.contact__inner > *', '.envrow', '.day-item', '.day .photo',
     '.yoko .ctable', '.yoko__cta'
   ];
   var targets = document.querySelectorAll(SELECTORS.join(','));
