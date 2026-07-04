@@ -50,10 +50,9 @@
     <div class="hero__meta">
       <span>KYOTO — JOYO</span><span>EST. 2019</span>
     </div>
-    <p class="hero__tag">Designing building systems</p>
     <h1 class="hero__title">
       <span class="line"><span>建築の内側を、</span></span>
-      <span class="line"><span>設計する。</span></span>
+      <span class="line"><span><em>設計する。</em></span></span>
     </h1>
     <p class="hero__desc">空調・換気・給排水衛生設備の設計から、施工図作成、各種調整まで。京都・城陽を拠点に、建築設備の図面技術でプロジェクトを支えます。</p>
     <div class="hero__links">
@@ -113,23 +112,29 @@
         <div><b>DOC.</b><span>資料整理 — 機器表・系統図・各種資料</span></div>
       </div>
     </div>
-    <div class="proc" aria-label="仕事の工程">
-      <div><b>Design</b><span>設計図</span></div>
-      <div><b>Coordination</b><span>取り合い調整</span></div>
-      <div><b>Shop drawing</b><span>施工図</span></div>
-      <div><b>Construction</b><span>現場へ</span></div>
+    <div>
+      <div class="diagram">
+        <div class="diagram__row"><div class="diagram__node">建築設計事務所</div></div>
+        <div class="diagram__wire-v"></div>
+        <div class="diagram__row">
+          <div class="diagram__node">ゼネコン・サブコン</div>
+          <div class="diagram__wire-h rev"></div>
+          <div class="diagram__node diagram__node--main">相生設備事務所<small>Building services design</small></div>
+          <div class="diagram__wire-h"></div>
+          <div class="diagram__node">機器メーカー</div>
+        </div>
+        <div class="diagram__wire-v"></div>
+        <div class="diagram__row"><div class="diagram__node">現場（施工）</div></div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ============ FEATURED SECTOR（感情コピーはサイトでここだけ） ============ -->
-<section class="feat">
-  <figure class="feat__ph">
-    <img src="assets/img/school-gym.jpg" alt="体育館の天井に走る空調ダクト" loading="lazy">
-  </figure>
-  <div class="feat__tx">
+<section class="band">
+  <div class="band__inner">
     <span class="lbl">Public facilities</span>
-    <h2>図面の一本の線が、<br>子どもたちの教室の<br>空気になる。</h2>
+    <h2>図面の<i>一本の線</i>が、<br>子どもたちの教室の空気になる。</h2>
     <p>教室の空調、手洗い場の給排水、体育館の換気。学校をはじめとする公共施設の設備を、図面から支える。</p>
   </div>
 </section>
@@ -165,7 +170,7 @@
 </section>
 
 <!-- ============ CAREERS ============ -->
-<section class="sec careers">
+<section class="sec careers dark">
   <div class="sec__head">
     <span class="lbl">Careers</span>
   </div>

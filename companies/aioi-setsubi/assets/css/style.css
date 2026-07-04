@@ -778,3 +778,31 @@ img{max-width:100%; display:block}
   .sysrow .name b{font-size:clamp(38px,10.5vw,50px)}
   .sysrow .desc{max-width:30em}
 }
+
+
+/* =========================================================
+   v6.2 — デザインv5系へ復帰（文言は現行維持）+ SP余白調整
+   ========================================================= */
+/* CAREERS: v5の黒帯に戻す（中身は現行の要約行） */
+.careers{background:var(--graphite); color:var(--paper)}
+.careers .sec__head .lbl{color:var(--paper-60)}
+.careers__rows div{border-top:var(--hair-dark)}
+.careers__rows div:last-child{border-bottom:var(--hair-dark)}
+.careers__rows span{color:var(--paper-60)}
+.careers{padding-top:0; margin-top:clamp(40px,6vh,70px)}
+.careers .careers__inner{padding-bottom:clamp(40px,6vh,64px)}
+
+/* SP余白の修正: SERVICESの1画面1項目(74vh)が短文化で空白過多 → 詰める */
+@media (max-width:760px){
+  .sysrow{min-height:0; padding:44px 0}
+  .sysrow .name{margin-top:12px}
+  .sysrow .desc{margin-top:18px}
+  .sec__head{padding:26px 0 6px}
+  .pos__cols{gap:36px}
+  .careers{margin-top:36px}
+  .careers__inner{gap:28px; padding-top:22px}
+  .contact__inner{gap:30px; padding-top:18px}
+  .company__cols{gap:30px}
+  .band{min-height:0; padding:56px 0}
+  .band__inner{padding-bottom:0}
+}

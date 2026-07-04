@@ -4,8 +4,8 @@
 
   /* ---- スクロール連動リビール ---- */
   var SELECTORS = [
-    '.sec__head', '.sysrow', '.pos__text', '.pos__cols .proc',
-    '.band__inner', '.feat__tx', '.company__cols > *', '.careers__inner > *',
+    '.sec__head', '.sysrow', '.pos__text', '.pos__cols .diagram',
+    '.band__inner', '.company__cols > *', '.careers__inner > *',
     '.contact__inner > *', '.envrow', '.day-item', '.day .photo',
     '.yoko .ctable', '.yoko__cta'
   ];
